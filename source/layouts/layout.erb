@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+    <head>
+        <title>Uğur “vigo” Özyılmazel | <%= current_page.data.title || "www" %></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        <%= stylesheet_link_tag :application %>
+        <%= feed_tag :atom, "#{blog(I18n.locale).options.prefix.to_s}/feed-#{I18n.locale}.xml", title: "Atom Feed" %>
+        <%= partial 'partials/meta' %>
+        <%= partial 'partials/icons' %>
+    </head>
+    <body class="<%= page_classes %>">
+        <%= yield %>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        <% if current_page.metadata[:page][:embedded_tweet] %><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><% end %>
+        
+        <%= yield_content :extra_js %>
+        <%= javascript_include_tag :application %>
+        
+        <% if build? %>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', '<%= config[:google_analytics_id] %>', 'auto');
+          ga('send', 'pageview');
+        </script>
+        <% end %>
+        
+    </body>
+</html>

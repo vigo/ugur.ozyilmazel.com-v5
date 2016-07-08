@@ -1,0 +1,132 @@
+html {
+  font-size: 16px;
+}
+
+
+.display-1 { font-size: 3.4rem; }
+.display-2 { font-size: 3.2rem; }
+.display-3 { font-size: 3rem; }
+.display-4 { font-size: 2.82rem; }
+
+
+body {
+  font-family: $base-font;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+}
+
+
+a {
+  color: $title-link-color;
+  text-decoration: none;
+  transition:all 0.2s ease;
+  &:hover {
+      color:darken($title-link-color, 50%);
+      text-decoration: none;
+  }
+}
+
+strong {
+  font-weight: 700;
+  color: black;
+}
+
+h1, h2, h3, h4, h5, h6, time {
+  font-family: $heading-font;
+}
+
+
+h1 { color: $heading1-color; }
+h2 { color: $heading2-color; }
+h3 { color: $heading3-color; }
+h4 { color: $heading4-color; }
+h5 { color: $heading5-color; }
+
+
+code, pre, kbd, samp {
+  font-family: $code-font;
+}
+
+pre {
+  font-size: 0.95em;
+  border: 0;
+  padding: 1.5em;
+  margin-bottom: $common-mb;
+  line-height: 1.6em;
+  border: 0;
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  code { border: 0; }
+}
+
+code {
+  border-bottom: 1px solid #ddd;
+} 
+
+
+#list-posts {
+  time { color: $time-color; }
+  
+  a {
+    font-weight: 700;
+    &::after{
+      content: " \00bb"; 
+    };
+  }
+  
+  header {
+    margin: .4rem 0;
+    a::after{
+      content: ""; 
+    };
+  }
+  
+  summary {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    line-height: 2rem;
+    font-weight: 200;
+    strong, a { font-weight: 400; }
+  }
+  
+  hr { margin: 2rem 0; }
+  
+}
+
+
+#page-top-nav {
+  font-family: $heading-font;
+  margin: 4rem 0 1rem 0;
+  li {
+    margin-right: 2rem;
+    &.active > a {
+      border-bottom: 2px solid $title-link-color;
+    }
+  }
+  a { font-weight: 900; }
+}
+
+
+#footer {
+  font-family: $heading-font;
+  padding: 5rem 0;
+  margin-top: 2rem;
+  color: $footer-color;
+  background-color: $footer-bg-color;
+  a {
+    color: inherit;
+    .fa-inverse { color: $footer-color; }
+    &:hover {
+      color:darken($footer-color, 50%);
+    }
+  }
+  #footer-nav {
+    li { margin-right: 2rem; }
+  }
+}
+
+
+.twitter-tweet {
+  margin: 0 auto $common-mb auto !important;
+}

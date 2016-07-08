@@ -1,0 +1,31 @@
+<%
+related_articles = []
+current_page.tags.each do |tag|
+  blog(I18n.locale).tags[tag].each do |article|
+    unless article == current_page
+      related_articles << article unless related_articles.include?(article)
+    end
+  end
+end
+%>
+<% if related_articles.count > 0 %>
+<hr/>
+<div id="related-articles">
+    <ul class="list-unstyled">
+    <li>
+        <h1><%= t('related_articles', count: related_articles.count) %></h1>
+        <p><%= t('we_have_related_articles', count: related_articles.count) %></p>
+    </li>
+    <% related_articles.each_with_index do |article, index| %>
+        <li>
+            <h3><%= link_to article.title, article %></h3>
+            <time pubdate datetime="<%= article.date.xmlschema %>" title="<%= I18n.l article.date, format: config.date_format_long[I18n.locale] %>">
+                <%= I18n.l article.date, format: config.date_format_long[I18n.locale] %>
+            </time>
+            <%= print_summary article %>
+        </li>
+    <% end %>
+    </ul>
+</div>
+<hr/>
+<% end %>

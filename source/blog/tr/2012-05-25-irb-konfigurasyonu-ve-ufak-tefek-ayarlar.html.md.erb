@@ -1,0 +1,165 @@
+---
+title: "IRB konfigürasyonu ve ufak tefek ayarlar"
+date: 2012-05-25 00:06
+cover: 2012-05-25-irb-configurasyonu.png
+og_image: 2012-05-25-irb-configurasyonu.png
+tags: irb,irbrc,wirble,ori,awesome_print
+comments: true
+---
+
+[IRB][irb] konfigüre edilebilen bir interaktif konsoldur. Aynı [IPython][ipython] gibi.
+Hem test yapmak, hem de günlük ihtiyaçları kullanmak için en sık başvurduğum
+**tool**&rsquo;dur. [Python][python]&rsquo;dan alıştığım [Pretty Print][pretty-print] beni IRB uzmanı
+olmaya yöneltti.
+READ_MORE
+
+`$HOME/.irbrc` adlı dosya, kullanıcı bazında IRB konfigürasyon dosyasıdır.
+İlk çalışma sırasında ne olacak? Hangi modüller default olarak yüklenmeli? Bu
+ve buna benzer şeyler standart [Ruby][ruby] script&rsquo;i şeklinde yazılır.
+
+```ruby
+# encoding: utf-8
+
+# http://pablotron.org/software/wirble/README
+# required gems:
+# wirble pri awesome_print ruby-duration
+
+IRB_START_TIME = Time.now
+
+require 'rubygems'
+require "irb/completion"
+require 'irb/ext/save-history'
+
+EXISTING_GEMS = {
+  :RUBY_DURATION => { :exists => true, :file => 'ruby-duration' },
+  :WIRBLE => { :exists => true, :file => 'wirble' },
+  :ORI => { :exists => true, :file => 'ori' },
+  :AWESOME_PRINT => { :exists => true, :file => 'awesome_print' },
+}
+
+begin
+  require 'ruby-duration'
+rescue LoadError
+  EXISTING_GEMS[:RUBY_DURATION][:exists] = false
+end
+
+begin
+  require 'wirble'
+rescue LoadError
+  EXISTING_GEMS[:WIRBLE][:exists] = false
+end
+
+begin
+  # ori usage:
+  # "".ri
+  # "".ri :upcase
+  # Array.ri
+  # "".ri :pretty_print
+  require 'ori'
+rescue LoadError
+  EXISTING_GEMS[:ORI][:exists] = false
+end
+
+begin
+  require 'awesome_print'
+rescue LoadError
+  EXISTING_GEMS[:AWESOME_PRINT][:exists] = false
+end
+# ARGV.concat ["--readline", "--prompt-mode", "simple"]
+# ARGV.concat ["--readline", "--noprompt"]
+
+# Colors for prompt
+# ----------------------------------------------------------------------------
+ANSI = {}
+ANSI[:RESET]     = "\e[0m"
+ANSI[:BOLD]      = "\e[1m"
+ANSI[:UNDERLINE] = "\e[4m"
+ANSI[:LGRAY]     = "\e[0;37m"
+ANSI[:GRAY]      = "\e[0;90m"
+ANSI[:RED]       = "\e[31m"
+ANSI[:GREEN]     = "\e[32m"
+ANSI[:YELLOW]    = "\e[33m"
+ANSI[:BLUE]      = "\e[34m"
+ANSI[:MAGENTA]   = "\e[35m"
+ANSI[:CYAN]      = "\e[36m"
+ANSI[:WHITE]     = "\e[37m"
+# ----------------------------------------------------------------------------
+
+# Colors for array, hash etc...
+# ----------------------------------------------------------------------------
+Wirble.init({
+  :skip_prompt => true,
+  :skip_history => true,
+})
+Wirble.colorize
+# ----------------------------------------------------------------------------
+
+
+# IRB configuration
+# ----------------------------------------------------------------------------
+MY_CUSTOM_PROMPT = "#{ANSI[:WHITE]}%03n#{ANSI[:RESET]}:#{ANSI[:YELLOW]}%i#{ANSI[:RESET]}"
+
+IRB.conf[:SAVE_HISTORY] = 10000
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
+IRB.conf[:USE_READLINE] = true
+IRB.conf[:AUTO_INDENT] = true
+IRB.conf[:PROMPT][:SIMPLE] = {
+  :PROMPT_I => "#{MY_CUSTOM_PROMPT} > ",
+  :PROMPT_N => "#{MY_CUSTOM_PROMPT} >> ",
+  :PROMPT_S => "#{MY_CUSTOM_PROMPT} #{ANSI[:MAGENTA]}%l#{ANSI[:RESET]} ",
+  :PROMPT_C => "#{MY_CUSTOM_PROMPT} #{ANSI[:WHITE]}*#{ANSI[:RESET]} ",
+  :RETURN   => "#{ANSI[:GREEN]}=>#{ANSI[:RESET]} %s\n",
+}
+IRB.conf[:PROMPT_MODE] = :SIMPLE
+# ----------------------------------------------------------------------------
+
+
+# ----------------------------------------------------------------------------
+EXISTING_GEMS.each { |g, p|
+  puts "need '#{ANSI[:RED]}#{p[:file]}#{ANSI[:RESET]}' gem" unless p[:exists]
+}
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+at_exit {
+  if EXISTING_GEMS[:RUBY_DURATION][:exists]
+    delta = Duration.new(Time.now - IRB_START_TIME).format("#{ANSI[:WHITE]}%h#{ANSI[:RESET]} %~h, #{ANSI[:WHITE]}%m#{ANSI[:RESET]} %~m, #{ANSI[:WHITE]}%s#{ANSI[:RESET]} %~s")
+    puts "#{delta}"
+  end
+}
+# ----------------------------------------------------------------------------
+```
+
+Standart kütüphanede olmayan 4 adet modül kullanıyorum. (*gem*) Bunlar:
+
+- ruby-duration
+- wirble
+- ori
+- awesome_print
+
+`ruby-duration` basit bir zaman hesabı işi için kullanılıyor. `wirble`
+renklendirme için. `ori` ri dökümantasyonuna erişmek için. Konu ile ilgili
+daha önce [yazmıştım][old-post-1]. `awesome_print` ise belkide içlerindeki
+en süper gem. `Hash` `Array` ya da `Class` bu objeleri print etmek ve çıktıyı
+anlamak `awesome_print` sayesinde çok kolay.
+
+Modüller dışında, IRB&rsquo;nin prompt&rsquo;unu da değiştirdim. Hem renkli
+hem de daha anlaşılır oldu.
+
+İlk çalışma anında gereken `gem` kontrolü yapılıp uyarı geliyor. Çıkışta da
+geçen süre yazılıyor ekrana. En önemlisi, [önceki diğer bir yazımda][old-post-2] anlattığım
+`readline` kütüphanesi yardımıyla, `INPUTRC` çalışıyor. Bu şu anlama geliyor;
+`HISTORY` içinden otomatik tamamlama.
+
+Ufak bir video hazırladım:
+
+<%= video src: 'http://www.screenr.com/embed/7kX8' %>
+
+[pretty-print]: http://docs.python.org/library/pprint.html
+[old-post-1]:   /blog/tr/2012/05/02/irb-icin-yardimci-gem-ori/
+[old-post-2]:   /blog/tr/2012/05/24/irb-rbenv-readline-ve-turkce-karakter/
+
+[ipython]: http://ipython.org/
+[irb]: http://en.wikipedia.org/wiki/Interactive_Ruby_Shell
+[python]: http://python.org "Python"
+[ruby]: http://www.ruby-lang.org/ "Ruby"

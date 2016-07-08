@@ -1,0 +1,39 @@
+---
+title: "Tam ekran App Store (Full Screen)"
+date: 2011-01-07 10:23
+cover: 2011-01-07-full-screen-appstore.png
+og_image: 2011-01-07-full-screen-appstore.png
+tags: applescript
+comments: true
+---
+
+Dün Mac OS X update’i ile gelen, tahminimce hayatımıza renk ve heyecan katacak
+olan App Store uygulamasını **Full Screen** yapmayı sağlayan minik bir
+applescript.
+READ_MORE
+
+```applescript
+on run
+    tell application "Finder"
+        get bounds of window of desktop
+        set DesktopSize to bounds of window of desktop
+        set DesktopWidth to item 3 of DesktopSize
+        set DesktopHeight to item 4 of DesktopSize
+    end tell
+    tell application "App Store"
+        activate
+        set the bounds of the first window to {0, 0, DesktopWidth, DesktopHeight}
+    end tell
+end run
+```
+
+`/Applications/Utilities/` ’den **AppleScript Editor** ’ü açın, 
+yukarıdaki script’i `copy/paste` yapın. Sonra run edin. İsterseniz bunu save edip 
+sık sık kullanabilirsiniz.
+
+Minik bir not, bu olayı neredeyse tüm app’ler için uygulayabilirsiniz. Çalışan
+uygulamanın adını görmek için, Terminal’de:
+
+    ps -xc
+
+yapın. Gelen listede çalışan uygulamaların adını görebilirsiniz...

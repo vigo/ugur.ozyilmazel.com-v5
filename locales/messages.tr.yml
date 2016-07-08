@@ -1,0 +1,13 @@
+---
+tr:
+  last_modified_at: Son güncelleme tarihi
+  go_to_first_page: İlk sayfaya git
+  go_to_last_page: Son sayfaya git
+  go_to_previous_page: Önceki sayfaya git
+  go_to_next_page: Sonraki sayfaya git
+  homepage_subtitle: Yazılım geliştirici
+  tagged_items: Etiketli “%{count}” kayıt bulunuyor.
+  related_articles:
+    one: İlişkili Makale
+    other: İlişkili Makaleler
+  we_have_related_articles: Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.

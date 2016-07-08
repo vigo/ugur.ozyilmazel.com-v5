@@ -1,0 +1,83 @@
+---
+title: "Python fonksiyonu nasıl yazılmalı?"
+date: 2012-10-26 00:03
+cover: 2012-10-26-python-fonksiyonu.jpg
+og_image: 2012-10-26-python-fonksiyonu.jpg
+comments: true
+tags: python,function
+---
+[Coursera][coursera]&rsquo;dan aldığım [Learn to Program: The Fundamentals][ders] dersinde
+bugüne kadar görmediğim bir şeyi sizlerle paylaşmak istiyorum.
+READ_MORE
+
+Sevgili hocalarım **Jennifer Campbell** ve **Paul Gries** ufkumu genişlettiler...
+
+
+[Toronto Üniversitesi][uni-tor] tarafından hazırlanan ders, Python 101 yani
+Python&rsquo;a giriş ve temel öğeleri kapsıyor. Geçenlerde Python fonksiyonun
+anatomisi vardı derste.
+
+```py
+def area(base, height):                                        # Header
+    ''' (number, number) -> number                             # Type Contract
+    
+    Return the area of a triange with dimensions base          # Description
+    and height.
+    
+    >>> area(10, 5)                                            # Examples
+    25.0
+    >>> area(2.5, 3)
+    3.75
+    '''
+    
+    return base * height / 2                                   # Body
+```
+
+Şimdi teker teker bakalım.
+
+### def area(base, height):
+
+Bu kısım yani ilk satır, fonksiyonun **Header**&rsquo;ı yani başı.
+**def** define anlamında. **area** fonsiyonun adı. **base** ve **height** da
+fonksiyonun aldığı parametreler / argümanlar.
+
+
+### (number, number) -> number
+
+Bu kısım, **Docstring** dediğimiz yerin ilk satırı; **Type Contract** olarak
+adlandırılıyor. Bu bölümde, fonksiyona geçilecek parametreler, adeti, türleri
+ve sonunda fonksiyonun geri döndüğü şey ve tipi belirtiliyor.
+
+Bu örnekte fonksiyona 2 adet **sayı** geçiyoruz. Python&rsquo;da **number** diye
+bir tip yok bildiğiniz gibi. (*int, float, long, complex tipleri var*)
+Fakat tip olarak **number** geçmek ve dönmek şu manaya geliyor;
+
+> Fonksiyon&rsquo;a `int` ya da `float`
+geçebiliriz, sonuç da bize `int` ya da `float` dönebilir.
+
+Yuvarlak olarak bu iki farklı sayı tipi için kısaca **number** demişler.
+
+### Return the area of a triange...
+
+Örnekteki 4 ve 5.satırlar **Description** satırları. Yani fonksiyonun ne
+yapacağını bize anlatan açıklama alanı...
+
+
+### >>> area(10, 5)
+7 - 10.satırlar **Examples** olarak geçiyor. Yani fonksiyonun kullanım
+örneği... Hatta **Docstring Test** için de kullanılacak bir alan. Bize
+söylediği şu; **area(10, 5)** bize sonuç olarak **25.0** dönmeli.
+
+
+### return base * height / 2
+
+Bu kısım da fonksiyonun esas işi yaptığı alan yani **Body** yani fonksiyonun
+gövdesi. Örnek şaşırtmasın, tek satır olmak zorunda değil 8)
+
+Gerçekten çok ilgimi çeken bir yaklaşım oldu. Paylaşmak istedim. Umarım
+sizlerin de işine yarar faydalı olur...
+
+[ders]: https://class.coursera.org/programming1-2012-001/class/index
+[uni-tor]: http://www.utoronto.ca "University of Toronto"
+
+[coursera]: http://coursera.org "Coursera"

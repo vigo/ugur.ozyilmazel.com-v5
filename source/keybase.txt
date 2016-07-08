@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/vigo
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://ugur.ozyilmazel.com
+  * I am vigo (https://keybase.io/vigo) on keybase.
+  * I have a public key with fingerprint 6EB6 3DE7 F53B 1F2B 83AF  578B EFF1 8B16 572C 9F36
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "010145c09afd009d4994fbda2348e59d31743d27265b9bee0b9c4888d8850a2d621d0a",
+            "fingerprint": "6eb63de7f53b1f2b83af578beff18b16572c9f36",
+            "host": "keybase.io",
+            "key_id": "eff18b16572c9f36",
+            "kid": "010145c09afd009d4994fbda2348e59d31743d27265b9bee0b9c4888d8850a2d621d0a",
+            "uid": "95addba5f9c57321a35750a0fbc44100",
+            "username": "vigo"
+        },
+        "service": {
+            "hostname": "ugur.ozyilmazel.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1443789332,
+    "expire_in": 157680000,
+    "prev": "8fb3021bd780ad1456ceba880681aeefcbf8c8cee2ba8e2a0af922841eb882b0",
+    "seqno": 25,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.47
+Comment: https://keybase.io/crypto
+
+yMIrAnicrZJbSFRBGMfXS2mS1yxLKOmQRGAy5z5nKQJNykAhCpMQlpkzc9aj6571
+7NktFa2VSoOI0MSSoBsWRFIpESilli8lSdlDENjFB0sIH9LCoNscsbcem5dhvvn9
+//P/PmYsNcGTEje/dmDuxLnol7jx0Z6IpyKtMbuJwxZp4LxNXC1d2miA0LDjqzUJ
+5+UAD3hJ1oGGDAKARiRNkwxMkCBKkMoaEXlVEomgCoqMNUwpwJouQQgJhDJAAlEE
+ngDEFXCGGfRTO2SbQYfZKhQrIqGqIYuYNwQMRWTIKsTUMHiIeUVWBV0zRIUJq62w
+q2DhMArTQtNiNXbwLcX7B/+fc0eW7DQZEYKRbGi6rIoCj0RZZRwwsC5JPAAuGKZ2
+ENVRRkdNv8U1F3CsEjV16g7V7WL5NuKP2IVWY4MZqEONNFCoW3VMHrItx9KtAAOq
+HSfkdfVOQ8gVHKHYt2zlw2aQsEkyQZTaYdMKcl6ekbpjut68JIkq1ERRKODo0ZBp
+U5/pErKqQMCW+wyNMktoYBEIPCYqBIiwSSk6xQhCoEAeUWro2IA61CkVWJUKCCBD
+EwQo8RRDKGC33zCtD1qcV5BZTuRnnmHTH0ROxKZc8+ORqkRPXIpn5Yp494t5UlZl
+/P14KCHpd+X+6xlDed6chbeB7Lt5GXIr9/3Si3wa3LP+wfb8ib3dmytmjh8wvLH+
+pmkgRcujNadbYs4d+Urvy4aFHZHSpCy4aK17N9WJr+QMf+6+kDrUE5lMkA6235yd
+aXsw+K1zZ9vRWO5wZktXoL5k5NrOvvbdnTWx3O7a+MNm7uvx832lrxbTy3trKp/m
+Zb3fc6ZOurii537mvQ8lU7smbn9d/bx4Gz+3MX+fU5K8oW9iKLXs2VYltmVw+n59
+/9k1drVz9Yd3dORnS1HVtUfaw8mkJ5uKRicj12No78DKjq6OuMSxqjddSdMF7bA4
+7eSxjPSyG8mHOvrOtn489Wn21jy9PL/j1x+mvT51
+=cDt5
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/vigo
+
+==================================================================

@@ -1,0 +1,21 @@
+---
+pageable: true
+per_page: 10
+---
+
+<% I18n.locale = :en %>
+
+<%= partial 'partials/top_menu' %>
+
+<%= partial 'partials/page_cover', locals: {
+    cover_title: tagname,
+    cover_subtitle: t('tagged_items', count: articles.count)
+} %>
+
+<%= partial 'partials/list_posts', locals: {
+    need_articles: page_articles,
+    first_page: "/blog/tr/etiket/#{tagname}/",
+    link_schema: "/blog/tr/etiket/#{tagname}/sayfa/{num}/",
+} %>
+
+<%= partial 'partials/footer' %>

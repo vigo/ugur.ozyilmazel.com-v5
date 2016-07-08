@@ -1,0 +1,174 @@
+---
+title: "Mac OS X: CFUserTextEncoding ve UTF-8 sorunsalı"
+date: 2011-07-21 23:22
+cover: 2011-07-21-cfusertextencoding.jpg
+og_image: 2011-07-21-cfusertextencoding.jpg
+tags: mac os x,encoding
+comments: true
+---
+
+Mac OS X’le tanıştığım günden beri sinir olduğum ve kimsenin çözümünü
+bilemediği bir sorunum var. Aslında bu sorun, Amerikalı olmayan herkesin
+sorunu. Bu sorun yüzünden ne [Python][python]’la ne de [Ruby][ruby]’le bile 
+işlem yapmakta sıkıntı oluyor.READ_MORE
+
+Bu sorunu ilk kez [Quicklook][quicklook]’la tanışınca yaşamıştım. Çok sevdiğim bir
+özelliktir quicklook. Dosyayı açmadan içine bakmak. Bir tür hızlı önizleme.
+UTF-8 olarak kaydedilmiş text dosyalarına quicklook’la bakmak istediğimde
+Türkçe harflerin bozuk olduğunu görmüştüm.
+
+Başladım aramaya google’da... Sonra gördümki bu sorun sırf Türkçe için geçerli
+değil. Fince, Almanca, Norveç dili vs, İngilizce olmayan yani ASCII’nin
+dışında kalan her dilde bu sorun varmış.
+
+Çeşitli çözümlemeleri var. Örneğin her oluşturduğunuz text dosyası için elle,
+manuel olarak **bom** yani byte order mark eklemek. Bu delilik. Hele hele Mac
+OS’un pek çok harika özelliğini düşünürsek bu kabus gibi bir şey!
+
+FriendFeed’den takip ettiğim developer [Deniz "Bluesign" Edincik][bluesign], 
+ilgili bir FriendFeed yorumunda:
+
+> eğer içine 0x08000100:0x08000100 yazarsanız quicklook’da türkçe sorununu çözersiniz.
+
+demişti. `$HOME` folder’ınızda bulunan `.CFUserTextEncoding`dosyasını 
+Terminal’den görebilirsiniz:
+
+```bash
+cd $HOME
+ls -al
+
+# ya da
+ls -al .CFUserTextEncoding
+```
+
+Evet, söylediği de doğruydu. Denedim, çalışmıştı. Fakat daha sonra garip
+problemler çıkmaya başladı sistemde. DVD-ROM çalışmamaya başladı, Safari ara
+ara sapıtmaya başladı vs... Geriye dönüp düşündüğümde; en son yaptığım şey
+neydi? dediğimde bu **CFUserTextEncoding** olayını hatırladım ve tekrar
+eski/orijinal değeri olan **0:0**’a geri döndüm ve herşey düzeldi.
+
+Araştırdım günlerce. Meğerse bu **CFUserTextEncoding** çok ciddi anlamda
+sistemin **core** elementlerindenmiş. _XXX:XXX_ şeklinde verilen iki parametre
+şu anlama geliyormuş;
+
+İlk değer kullanıcının **tercih ettiği encoding**, ikinci değer de 
+**default encoding**. Aslında `0x08000100:0` da yazsak; yani ilki 
+Türkçe (*kullanıcı tercihi*), ikinci 0 (*default*) olarak da çalışan bir durum 
+var ortada.
+
+Bu bakımdan her iki değeri de `0x08000100:0x08000100` yapınca sistemdeki diğer
+uygulamalar hatta donanıma kadar giden bir zincir içinde sorunlar
+çıkabiliyormuş. Akıllara durgunluk verecek bir durum. Bu olaylar **Windows**’da
+bile olmuyor...
+
+Her ne kadar da **System Preferences**’dan Language listesinde **Türkçe** olsa da,
+Finder türkçe file/folder adlarını doğru sort etse de Terminal/Shell’deki
+sorunlar hiç bitmiyor.
+
+Aynı sorunu [iDisk](http://mobileme.com/idisk)’te yaşadım. iPhone için Apple iDisk uygulaması çıkarttığında
+hemen bu durumu kontrol ettim. Aynen Mac OS’da olduğu gibi iDisk’te de Türkçe
+karakterler bozuk çıktı. Bu olay beni gerçekten çok sinir etti. Koskoca Apple
+daha doğru dürüst `UTF-8 `desteğini veremiyor.
+
+İşin komiği, ücretsiz servis veren [Dropbox][dropbox]’da (_iPhone/iPad app_) böyle bir
+sıkıntı yok! Aslanlar gibi `Türkçe` / `UTF-8` dosyaları görebiliyorsunuz. Yani
+yıllık **$100**’a yakın para ödediğim servis daha doğru dürüst `UTF-8` text
+dosyasını dahi gösteremezken ücretsiz servis/uygulama sorunsuz çalışıyor...
+
+Üşenmedim, bu durumları Apple’ın ilgili sitesine [bug-report](http://bugreport.apple.com) yaptım. 
+**18 Aralık 2009**’dan beri (_2 yıl neredeyse_) bu ticket açık halen... 
+Muhtemelen Apple, kendi halinde bir Türk yazılımcısının hata raporunu; 
+Türkçe sort vs gibi sorununu kaale almadı? sallamadı...
+
+<%= card src: 'http://media.tumblr.com/tumblr_lop7weE9O21qafg0z.png' %>
+
+<%= card src: 'http://media.tumblr.com/tumblr_lop9n6aYNH1qafg0z.png' %>
+
+<%= card src: 'http://media.tumblr.com/tumblr_lop9nibfZi1qafg0z.png' %>
+
+Şoklar devam etti. [Snow Leopard][osx106] çıktı. Sorun aynen devam ediyor.
+Hatta daha acı şeyler oldu. OS ile birlikte gelen unix tool’larının hiç
+birinde Türkçe karakter kullanılamıyor! 
+
+Örneğin sistemle gelen [Python][python]... Python’un interaktif shell’i var.
+Açtım ve ilk olarak `ğ` harfine bastım. Tabiik basmadı. Daha sonra 
+[nano][nano] text editor’ü açtım aynen... Türke yazamıyorsunuz.
+
+python.org’dan Mac OS için hazırlanmış installation paketini indirip kurdum,
+Python’un versiyonunu yükseltmek için. Baktım aynı sorun onda da var ????????
+Yani [Ubuntu][ubuntu]’da [Gentoo][gentoo]’da ya da Debian’da olmayan
+her türlü sorun bunda...
+
+Demekki sorun ne python’da ne de nano’da... Çünkü sistemin (*unix*) kalbi
+sayılabilecek kütüphanelerden biri olan "**readline**" apple tarafından
+derlenirken `UTF-8` desteği atlanmış... Yazdığım önceki python derleme yazılarımda
+bundan bahsetmiştim.
+
+Zaten kendi kendine derlemek ve [macports][macports]’a [homebrew][homebrew]’a 
+yöneliş hep bu eksiklikler yüzünden oldu.
+
+Neyse, sözü uzatmadan, 2 hafta önce [OS X Lion][osx107] (*10.7*)’i ofisteki test
+makinesine kurdum ve ilk yaptığım iş nano’yu açıp `ğ` yazmak oldu ve gözlerim
+yaşardı! Evet bu kez nix tool’ları için **readline** doğru derlenmişti.
+Hemen python’u denedim. O da sorunsuz çalıştı ama yine **2009**’da submit ettiğim
+sort işini yapamama, shell locale sorunu aynen olduğu gibi duruyordu.
+
+Pek çok şey denedim, Shell’den `LOCALE`, `LC_ALL` set edilemiyor. Edilmiş gibi
+görünüyor ama çalışmıyor. Bu locale olayları yüzünden sisteme eklediğim
+fontlarla bile sorunlar yaşadım. (_Başka bir blog post olur bundan!_)
+
+Quicklook’a gelince, takip ettiğim bir blog’da konu hakkında güzel yorumlar ve
+çözümler yazılmış. Arkadaşların çoğu İskandinav ülkelerinde yaşadıkları için
+onların da bizim gibi kendi dillerinde karakter sorunları var. Oradaki
+arkadaşlardan biri demişki:
+
+> Quicklook, text dosyasını preview edeceği zaman gidip TextEdit’i kullanıyor.
+Bu bakımdan eğer TextEdit’in default dosya açma özelliği UTF-8 değilse
+Quicklook’da sorun oluyor.
+
+Denedim, hakikatten arkadaş haklıymış.
+
+<%= card src: 'http://media.tumblr.com/tumblr_lop8goUZqZ1qafg0z.png' %>
+
+Quicklook için text dosyalarını TextMate ile preview yaptırabiliyorsunuz hatta
+bunun için TextMate’in süper bir Quicklook Plug’ini bile var. Tek dezavantajı
+arka planda TextMate’in hep açık olması gerekiyor aksi taktirde `space`’e
+basında text dosyası üzerinde, ekrana hiç bir şey çıkmıyor...
+
+Bu yazıdaki amacım Apple’ı kötülemek değil. Ben büyük bir Apple / Mac OS sever
+olarak, diğer Unix/Linux türevlerinde yıllar yıllar önce çözülmüş sorunları
+neden **2011** yılında dahi Mac’de yaşıyorum? Bu konular o kadar basit konularki.
+Beni nasıl mı etkiliyor?
+
+Yazılım geliştiricisi olarak, python’la ya da ruby’le ya da 2007’den beri
+kullanmadığım php ile bir proje yaparken, saydığım dillerin hiç birinde
+`array/list/tuple/hash` vs sort özelliğini kullanamayacağım. Elimde 10 kişinin
+adı soyadı olacak bir listede (_ya da array’de_) ve ben bunları tek bir
+hareketle sort edemeyeceğim.
+
+Bu en basit örnek. Olay sırf sort değil. Upper/Lower case için özel yöntemler
+icat etmem gerekecek vs... Bir dünya dert.
+
+Tek avunduğum nokta production server’larımız ya **gentoo** ya da **ubuntu**.
+Yani kaya gibi **Linux**... Bu bakımdan local’de buglı çalışan sort işleminin en
+azından remote’da sorunsuz olacağını biliyorum.
+
+Sonuç;
+
+  1. `.CFUserTextEncoding` ile oynamamak lazım
+  2. **Quicklook**’da Türkçe text için TextEdit’e ayar yapmak lazım
+  3. Dua edelim Apple sesimizi duysun ve unix tarafında gerekli ayarlamaları yapsın!
+
+
+[quicklook]: http://en.wikipedia.org/wiki/Quick_Look "Quicklook"
+[bluesign]: http://friendfeed.com/bluesign "Deniz Edincik"
+[python]: http://python.org "Python"
+[ruby]: http://www.ruby-lang.org/ "Ruby"
+[dropbox]: http://www.dropbox.com/ "Dropbox"
+[osx106]: http://en.wikipedia.org/wiki/Mac_OS_X_Snow_Leopard "Mac OS X Snow Leopard"
+[nano]: http://www.nano-editor.org/ "Nano"
+[ubuntu]: http://ubuntu.com/ "Ubuntu"
+[gentoo]: http://www.gentoo.org/ "Gentoo"
+[macports]: http://macports.org "Macports"
+[homebrew]: http://mxcl.github.com/homebrew/ "The missing package manager for OS X"
+[osx107]: http://en.wikipedia.org/wiki/Mac_OS_X_Lion "Mac OS X Lion"

@@ -1,0 +1,131 @@
+---
+title: "SSH üzerinden tünel yapmak!"
+date: 2010-02-17 10:37
+cover: 2010-02-17-ssh-tunel.jpg
+og_image: 2010-02-17-ssh-tunel.jpg
+tags: ports,firefox,tsocks,ssh,proxy
+comments: true
+---
+
+Daha [önceki yazımda][bp], Terminal’den kolay **ssh** yapma yöntemini anlatmıştım. 
+Şimdi, ssh yardımıyla nasıl tünel yaparız buna bakalım.
+READ_MORE
+
+Gerekenler:
+
+1. Uzaklarda bir makine (*ssh yapabileceğimiz*)
+2. Mac OS X (*Linux / Unix’de olur*)
+3. [MacPorts][macports]
+4. `tsocks` port’u
+
+
+MacPorts paketlerine `port` denir, aslında paketler uygulamalardan ya da 
+kütüphanelerden oluşur, bu bakımdan `xxxx` port’u dersem anlayınki bu bir 
+ports paketi!
+
+Daha önce de anlattığım gibi, `$HOME` dizininizde duran; kullanıcı adınız 
+eğer `vigo` ise, `/Users/vigo/` yada `~` işareti ile ifade edilen yer; 
+`.ssh/config` dosyanıza, o uzaklardaki makine bilgilerini girdiniz:
+
+    Host UZAKLARDA # bu ad ile erişeceğiz  
+    User vigo # uzak makinedeki kullanıcı adınız  
+    Port 22 # SSH portu genelde 22dir  
+    HostName 1.2.3.4 # uzak makinenin IP adresi
+
+Aynı şekide, daha önce yazdığım yazıdaki gibi, **ssh-key** olayını da halletmiş 
+olduğunuzu düşünüyorum. Yani uzaktaki makineye ssh yapmak için (*Yukarıdaki 
+confige göre*)
+
+```bash
+ssh UZAKLARDA
+```
+
+denemiz yeterli olmalı... Eğer bu aşamaya kadar sorun yoksa, hemen 
+[MacPorts][macports]’dan **tsock**’sı kuralım:
+
+```bash
+sudo port install tsocks
+```
+
+Kurulum bitince asıl hayati mevzu başlıyor, hemen ilgili konfigürasyonu yapmak 
+lazım, aksi halde `tsocks` çalışmıyor; hemen `/opt/local/etc/` altında duran 
+`tsocks.conf.sample`’dan bir kopya alalım ve düzenleyelim:
+
+```bash
+cd /opt/local/etc/
+sudo cp tsocks.conf.sample tsocks.conf
+```
+
+Şimdi hangi text editör’ü kullanıyorsanız, o editör’le `tsocks.conf` 
+dosyasını açın ve aşağıdaki gibi yapın:
+
+    local = 127.0.0.1/255.255.255.255  
+    server = 127.0.0.1  
+    server_port = 1234  
+    server_type = 5  
+    tordns_enable = false
+
+Şimdi burada dikkat edilecek husular şunlar;
+
+1. proxy portumuz: **1234**
+2. proxy tipi: **SOCKS 5**
+
+Bu bilgiler ışığında hemen uzaktaki makineye bağlanıyoruz:
+
+```bash
+ssh -N UZAKLARDA -D 1234
+```
+
+**UZAKLARDA**: hani demin config’de belirtmiştik, **-D 1234** ise `tsocks`’daki 
+server_port... Şimdi başka bir TAB açıp (<kbd>⌘</kbd> + <kbd>T</kbd>) deneme yapalım:
+
+```bash
+curl --connect-timeout 3 http://www.whatismyip.org/
+tsocks curl --connect-timeout 3 http://www.whatismyip.org/
+```
+
+İlk komut, sistemin default bağlantısı ile çalışıp, sizin gerçek IP’nizi 
+çözdü, ikincisi ise, **ssh** üzerinden tünel yaptı ve sanki uzaktaki 
+makinedeymişsiniz gibi çözdü IP adresinizi. `tsocks` ile işlem yapmak için 
+Terminal’de:
+
+```bash
+tsocks KOMUT  
+sudo tsocks KOMUT
+```
+
+şekillerinde kullanabilirsiniz. Eğer tüneli Terminal uygulamaları üzerinden 
+değilde, desktop uygulamaları için kullanmak isterseniz (*Safari, FireFox 
+vs...*) yine aynı şekilde önce ssh’i çalıştırın:
+
+```bash
+ssh -N UZAKLARDA -D 1234
+```
+
+sonra [FireFox][firefox]’u açın ve aşağıdaki gibi yapın ayarlarınızı:
+
+<%= card src: 'http://2.bp.blogspot.com/_9jz1qeFrzkQ/S3uzebiXjAI/AAAAAAAADLI/Jqk6Xzp4p6Y/s600/Screen+shot+2010-02-17+at+11.13.49.png',
+         alt: 'Ekran görüntüsü, Firefox’un ayarlar ekranı, Manual Proxy Configuration bölümü',
+         text: 'SOCKS Host: **localhost**, Port: **1234**' %>
+
+yapmamız yetti. Eğer bu işlemi, ssh bağlantısını yapmadan önce yaparsanız 
+hiç bir sayfaya ulaşamazsınız! Çünkü yukarıda şunu söylüyorsunuz FireFox’a: 
+
+> Tüm bağlantılarımı **localhost** üzerinden **1234**’ücü port üzerinden yap.
+
+Eğer **ssh** yoksa bağlantı da yok!!! Hemen akıllara şu soru gelebilir: 
+"Bu benim ne işime yarayacak?"
+
+Eğer Amerika ya da Avrupa üzerinden bir sunucu kiralarsanız o kadar çok 
+işinize yarar ki! Bazen bağlı olduğum servis sağlayıcının DNS’lerinde sorun 
+oluyor, ya da sebebsiz bir şekilde bazı sunuculara erişilemiyor.
+
+Geçenlerde [Php][php]’nin interaktif shell’inde bir işlem yapacaktım, [ports][macports] 
+üzerinden kuramadım, neden? `libxml2`’nin sunulduğu sunucuya erişemedim ?
+işte bu durumlarda hemen kendi proxy’nizi kullanıp yolunuza devam 
+edebilirsiniz... 
+
+[bp]: /blog/tr/2009/08/27/macports-ssh-otomatik-tamamlama-ve-genel-bilgiler/
+[macports]: http://macports.org "Macports"
+[firefox]: http://www.mozilla.org/tr/firefox "Firefox Web Browser"
+[php]: http://php.net "Php"

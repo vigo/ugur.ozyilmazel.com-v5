@@ -1,0 +1,81 @@
+---
+title: "Rake için bash-completion"
+date: 2012-02-02 15:30
+cover: 2012-02-02-rake-completion.png
+og_image: 2012-02-02-rake-completion.png
+tags: ruby,rake,bash completion
+comments: true
+---
+
+Terminal’de çalışırken hep işimi hızlı ve en kolay şekilde yapabilmenin yollarını ararım.
+Bu sayede pek çok yeni şey de öğrendim. Octopress sağolsun ciddi ciddi [Ruby][ruby]
+öğrenmeme büyük katkıda bulundu...
+READ_MORE
+
+`Rakefile` sayesinde pek çok şeyi otomatize ediyoruz. Eğer;
+
+    rake -T
+
+bize yapabileceğimiz işlerin listesini veriyor. Örneğin Octopress sitenizde
+bunu denerseniz:
+
+```bash
+rake clean                      # Clean out caches: .pygments-cache, .gist-cache, .sass-cache
+rake copydot[source,dest]       # copy dot files for deployment
+rake deploy                     # Default deploy task
+rake gen_deploy                 # Generate website and deploy
+rake generate                   # Generate jekyll site
+```
+
+gibi pek çok **rake task**’i görebilirsiniz. Aklıma ilk şu geldi:
+
+> peki ben tüm `rake` komutlarını ezbere mi bileceğim?
+
+Bunun mutlaka `bash-completion`’ı vardır dedim ve buldum. Mac OS X kullanıyorum
+ve paket yöneticisi olarak [Homebrew][homebrew] kullanıyorum. Eğer yoksa ilk
+olarak ilgili paketi kurmanız gerekiyor :
+
+```bash
+# önce kontrol edin
+brew ls bash-completion # eğer yoksa hata verir...
+
+# yoksa
+brew update
+brew install bash-completion
+```
+
+Kurumdan sonra; `/usr/local/etc/bash_completion.d` altına `completion_rake`
+adında bir dosya oluşturup içine aşağıdaki fonksiyonu yazın:
+
+```bash
+
+touch /usr/local/etc/bash_completion.d/completion_rake # dosyayı oluşturduk
+nano /usr/local/etc/bash_completion.d/completion_rake # açtık
+
+# eğer TextMate’iniz ayarlıysa
+mate /usr/local/etc/bash_completion.d/completion_rake
+```
+
+```bash
+_rake()
+{
+    if [[ ! -e Rakefile ]]; then
+        return
+    fi
+    opts=$(rake -T | awk 'NR != 1 {print $2}')
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+}
+complete -F _rake rake
+```
+
+Benim `.dotfiles` şeklinde kendi ayarlarım var bu bakımdan tüm bash-completion
+dosyalarım `~/Dotfiles/completions/` altında bulunuyor bu bakımdan ben
+`/usr/local/etc/bash_completion.d` altına linkliyorum dosyayı.
+
+    ln -s ~/Dotfiles/completions/completion_rake /usr/local/etc/bash_completion.d/completion_rake
+
+şeklinde yapıyorum.
+
+[ruby]: http://www.ruby-lang.org/ "Ruby"
+[homebrew]: http://mxcl.github.com/homebrew/ "The missing package manager for OS X"

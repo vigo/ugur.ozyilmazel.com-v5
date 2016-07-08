@@ -1,0 +1,42 @@
+<%
+page_metadata = current_page.metadata[:page]
+
+og_title = current_page.data.title
+og_url = "%s%s" % [config[:site_url], current_page.url]
+
+og_description = config[:meta_description][locale]
+og_description = page_metadata[:description] if page_metadata[:description]
+og_description = Sanitize.fragment(current_page.summary).strip if has_summary?(current_page)
+
+og_image = "%s%s" % [config[:site_url], site_image("ugur-vigo-ozyilmazel-500x500.jpg", "og")]
+og_image_type = 'image/jpeg'
+og_image_width = '500'
+og_image_height = '500'
+
+if page_metadata[:og_image]
+  og_image_dir = page_metadata[:og_image_dir] || 'covers'
+  og_image_file = site_image(page_metadata[:og_image], og_image_dir)
+  og_image = "%s%s" % [config[:site_url], og_image_file]
+  og_image_type = "image/%s" % File.extname(page_metadata[:og_image]).split('.')[1]
+  og_image_sizes = FastImage.size('source/' + og_image_file)
+  og_image_width = og_image_sizes[0]
+  og_image_height = og_image_sizes[1]
+end
+
+meta_author = config[:meta_author_name]
+meta_date = Time.now.xmlschema
+meta_copyright = "(c) 2006 / #{Time.now.year} - #{meta_author}"
+%>
+<meta name="date" content="<%= meta_date %>" />
+        <meta name="description" content="<%= og_description %>" />
+        <meta name="author" content="<%= meta_author %>"/>
+        <meta name="copyright" content="<%= meta_copyright %>" />
+        <meta property="og:url" content="<%= og_url %>" />
+        <meta property="og:title" content="<%= og_title %>" />
+        <meta property="og:site_name" content="vigo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="<%= og_description %>" />
+        <meta property="og:image" content="<%= og_image %>" />
+        <meta property="og:image:type" content="<%= og_image_type %>" />
+        <% if og_image_width %><meta property="og:image:width" content="<%= og_image_width %>" /><% end %>
+        <% if og_image_height %><meta property="og:image:height" content="<%= og_image_height %>" /><% end %>

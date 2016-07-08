@@ -1,0 +1,51 @@
+<!-- list posts -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+            <section id="list-posts">
+            <% need_articles.each_with_index do |article, i| %>
+                <article>
+                    <h3><%= link_to article.title, article %></h3>
+                    <time pubdate datetime="<%= article.date.xmlschema %>" title="<%= I18n.l article.date, :format => config.date_format_long[locale] %>">
+                        <%= I18n.l article.date, :format => config.date_format_long[locale] %>
+                    </time>
+        
+                    <% if article.tags %>
+                    <header>
+                        <% article.tags.each do |tag| %>
+                            <span class="label label-default label-custom"><%= link_to tag, tag_path(tag, locale) %></span>
+                        <% end %>
+                    </header>
+                    <% end %>
+        
+        
+                    <% if has_summary? article %>
+                    <summary><%= print_summary article %></summary>
+                    <% end %>
+                    <hr/>
+                </article>
+            <% end %>
+            </section>  
+            
+            <% if locals[:next_page_link] %>
+                <%= link_to t(:go_to_next_page) + " &raquo;", next_page_link %>
+            <% end %>
+
+        </div>
+    </div>
+</div>
+<!-- list posts -->
+
+
+<%= partial 'partials/pagination', locals: {
+    page_number: page_number,
+    num_pages: num_pages,
+    per_page: per_page,
+    page_start: page_start,
+    page_end: page_end,
+    next_page: next_page,
+    prev_page: prev_page,
+    first_page: first_page,
+    link_schema: link_schema,
+} %>

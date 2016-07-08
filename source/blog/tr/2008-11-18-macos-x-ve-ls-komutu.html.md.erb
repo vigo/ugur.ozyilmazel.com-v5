@@ -1,0 +1,325 @@
+---
+title: "Mac OS X ve ls komutu"
+date: 2008-11-18 16:16
+cover: 2008-11-18-osx-ls.png
+og_image: 2008-11-18-osx-ls.png
+tags: alias,shell,ls,man,col
+comments: true
+---
+
+Finder pek çok açıdan faydalı ve iş gören bir uygulama/özelliktir.
+Pek çok dosya, sistem icabı **hidden** yani gizli/görünmez durumdadır.
+READ_MORE
+
+Amacım, gerçekten fiziksel olarak dosyaların ne durumda olduğunu anlama,
+yönetme ve yetkilendirme açısından **shell / Terminal** komutlarının da
+her kullanıcının işine yarayabileceğini göstermek.
+
+### Güncelleme
+
+Yazımı okuyan sevgili [N.Burak Yetgin][buraky]’in haklı ikazı üzerine,
+
+> Peki finder varken ls komutunu neden kullanayım?
+
+sorusuna açıklık getirmek istiyorum. Yazıdaki amacım, standart Mac
+kullanıcısı, bilgisiyarındaki dosyalara gözatarken otomatikman Finder’ı
+kullanır.
+  
+Genelde Windows kullanımından Mac’e geçiş olunca, GUI
+(*Graphical User Interface*) alışkanlığımız devam etmektedir. GUI kolay ve
+rahat bir şeydir fakat genelde arka planda ne olduğundan hiç bir zaman
+haberimiz olmaz!
+  
+Her nekadar karmaşık gibi görünse de, Terminal kullanarak bilgisayara daha 
+fazla hükmetme şansına sahip oluruz!
+  
+"Directory Almak" nedir? Eğer benim gibi [Commodore 64][c64]’le başladıysanız:
+
+    LOAD "$",8
+
+komutunu biliyorsunuzdur! Bu komut disketin içindeki listeyi bize gösteren
+komuttur. Yani "Directory"yi... Windows kullanıcıları genelde "My Computer"’a
+tıklar ve folder’ları (*dizin’leri*) listeler. Pek çok kişinin kullanmadığı 
+**Command Prompt** (*Start > Run > cmd.exe*) a çıkarak da aynen directory’i
+listeleyebilirsiniz:
+
+    C:\dir
+
+Linux/Unix işletim sistemlerinde aynı işi yapan `ls` komutulu bulunmaktadır.
+Kullanımı:
+
+```bash
+ls
+```
+
+şeklindedir. Genelde her komuta karşılık gelen bir yardım / açıklama sayfası
+bulunur. Buna **MAN PAGES** yani kullanım kılavuzu `manual` sayfası denir.
+Eğer komutun ne işe yaradığını bilmiyorsanız bunu anlamak için:
+
+```bash
+man KOMUT
+```
+
+yaparsınız. yani `ls` komutunun olaylarını anlamak için:
+
+```bash
+man ls
+```
+
+yaparsınız. Karşınıza devasa bir açıklama sayfası çıkar. Genelde ben çoğu
+şeyin nasıl yapıldığını ve kullanıldığını tam anlayamam. Sanırım daha üstün
+anlama kabiliyeti olan insanlar için tasarlanmış bu yardım sayfaları.
+
+<%= zoomable src: '2008-11-18-man-ls.png' %>
+
+`man` sayfalarında <kbd>space</kbd> tuşuna basarak yazının devamını görürsünüz.
+(*yani -more- manasında*). Çıkmak için <kbd>Q</kbd> ve bu metin içinde arama 
+yapmak için <kbd>/</kbd>
+  
+Eğer bu help dosyasını daha rahat okumak isterseniz,
+
+> ya keşke şunu bir text editörle filan açabilsem rahat rahat okusam
+
+derseniz:
+
+```bash
+cd ~/Desktop
+man ls | col -b > ls_help.txt
+open ls_help.txt
+```
+
+Böylece **pipe** yardımıyla, `man ls` den dönenleri `col` komutuna geçtik.
+Bu iki işlemden dönen sonucu da `ls_help.txt` dosyasına dönüştürdük. Neyse,
+`ls` komutuna geri dönüyorum.
+
+Sizinde gördüğünüz gibi, `ls`e ait tonlarca parametre, özellik mevcut. Ben
+en çok kullandığım bir-iki özelliği sizinle paylaşmak istiyorum. Linux’un
+türüne göre `ls` komutu da farklılıklar gösteriyor.
+
+Örneğin pek çok Linux sürümünde directory’i renkli görmek işlemi `--color`
+ile gerçekleşirken Mac OS’da durum farklı. (*Bilemiyorum belki darwin-kernel
+için farklı bir BSD olayı olabilir*)
+  
+Bulunduğunuz dizin (*folder/directory*) de ne var ne yok görmek için:
+    
+```bash
+ls -al
+```
+    
+yazmamız gerekiyor. Bu, adı nokta ile başlayan dosya/dizinleri de gösteren
+`a` ve gösterme şekli olarak da en detaylı `l` yani **long format** denilen 
+şekilde bilgiyi ekrana yollar.
+  
+Bu şekilde listeleme yapınca karşımıza şu tarz bir görüntü çıkar:
+    
+    rwxrwxrwx@  1  vigo  staff      13780  1 Kas 15:30 TexmateFirefoxSplit.app
+    drwxr-xr-x  31 vigo  staff       1054 16 Kas 23:13 Trash 
+    drwxr-xr-x  17 vigo  staff        578 28 Eki 09:33 Vice2.0.6
+    drwxr-xr-x@  7 vigo  staff        238 23 Eyl 06:02 Warblade Full
+    -rw-r--r--   1 vigo  staff  166069960 17 Kas 19:34 cf208.mp4
+    -rwxr-xr-x@  1 vigo  staff        886  9 Kas 22:22 deneme.sh
+    -rw-r--r--@  1 vigo  staff      61087 16 Kas 23:07 fisherking.jpg
+    -rw-r--r--@  1 vigo  staff         99 25 Eki 20:26 index.php
+
+İlk blok, yani `rwxrwx` şeklinde görünen alan **file attributes/permissions**
+şeklinde ifade edilir. Yani bir dosya mı? directory (*dizin*) mi? sahibinin 
+hakları, grubun hakları, diğerlerinin hakları şeklinde bir anlam ifade eder.
+`deneme.sh` dosyasının bulunduğu satıra bakılırsa:
+
+    -rwxr-xr-x@  1 vigo  staff        886  9 Kas 22:22 deneme.sh
+
+    -   : bunun bir standart file (dosya) olduğunu, (ilk karakter)
+    rwx : bu dosyanın sahibinin (yani owner) read, write ve execute
+          (okuma, yazma ve çalıştırma) haklarına sahip olduğunu,
+    r-x : bağlı bulunduğu grubun read ve execute hakkı olduğunu,
+    r-x : yine diğer (others) lerinin de read ve execute hakkı olduğunu
+
+gösterir. (`-rwxr-xr-x@`)
+  
+Eğer ilk karakter `d` ise bu directory (*folder yani dizin*) olduğu
+anlamındadır. Başka harfler de görmek mümkün (*b, c, l, s, p gibi*)
+  
+Bu garip harflerden sonra gelen sayısal değer "kaç tane link" olduğu
+anlamındadır. Yani eğer bu bir folder olsaydı (*d*) ve sayı olarak da **3**
+yazsaydı, buradan şunu anlardık: **bu folder altında 3 tane dosya var**
+Keza;
+
+    drwxr-xr-x@  7 vigo  staff        238 23 Eyl 06:02 Warblade Full
+
+Baktığımızda, **Warblade Full**ün bir directory/folder (*dizin*) olduğunu ve
+altında **7** adet link (*bu dosyada olabilir, folder da*) olduğunu görürüz.
+İçine girince;
+    
+    vigbookpro:Desktop vigo$ ls -al Warblade\ Full/
+    total 184 
+    drwxr-xr-x@  7 vigo  staff    238 23 Eyl 06:02 .
+    drwx------+ 28 vigo  staff    952 17 Kas 20:02 ..
+    -rwxrwxrwx@  1 vigo  staff   7205 23 Eyl 00:58 Important new version notes_V1.33_Eng.txt
+    -rw-r--r--@  1 vigo  staff      0 23 Mar  2008 Warblade Homepage on the net.webloc
+    drwxr-xr-x@  4 vigo  staff    136 29 Eki 18:45 Warblade.app
+    -rwxrwxrwx@  1 vigo  staff  75562 23 Eyl 01:01 Warblade_Manual_V1.33_Eng.txt
+    -rwx------@  1 vigo  staff   1671 22 Mar  2008 license.txt
+
+Dikkat ederseniz **total 184** diye bir şey görürsünüz. Keza, ilk iki satırı
+`.` ve `..` şeklinde görürsünüz. Tek nokta kendisini (*Current Path*),
+çift nokta da (`..`) bir üst path’i yani Parent Path’i ifade eden linklerdir.
+Dolayısıyla bu path ifadeleri dahil toplam **7 link** görünür.
+(*2 path, 5 adet dosya!*)
+
+Peki **total 184** nereden geldi? Yani benim anladığım burada 184 adet
+link var! Evet yanlış anlamadınız... Tam 184 adet link var ama nerede?
+`Warblade.app` adlı dosyada. Aslında o bir dosya değil. Bir paket. Bir tür 
+sıkışmış zip gibi düşünün ama bir folder gibi içine girebildiğiniz bişi.
+
+Tabi onun içinde de çeşitli paketcikler, dizinler, dosyalar tonla şey var.
+Bunlar da hesaba girince ilgili dizinimizde toplam 184 adet link bulunmuş
+oluyor...
+  
+Komut satırından bakınca;
+
+```bash
+ls -al Warblade\ Full/Warblade.app/Contents/Resources/data/music/
+```
+
+gibi giden bir şey görüyorum. Umarım otomatik tamamlama işlemleri için <kbd>TAB</kbd>
+tuşuna basmayı biliyorsunuzdur. Yani yukarıdaki uzun path’i ben elle yazmadım.
+`ls -al` yazdıktan sonra **W** yazdom ve sonra <kbd>TAB</kbd>’e bastım, ilgili
+path bilgileri otomatik geldi. Aynı şekilde <kbd>TAB</kbd>’e basa basa ne var
+ne yok gördüm...
+  
+Neyse, link sayısından sonra görülen `vigo` ve `staff` kelimeleri, ilgili
+link’in **vigo** adlı kullanıcıya ve **staff** adlı kullanıcı grubuna ait
+olduğunu ifade ediyor. Bu, tam olarak ilgili dosya ile bişi yapabilecekler
+**vigo adlı kullanıcı ve staff grubuna üye kullanıcılardır** anlamına gelir.
+
+Unix user/permission olayları biraz kazık. Bunu; vaktim olursa başka bir
+zaman detaylı anlatmak istiyorum.
+  
+Kullanıcı ve Grup bilgisinden sonra gelen bilgi link’in **byte** cinsinden
+büyüklüğünü verir. Yani `cf208.mp4` adlı dosya **166069960 bytes**
+büyüklüğündedir.
+
+Bir şey anladınız mı? bende anlamadım. **166,069,960** yani **166milyon byte**.
+Bu kaç K ? yada kaç Megabyte? Bu sayıyı 1024’e bölünce kaç KB olduğunu,
+sonucu da bir daha 1024’e bölünce kaç MB olduğunu buluruz.
+
+Yani bizi asıl ilgilendiren rakkam yaklaşık olarak: `158.4`dür. Yani bu
+**158.4 Megabytelık** bir dosyadır.
+  
+Ya bunu anlamak için mühendis mi olmak lazım? İşte bu noktada `ls`’in `-h`
+opsiyonu imdada yetişir. Yani;
+
+```bash
+ls -alh
+```
+
+Deyince;
+
+     rwxr-xr-x  17 vigo  staff   578B 28 Eki 09:33 Vice2.0.6
+    drwxr-xr-x@  7 vigo  staff   238B 23 Eyl 06:02 Warblade Full
+    -rw-r--r--   1 vigo  staff   158M 17 Kas 19:34 cf208.mp4
+    -rwxr-xr-x@  1 vigo  staff   886B  9 Kas 22:22 deneme.sh
+    -rw-r--r--@  1 vigo  staff    60K 16 Kas 23:07 fisherking.jpg
+
+Şeklinde bir görüntü gelir. Gördüğünüz gibi **158M** olarak dosya boyu yazar.
+Kiminin yanında B (*Bytes*) kiminin yanında K (*Kilobytes*) gibi, en makül ve
+anlaşılır olanı neyse o yazar.
+  
+Son olarak, dosyanın cinsine göre renkli görünmesi durumu vardır. Directory’ler
+farklı renk, **Write Protection** (*Silinemez/Yazılamaz*) olanlar farklı renk,
+script olan (*Executable*) text olan farklı renk şeklinde görünür.
+Bu çok rahat anlaşılan bir durumdur. Bunu sağlamak için de;
+
+```bash
+ls -alhG
+```
+
+Şeklinde kullanırız. Bunun sonucunda da aşağıdaki gibi rengarek bir görüntü
+elde ederiz!
+
+<%= zoomable src: '2008-11-18-ls-color.png' %>
+  
+Tabi `ls`’in manual’ini iyice okursanız bu renkleri de nasıl
+ayarlayabileceğinizi görebilirsiniz. Eğer bu hoşunuza gittiyse ve her
+Terminal’i açtığınızda `ls` yapınca yukarıdaki gibi görünmesini istiyorsanız
+`alias` kullanımı yapabilirsiniz. Terminalde;
+
+```bash
+alias ls="ls -alhG"
+```
+
+Yaparsanız artık sizin `ls` diye çağırdığınız şey otomatikman `ls -alhG`
+olarak yorumlanacaktır. Tabi bilgisayarınızı her açtığınızda bunun otomatikman
+oluşmasını isterseniz iki şekilde yapabilirsiniz;
+
+- System-Wide denilen, yani makinenizdeki tüm kullanıcıları kapsayan şekilde
+- Sadece kendi / tekil kullanıcıyı kapsayacak şekilde.
+
+Yani sadece ben, vigo adlı user için bu kullanımı aktif etmek istiyorsam,
+ilgili şeyi; `~/.profile` dosyasına, eğer tüm kullanıcıların istifade etmesini 
+istiyorsam; `/etc/profile` dosyasına bu eklemeyi yapmam lazım. 
+
+Tabi `/etc/` bölümü sakat yerlerden olduğu için öyle yol geçen hanı gibi önüne 
+gelen her kullanıcı bu dosyada bir değişiklik yapma hakkına sahip değildir.
+(*Tabi siz özel bir durum belirtmediyseniz*)
+
+Bu bakımdan, **sudo** gücünü kullanmanız gerekir. Tek becerebildiğim shell
+editörü olan `nano` ile `/etc/profile` dosyasını açmak için;
+    
+```bash
+sudo nano -w /etc/profile
+```
+diyin, karşınıza aşağıdaki gibi bir dosya çıkar;
+
+``` bash
+# System-wide .profile for sh(1)
+if [ -x /usr/libexec/path_helper ]; then
+    eval `/usr/libexec/path_helper -s`
+fi
+if [ "${BASH-no}" != "no" ]; then
+    [ -r /etc/bashrc ] && . /etc/bashrc
+fi
+```
+
+Bu dosyaya aşağıdaki satırı ekleyip kaydedin ve çıkın: <kbd>⌃</kbd> + <kbd>O</kbd> ve
+<kbd>⌃</kbd> + <kbd>X</kbd>
+
+```bash
+alias ls="ls -alhG"
+```
+
+Terminal’den de çıkın komple kapatın. Şimdi yeniden Terminali açın ve deneyin!
+Keza belki Windows’dan hatırlarsınız,
+
+    dir *.jpg
+
+yapınca bize sonu `.jpg` olan dosyalar görüntülenir. Aslında burada
+çaktırmadan **Regular Expression** olayı kullanılır. Yani bu başı ne olursa
+olsun, sonu `.jpg` ile bitsin anlamındadır. Tabi bu tarz Regex
+(*Regular Expression yani Türkçesi sanırım Düzenli İfade oluyor*)
+kullanımların kralı, esası, aslı Linux / Unix sistemlerdir.
+
+Tabiki `ls`de de babalar gibi her tür Regex numaraları yapabilirsiniz;
+
+```bash
+ls *.mp[34]
+```
+
+yaptığınızda, extension’ı `mp3` ya da `mp4` olan dosyalar listelenir.
+Aynen Windows’da olduğu gibi sadece jpg’leri listelemek için;
+
+```bash
+ls *.jpg
+```
+
+yapabilirsiniz. Aslında `grep` kullanarak daha çılgın sorgulamalar da yapmak 
+mümkün. Bu konulara daha sonra girmeyi düşünüyorum.
+
+### Update: 29 Şubat 2012, Çarşamba, 11:12 itibariyle
+
+Demekki bu yazıyı yazdığımda çok başlangıç noktasındaymışım. Aslında herşey o 
+kadar anlaşılır ki!
+
+
+[c64]: http://en.wikipedia.org/wiki/Commodore_64
+[buraky]: http://twitter.com/burakyetgin

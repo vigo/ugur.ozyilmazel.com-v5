@@ -1,0 +1,25 @@
+---
+blog: tr
+pageable: true
+title: Kişisel Blog
+---
+
+<% I18n.locale = :tr %>
+
+<%= build_images_array_for_js %>
+
+<%= partial 'partials/top_menu' %>
+
+<%= partial 'partials/page_cover', locals: {
+    cover: site_image('index-covers/fist2-02.jpg'),
+    cover_title: config[:meta_author_name],
+    cover_subtitle: t('homepage_subtitle')
+} %>
+
+<%= partial 'partials/list_posts', locals: {
+    need_articles: page_articles,
+    first_page: '/blog/tr/',
+    link_schema: '/blog/tr/sayfa/{num}/',
+} %>
+
+<%= partial 'partials/footer' %>

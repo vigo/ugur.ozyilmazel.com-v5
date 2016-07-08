@@ -1,0 +1,198 @@
+---
+title: "Kendi Python’unu Django’nu paketlerini kendin kur"
+date: 2011-02-10 12:58
+cover: 2011-03-30-python-path.jpg
+og_image: 2011-03-30-python-path.jpg
+tags: python,django,pip,macports
+comments: true
+---
+
+**Düzeltme: 23 Mart 2011, 15:33**  
+Lütfen önce [bu yazıyı](/blog/tr/2011/03/23/bu-defa-son/) okuyun!
+READ_MORE
+
+---
+
+Sevgili kardeşim [Fırat Can Başarır](http://twitter.com/firat) uzunca zamandır
+bana:
+
+> abi, python paketlerini pip’ten kuralım, ports’dan kurmayalım, bu şekilde
+çok rahat ederiz
+
+diyordu... Peki, haydi yapalım... Gidip [Python.org][python]’dan Mac OS
+için hazırlanmış installer’ı çektik. Kuruluma geçtik, işlemler bitti, süper!
+python’u kurduk sisteme...
+
+Hemen python’un interactive shell’ine girdik. Yıllardır bitip tükenmek 
+bilmeyen **locale** sorunları yüzünden ( _tarih ve Türkçe harfler_ ) ilk
+yaptığım iş shell’de `ğ` harfine basmak oldu...
+
+## BUUUUUUUUUUM!
+
+Türkçe harler çalışmıyor? yani `ğ` `ş` `ü` gibi harflere basınca hata sesi çıkıyor
+ve saçma sapan karakterler çıkıyor ekrana...
+
+Bunun aynısı macos’la birlikte gelen [Nano][nano] adlı
+text editörde de yaşamış, çözümü [macports][macports]’da bulmuştum.
+Nano’yu macports’dan kurunca hem versiyon güncellenmiş hem de Türkçe sorunları
+ortadan kalkmıştı...
+
+Yani koskoca [Python.org][python]’dan indirdiğimiz uygulamada bile **locale** sorunu yaşamak
+hakikatten komikti... Bunun tahmini 2 sebebi vardı:
+
+ 1. macos’la gelen [readline](http://www.gnu.org/s/readline/) kütüphanesinde **Türkçe** karakter desteği yoktu
+ 2. python `utf-8` desteği ile compile (*derleme*) edilmemişti!
+
+Bugüne kadar hep macports’tan python kurulumu yaptığımız için hiç bir sıkıntı
+yaşamamıştık... Hemen macports’un `pyton27` ile ilgili [ports dosyasına][macports-portfile]
+baktık.
+
+**depends_lib** kısmında, python’u derlemek için gerekecek diğer kütüphaneler
+listesini gördük. Bunlar:
+
+    gettext
+    zlib
+    openssl
+    sqlite3
+    db46
+    ncurses
+    gdbm
+    bzip2
+    readline
+
+şeklindeydi. `configure.args`’a baktığımda; `--enable-framework` ve
+`--enable-unicode` dikkatimi çekti. İşin esas can alıcı kısmı ise **unicode**
+ile ilgili olan parametresiydi. Hemen `$HOME` folder’ıma gidip işe koyuldum. Eğer
+`depends_lib`’deki paketler sizde yoksa önce bu paketleri kurun:
+
+```bash
+sudo port selfupdate # önce paket listesini güncelle
+port installed | grep PAKET_ADI # paket zaten kurulumu?
+port installed PAKET_ADI # 29 Ocak 2012, Pazar, 20:23 itibariyle paket kontrolü
+port search PAKED_ADI # ilgili paketi ara
+sudo port install PAKET_ADI # geren paketi kur
+```
+
+Eğer tüm paketler hazırsa python’u derlemeye başlayalım. Hemen
+[http://python.org/download/][python-download] adresinden source’u
+çekelim. Ben bu post’u yazarken kullandığım source [buydu][python-source]
+
+```bash
+cd $HOME
+mkdir .local
+mkdir .local/Packages
+cd ~/Downloads # Python-2.7.1.tgz buradaysa
+tar xvzf http://python.org/ftp/python/2.7.1/Python-2.7.1.tgz
+```
+
+`setup.py` dosyasında minik bir ayar yapacağız. Dosyayı, kullandığınız text
+editörü ile açıp aşağıdaki satırları bulun.
+
+```python
+add_dir_to_list(self.compiler.library_dirs, '/usr/local/lib')
+add_dir_to_list(self.compiler.include_dirs, '/usr/local/include')
+```
+
+Hemen altına aşağıdaki satırları ilave edin:
+
+```python
+add_dir_to_list(self.compiler.library_dirs, '/opt/local/lib')
+add_dir_to_list(self.compiler.include_dirs, '/opt/local/include')
+```
+
+Bu sayede, macports’la kurduğunuz kütüphanelerin de kullanılmasını sağlıyoruz.
+Şimdi derleme işine geçebiliriz.
+
+```bash
+./configure --enable-unicode=ucs4 --prefix=$HOME/.local --enable-framework=$HOME/.local/Library/Frameworks
+make
+make install
+```
+
+Derleme işlermleri başarıyla biterse (*ki bitmeli*) hemen kurulum yaptığınız
+yere gidip bakın:
+
+```bash
+cd ~/.local/
+ls -al
+```
+
+    Applications
+    Library
+    Packages
+    bin
+
+gibi folder’lar görmeniz gerekiyor. Aslında yazıyı yazarken "**keşke
+.local/python diye bir folder açıp, herşeyi o şekilde kursaydım**" diye de
+aklımdan geçirdim. İleride belki **Ruby**’i ya da başka bir şeyi de kendim kurmam
+gerekirse karışıklık olmadan yapabilirdim diye düşündüm...
+
+Herşey tamamsa, hemen `ENVIRONMENT` değişkenlerine ayar yapalım: Bunun için
+`.bashrc` ya da `.profile` ya da ne kullanıyorsanız o dosyayı açıp aşağıdakileri
+ekleyin:
+
+```bash
+export PATH=$HOME/.local/Packages/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH
+export PYTHONIOENCODING=utf-8
+```
+
+Şimdi sırada **easy_install** var. Bunun için [Setuptools][python-setuptools]’u
+kurmamız lazım. Source’u indirdikten ve extract ettikten sonra, klasik
+python modülü kurma işlemi yapıyoruz:
+
+```bash
+python setup.py install
+```
+
+İşem bitince hemen kontrol ediyoruz, easy_install’un yeri neresi?
+
+```bash
+which easy_install
+```
+
+Görmek istediğimiz path, kullanıcı folder’ınızın altında (`$HOME`)
+
+    /.local/Library/Frameworks/Python.framework/Versions/Current/bin/easy_install
+
+gibi olmalıdır.
+
+Eğer herşey yolundaysa hemen pip’i kuralım:
+
+```bash
+easy_install pip
+```
+
+Kurulum bitince tekrar `ENVIRONMENT`’a ayar yapmamız gerekiyor:
+
+``` bash
+export PIP_INSTALL_OPTION="--prefix=$HOME/.local/Packages/"
+export PYTHONPATH=$HOME/.local/Packages/lib/python2.7/site-packages
+```
+
+Bu sayede, ilgili python paketlerimizi de `.local` içine alıyoruz. Böylece,
+ileriede bir gün makineyi yeniden kurduğunuzda ya da başka bir durumda,
+kasmadan tüm paketlerinizi vs kolayca taşıyabileceksiniz. Şimdi `pip` ile
+gereken paketleri kurabiliriz. Benim en çok kullandıklarım:
+
+    pip install django ipython south simplejson PIL
+
+**pip** direk [pypi][pypi]’dan indirdiği için hem paketleri güncellemeniz hem de 
+yönetmeniz çok kolay oluyor. Macports’la ya da [Ubuntu][ubuntu]’daki **aptitude**’la 
+bazen sıkıntılar çıkabiliyor. Python paketleri için en rahat çözüm `pip` oluyor.
+
+### Güncelleme: 6 Temmuz 2016
+
+Ne yazıkki burada yazan şeylerle uğraşmadan [Homebrew](http://brew.sh)
+üzerinden: `brew install python` demek yeterli :)
+
+[macports-portfile]: http://trac.macports.org/browser/trunk/dports/lang/python27/Portfile
+[python-download]: http://python.org/download/
+[python-source]: http://python.org/ftp/python/2.7.1/Python-2.7.1.tgz
+[python-setuptools]: http://pypi.python.org/pypi/setuptools
+[python]: http://python.org "Python"
+[nano]: http://www.nano-editor.org/ "Nano"
+[macports]: http://macports.org "Macports"
+[pypi]: http://pypi.python.org/pypi "Python Package Index"
+[ubuntu]: http://ubuntu.com/ "Ubuntu"

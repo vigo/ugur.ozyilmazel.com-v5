@@ -1,0 +1,78 @@
+---
+title: "TextMate 1 ve Yosemite"
+date: 2014-11-14 13:29
+cover: 2014-11-14-yosemite.jpg
+og_image: 2014-11-14-yosemite.jpg
+tags: textmate,yosemite
+comments: true
+---
+
+Eğer siz de benim gibi dinozorsanız ve halen en eski [TextMate][textmate]’i
+Version **1.5.11** (1635)’i kullanıyorsanız bu yazıyı okumanız iyi olur :)
+READ_MORE
+
+
+Yıl geçmiyor ki OS X’in yeni sürümü çıkmaya görsün. Her yeni versiyon
+demek, yeni bir install demek benim adıma! Neden? Herzaman **Clean Install**
+yaptığım için, sıfırdan herşeyi kurmak durumunda kalıyorum.
+
+Pek çok kullanıcı **Upgrade** yapıyor, hatta taa OS X Tiger’dan Yosemite’ye
+kadar gelenleri bile tanıyorum.
+
+TextMate 1, eski bir tool olduğu için, ne yazıkki iç işlemlerinde Ruby’nin
+en eski versiyonlarından birine ihtiyaç duyuyor. Ruby versiyon 1.8.7. Apple,
+son bir kaç sürümdür, Ruby 2.0+ ile birlikte geliyor. Eğer eski sisteminizden
+upgrade yaparak ilerliyorsanız, halen en eski Ruby 1.8.7 sistemde kaldığı
+için hiçbir sıkıntı yaşamadan hayatınıza devam edebilirsiniz.
+
+Eğer sıfırdan kurulum yaparsanız işte o an sorunlar başlıyor.
+
+Yapılacak ilk iş, Ruby 1.8.7 kurmak. Ama öncesinde [Homebrew][homebrew]
+kurmanız gerekiyor. Sağolsun Homebrew, size XCode Commandline Tools’u da
+kuruyor otomatik olarak. Homebrew kurulduktan sonra bazı minik paketlere de
+ihtiyacımız oluyor:
+
+```bash
+brew install readline homebrew/dupes/apple-gcc42 openssl
+```
+
+Bu paketleri kurduktan sonra Ruby versiyon yöneticisi de kurmamız lazım.
+Ben [Rbenv][rbenv]’ci olduğum için hemen kuruyorum:
+
+```bash
+cd
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+```
+
+Bu işlem ardından, `~/.bashrc` ya da `~/.profile` dosyanıza ek yapmanız lazım:
+
+```bash
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+```
+
+Ya Terminal’i restart edin ya da `exec $SHELL` yapın. Şimdi eski Ruby’yi
+kuralım:
+
+```bash
+CONFIGURE_OPTS="--with-readline-dir=$(brew --prefix readline)" rbenv install 1.8.7-p358
+```
+
+Kurulum bittikten sonra, TextMate’i açıp, Preferences’dan Shell Variables’da
+`PATH`’e ön ek yapacağız, **KULLANICI_ADINIZ** kısmına kendi kullanıcı adınızı
+yazmayı unutmayın! Şunu başa ekleyeceğiz:
+
+<%= card src: 'http://i.imgur.com/oPGZLOC.png',
+         title: 'TextMate configürasyon ekranı',
+         text: 'TextMate configürasyon ekranı' %>
+
+    /Users/KULLANICI_ADINIZ/.rbenv/versions/1.8.7-p358/bin:
+
+Son durumda aşağıdaki gibi bir şey görmeniz gerekiyor:
+
+    /Users/KULLANICI_ADINIZ/.rbenv/versions/1.8.7-p358/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+[textmate]: http://macromates.com "TextMate: The Missing Editor"
+[homebrew]: http://mxcl.github.com/homebrew/ "The missing package manager for OS X"
+[rbenv]: https://github.com/sstephenson/rbenv

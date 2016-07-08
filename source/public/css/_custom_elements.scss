@@ -1,0 +1,122 @@
+$custom-card-bgcolor: #fafafa;
+$custom-card-color: darken($title-link-color, 10);
+.card-custom {
+  margin-bottom: $common-mb;
+  border-radius: 0;
+  border: none;
+  background: $custom-card-bgcolor;
+  text-align: center;
+  padding: 2rem;
+  strong { color: inherit; }
+  img {
+    display: inline !important;
+    max-width: 100%;
+    height: auto;
+  }
+  .card-block {
+    padding: 0;
+    margin: 1rem 0 0 0;
+    .card-text {
+      padding: 0;
+      display: inline-block;
+      font-family: $heading-font;
+      color: $custom-card-color;
+      margin-bottom: 0 !important;
+      border-bottom: 2px solid $custom-card-color;
+    }
+  }
+}
+
+
+.full {
+    margin: 1.5em -6em;
+    padding: 0;
+    text-align: center;
+
+    iframe {
+      max-width: 100% !important;
+    }
+
+    img {
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      transition: 0.5s all ease;
+    }
+
+    &.zoomable {
+      img { cursor: -webkit-zoom-in; }
+      p {
+        margin-top: 1rem;
+        strong { font-weight: 700; }
+      }
+    }
+    &.zoomable img.zoom { cursor: -webkit-zoom-out; }
+    &.zoomable img.zoom {
+      -webkit-transform: scale(1.2);
+      transition: 0.4s all ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      background-color: white;
+    }
+}
+
+
+.flash-video {
+    margin: 0 auto 1.5em;
+    > div {
+        position: relative;
+        display: block;
+        padding-bottom: 56.25%;
+        padding-top: 1px;
+        height: 0;
+        overflow: hidden;
+        iframe, object, embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.label-custom {
+  font-family: $heading-font;
+  background-color: $custom-label-bg-color;
+  padding: .2rem .8rem;
+  a {
+    color: $custom-label-link-color;
+    &:hover {
+      color: darken($custom-label-link-color, 10);
+    }
+  }
+}
+
+.custom-pagination {
+  font-family: $heading-font;
+  .page-item:first-child .page-link,
+  .page-item:last-child .page-link {
+    border-radius: 0;
+  }
+}
+
+.list-latest-posts {
+  h2 { margin-bottom: $common-mb; }
+  li { margin: 2rem 0; }
+  time { font-size: 1rem; }
+}
+
+.photo-gallery {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  p {
+    text-align: center;
+    margin: .5rem 0;
+    font-family: $heading-font;
+    font-size: 1rem;
+    line-height: 1.4rem;
+  }
+}

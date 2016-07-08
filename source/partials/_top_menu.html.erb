@@ -1,0 +1,35 @@
+<%
+yml_data = data.top_menu_tr
+yml_data = data.top_menu_en if locale == :en
+%>
+
+<!-- page-top-nav -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <nav id="page-top-nav">
+                <ul class="list-inline">
+                    <%
+                    yml_data.links.each do |link|
+                        li_class = 'list-inline-item'
+                        li_class += ' active' if rack[:request].env['REQUEST_PATH'] == link.url || (link.url != "/" && rack[:request].env['REQUEST_PATH'].include?(link.url))
+                        content_tag(:li, class: li_class) do
+                            link_to link.text, link.url
+                        end
+                    end
+                    %>
+                    <li class="list-inline-item pull-sm-right m-r-0">
+                        <% if locale == :tr %>
+                            <a title="English" href="/blog/en/">English</a>
+                        <% else %>
+                            <a title="Türkçe" href="/">Türkçe</a>
+                        <% end %>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+<!-- /page-top-nav -->
+

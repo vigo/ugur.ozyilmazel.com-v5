@@ -1,0 +1,17 @@
+---
+en:
+  last_modified_at: Last modified at
+  go_to_first_page: Go to first page
+  go_to_last_page: Go to last page
+  go_to_previous_page: Go to previous page
+  go_to_next_page: Go to next page
+  homepage_subtitle: Coder
+  tagged_items:
+    one: Found “1” post.
+    other: Found “%{count}” posts.
+  related_articles:
+    one: Related Post
+    other: Related Posts
+  we_have_related_articles:
+    one: We have one related article about this subject.
+    other: We have “%{count}” related articles about this subject.

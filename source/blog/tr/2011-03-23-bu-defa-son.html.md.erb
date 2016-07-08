@@ -1,0 +1,64 @@
+---
+title: "Bu defa son"
+date: 2011-03-23 15:30
+cover: 2011-03-30-python-path.jpg
+og_image: 2011-03-30-python-path.jpg
+tags: python,pip
+comments: true
+---
+
+Biliyorum daha dün (*ya da önceki gün*) bu konu ile ilgili bir güncelleme
+yapmıştım fakat asıl yapmam gerekeni daha yeni hatırladım. Hatta kendi
+tarafımda pek çok şeyi de düzeltmek zorunda kaldım.
+READ_MORE
+
+**Kendi Ruby’ni kendin kur** olayına gireceğim bu bakımdan aklımda bir lamba
+yandı. Aslında bu lamba çok daha önce yanmıştı ama ben unutmuşum.
+
+Sırasıyla;
+
+ 1. [Kendi Python’unu, Django’nu, paketlerini kendin kur][link1]
+ 2. [“Kendi Python’unu kendin kur” yazımda eksik yerler buldum!][link2]
+
+yazılarına son bir ek geliyor!
+
+Tüm ayarlamalarımızı `~/.local` üzerine kurmuştuk ya, işe başlamadan önce;
+
+```bash
+cd $HOME
+mkdir .local
+mkdir .local/Python
+mkdir .local/Python/Packages
+
+# ya da
+mkdir -p ~/.local/Python/Packages
+```
+
+Şeklinde ilerleyeceğiz. Bu sayede, ileride Ruby kurmaya karar verirsek,
+`.local/Ruby` altına derleyeceğiz Ruby’i...
+
+Hemen configure satırını da düzeltelim:
+
+```bash
+./configure --enable-unicode=ucs4 --prefix=$HOME/.local/Python --enable-framework=$HOME/.local/Python/Library/Frameworks
+```
+
+`.bashrc` için gereken düzeltmeler:
+
+```bash
+export PATH=~/.local/Python/Packages/bin:$PATH
+export PATH=~/.local/Python/bin:$PATH
+export PATH=~/.local/Python/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH
+
+# pip kurulumundan sonra ekleyin...
+
+export PIP_INSTALL_OPTION="--prefix=/Users/KULLANICI_ADI/.local/Python/Packages/"
+export PYTHONPATH=~/.local/Python/Packages/lib/python2.7/site-packages
+```
+
+Aslında önceki yazılara göre tek fark, `.local` folder’ının altına **Python**
+diye bir folder açtık ve tüm derleme ve kurulum işleri için o yeri gösterdik.
+
+
+[link1]: /blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/
+[link2]: /blog/tr/2011/03/22/kendi-pythonunu-kendin-kur-yazimda-eksik-yerler-buldum/

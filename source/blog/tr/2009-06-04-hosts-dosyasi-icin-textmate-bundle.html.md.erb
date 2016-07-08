@@ -1,0 +1,63 @@
+---
+title: "/etc/hosts dosyası için TextMate Bundle"
+date: 2009-06-04 11:56
+cover: generic-textmate.png
+og_image: generic-textmate.png
+tags: textmate,bundle,hosts
+comments: true
+---
+
+Basit bir şekilde, hosts dosyasını daha anlaşılır görebilirsiniz. Tek yapmanız
+gereken, aynı [php-ini][l1] için yaptığımız gibi bir dil oluşturmak...
+READ_MORE
+
+<%= card src: 'http://2.bp.blogspot.com/_9jz1qeFrzkQ/SieK5BpMmcI/AAAAAAAAB6k/T8F6E53nfBs/s400/Picture+1.png',
+         alt: 'TextMate ekran görüntüsü, Bundle editör' %>
+
+    {
+        scopeName = 'etc-hosts';
+        patterns = (
+            {
+                name = 'comment.line.number-sign.etc-hosts';
+                match = '(#).*$\n?';
+                captures = {
+                    1 = { name = 'punctuation.definition.comment.etc-hosts'; };
+                };
+            },
+            {
+                name = 'constant.etc-hosts';
+                match = '^[\d|\.]+';
+            },
+        );
+    }
+
+`/etc/hosts` dosyası, sistemin bir parçası olduğu için, **sudo** ile açmanız
+gerekir.
+
+```bash
+sudo mate /etc/hosts
+```
+
+Yukarıdaki **mate** komutunu kullanabilmeniz için; ya ilk kurulum esnasında
+bunu belirlemiş olmanız ya da;
+
+```bash
+ln -s /Applications/TextMate.app/Contents/Resources/mate ~/bin/mate
+```
+
+yapmış olmanız gerekir. Keza bu **mate** olayı süper işe yarar. Terminal’de,
+bir folder içindesiniz ve O folder’ın altındaki tüm dosyaları açıp
+düzenlemeniz lazım:
+
+```bash
+mate .
+```
+
+Şifrenizi girip dosyayı açabilirsiniz. Ufak bir hatırlatma, dosyanın bir
+extension’ı olmadığı için, açtıktan sonra elle dosya tipini seçin:
+  
+<%= card src: 'http://4.bp.blogspot.com/_9jz1qeFrzkQ/SieK7K7e9BI/AAAAAAAAB6s/Cvmat7jrzys/s400/Picture+2.png',
+         alt: 'TextMate ekran görüntüsü, hosts dosyası açılmış hali' %>
+
+
+[l1]: /blog/tr/2008/11/21/textmate-ve-php-ini/

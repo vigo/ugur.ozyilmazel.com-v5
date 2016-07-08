@@ -1,0 +1,86 @@
+---
+title: "Derlenmiş Python Dosyaları Bazen Sizi Yanıltabilir"
+date: 2013-02-04 12:15
+cover: 2013-02-04-python.jpg
+og_image: 2013-02-04-python.jpg
+tags: python,django,pyc,pyo,uncompyle
+comments: true
+---
+Suç kesinlikle Python’da değil! Yanlış anlaşılma olmasın! Geçtiğimiz günlerde 
+yaşadığım iki dikkatsizliğin bana ciddi vakit kaybettirmesi bu blog postunu 
+yazmama sebeb oldu.
+READ_MORE
+
+[Django][django] framework kullanarak bir uygulama geliştiriyoruz. Yaklaşık 6
+aydır üzerinde çalışıyoruz. Django, gereken yerlerde ilgili python dosyalarını
+derliyor. Yani; `admin.py` adında bir dosya varsa, development sunucusunu
+çalıştırdıktan sonra `admin.pyc` dosyasının oluştuğunu görürüz.
+
+Derlenen python hem hız hem de hafıza yönetimi açısından işleri kolay ve çabuk
+hale getiriyor. Buraya kadar hiç bir sıkıntı yok. Sıkıntı, uzun saatler
+çalışıp dikkati kaybettiğiniz anda başlıyor.
+
+Hiç farkında olmadan ilgili app’in altındaki `admin.py` dosyasını silmişim.
+`admin.pyc` dosyası ise halen oradaymış. Ben farkında bile değilim. Admin
+panel’e rahat rahat giriyorum, çıkıyorum hiçbir sıkıntı yok. Ne zaman kadar?
+`ModelAdmin` e yeni özellik ekleyene kadar...
+
+İşin kötüsü, django programcıları bilirler, `admin.py` de de çok fazla şey vardı.
+**Custom** pek çok şey... Hepsi uçmuş gitmiş... Ne yapacağız? Silme öyle bir
+silme ki, versiyon kontrol’den de çıkartmışım nasıl yaptıysam? Yani `git rm`
+ile silmiş ve bu silme işinden sonra yazmışım tüm kodu gibi...
+
+Hemen google’ladım, `.pyc` dosyasından nasıl `.py` üretebilirim diye. Hemen
+[uncompyle][1]’ı buldum. Kullanımı çok kolay
+
+    uncompyler.py DOSYA.pyc > DOSYA_KURTAR.py
+
+şeklinde dosyayı kurtardım.
+
+Bu da yetmedi, evde çalışmak için projeyi clone’ladım. Gereken kurulumları
+yaptım. Çalıştırdım... BOOOOM! Hata mesajı! Hata ne? neredeyse uygulamanın
+**ana** kütüphanelerinden biri olan dosyayı `import` edemiyor... Klasik
+`PATH` sorunu ama böyle birşey olması mümkün değil...
+
+Saatlerce uğraşıp yine görüyorum ki, `libs/` altında bulunması gereken
+`__init__.py` dosyası uçmuş... Diğer makinelerde düzgün çalışıyor çünkü
+derlenmiş hali bu sorunu kurtarıyor. Yani dosya varken python derlemiş,
+dosya uçmuş ama sorun yok. `.pyc` her şeyi çözüyor.
+
+`git blame` ile bakıyorum, yine ben, neredeyse 1 ay önce silmişim dosyayı.
+Python’da `__init__.py` çok önemlidir. Herhangi bir dizin içinde bu dosya
+varsa; o dizinin paket/modül gibi kullanılabileceğini anlatır.
+
+Yani;
+
+``` python
+from my_project.libs.functions import test_function
+```
+
+dersem; bu `my_project/libs/functions.py` dosyasından `test_function` adlı
+fonksiyonu import et anlamına gelir. (*Kabaca verdim bu örneği*) Bu örneğin
+sağlıklı çalışması için `my_project` dizini altında `__init__.py` olması
+**zorunludur**.
+
+Yaşadığım iki sorun da aslında ilk ve büyük hata tabiki bende. Daha dikkatli
+olsam bunlar başıma gelmeyecekti. Şunu gördüm ki, ben bile, bile derken en az
+15 yıldır yazılım geliştiriyorum, çok basit hataları yapabiliyorum.
+
+Önemli olan bu hatalardan ders çıkarıp tekrar bu kuyuya düşmemek.
+
+Bunun içinde, yaptığım ilk iş Python’un `pyc` ya da `pyo` dosyası oluşturma
+işini kapattım. Proje bazlı. [virtualenv][2] ve [virtualenvwrapper][3]
+kullanıyorum. Çalıştığım projeye geçerken ufak bir hook ile şu değişkeni
+set ediyorum:
+
+    export PYTHONDONTWRITEBYTECODE="1"
+
+Böylece `pyc` dosyaları otomatik olarak oluşmayacak. Ben de yanlışlıkla
+birşeyleri sildiğim zaman **anında** farkedeceğim.
+
+
+[1]: https://github.com/gstarnberger/uncompyle
+[2]: http://http://www.virtualenv.org/
+[3]: http://www.doughellmann.com/projects/virtualenvwrapper/
+
+[django]: https://www.djangoproject.com/ "Django Project"

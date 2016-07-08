@@ -1,0 +1,110 @@
+---
+title: "webkit2png ile ekran görüntüsü almak"
+date: 2011-11-26 23:56
+cover: 2011-11-26-webkit2png.png
+og_image: 2011-11-26-webkit2png.png
+tags: python,webkit
+comments: true
+---
+
+Uzunca bir zamandır yazmak istediğim fakat fırsat bulamadığım bir konu:
+Python’la yazılmış **CommandLine Tool**’u yani Terminal’den çalışan bir script.
+READ_MORE
+
+Bu script sayesinde istediğiniz bir web sayfasının ekran görüntüsünü
+istediğiniz boyutlarda `PNG` formatında almanızı sağlıyor. Bu proje aynı zamanda
+harika bir Python + Objective C örneği. **PyOBJC** köprüsünü kullanarak
+**WebKit** objesine bağlanıyor. [WebKit][webkit] bildiğiniz gibi 
+[Safari][safari] ve [Chrome][chrome] web browser’ının temeli.
+
+## webkit2png
+Script, sanki Safari web browser’ıyla verdiğiniz URL’i açıyor ve gelen sayfayı
+komple kaydediyor. Bu işi normal şartlarda yapmak için çeşitli browser
+extension’larına ihtiyacınız var. Daha önceleri Safari extension olayını
+desteklemiyordu. Chrome’a da extension olayı bildiğiniz gibi sonradan geldi.
+Mevcut tek sistem [Firefox][firefox] ve [Screengrab](http://screengrab.org/) extension’ıydı.
+
+Firefox’un çılgınlar gibi yeni veriyon çıkartması Screengrab extension’ını
+yazan arkadaşı delirtmiş olacak ki artık destek vermiyor.
+
+An itibariyle bu işi yapmak için Chrome ve Google tarafından yazılan
+**Screen Capture** iyi bir alternatif.
+
+Eğer siz de benim gibi Shell’ciyseniz **webkit2png**’yi kullanabilirsiniz.
+[Projenin orijinal yazılımı][github-webkit2png] Paul Hammond’a ait.
+
+Ben, [MacPorts][macports] ve [Homebrew][homebrew] için küçük bir fix yapmıştım. 
+İster orijinali ister benim [fixlediğim](https://github.com/vigo/webkit2png) 
+versiyonu kullanabilirsiniz.
+
+MacPorts ve Homebrew paketi olarak mevcut.
+
+```bash
+sudo port install webkit2png # macports’dan kurulum
+brew install webkit2png # homebrew’dan kurulum
+  
+# benim ~/bin folder’ım local executable’lar için eğer sizde böyle yapmak isterseniz  
+# mkdir ~/bin yapıp $PATH’e bu folder’ı eklemeniz gerekir.
+
+git clone httxs://github.com/vigo/webkit2png # kendi kurulumunuz
+```
+
+Kullanımı çok basit;
+
+    webkit2png -h
+
+Hemen açıklaması geliyor. Default olarak 3 versiyon oluşturuyor. Fullsize,
+Thumbnail ve Clipped. Default ekran genişliği **800x600** pixel geliyor, aynı
+şekilde default clip **200x150** pixel. Ekran görüntüsünü kaydetmek istediğiniz
+folder’a gidin:
+
+```bash
+cd ~/Desktop
+webkit2png -o test1 http://ugur.ozyilmazel.com # tüm siteyi alır 3 dosya üretir...
+webkit2png -o test2 -C --clipwidth=800 --clipheight=600 http://ugur.ozyilmazel.com 
+```
+
+`test1` dev gibi ekran görüntüsü aldı. Toplam **3 dosya** üretti:
+
+    test1-clipped.png # 200x150
+    test1-full.png # ben yaptığımda 960x31024 verdi
+    test1-thumb.png # test1-full’ün thumbnail’i 240x7756
+
+`test2` ise sadece **800x600**’lük alanı verdi. Son dönemde, web siteleri hep
+**JavaScript** kullandığı için, sitenin tam olarak yüklenmesi bazen saniye bazında
+da olsa zaman alıyor. Bunun için webkit2png’nin **delay** özelliğini
+kullanacağız...
+
+    webkit2png --delay=5 httx://google.com
+
+Bu sayede google.com adresi request edildikten sonra 5 saniye bekleyecek ve 5
+saniye sonunda ekran görüntüsü alınacak. Başka bir örnek;
+
+```bash
+webkit2png -o bilgi -F -W 1024 httx://bilgi.edu.tr
+```
+
+<%= card src: 'http://media.tumblr.com/tumblr_lvafid6TsA1qafg0z.png',
+         title: 'Bilgi Üniversitesi’nin websitesinden ekran görüntüsü',
+         text: 'Sayfa tam olarak yüklenemedi...' %>
+
+Şimdi `--delay` ile tekrar deneyelim...
+
+<%= card src: 'http://media.tumblr.com/tumblr_lvafk24ggN1qafg0z.png',
+         title: 'Bilgi Üniversitesi’nin websitesinden ekran görüntüsü',
+         text: 'Sayfa tam olarak yüklendi' %>
+
+```bash
+webkit2png -o bilgi-delay --delay=5 -F -W 1024 httx://bilgi.edu.tr
+```
+
+
+Çok işe yarayan bir tool. Umarım sizin de işinize yarar...
+
+[github-webkit2png]: https://github.com/paulhammond/webkit2png.git
+[webkit]: http://www.webkit.org/ "Webkit"
+[safari]: http://www.apple.com/safari/ "Safari Web Browser"
+[chrome]: http://www.google.com/chrome "Chrome Web Browser"
+[firefox]: http://www.mozilla.org/tr/firefox "Firefox Web Browser"
+[macports]: http://macports.org "Macports"
+[homebrew]: http://mxcl.github.com/homebrew/ "The missing package manager for OS X"

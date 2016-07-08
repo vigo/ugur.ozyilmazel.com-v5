@@ -1,0 +1,45 @@
+<% I18n.locale = locals[:lang] %>
+<% wrap_layout :layout do %>
+    
+    <%
+    current_page_last_updated_at = File.mtime(current_page.source_file)
+    current_page_hr_date = I18n.l current_page_last_updated_at, format: config.date_format_long[I18n.locale]
+
+    current_page_cover = nil
+    if current_page.metadata[:page][:cover]
+        cover_dir = current_page.metadata[:page][:cover_dir] || 'index-covers'
+        current_page_cover = site_image(current_page.metadata[:page][:cover], dirs=cover_dir)
+    end
+    %>
+    
+    <%= partial 'partials/top_menu', locals: {
+        locale: I18n.locale,
+        current_url: current_page.url,
+    } %>
+    
+    <%= partial 'partials/page_cover', locals: {
+        cover: current_page_cover,
+        cover_title: current_page.metadata[:page][:cover_title] || nil,
+        cover_subtitle: current_page.metadata[:page][:cover_subtitle] || nil,
+    } %>
+    
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <section id="article">
+                    <h3><%= link_to current_page.metadata[:page][:title], current_page %></h3>
+                    <time pubdate datetime="<%= current_page_last_updated_at.xmlschema %>" title="<%= current_page_hr_date %>">
+                        <%= current_page_hr_date %>
+                    </time>
+                    
+                    <div id="markdown">
+                        <%= yield %>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <%= partial 'partials/footer' %>
+<% end %>

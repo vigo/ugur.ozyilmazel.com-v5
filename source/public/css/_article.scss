@@ -1,0 +1,119 @@
+#article {
+  font-size: 1.2rem;
+  font-weight: 200;
+  line-height: 2.2rem;
+  
+  header {
+    a::after { content: ""; }
+  }
+  
+  a {
+    font-weight: 500;
+    &::after{
+      content: " \00bb";
+    };
+  }
+
+  $bq-color: #6C71C4;
+  blockquote {
+    color: $bq-color;
+    border-left: 8px solid lighten($bq-color, 35);
+    padding: 2rem;
+    strong { color: inherit; }
+    p {
+      margin: 0;
+      padding: 0;
+      font-size: 2rem;
+      line-height: 3rem;
+      font-weight: 200;
+    }
+  }
+  
+  
+  h1 { margin: 0; }
+  p { margin-bottom: $common-mb; }
+  hr { margin: 3rem 0; }
+  
+  #markdown {
+    h2, h3 {
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      border-bottom: 2px solid $heading3-color;
+      padding-bottom: .5rem;
+    }
+
+    &::before {
+        content:" ";
+        display:block;
+        width:1.5em;
+        height:0.2em;
+        background:#ddd;
+        margin:1em 0;
+    }
+    
+    > p:first-of-type {
+        margin-top: 1rem;
+        font-size: 1.4rem;
+        line-height: 2.4rem;
+    }
+  }
+  
+}
+
+#related-articles {
+  margin-top: 4rem;
+
+  li { margin: 1.5rem 0 3rem 0; }
+
+  h1 { margin-bottom: 1rem; }
+
+  time {
+    display: block;
+    font-size: 1rem;
+    line-height: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+#prev-next-articles {
+  margin-top: 4rem;
+  overflow: hidden;
+
+  a, time {
+    display: block;
+  }
+
+  a {
+    line-height: 1.6rem;
+    margin-bottom: .5rem;
+    &::after{
+      content: ""; 
+    };
+  }
+
+  time {
+    font-size: 1rem;
+    line-height: 1rem;
+  }
+  .li-left {
+    width: 50%;
+    time { margin-left: 1.4rem; }
+  }
+  .li-right {
+    time { margin-right: 1.4rem; }
+  }
+}
+
+body.index {
+  #article {
+    > p:first-of-type {
+      font-size: 1.8rem;
+      line-height: 3.0rem;
+      a {
+        font-weight: 400;
+      }
+    }
+  }
+}

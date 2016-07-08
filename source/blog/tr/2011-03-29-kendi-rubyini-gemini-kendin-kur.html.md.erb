@@ -1,0 +1,130 @@
+---
+title: "Kendi Ruby’ini Gem’ini kendin kur"
+date: 2011-03-29 00:39
+cover: 2011-03-29-ruby-gem-kur.jpg
+og_cover: 2011-03-29-ruby-gem-kur.jpg
+tags: ruby,irb,wirble
+comments: true
+---
+
+Sıcağı sıcağına hemen yazmak istiyorum. "Kendin kur" kampanyamızın devamı yeni
+bir maceraya daha hoş geldiniz. Amacımız Mac OS X’e Ruby kurmak. Öncelikle
+macports’un kurulu olması gerekiyor!
+READ_MORE
+
+Bilmem daha önceki yazımlarımda belirttim mi? ama Macports’u kurabilmek 
+için **MacOS SDK** kurulu olması gerekiyor.
+
+SDK,Mac aldığınız zaman yanında verilen dvd’lerde mevcut. En kötüsü
+[developer.apple.com](http://developer.apple.com)’a üye olup ücretsiz
+indirebilirsiniz.
+
+Önce gereken port’ları kuralım; ([macports][ruby-portfile]’dan)
+
+    libiconv
+    readline
+    openssl
+    zlib
+    ncurses
+    libyaml
+    libffi
+
+Eğer **libyaml** ve **libffi** dışındaki tüm portlar çok sık kullanılanlardan
+olduğu için muhtemelen kurulu olabilir. Port’un kurulu olup olmadığını anlamak
+için:
+
+    port installed PORT_ADI
+
+yapapabilirsiniz. Gerekli port’ları kurduktan sonra, hemen Ruby’nin source’unu
+indirelim. Ben bu yazıyı yazdığım sırada versiyon **1.9.2-p180** vardı. Hemen;
+
+[http://www.ruby-lang.org/en/downloads/][ruby-download]
+
+adresinden indirebilirsiniz. Hemen gerekli folder’ları açalım:
+
+```bash
+cd $HOME
+mkdir -p .local/Ruby
+```
+
+ve configure satırı:
+
+```bash
+LDFLAGS="-L/opt/local/lib" CPPFLAGS="-I/opt/local/include" ./configure --prefix=$HOME/.local/Ruby --with-rubylibprefix=$HOME/.local/Ruby/lib/ruby1.9 --enable-shared --enable-pthread --program-suffix=1.9 CFLAGS=-D_XOPEN_SOURCE=1
+```
+
+Dikkat ettiyseninz **program-suffix**’e **1.9** yazdık. Bu şu anlama geliyor,
+sistemdeki Ruby’e dokunmadan, [ruby][ruby] ile alakalı tüm dosyaların sonuna **1.9** eki
+gelecek. Yani sistemde hem **ruby** hem de **ruby1.9** diye iki farklı şey
+olacak. Keza bu irb, gem vs herşey için geçerli.
+
+configure başarılı olduysa şimdi;
+
+    make
+    make install
+
+yapalım. Bu işlem bittiğinde (*eğer error ile karşılaşmadıysanız*) `~/.local`
+folderınızda;
+
+    Ruby/
+        bin/
+        include/
+        lib/
+        share/
+
+folder’ları oluşmuş olacak. Hemen `~/.profile` ya da `~/.bashrc` (*her ne
+kullanıyorsanız*) dosyasını açıp `PATH`’e ek yapmak lazım:
+
+```bash
+export PATH=~/.local/Ruby/bin:$PATH
+```
+
+ya Terminal’i açıp kapatın ya da;
+
+```bash
+source ~/.profile # eğer .profile kullanıyorsanız
+source ~/.bashrc # eğer .bashrc kullanıyorsanız
+```
+
+Şimdi `ruby` yazıp TAB’e basın ve **ruby1.9**’u görün! hemen `IRB` (*Ruby interactive
+shell*) için fix yapalım. Renkli görüntü için;
+
+    gem1.9 install wirble
+
+diyin... sonra `~/.irbrc` dosyası oluşturalım;
+
+```bash
+cd $HOME
+touch .irbrc
+nano .irbrc
+```
+
+aşağıdakileri paste edelim:
+
+```ruby
+require 'rubygems'
+require 'wirble'
+Wirble.init({
+  :skip_prompt => true,
+})
+Wirble.colorize
+```
+
+Detaylı bilgi için [Wirble][wirble]’in sitesine bakabilirsiniz.
+
+Denemek için `irb`’yi çalıştırın ve;
+
+```ruby
+["test", {:hash_key => proc { nil }}, Class, 5]
+```
+
+Keza, `RUBY` yazıp TAB’e basın ve otomatik tamamlama olayını görün!
+
+<%= card src: 'http://media.tumblr.com/tumblr_lisetjtOZs1qafg0z.png',
+         alt: 'Terminal ekran görüntüsü',
+         text: 'Ruby 1.9 ve IRB 1.9' %>
+
+[ruby-portfile]: https://trac.macports.org/browser/trunk/dports/lang/ruby19/Portfile "Ruby port dosyası"
+[ruby-download]: http://www.ruby-lang.org/en/downloads/ "Ruby’i indir"
+[wirble]: http://pablotron.org/software/wirble/README
+[ruby]: http://www.ruby-lang.org/ "Ruby"

@@ -1,0 +1,36 @@
+.page-cover-layer {
+  height: 24rem;
+  padding: 9rem 0;
+}
+
+.page-cover-layer-transparent {
+  background-color: $layer-transparency;
+}
+
+.page-cover-layer-solid {
+  background-color: none;
+}
+
+
+.page-cover {
+  color: white;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  padding: 0;
+  transition: background 2s ease-in-out;
+
+  h1, h2 {
+    margin: 0;
+    padding: 0;
+    color: white;
+    -webkit-filter: $cover-text-shadow;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: 600;
+  }
+
+}

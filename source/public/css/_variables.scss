@@ -1,0 +1,23 @@
+$base-font: "Merriweather", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$heading-font: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$code-font: Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+$title-link-color: #2077b2;
+$time-color: #848484;
+
+$layer-transparency: rgba(0, 0, 0, 0.4);
+$cover-text-shadow: drop-shadow(1px 1px 5px #000);
+
+$footer-bg-color: #eee;
+$footer-color: #777;
+
+$heading1-color: $title-link-color;
+$heading2-color: lighten($heading1-color, 10);
+$heading3-color: lighten($heading1-color, 20);
+$heading4-color: lighten($heading1-color, 25);
+$heading5-color: lighten($heading1-color, 30);
+
+$common-mb: 1.5rem;
+
+$custom-label-bg-color: #4299d4;
+$custom-label-link-color: white;

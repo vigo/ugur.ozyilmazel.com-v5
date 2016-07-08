@@ -1,0 +1,53 @@
+---
+title: "Pip için bash completion"
+date: 2011-02-22 11:05
+cover: 2011-02-22-pip-completion.jpg
+og_image: 2011-02-22-pip-completion.jpg
+tags: pip,bash completion
+comments: true
+---
+
+Bir [önceki yazımda][previous-post] unutmuşum, yeni farkettim. `pip`’i
+terminalde kullanırken `bash-completion` özelliğinden de faydalanabiliriz. Bunun
+için, pip’le gelen bash-completion’ı sisteme eklemek gerekiyor. Tabi, sizde
+zaten `bash-completion` kurulu diye var sayıyorum.
+READ_MORE
+
+```bash
+sudo port install bash-completion
+```
+
+`pip`’i kurduktan sonra terminalde şunu yazın;
+
+```bash
+pip completion --bash
+```
+
+Bu işlem aşağıdaki **bash kodunu** oluşutuyor:
+
+```bash
+# pip bash completion start
+_pip_completion()
+{
+    COMPREPLY=( $( COMP_WORDS="${COMP_WORDS[*]}" \
+                   COMP_CWORD=$COMP_CWORD \
+                   PIP_AUTO_COMPLETE=1 $1 ) )
+}
+complete -o default -F _pip_completion pip
+# pip bash completion end
+```
+
+Bu kodu, `/opt/local/etc/bash_completion.d/` altına `pip_completion` ismiyle
+kaydetmeniz lazım. Kolay yolu şu:
+
+```bash
+pip completion --bash > pip_completion | sudo mv pip_completion /opt/local/etc/bash_completion.d/
+```
+
+Terminal’i kapatıp açın veya durumunuza göre;
+
+- `source ~/.profile` ya da
+- `source ~/.bashrc`
+
+
+[previous-post]: /blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/

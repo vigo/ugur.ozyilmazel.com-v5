@@ -1,0 +1,48 @@
+---
+title: "PYTHONPATH’e ilave"
+date: 2011-03-30 15:40
+cover: 2011-03-30-python-path.jpg
+og_image: 2011-03-30-python-path.jpg
+tags: python,applescript,pypi
+comments: true
+---
+
+[AppleScript][applescript] ile pek çok uygulama (*tabi desteği varsa*) kontrol edilebiliyor.
+Yine daldan dala atlarken python için yazılmış [appscript](http://pypi.python.org/pypi/appscript/1.0.0)
+diye bir modül gördüm. Hemen `pip`’den kurayım dedim.
+READ_MORE
+
+Kurulum tamamlanmış gibi göründü fakat kontrol ettiğimde sorun olduğunu gördüm.
+Bazen `pip`’de bile bu tarz sıkıntılar oluyor. Biraz baktım etrafa çözüm aradım.
+
+En azından source’u indirim kendim kurayım dedim.
+    
+```bash
+python setup.py install
+```
+
+Kurulum oldu... aa, bir de baktım ki, klasik `site-packages`’ın altına değilde,
+şuraya kurmuş:
+
+    ~/.local/Python/Library/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages
+
+Tabi bu alan benim `path`’de olmadığı için bir türlü import edemiyordum. Yine
+yeni bir şey öğrendim. Hemen `PYTHONPATH`’e ekleme yaptım:
+
+    export PYTHONPATH=~/.local/Python/Library/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages:$PYTHONPATH
+
+Bu appscript kısaca şu işe yarıyor; iTunes’u açıp bir parça çalmaya başlayın.
+Bu sırada da ipython’u açıp aşağıdakileri yazın:
+
+```python
+from appscript import *
+iTunes = app(u'/Applications/iTunes.app')
+iTunes.current_track.name.get()
+```
+
+Yukarıdaki script [http://www.libertypages.com/clarktech/?p=77][site-link] sitesinden alınmıştır.
+
+Mutlu programlamalar!
+
+[site-link]: http://www.libertypages.com/clarktech/?p=77
+[applescript]: http://en.wikipedia.org/wiki/AppleScript "AppleScript"

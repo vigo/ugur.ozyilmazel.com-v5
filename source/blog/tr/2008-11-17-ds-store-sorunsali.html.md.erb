@@ -1,0 +1,72 @@
+---
+title: ".DS_Store sorunsalı"
+date: 2008-11-17 16:05
+cover: menemen.jpg
+og_image: menemen.jpg
+tags: shell,find,ds_store
+comments: true
+---
+
+Windows’dan Mac OS’a geçince yaşadığım en büyük farklardan biri de sevgili
+Finder’ın sürekli olarak `.DS_Store` adlı dosyalar üreterek fazladan file
+kalabalığı yaratmasıydı.
+READ_MORE
+
+Sadece Mac ile çalışıyorsanız sorun yok, ama benim gibi hem Windows, hem
+Linux karışık bir durumunuz varsa, özellikle bu çalıştığınız alan
+Proje Folder’ınızsa (*ve versiyon kontrol kullanıyorsanız*) biraz can sıkıcı
+oluyor bu `.DS_Store`’lar.
+
+Bunu çözmek için terminali açıp ufak bir-iki hareket yapmamız yeterli.
+Önce çalıştığınız foldera gidin:
+
+```bash
+cd ÇALIŞTIĞINIZ_FOLDER
+```
+
+Daha sonra bir kontrol yapın bakalım `.DS_Store` varmı?
+
+```bash
+find . -name '\.DS_Store' -print
+```
+
+Eğer varsa, bunları tek hareketle silmek için:
+
+```bash
+find . -name '\.DS_Store' -print -delete
+```
+
+find komutuna geçilen ilk parametre arama işlemini nerede yapacağımızı
+söylüyor. Dikkat ettiyseniz ilk başta ilgili yere gidin dedim. Böylece path
+olarak `.` (*nokta*) vermek yeterli oldu. Nokta; bulunduğumuz yer yani
+**Current** path anlamındadır.
+  
+Eğer bakmak istediğimiz yer `~/Desktop/HedeHodo` altında olsaydı:
+
+```bash
+find ~/Desktop/HedeHodo -name '\.DS_Store' -print
+```
+
+şeklini de kullanabilirdik. `-name` argümanına dosya ismini geçiyoruz. Nokta 
+işaretini escape ediyoruz `.` yerine `\.` yazıyoruz.
+(*Tabi tırnak içinde geçiyoruz adı*)
+  
+Eğer yeni yeni bu işlerle uğraşıyorsanız bence **2** sorunuz olacak:
+
+1. `\` işaretini nasıl yapıcam?
+2. `~` işaretini nasıl yapıcam?
+
+OS’unuzda klavye modeli olarak: **Turkish QWERTY PC** kullandığınızı
+varsayarak; ters slash için:
+
+`⌥ + ?` (*alt aynı zamanda **option** olarak da ifade edilir*)
+alt ve soru işareti
+
+tilda (*dalga*) için: <kbd>⌥</kbd> (alt) + <kbd>Ü</kbd> yapabilirsiniz.
+  
+Eğer login olduğunuz kullanıcının silme yetkisi yoksa **sudo** ile işlemi 
+yapmanız lazım. Yani:
+
+```bash
+sudo find . -name '\.DS_Store' -print -delete
+```

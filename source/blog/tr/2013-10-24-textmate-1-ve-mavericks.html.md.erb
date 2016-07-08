@@ -1,0 +1,37 @@
+---
+title: "TextMate 1 ve Mavericks"
+date: 2013-10-24 14:00
+cover: 2013-10-24-mavericks.jpg
+og_image: 2013-10-24-mavericks.jpg
+tags: textmate,mavericks
+comments: true
+---
+
+Mac OS X’in yeni sürümü Mavericks’i eğer **upgrade** yöntemiyle güncellediyseniz
+[TextMate 1][textmate] Bundle’larının büyük bir kısmı çalışmayacaktır!
+READ_MORE
+
+Çözüm aslında çok kolay. Yapmamız gereken şey, eski Ruby’nin yerini `path`e
+eklemek. OS X Mavericks yeni Ruby ile geliyor (*ruby 2.0.0p247*).
+
+TextMate 1 Bundle’larının büyük bir çoğunluğu eski Ruby kullandığı için bu
+sorun oluşuyor. Bu sabah Macromates tüm kullanıcılarına e-mail atmış, **lütfen
+TextMate 2’ye geçin** diye.
+
+Büyük bir TextMate fan’i olarak ne yazıkki halen 1 kullanıyorum ve 2’ye bir
+türlü geçemiyorum.
+
+Lütfen şu konuyu atlamayın, eğer **clean install** yani sıfırdan kurulum
+yaptıysanız bu anlatacağım yöntem işe yaramaz! Bunun için başka formüller
+gerekiyor. Eğer başta da belirttiğim gibi **upgrade** yaptıysanız;
+
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin
+
+bilgisini **TextMate > Preferences > Advanced > Shell Variables** kısmından
+`PATH` yazan bölüme, en başa eklemeniz gerekiyor.
+
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+
+gibi olmalı.
+
+[textmate]: http://macromates.com "TextMate: The Missing Editor"

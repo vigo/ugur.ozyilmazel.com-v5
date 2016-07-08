@@ -1,0 +1,32 @@
+---
+title: "Kendi Python’unu kendin kur yazımda eksik yerler buldum"
+date: 2011-03-22 15:45
+cover: 2011-03-30-python-path.jpg
+og_image: 2011-03-30-python-path.jpg
+tags: python,pip,macports
+comments: true
+---
+
+Geçtiğimiz günlerde yazdığım [yazımda][related-post] çok önemli bir eksiklik
+yaptığımı bugün farkettim. Neden bugün? Bugün yeni makine kuruyordum ve sıra
+[Python][python]’u kurmaya gelmişti. Hemen blog’umu açıp kendi yazdığım yazımı 
+okumaya başladım.
+READ_MORE
+
+Herşey güzel güzel ilerledi. Sıra python’un PIL paketini kurmaya gelmişti ki
+jeton düştü! **P**ython **I**mage **L**ibrary’nin ihtiyacı olan 2 kütüphane eksikti...
+bunlar:
+
+    jpeg
+    freetype
+
+Bu kütüphaneleri ports’dan kurmak gerekiyor öncesinden:
+
+```bash
+sudo port install jpeg freetype
+```
+
+şeklinde kurmak gerekiyor JPG ve Font desteği için...
+
+[related-post]: /blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/
+[python]: http://python.org "Python"

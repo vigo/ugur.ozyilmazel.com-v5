@@ -1,0 +1,124 @@
+---
+title: "TextMate ve Path sorunsalı"
+date: 2011-03-30 14:40
+cover: generic-textmate.png
+og_image: generic-textmate.png
+tags: textmate,ruby
+comments: true
+---
+
+TextMate’in sevdiğim özelliklerinden biri **in-line** olarak programlama
+yapabilmek. Örneğin **html** ile uğraşıyorsunuz, hemen bir `div` ve o div’in
+içinde 15 tane `p` ve p’lerin içinde de `span`’e ihtiyacınız var (*iyi uydurdum dimi?*)
+basit bir hareketle bunu programatik olarak yapabilirsiniz.
+READ_MORE
+
+Keza [Zen Coding][zen-coding] adında bir [bundle][textmate-bundles] var.
+Bununla da benzer hareketleri yapıyorsunuz ama çok pratik olmuyor bazen.
+
+Bu tür işleri [Ruby][ruby] ile yapıyorum. Dokümanın içinde herhangi bir yere Ruby
+script’i yazıp bunu **execute** edebiliyorsunuz. Sadece Ruby değil neredeyse
+OS’daki her dilden istifade edebilirsiniz.
+
+Ağırlıkta [Python][python] kullandığım için işlerimi Python ile halletmek daha kolayıma
+geliyor. Kendime sordum, neden bu işlerimi de Python ile yapmıyorum? Hemen
+menüye baktım elimde neler var diye
+
+<%= card src: 'http://media.tumblr.com/tumblr_livaghBrNf1qafg0z.png',
+         alt: 'TextMate ekran görüntüsü',
+         text: '<kbd>⌃</kbd> (kntrl) + <kbd>⇧</kbd> (shift) + <kbd>E</kbd>' %>
+
+
+`Kntrl + Shift + E` ile "**Execute Line/Selection as Python**" komutunu gördüm.
+Hemen denedim, Hata mesajı verdi. Denediğim şey:
+
+```python
+print "vigo"
+```
+
+yazmaktı. **Invalid syntax** filan. Hemen Bundle Editor’ü açıp baktım ne
+yazılmış diye. Bir baktım **eval()** kullanılmış. Pek çok dilde benzer komut
+vardır. **Evaluate**’in kısaltmasıdır ve `string` olarak verilen şeyi execute etmeye
+çalışır. Fakat Python’da mevzu bu şekilde değil. Eval, sadece ifadeleri
+evaluate ediyor. Yani
+
+```python
+print eval("5+5")
+```
+
+yazdığınızda size 10 yazıyor. Yani `string` olarak verilen ifadeyi
+değerlendiriyor sadece. Şimdi bu işlerle uğraşırken birden farkettimki
+[TextMate][textmate], benim Python’umu değilde sistemdeki default’u kullanıyor. Nasıl
+yani?
+
+```bash
+#!/usr/bin/env python
+```
+
+ile başlayan Python scriptini çalıştırırken gidip `/usr/bin` deki python’u
+kullanıyor. Halbuki benim environment’ımda python’un path’i
+
+```bash
+/Users/vigo/.local/Python/Library/Frameworks/Python.framework/Versions/Current/bin/python
+```
+
+Hemen TextMate’in Shell Environment ayarlarındaki `PATH`’e ekledim kendi path
+bilgilerimi. Gidip sona ekledim. Yani orada yazanların sonuna... (8 Meğerse sona
+değil başa eklemek gerekiyormuş!
+
+<%= card src: 'http://media.tumblr.com/tumblr_livbzuvu0L1qafg0z.png',
+         alt: 'TextMate ekran görüntüsü',
+         text: 'PATH ayarlamak' %>
+
+
+aynen şu aşağıdaki gibi yaptım
+
+```bash
+/Users/vigo/.local/Python/Library/Frameworks/Python.framework/Versions/Current/bin:/Users/vigo/.local/Python/bin:/Users/vigo/.local/Python/Packages/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+```
+
+Kullanıcı profilimdeki path bilgisini ve macports’dan kurduğum
+executable’ların için gereken `/opt/local/bin`’i de ekledim.
+
+Sorunun bir kısmını çözmüştüm. Şimdi diğer tarafı çözmem gerekiyordu. Bundle
+editöre geri döndüm. Biraz kolaya kaçtım, hatta biraz da tavsiye edilmeyen bir
+yöntemi kullandım. `eval()` yerine `exec()` kullandım.
+
+Zaten basit işlerde kullanacağım için çok da sorun değil. Belki sizin de
+işinize yarar:
+
+```python
+#!/usr/bin/env python
+import os
+
+from sys import stdout, stdin, exit, version
+from traceback import format_stack
+
+py = stdin.read()
+
+if 'TM_SELECTED_SCOPE' in os.environ:
+    stdout.write(" ")
+else:
+    stdout.write("\n")
+
+# original
+# try:
+#     scope = {}
+#     result = eval(py, globals(), scope)
+# except:
+#     exc = format_stack()
+#     stdout.write(exc)
+#     exit(206) # exiting with this code show’s output in a tooltip 
+# else:
+#     stdout.write(repr(result))
+
+# mine
+exec(py)
+```
+
+`Kntrl + Shift + E` ile artık python script’lerimi basitçe execute edebilirim.
+
+[zen-coding]: http://code.google.com/p/zen-coding/ "TextMate için Zen Coding Bundle"
+[textmate-bundles]: http://manual.macromates.com/en/bundles "TextMate Bundle nedir?"
+[ruby]: http://www.ruby-lang.org/ "Ruby"
+[python]: http://python.org "Python"

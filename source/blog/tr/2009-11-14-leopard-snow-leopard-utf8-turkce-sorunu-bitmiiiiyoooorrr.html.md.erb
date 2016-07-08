@@ -1,0 +1,147 @@
+---
+title: "Leopard / Snow Leopard UTF8 - Türkçe sorunu bitmiiiiyoooorrr!!!"
+date: 2009-11-14 19:21
+cover: 2009-11-14-leo-snow-leo.jpg
+og_image: 2009-11-14-leo-snow-leo.jpg
+tags: cat,locale,sort
+comments: true
+---
+
+Çok basit iki [Unix][unix] komutundan bahsetmek istiyorum, `cat` ve `sort`. [Unix][unix]’in en 
+büyük olayı, **pipe**’larla yani `|` işaretiyle, yapılan işlemin sonucunu, bir 
+sonraki komuta geçirebilme özelliğidir. 
+READ_MORE
+
+Şimdi çok basit bir sıralama işlemi yapacağız, aslında Mac OS’da yapamayıp, 
+[Ubuntu][ubuntu]’da yapacağız ne yazıkki...
+
+Hemen bir Terminal açın ve `sorter.txt` adında bir boş dosya oluşturun, oluşan 
+dosyayı `nano`’da açıp (*ya da TextMate / TextEdit vs...*) aşağıdaki metni 
+yapıştırın:
+
+    ümit
+    cemal
+    uğur
+    ali
+    vigo
+    çek
+    ıtri
+    bronx
+    ömer
+    şekip
+
+şimdi yukarıdaki işlemleri yapalım;
+
+```bash
+cd $HOME
+touch sorter.txt
+nano sorter.txt
+```
+
+<%= card src: 'http://2.bp.blogspot.com/_9jz1qeFrzkQ/Sv8DiaFjDlI/AAAAAAAAC6c/omN9gerQYbw/s600/sorter-01.png',
+         title: 'Title',
+         alt: 'TextMate ekran görüntüsü, sorter.txt dosyası' %>
+
+
+Daha sonra yukarıdaki metni copy-paste (*kopyala / yapıştır*) ile `nano`’ya 
+yerleştirin ve kaydedip çıkın (<kbd>⌃</kbd> (kntrl) + <kbd>O</kbd> ve 
+<kbd>⌃</kbd> (kntrl) + <kbd>X</kbd>). Şimdi `cat` komutu ile 
+dosyanın içeriğini ekrana basın.
+
+```bash
+cat sorter.txt
+```
+
+<%= card src: 'http://3.bp.blogspot.com/_9jz1qeFrzkQ/Sv8Divf3m6I/AAAAAAAAC6k/FLN1jGChyvM/s600/sorter-02.png',
+         title: 'Title',
+         alt: 'Ekran görüntüsü: Terminal’de sorter.txt çıktısı' %>
+
+
+Gördüğün gibi `cat` ile dosyanın içeriği ekrana basıldı. Şimdi **pipe** 
+mantıkını kullanarak, satır satır ekrana yazdırdığımız bu metni, a’dan z’ye 
+**alfabetik** olarak sıralayalım yani **sort** edelim!
+
+```bash
+cat sorter.txt | sort
+```
+
+<%= card src: 'http://1.bp.blogspot.com/_9jz1qeFrzkQ/Sv8Dim3hM7I/AAAAAAAAC6s/iN5huyxP4os/s600/sorter-03.png',
+         title: 'Title',
+         alt: 'Ekran görüntüsü: cat sorter.txt | sort çıktısı' %>
+
+
+Gördüğünüz gibi garip bir şekilde sıralandı:
+
+1. ali
+1. bronx
+1. cemal
+1. uğur
+1. vigo
+1. çek
+1. ömer
+1. ümit
+1. şekip
+1. ıtri
+
+Eğer dikkat ettiyseniz, **TÜRKÇE** ile ilgili kelimeler, normal sıralamadan 
+sonra yapılmış, yani İNGİLİZCE’ye göre **a-b-c-d-e-f-g-h-i**... şeklinde 
+**ali-bronx-cemal-uğur-vigo** doğru sırada, fakat **bronx**’dan sonra gelmesi 
+gereken **çek** sonda... Neden acaba? hemen `locale`’imize bakalım:
+
+```bash
+locale
+```
+
+<%= card src: 'http://3.bp.blogspot.com/_9jz1qeFrzkQ/Sv8Fi8YawNI/AAAAAAAAC60/Jo8ffaO0OfE/s600/sorter-04.png',
+         alt: 'Ekran görüntüsü: Terminal’de locale komutu çıktısı' %>
+
+
+BOOOOM! Benim **locale**’im komple **TÜRKÇE**’ye ayarlı. `sort` komutun 
+`man page`’in bakınca der ki : (*terminal’de her hangi bir komutun nasıl 
+çalıştığını öğrenmek için man kullanabilirsiniz.*)
+
+> *** WARNING *** The locale specified by the environment affects sort order. Set LC_ALL=C to get the traditional sort order that uses native byte values.
+
+Yani sıralama işlemi, o an Terminal’de bulunan kullanıcının **locale ayarıyla** 
+etkileşimlidir, yani eğer **Türkçe** işlem yapmak istersen locale’ini Türkçe’ye, 
+Almanca işlem yapacaksan Almanca’ya göre ayarla... 
+
+Türkçe için külliyen **YALAN**! Bunu hem [LEOPARD][osx105] hem de 
+[SNOW LEOPARD][osx106]’da da denedim... Acaba dedim sorun benim ayarlarda 
+filanmı? hemen lokalimdeki [Ubuntu][ubuntu]’da yaptım aynı testi...
+
+<%= card src: 'http://2.bp.blogspot.com/_9jz1qeFrzkQ/Sv8Gz1a5_4I/AAAAAAAAC68/VoxfjZ8ZnWE/s600/sorter-05.png',
+         alt: 'Ekran görüntüsü: Ubuntu Terminal’de locale çıktısı',
+         text: 'Önce locale’i kontrol ettim.' %>
+  
+<%= card src: 'http://2.bp.blogspot.com/_9jz1qeFrzkQ/Sv8G0CsYbmI/AAAAAAAAC7E/ln4wkkb6eZY/s600/sorter-06.png',
+         alt: 'Ekran görüntüsü: Ubuntu Terminal’de cat sorter.txt | sort çıktısı',
+         text: 'Sıralama doğru!' %>
+
+
+Sonra komutu çalıştırdım. Aslanlar gibi çalıştı sıkıntısız. Ne yapmalı, 
+derdimizi kime anlatmalı bilmiyorum? Aradaki tek fark, Mac OS’daki sort **2005** 
+yılına ait, [Ubuntu][ubuntu]’daki ise **2008** yılına. 
+
+Belki ilk bakışta "**ya bu benim ne işime yararki ?**" diye düşünebilirsiniz. Bu ve 
+buna bağlı olarak pek çok şey de aynı sıkıntı olabilir. Keza çok benzer bir 
+sorunu tarih ile ilgili bir işlem yaparken yaşamıştım.
+  
+Umarım ben bir yerlerde hata yapmışımdır ve benim eksik bilgimden kaynaklı bir 
+sorun söz konusudur fakat çok araştırdım, sanki sorun bende değil gibi... 
+
+Keza `export LC_ALL=tr_TR.ISO8859-9` bile denedim. Belki bundandır diye. Ne 
+yazık ki çözemedim. Eğer yazımı okuyan ve çözümü bilen biri varsa lütfen yorum 
+bıraksın ya da bana mesaj atsın!
+  
+Özellikle [TextMate][textmate] kullanıcıları (*filtreleme*) ya da [Snow Leopard][osx106] 
+kullanıcıları (*servis*) bu ve buna benzer **shell** komutlarını kullanarak 
+hayatlarını kolay hale getirebilirler. 
+
+Ne yazıkki bu en temel Unix komutu SORT güzel türkçemizi sıralayamıyor! 
+
+[unix]: http://www.unix.org
+[ubuntu]: http://ubuntu.com/ "Ubuntu"
+[osx105]: http://en.wikipedia.org/wiki/Mac_OS_X_Leopard "Mac OS X Leopard"
+[osx106]: http://en.wikipedia.org/wiki/Mac_OS_X_Snow_Leopard "Mac OS X Snow Leopard"
+[textmate]: http://macromates.com "TextMate: The Missing Editor"

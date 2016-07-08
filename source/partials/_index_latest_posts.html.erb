@@ -1,0 +1,22 @@
+<%
+html_id = locals[:html_id] ? ' id="' + locals[:html_id] +'"' : ""
+%>
+<div class="list-latest-posts">
+    <h2><%= locals[:header] %></h2>
+    <ul class="list-unstyled"<%= html_id %>>
+    <% locals[:articles][0..5].each_with_index do |article, index| %>
+        <li>
+            <h4>
+                <%= link_to article.title, article %>
+                <time pubdate datetime="<%= article.date.xmlschema %>" title="<%= I18n.l article.date, :format => config.date_format_long[locale] %>">
+                    <%= I18n.l article.date, :format => config.date_format_long[locale] %>
+                </time>
+            </h4>
+            <% if index < 3 && has_summary?(article) %>
+            <summary><%= print_summary article %></summary>
+            <% end %>
+        
+        </li>
+    <% end %>
+    </ul>
+</div>

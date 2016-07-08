@@ -1,0 +1,139 @@
+---
+title: "IRB için yardımcı gem: ORI"
+date: 2012-05-02 13:51
+cover: 2012-05-25-irb-configurasyonu.png
+og_image: 2012-05-25-irb-configurasyonu.png
+tags: ruby,irb,ori
+comments: true
+---
+
+[Peepcode][peepcode] screencast’lerinden [Play by play: Aaron Patterson][peepcode-link]’ı
+izlerken daldan dala atladım ve [IRB][irb] ile ilgili çok işe yarar bir gem
+buldum: **ORI**
+READ_MORE
+
+## Object-Oriented RI for IRB Console (ori)
+
+İnteraktif konsollar sayesinde, başka bir araca ihtiyaç duymadan, istediğimiz
+gibi yazılım denemeleri yapabiliriz. Pek çok dilde bu özellik var.
+(*Php, Python, Ruby gibi...*)
+
+```bash
+php -a
+```
+
+```bash
+pip install ipython # eğer ipython yoksa kurmak için... sudo gerektirebilir
+ipython
+```
+
+```bash
+irb
+```
+
+[iPython][ipython]’da çok kullandığım `help()` özelliğini irb’de aradım fakat
+bulamadım. Dediğim gibi, screencast’i izlerken 6.dakikada durup daldan dala
+google’da zıplamaya başladım. Ve tam o sırada **ORI**’ye denk geldim.
+
+```python
+help()
+help("print")
+help("string")
+```
+
+Pek çok şeyin olduğu gibi IRB’nin de `.irbrc` dosyası var. Genelde *nix
+ortamında pekçok programın konfigürasyon dosyası benzer şekillerde olur. Bu
+dosyaya bir-iki ekleme yaparak işlerimi kolay hale getireceğiz.
+
+Önce ilgili `gem`’i kuralım. (_Eğer **rvm** ya da **rbenv** kullanıyorsanız
+istediğiniz ruby versiyonuna geçip gem’i öyle kurun._)
+
+```bash
+gem install ori # gerekiyorsa başına sudo ekleyin...
+```
+
+Eğer yoksa, `$HOME/.irbrc` dosyasını oluşturmamız lazım.
+
+```bash
+touch $HOME/.irbrc
+```
+
+Daha sonra kullandığınız text-editörü ile dosyayı açın:
+
+```ruby
+require 'rubygems'
+require "irb/completion"
+require 'irb/ext/save-history'
+require 'ori'
+
+IRB.conf[:SAVE_HISTORY] = 10000
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
+```
+
+Son iki satırda irb'ye diyoruz ki;
+
+* History tut, maksimum 10000 satır olabilir.
+* Bu history dosyasının adı `.irb_history` olsun ve yeri de `$HOME` altında
+olsun.
+
+Bu işlemlerden sonra; hemen `irb` yazıp çalıştırın ve;
+
+```ruby
+"".ri                                  # String ile ilgili help
+"".ri :upcase                          # String’in upcase metodu ile ilgili help
+Array.ri                               # Array ile ilgili help
+"".ri :pretty_print                    # String’in pretty_print metodu ile ilgili help
+Hash.ri :[]                            # Birden fazla döküman bulunması durumu
+String.ri //                           # Tüm metodlar
+"".ri /case/                           # String metodları içinde case geçen metodlar
+"".ri /^to_/                           # String metodları içinde to_ ile başlayanlar
+Hash.ri //, :all => true               # Hash’in public/private tüm metodları
+Hash.ri //, :all                       # Alternatifi
+Time.ri //, :own => true               # Kendisine ait metodları
+Time.ri //, :own                       # Alternatifi
+String.ri //, :access => "::"          # Sadece Class / Instance metodları
+String.ri //, :access => "#"           # Sadece Class / Instance metodları
+String.ri //, :visibility => :private  # Sadece private metodları
+
+String.ri //, :visibility => [:public, :protected]
+                                       # Public ve protected metodları
+
+String.ri //, :fullre => /\(Object\)::/
+                                       # Receiver’ı Object olan String metodları
+
+String.ri //, :fullre => /\(Object\)::/, :access => "::", :visibility => :private
+```
+
+Nasıl? benim çok işime yaradı. Umarım sizin de işinize yarar. Konu ile ilgili
+harika bir [video][ori-video] var, örnekler vs. izlemenizi tavsiye ederim.
+Projenin [github][ori-git] sayfasını da ziyaret edebilirsiniz.
+
+
+Son olarak `~/.irbrc` dosyasına bir ek yapalım. Önce `wirble` gem’ini kuralım:
+
+```bash
+gem install wirble # gerekiyorsa başına sudo ekleyin...
+```
+
+Daha sonra; `~/.irbrc` dosyasını text-editörde açın ve en alt satıra;
+
+```ruby
+Wirble.init({
+  :skip_prompt => true,
+})
+Wirble.colorize
+```
+
+Artık renkli bir irb’ye sahip olacaksınız!
+
+### Update: 25 Kasım 2014, Salı, 22:23
+
+Geçtiğimiz yıl Peepcode, [Pluralsight][pluralsight] şirketine satıldı.
+
+[peepcode-link]: https://peepcode.com/products/play-by-play-tenderlove-ruby-on-rails "PLAY BY PLAY: AARON PATTERSON"
+[ori-video]: http://www.screencast-o-matic.com/watch/cXVVYuXpH
+[ori-git]: https://github.com/dadooda/ori
+[peepcode]: http://peepcode.com
+[irb]: http://en.wikipedia.org/wiki/Interactive_Ruby_Shell
+[ipython]: http://ipython.org/
+[pluralsight]: http://www.pluralsight.com/

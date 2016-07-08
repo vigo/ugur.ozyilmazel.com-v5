@@ -1,0 +1,69 @@
+---
+title: "Bash Completion olayı!"
+date: 2009-07-26 15:12
+cover: 2009-07-26-bash-completion.png
+og_image: 2009-07-26-bash-completion.png
+tags: macports,bash,ports,ubuntu,shell,terminal
+comments: true
+---
+
+Bilgisayar kullanmaya Commodore 64’le başlayan, ilk ciddi anlamda parayı Amiga 
+ile kazanan ben, kaderin cilvesi olarak, uzun yıllar Windows kullanmak zorunda 
+kalmıştım.
+READ_MORE
+
+Neyse efendim, Unix dünyasına geri dönünce (*geri dönüş diyorum 
+çünkü Amiga Os kullanıcısıyım*) hep söylediğim gibi, gözümün önündeki perde
+kalktı!
+
+Terminal / CLI (*Command Line Interface*) / Shell vs... En sevdiğim 
+özelliği TAB-COMPLETION (*tab tuşuna basark tamamlama*) olayıdır. Aslında 
+hakkını yememek lazım, bu Windows’da da var... Onda pek cmd kullanmadığımız 
+için dikkat etmiyoruz... Süper bi şekilde path’i tamamlama olayı...
+
+Ofisteki development makinesini, Debian’dan Ubuntu’ya çevirdiğimizde ilk 
+dikkatimi çeken şeyin ilave tamamlama özelliği olmasıydı. Debian / Ubuntu 
+kullananlar bilir, **aptitude** komutu ile paket yönetimi... Eğer bir paket
+arıyorsanız;
+
+```bash
+aptitude search PAKET_ADI
+```
+
+şeklinde kullanırsınız. **aptitude** yazıp boşluk bırakıp <kbd>TAB</kbd>’e 
+basınca ilgili komutların çıkması süper hoşuma gitmişti ve;
+
+> aa ne güzel bu herşeyi tamamlıyor!
+
+demiştim. Bu bakımdan Ubuntu, daha da çok hoşuma gitmişti!
+
+## Bilmemek Ayıp Değil!
+
+Geçenlerde test için sanal makine kiraladım, hemen [Ubuntu][ubuntu] deploy
+ettim. `aptitude` yazdım, **search** yapıcam, boşluk bırakıp `s` yazıp
+<kbd>TAB</kbd>’e bastım, hiç birşey olmadı? Haydaaa dedim, ne oldu? 
+Hani [Ubuntu][ubuntu]’da bu özellik vardı?
+
+Meğer bu işin sırrı **bash-completion** adlı paketteymiş. bash-completion
+kurduğunuz zaman yapmanız gereken tek şey ilgili `~/.profile` şunu eklemek;
+
+```bash
+if [ -f /opt/local/etc/bash_completion ]; then
+    . /opt/local/etc/bash_completion
+fi
+```
+
+Ben `~/.profile` kullandığım için oraya ekledim. Şimdi bu kadar şeyi neden
+anlattım? Aynı işi [Mac OS][mac-os-x]’da da yaptım o bakımdan;
+[MacPorts][macports] kullananlar için;
+
+```bash
+sudo port install bash-completion
+```
+
+Sonra iş bitince size `.bash_profile` dosyasına ekleyin diyor ama eğer
+`.profile` kullanıyorsanız (*ki kolayı bu*) `.profile`’a ekleyin!
+
+[ubuntu]: http://ubuntu.com/ "Ubuntu"
+[mac-os-x]: http://www.apple.com/macosx/ "Mac OS X"
+[macports]: http://macports.org "Macports"

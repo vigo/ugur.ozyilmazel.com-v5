@@ -1,0 +1,75 @@
+---
+title: "iPhone için Mac OS uygulaması: DiskAid"
+date: 2008-11-20 11:50
+cover: 2016-07-08-imazing.png
+tags: ffmpeg,cycorder,cydia,iphone,diskaid
+comments: true
+---
+
+iPhone kullanıcıları için harika bir OSX uygulaması. Ücretsiz. Bu uygulamayı
+kullanmak için telefonunuzun **JailBreak** edilmesine de gerek yok üstelik!!!
+READ_MORE
+
+Standart iPhone Usb kablosu ile çalışan, hem iphone, hem de ipod-touch için
+kullanılabilen bir uygulama. Yaptığı iş ise, telefonunun içini görmek, 
+cihazı browse etmek yani. iPhone OS aynı Mac OS gibi çalışıyor. 
+**root** ve **mobile** adında 2 user (*kullanıcı*) bulunuyor.
+
+Genelde telefonu kullanan kişinin yaptığı tüm işlemler **mobile** adlı 
+kullanıcı tarafından yapılıyor. Bu bakımdan çektiğiniz resimler, indirdiğiniz 
+uygulamalar vs hep mobile user’ı ile ilgili folder altına atılıyor. Bu uygulamayı 
+asıl kullandığım alan, iPhone’u Disk-Storage gibi kullanmak. Yani bir usb-stick 
+gibi. Normalde (*eğer jailbroken değil ise telefon*) sadece iTunes ile 
+yönetilebiliyor iPhone.
+
+Yani ofistesiniz, eve dönerken yanınıza bazı dosyaları almak istiyorsunuz, 
+**200 Megabyte**’lık bir video, ya da `pdf` dosyaları vesaire... Ne 
+yapacaksınız? ya CD’ye ya da DVD’ye kaydedeceksiniz. Boşuna disk tüketmektense 
+ya da yanınızda taşımaktansa bu file’ları atın iphone! (: Eğer telefonunuz 
+**JailBroken** ise bu tool daha da çok işe yarıyor. Nasıl mı? Eğer iPhone’nunuzda 
+video oynatmak isterseniz bunu ancak iTunes ile yapma şansınız var.
+
+Video’yu iTunes formatına yani `m4v` formatına çevirmeniz gerekiyor. Bu işlem 
+aslında varolan videonun, iTunes tarafından **x264** codec’i ile sıkıştırılıp 
+uygun aspect ratio’ya göre crop’lanması işlemidir.
+
+Keza sürekli olarak iTunes ile sync etmeniz gerekir. Her video da bazen bu
+çevrime uygun olmayabilir. Eğer JailBroken bir iPhone kullanıyorsanız,
+Cydia ile (*JailBroken iPhone için Application Management yani aynen [Debian][debian]’da
+bulunan paket yönetim sistemi*) **Cycorder** adlı video recorder
+(*yani iPhone ile video kaydetmeye yarayan uygulama*) uygulamasını indirin.
+
+Bu hem video kaydeden hem de oynatan bir tool. Bu tool ile, `mpeg4`
+(*yani mp4*) videolarımızı oynatabiliyoruz. Aslında tool’un yaptığı şey,
+iPhone içinde bulunan -`$mobile:/Media/Videos/` folder’ı- video dosyasını,
+iPhone’nun kendi internal video playerına göndermek!
+  
+Herhangi bir videoyu iphoneda oynatabilmek için;
+
+  * Videonun enixboyu: 480x320 (*width x height*)
+  * Kaynağın durumuna göre 4:3 yada 16:9/16:10 aspect ratio
+
+olması gerekiyor. Ben biraz sıkıştırmak ve yerden de tasarruf etmek için
+videonun bitrate’ini **512Kbps**, audio’nun bitrate’ini **64K** ve **22050Hz** yapıyorum.
+Senkron ve framerate sorunu yaşamamak için de `ffmpeg`’e rate parametresi
+olarak `-r 30000/1001` geçiyorum.
+  
+`ffmpeg` nedir diyenlere daha sonra detaylı açıklama yapacağım ama kullananlar
+için:
+
+    ffmpeg -i INPUT.avi -s 480x320 -aspect 4:3 -r 30000/1001 -b 512k -ab 64k -ar 22050 OUT.mp4
+
+Yine laf lafı açtı konudan konuya zıpladım. Neyse, bu güzide programı indirmek
+için [tıklayın][diskaid].
+
+### Güncelleme: 27 Ağustos 2009
+
+Ne yazıkki uygulama paralı olmuş ):
+
+### Güncelleme: 8 Temmuz 2016
+
+Uygulamanın adı ve kendisi de değişmiş, [iMazing](imazing) olmuş. Ücretsiz.
+
+[debian]: http://www.debian.org/
+[diskaid]: http://www.digidna.net/diskaid/
+[imazing]: https://imazing.com/download/mac-os-x

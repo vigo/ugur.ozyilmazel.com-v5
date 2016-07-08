@@ -1,0 +1,502 @@
+---
+title: "Rubygem Hazırlıyoruz"
+date: 2014-09-23 12:45
+cover: 2014-09-23-rubygems.png
+og_image: 2014-09-23-rubygems.png
+tags: gem,bundler
+comments: true
+---
+[How I start](http://howistart.org/) sitesinde görüp, kesinlikle Türkçe’si
+de olmalı dediğim, sıfırdan Ruby GEM’i hazırlamayı anlatan blog
+postuma hoşgeldiniz!
+READ_MORE
+
+## Gerekenler
+
+* [Rubygems][1]’de hesap
+* [GitHub][2]’da hesap
+* [RVM][3] ya da [Rbenv][4]
+* [Bundler][5] gem’i
+* [GIT][6] revizyon kontrol
+
+Öncelikle ilk ihtiyacımız olan şey [Rubygems.org][1] sitesinde
+bir hesap olması! Eğer yoksa hızlıca bu sitede bir hesap oluşturmanız gerekiyor.
+
+Hangi `ruby` versiyonunu kullanıyorsanız kullanın, mutlaka `bundler` gem’i de
+kurulu olmalı. Eğer kurulu değilse;
+
+```bash
+gem install bundler
+```
+
+şeklinde kurabilirsiniz. Ya [RVM][3] ya da [RBENV][4] 
+kullandığınızı varsayıyorum. Keza aynı şekilde sisteminizde [GIT][6] revizyon
+kontrol sisteminin de kurulu olduğunu varsayıyorum. 
+
+İlk olarak Rubygems’deki credentials’ımızı lokal makinemize aktaralım. Hesap
+oluştururken belirlediğiniz **KULLANICI_ADI**’nı aşağıdaki yere girerek
+gerekli kimlik bilgilerini çekiyoruz. Bu sayede, en son safhada yapacağımız
+`gem push` etme işlemini yapabilme yetkisini ayarlıyoruz.
+
+```bash
+curl -u KULLANICI_ADI https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials; chmod 0600 ~/.gem/credentials
+```
+
+Örnek olması adına, çok basit bir iş yapan uygulama hazırlayacağız. Basit
+bir hesap makinesi. 2 sayı ve yapacağı işlemi vereceğiz bize sonucunu geri
+dönecek. Uygulamanın adı **simple_calcu** olsun.
+
+Şimdi, ilgili `gem` iskeletini oluşturalım:
+
+```bash
+bundle gem simple_calcu
+```
+
+işlem sonunda;
+
+          create  simple_calcu/Gemfile
+          create  simple_calcu/Rakefile
+          create  simple_calcu/LICENSE.txt
+          create  simple_calcu/README.md
+          create  simple_calcu/.gitignore
+          create  simple_calcu/simple_calcu.gemspec
+          create  simple_calcu/lib/simple_calcu.rb
+          create  simple_calcu/lib/simple_calcu/version.rb
+    Initializing git repo in /private/tmp/simple_calcu
+
+gerekli dosyalar oluşturuldu. **Bundler** bizim için pek çok şeyi
+otomatik olarak üretti. Şimdi `cd simple_calcu/` diyip projenin içine
+girelim ve `bundle exec rake -T` diyerek bize sunulan **default**
+task’lere bakalım:
+
+    rake build    # Build simple_calcu-0.0.1.gem into the pkg directory
+    rake install  # Build and install simple_calcu-0.0.1.gem into system gems
+    rake release  # Create tag v0.0.1 and build and push simple_calcu-0.0.1.gem to Rubygems
+
+`rake build` ile hazırlayacağımız `gem`’i paketleyeceğiz. `rake install` ile
+yaptığımız `gem` kurup test edeceğiz. En son olarak `rake release` ile
+Rubygems’e push edeceğiz.
+
+### .gemspec
+
+Otomatik olarak oluşan dosya aşağıdaki gibi:
+
+```ruby
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'simple_calcu/version'
+
+Gem::Specification.new do |spec|
+  spec.name          = "simple_calcu"
+  spec.version       = SimpleCalcu::VERSION
+  spec.authors       = ["Uğur Özyılmazel"]
+  spec.email         = ["ugurozyilmazel@gmail.com"]
+  spec.summary       = %q{TODO: Write a short summary. Required.}
+  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.homepage      = ""
+  spec.license       = "MIT"
+
+  spec.files         = `git ls-files -z`.split("\x0")
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths = ["lib"]
+
+  spec.add_development_dependency "bundler", "~> 1.6"
+  spec.add_development_dependency "rake", "~> 10.0"
+end
+```
+
+`spec.authors` ve `spec.email` bilgileri `.gitconfig`’den otomatik olarak
+geldi. Hemen bu uygulama ile ilgili bir kısa bir de uzun açıklama yazalım
+`spec.summary` ve `spec.description` alanına;
+
+```ruby
+spec.summary       = %q{Simple Calculator.}
+spec.description   = %q{Make 4 basic calculations like addition/subtraction/multiplication and division via 2 numbers.}
+```
+
+şimdi bir `commit` yapalım:
+
+```bash
+git add .
+git commit -m "init"
+```
+
+Test için gereken bağlımlılığı (*dependency*) ekleyelim `.gemspec` dosyasına;
+
+```ruby
+spec.add_development_dependency "rake", "~> 10.0" # bu satırın altına
+spec.add_development_dependency "minitest"
+```
+
+Tekrar `commit` yapalım;
+
+```bash
+git add .
+git commit -m "Minitest dependency added"
+```
+
+Otomatik olarak üretilmiş olan `README.md` dosyasına da baktığınızda, içini
+doldurabileceğimiz, düzenleme yapabileceğimiz türden hazır bir açıklama
+dosyası görürüz. Bu dosyayı en sonda düzenleyeceğiz.
+
+Testlerimizi çalıştırabilmek için `Rakefile`’a eklemeler yapıyoruz ve
+aşağıdaki hale getiriyoruz:
+
+```ruby
+require "bundler/gem_tasks"
+require "rake/testtask"
+
+Rake::TestTask.new do |t|
+  t.test_files = FileList['test/*_test.rb']
+end
+
+task default: :test
+```
+
+Yaptığımız işlemi kontrol etmek için;
+
+```bash
+bundle exec rake
+echo $?
+# 0 görürsek herşey yolunda!
+```
+
+Tekrar `commit` yapalım:
+
+```bash
+git add .
+git commit -m "Rakefile modified for test tasks"
+```
+
+Şimdi, unit-test’lerimizi yazmak için test dizini oluşturup ilgili test
+dosyalarını ekleyeceğiz:
+
+```bash
+mkdir test
+cd test/
+touch calculator_test.rb
+```
+
+`calculator_test.rb` dosyasını açıp;
+
+```ruby
+require 'minitest/autorun'
+require 'simple_calcu'
+
+class CalculatorTest < Minitest::Test
+  def test_addition
+    assert_equal 5, SimpleCalcu::add(3, 2)
+  end
+end
+```
+
+ekleyelim ve test’i çalıştıralım:
+
+```bash
+bundle exec rake
+```
+
+ve Güüüüüüüüm! Test patladı:
+
+    Run options: --seed 7929
+
+    # Running:
+
+    E
+
+    Finished in 0.001493s, 669.7924 runs/s, 0.0000 assertions/s.
+
+      1) Error:
+    CalculatorTest#test_addition:
+    NoMethodError: undefined method `add' for SimpleCalcu:Module
+        /private/tmp/simple_calcu/test/calculator_test.rb:6:in `test_addition'
+
+    1 runs, 0 assertions, 0 failures, 1 errors, 0 skips
+    rake aborted!
+    Command failed with status (1): [ruby -I"lib" -I"/Users/vigo/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/rake-10.3.2/lib" "/Users/vigo/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/rake-10.3.2/lib/rake/rake_test_loader.rb" "test/calculator_test.rb" ]
+
+    Tasks: TOP => default => test
+    (See full trace by running task with --trace)
+
+Dediği şu: `SimpleCalcu:Module` de `add` diye bir method yok! Hemen bu method’u
+implemente edeceğiz, `lib/simple_calcu.rb` dosyasını açıyoruz:
+
+```ruby
+require "simple_calcu/version"
+
+module SimpleCalcu
+  def self.add(number1, number2)
+    number1 + number2
+  end
+end
+```
+
+Test’i tekrar çalıtırıyoruz `bundle exec rake` ile... ve test başarıyla
+tamamlandı!
+
+    Run options: --seed 34247
+
+    # Running:
+
+    .
+
+    Finished in 0.001307s, 765.1109 runs/s, 765.1109 assertions/s.
+
+    1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
+
+**1** işlem çalıştı, **1** assertion çalıştı ve fail eden **0**, hata **0** ve pas geçilen
+(*test edilmeden*) **0** olarak raporlandı!
+
+Hemen `commit` yapalım:
+
+```bash
+git add .
+git commit -m "first test unit passed the test : addition"
+```
+
+Şimdi diğer işlemleri yapalım `calculator_test.rb`:
+
+```ruby
+require 'minitest/autorun'
+require 'simple_calcu'
+
+class CalculatorTest < Minitest::Test
+  def test_addition
+    assert_equal 5, SimpleCalcu::add(3, 2)
+  end
+  def test_subtraction
+    assert_equal 7, SimpleCalcu::sub(8, 1)
+  end
+  def test_multiplication
+    assert_equal 25, SimpleCalcu::mul(5, 5)
+  end
+  def test_division
+    assert_equal 5, SimpleCalcu::div(10, 2)
+    assert_equal 3.3333333333333335, SimpleCalcu::div(10.0, 3)
+    assert_raises(ZeroDivisionError) { SimpleCalcu::div(10, 0) }
+  end
+end
+```
+
+ve `bundle exec rake` ile testleri çalıştıralım:
+
+    Run options: --seed 45605
+
+    # Running:
+
+    ....
+
+    Finished in 0.001264s, 3164.5570 runs/s, 3164.5570 assertions/s.
+
+    4 runs, 4 assertions, 0 failures, 0 errors, 0 skips
+
+Hemen `commit` yapalım ve yolumuza devam edelim:
+
+```bash
+git add .
+git commit -m "4 basic math operation tests are passed"
+```
+
+Şimdi asıl işi yapacak fonksiyonumuz için test’i geliştirelim:
+
+```ruby
+def test_calculator
+  assert_equal 5, SimpleCalcu::calculate(2, "+", 3)
+  assert_equal 8, SimpleCalcu::calculate(5, "+", 3)
+  assert_equal 2, SimpleCalcu::calculate(5, "-", 3)
+  assert_equal -1, SimpleCalcu::calculate(0, "-", 1)
+  assert_equal 25, SimpleCalcu::calculate(5, "*", 5)
+  assert_equal 44, SimpleCalcu::calculate(2, "*", 22)
+  assert_equal 2, SimpleCalcu::calculate(4, "/", 2)
+  assert_equal 2.5, SimpleCalcu::calculate(5.0, "/", 2)
+end
+```
+
+Hemen `calculate` method’u olmadığı için test fail edecek. Bu bakımdan
+hemen ilgili method’u oluşturalım `simple_calcu.rb`:
+
+```ruby
+def self.calculate(number1, operator, number2)
+  case operator
+  when "+"
+    add(number1, number2)
+  when "-"
+    sub(number1, number2)
+  when "*"
+    mul(number1, number2)
+  when "/"
+    div(number1, number2)
+  end
+end
+```
+
+Tekrar testleri çalıştıralım. `bundle exec rake`. Tüm testlerimiz sorunsuz çalıştı!
+
+    Run options: --seed 15050
+
+    # Running:
+
+    .....
+
+    Finished in 0.001841s, 2715.9153 runs/s, 7604.5627 assertions/s.
+
+    5 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+
+Şimdi `commit` zamanı!
+
+```bash
+git add .
+git commit -m "All tests pass like a charm!"
+```
+
+Şimdi yazdığımız uygulamayı dökümante edelim, `version.rb` dosyasına;
+
+```ruby
+module SimpleCalcu
+  # The current version of SimpleCalcu
+  VERSION = "0.0.1"
+end
+```
+
+yorumu ekledikten sonra, `simple_calcu.rb` dosyasını da;
+
+```ruby
+require "simple_calcu/version"
+
+# All code in the gem is namespaced under this module.
+module SimpleCalcu
+  
+  # Adds given two numbers
+  def self.add(number1, number2)
+    number1 + number2
+  end
+
+  # Subtracts given number1 from number2
+  def self.sub(number1, number2)
+    number1 - number2
+  end
+
+  # Multiplies given two numbers
+  def self.mul(number1, number2)
+    number1 * number2
+  end
+  
+  # Divides given number2 to number1
+  def self.div(number1, number2)
+    number1 / number2
+  end
+  
+  # Main calculator method. Requires 3 arguments
+  # First and Last arguments must be numbers
+  # Second argument could be "+", "-", "*" or "/" and must be string
+  def self.calculate(number1, operator, number2)
+    case operator
+    when "+"
+      add(number1, number2)
+    when "-"
+      sub(number1, number2)
+    when "*"
+      mul(number1, number2)
+    when "/"
+      div(number1, number2)
+    end
+  end
+end
+```
+
+haline getirip ilgili yorumları ekleylim ve `rdoc` ile döküman oluşturalım:
+
+```bash
+rdoc lib
+```
+
+`doc/` dizini altına `html` olarak dökümantasyon oluştu. `index.html` dosyasını
+tarayıcıda açarak oluşan dökümantasyona bakabilirsiniz.
+
+Şimdi son durumu da `commit` edelim:
+
+```bash
+git add .
+git commit -m "Document comments for rdoc"
+```
+
+Artık `gem` hazır hale geldi. Bu noktada artık GitHub’a push edebiliriz.
+GitHub’da `simple_calcu` adında bir repo açıyorum ve sonra buraya push
+ediyorum, tabii siz kendi repo adresinizi yazın!:
+
+```bash
+git remote add origin git@github.com:vigo/simple_calcu.git
+git push -u origin master
+```
+
+Bu işlemden sonra, kendi tarafımızda `gem`imizi test etmemiz lazım. Bunun
+için `bundle exec rake install` ile sanki uzaktan kuruyor gibi kurulum
+yapmamız gerekiyor.
+
+```bash
+bundle exec rake install
+simple_calcu 0.0.1 built to pkg/simple_calcu-0.0.1.gem.
+simple_calcu (0.0.1) installed.
+```
+
+Şeklinde görümemiz gerekiyor. Hemen `gem list` diyerek sağlamasını yapalım:
+
+```bash
+gem list
+
+:
+:
+simple_calcu (0.0.1)
+:
+:
+```
+
+gibi listede görmeliyiz. Hemen `irb` açarak kontrol edelim:
+
+```bash
+irb
+irb(main):001:0> require 'simple_calcu'
+=> true
+irb(main):002:0> SimpleCalcu::calculate(2, "+", 3)
+=> 5
+```
+
+Herşey yolunda gibi! Yapmamız gereken, tekrar `gemspec` dosyasını açıp;
+`spec.homepage` yerine uygulamanın homepage adresini yazmak:
+
+```ruby
+spec.homepage      = "https://github.com/vigo/simple_calcu"
+```
+
+haydi son kez `commit` edip `push` edelim:
+
+```bash
+git add .
+git commit -m "gemspec, homepage added"
+git push
+```
+
+Artık `gem` paketlenip [Rubygems][1]’e gitmeye hazır!
+
+```bash
+bundle exec rake release
+
+simple_calcu 0.0.1 built to pkg/simple_calcu-0.0.1.gem.
+Tagged v0.0.1.
+Pushed git commits and tags.
+Pushed simple_calcu 0.0.1 to rubygems.org.
+```
+
+Artık sizin de kendinize ait bir `gem`iniz oldu. Şimdi isterseniz `README.md`
+dosyasını düzenleyip, `VERSION = "0.0.2"` yapıp tekrar `bundle exec rake release`
+yapabilirsiniz.
+
+[1]: https://rubygems.org
+[2]: https://github.com
+[3]: http://rvm.io
+[4]: https://github.com/sstephenson/rbenv
+[5]: http://bundler.io/
+[6]: http://git-scm.com/
+

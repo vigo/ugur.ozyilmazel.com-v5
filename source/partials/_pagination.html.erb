@@ -1,0 +1,58 @@
+<% if num_pages > 1 %>
+<!-- pagination -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <nav>
+                <ul class="pagination custom-pagination">
+                    <li class="page-item">
+                        <a title="<%= t('go_to_first_page') %>" class="page-link" href="<%= first_page %>" aria-label="<%= t('go_to_first_page') %>">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only"><%= t('go_to_first_page') %></span>
+                        </a>
+                    </li>
+                    <% if prev_page %>
+                    <li class="page-item">
+                        <a title="<%= t('go_to_previous_page') %>" class="page-link" href="<%= prev_page.url %>" aria-label="<%= t('go_to_previous_page') %>">
+                            <span aria-hidden="true">&lsaquo;</span>
+                            <span class="sr-only"><%= t('go_to_previous_page') %></span>
+                        </a>
+                    </li>
+                    <% end %>
+
+                    <%
+                    (1..num_pages).each do |n|
+                        nav_url = link_schema.sub('{num}', "#{n}")
+                        nav_url = first_page if n == 1
+                    %>
+                    <li class="page-item<% if n == page_number %> active<% end %>"><a class="page-link" href="<%= nav_url %>"><%= n %></a></li>
+                    <% end %>
+                    
+                    <li class="page-item"><a class="page-link">.</a></li>
+                    <li class="page-item"><a class="page-link"><%= page_number %> / <%= num_pages %></a></li>
+                    <li class="page-item"><a class="page-link">.</a></li>
+                    
+                    <% if next_page %>
+                    <li class="page-item">
+                        <a title="<%= t('go_to_next_page') %>" class="page-link" href="<%= next_page.url %>" aria-label="<%= t('go_to_next_page') %>">
+                            <span aria-hidden="true">&rsaquo;</span>
+                            <span class="sr-only"><%= t('go_to_next_page') %></span>
+                        </a>
+                    </li>
+                    <% end %>
+                    
+                    
+                    <li class="page-item">
+                        <a title="<%= t('go_to_last_page') %>" class="page-link" href="<%= link_schema.sub('{num}', "#{num_pages}") %>" aria-label="<%= t('go_to_last_page') %>">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only"><%= t('go_to_last_page') %></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+<!-- pagination -->
+<% end %>

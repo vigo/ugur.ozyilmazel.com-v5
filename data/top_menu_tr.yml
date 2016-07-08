@@ -1,0 +1,29 @@
+links:
+  - 
+    text: Anasayfa
+    url: /
+    title: Anasayfa
+  - 
+    text: Blog
+    url: /blog/tr/
+    title: Blog
+  - 
+    text: Hakkımda
+    url: /sayfa/tr/hakkimda/
+    title: Hakkımda
+  - 
+    text: Sunumlar
+    url: /sayfa/tr/sunumlar/
+    title: Sunumlar
+  - 
+    text: Kitaplar
+    url: /sayfa/tr/kitaplar/
+    title: Kitaplar
+  - 
+    text: İletişim
+    url: /sayfa/tr/iletisim/
+    title: İletişim
+  -
+    text: CV
+    url: /sayfa/tr/cv/
+    title: CV

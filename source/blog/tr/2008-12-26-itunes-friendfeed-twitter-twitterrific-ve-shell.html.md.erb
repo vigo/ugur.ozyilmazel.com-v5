@@ -1,0 +1,260 @@
+---
+title: "iTunes, FriendFeed, Twitter, Twitterrific ve Shell"
+date: 2008-12-26 13:44
+cover: 2008-12-26-friendfeed.png
+og_image: 2008-12-26-friendfeed.png
+tags: friendfeed,itunes,twitterrific,twitter,shell
+comments: true
+---
+
+Süper bir başlık oldu değil mi? Bir süredir büyük bir keyifle iTunes’daki
+radyoları dinliyorum. Benim gibi 80’ler aşığı iseniz harika kanallar mevcut.
+Biran aklıma: “Keşke dinlediğim şarkıların adını Twitter’a post edebilsem?”
+diye bir fikir geldi! READ_MORE
+
+Hemen google’da aradım, acaba bir şekilde iTunes’da çalan şarkının adını 
+alabilirmiyim diye... Daha önceki tecrübelerimden, AppleScript ile çalışan 
+uygulamalara bir şeyler gönderme, bir şey sorma olayı olduğunu biliyordum. 
+Hatta TextMate ve Firefox için minik bir uygulama bile yapmıştım.
+
+Biraz aradıktan sonra Twitter için kullandığım [Twitterrific][l1]’in de
+AppleScript desteklediğini gördüm. Biraz uğraşmadan sonra Terminal’den,
+Twitterrific’e mesaj göndermeyi başardım:
+
+```bash
+osascript -e 'tell app "Twitterrific" to post update "karnım acıktı"'
+```
+
+Hemen aklıma şu soru geldi
+
+> Peki başka neler diyebilirim bu app’e ?
+
+Mini bir uyarı, az sonra Twitter’a sürekli birşeyler post edeceğiz. Tavsiyem hemen
+bir deneme account’u açmanız. Ben ne yazıkki bunu yapmadan yaptım
+çalışmalarımı, pek çok beni takip eden arkadaşımdan küfür yedim.
+
+Sürekli tweet eden biri gibi saçma sapan test mesajları atmak karşı tarafı 
+biraz sinir ediyormuş onu öğrendim. Haklılarda (:
+
+<%= card src: 'http://2.bp.blogspot.com/_9jz1qeFrzkQ/STvbX-b9ihI/AAAAAAAAAxc/x-bx5hdS5UE/s1600/tutSF01.png',
+         alt: 'Ekran görüntüsü, AppleScript Editor’den Library kısmı' %>
+
+
+Hemen **AppleScipt Editorü** açtım. Window menüsünde **Library** diye bir
+seçenek var. Library’de Mac OS’un AppleScript ile kontrol edilebilecek
+uygulamalarının listesi var. Hemen iTunes’a tıkladım ve iTunes’a hangi
+parametreleri geçebileceğimi gördüm.
+
+Peki dedim, Twitterrific’de neler var? Library penceresindeki `+` işaretine
+basıp, **Applications** içinden Twitterrific’i seçtim.
+
+Gördüm ki pek çok özellik var Twitterrific için. Aynı şekilde iTunes’a baktım,
+süper! Tamam dedim bu iş olur. İlk testim şu şekilde oldu, çalan müziğin adı
+vesaire alıp Twitterrific’e yollamak 
+
+```bash
+osascript -e 'tell application "iTunes" to name of current track as string'
+```
+
+<%= card src: 'http://3.bp.blogspot.com/_9jz1qeFrzkQ/STvbYHZpFtI/AAAAAAAAAxk/eLAtSwNiCV8/s1600/tutSF02.png',
+         alt: 'Ekran görüntüsü, AppleScript Editor’den Twitterrific kısmı' %>
+
+Dediğim anda bana çalan parçanın adı döndü. Bir şekilde bu gelen text’i shell
+değişkenine atayıp, daha sonra bunu Twitterrific’e göndermem bana yetecekti!
+
+```bash
+osascript -e 'tell app "Twitterrific" to post update "deneme"'
+```
+
+Bu işlem, Twitterrific uygulamasının mesaj gönderme alanına bir text yollamamı
+ve entera basmamı sağladı. Yani aslında post update metodu buna benzer bişi
+yapmıştı. Twiterrific uygulaması AppleScripti destekliyordu ve bana imkan
+sağlamıştı. Şimdi iTunesda çalan şarkı adını alıp post edelim:
+
+```bash
+songname=`osascript -e 'tell application "iTunes" to name of current track as string'`
+osascript -e "tell app \"Twitterrific\" to post update \"$songname\""
+```
+
+Şimdi bu işlemi yaparken, Twitterrifi’ce iyi bakın, yaptığı şey, sizin mesaj
+yazma alanını doldurmak. Neticede biz, Twiterrific’i kullanarak mini bir
+otomasyon yaptık. Peki, işin biraz daha b*kunu çıkarıp, bu çalan şarkı hangi
+albüme ait ona bakalım;
+
+```bash
+album=`osascript -e 'tell application "iTunes" to album of current track as string'`
+echo $album
+```
+
+Çalan parçanın ait olduğu albümün adı geldi... Şimdi hem album adını hem de
+çalan parçanın adını post edelim;
+
+```bash
+songname=`osascript -e 'tell application "iTunes" to name of current track as string'`
+album=`osascript -e 'tell application "iTunes" to album of current track as string'`
+osascript -e "tell app \"Twitterrific\" to post update \"$album - $songname\""
+```
+
+Şimdi bu 3 satırı çok basit bir şekilde, tek harekette çalıştıralım. Bunun
+için bir **Executable** bir **bash** dosyası hazırlayacağız;
+
+```bash
+cd ~/Desktop
+touch sendToTwiterrefic.sh
+nano -w sendToTwiterrefic.sh
+```
+
+Açılan editöre yukarıdaki üç satırı paste edin. **nano** ekranında aşağıdaki 
+görüntü olacak; kaydedip çıkmak için <kbd>⌃</kbd> (kntrl) + <kbd>x</kbd> yapıp 
+<kbd>y</kbd> tuşuna basın.
+
+<%= card src: 'http://1.bp.blogspot.com/_9jz1qeFrzkQ/SVSzYwuH_kI/AAAAAAAAA5g/Qgbo-RU0i_k/s1600/Picture+1.png',
+         alt: 'Ekran görüntüsü, Terminal' %>
+
+daha sonra bu script’i çalıştırabilmek için **execute** yetkisi vereceğiz;
+
+```bash
+chmod a+x sendToTwiterrefic.sh
+./sendToTwiterrefic.sh
+```
+
+Tamam şimdilik ilk aşamayı geçtik. Peki biz bu minik script ile sürekli
+Twiterrific’e mahkum olmak zorundayız. Acaba aynı şekilde, direk Twitter
+sunucusuna bunu post etsek? yani Twiterrific olmasada çalışsa?
+
+Hemen Twitter’ın API dokümantasyonuna bakıyoruz, görüyoruz ki **curl** komutu 
+ile istediğimiz gibi **post** yapabiliriz; Nasıl mı? Terminal ekranında;
+
+```bash
+curl -u "twitter_kullanıcı_adınız:twitter_kullanıcı_şifreniz" -d status="deneme" http://twitter.com/statuses/update.json
+```
+
+## Update : Kasım 2014
+
+Ne yazıkki artık bu şekilde işlemiyor sistem... **oAuth** kullanmak gerekiyor...
+
+***
+
+Birşeyler oldu değilmi? Terminal üzerinden Twitter’a post yaptınız! **curl** 
+komutuna `-u` ile kullanıcı bilgilerinizi, `-d` ile post edeceğiniz elementleri 
+geçtiniz. Sadece tek bir element geçtik: **status**. Hemen dinlediğimiz albüm ve şarkı
+adını bu metodla post edelim?
+
+Hemen demin hazırladığımız script’i nano’da açıp, son satırın yerine aşağıdaki
+satırı koyalım, save edip çıkalım
+
+```bash
+curl -u "twitter_kullanıcı_adınız:twitter_kullanıcı_şifreniz" -d status="$album - $songname" http://twitter.com/statuses/update.json
+```
+
+Artık Twiterrific’e ihtiyacınız olmadan Terminal ekranından, Twitter’a mesaj
+geçebiliyorsunuz! Madem öyle, haydi şimdi de bunu [FriendFeed][l2]e adapte
+edelim? Yine denemek için kendinize bir hesap açın.
+
+Daha sonra FriendFeed **api key**’inizi öğrenmek için [linke][l3] tıklayın.
+Aşağda kırmızı okun işaret ettiği yerde yazan şey **api key** ya da 
+**remote key**. Bunu `curl` için kullancağız.
+
+<%= card src: 'http://3.bp.blogspot.com/_9jz1qeFrzkQ/SVS6tMmUU1I/AAAAAAAAA5o/bNACgZsDNcQ/s1600/Picture+2.png',
+         alt: 'Ekran görüntüsü, FriendFeed Remote Key' %>
+
+Şimdi aynı şekilde deminki script’i açarak, test yapalım. Son satırı, yani
+Twitter ile ilgili olan satırı **comment out** (*# ile*) edelim ve aşağıdaki
+satırı ekleyelim. Tabi **kullanıcı_adı** yerine kendi kullanıcı adınızı ve
+**şifre** yerine de kendi remote keyinizi yazmayı unutmayın;
+
+```bash
+curl -u "kullanıcı_adı:şifre" -d "title=$album - $songname" http://friendfeed.com/api/share
+```
+
+nano ekranında gördünen aşağıdaki gibi olmalı. Kaydedip çıkın;
+
+<%= card src: 'http://1.bp.blogspot.com/_9jz1qeFrzkQ/SVS8nahxKwI/AAAAAAAAA5w/U37dmR1COeI/s1600/Picture+3.png',
+         alt: 'Ekran görüntüsü, Terminal, Nano editör' %>
+
+Böylece FriendFeed’e de dinlediğiniz Albüm ve Şarkı adını yolladınız; Biraz
+daha güzel bir görüntü sağlamak için bir iki text ekleyebiliriz yani;
+
+<%= card src: 'http://3.bp.blogspot.com/_9jz1qeFrzkQ/SVS9Te4btAI/AAAAAAAAA54/vPJIangOBe4/s1600/Picture+4.png',
+         alt: 'Ekran görüntüsü, FriendFeed' %>
+
+gibi yapmak için sadece **title** kısmını aşağıdaki gibi değiştirebilirsiniz;
+
+    "title=♫ Dinliyorum : $album - $songname"
+
+Umarım anlatmayı becerebilmişimdir. Eğer radyo dinlerken aynı şeyleri yapmak
+isterseniz, albüm adı yerine stream title’ı almanız gerekecek.
+İşte size birkaç ipucu;
+
+```bash
+# itunes variables
+track=`osascript -e 'tell application "iTunes" to name of current track as string'`;
+playlist=`osascript -e 'tell application "iTunes" to name of current playlist as string'`;
+stream_title=`osascript -e 'tell application "iTunes" to current stream title as string'`;
+album=`osascript -e 'tell application "iTunes" to album of current track as string'`;
+artist=`osascript -e 'tell application "iTunes" to artist of current track as string'`;
+```
+
+Bu değişkenleri `echo` ile test edebilirsiniz. iTunes çalışırken Terminal’de
+`echo` ile değişken adını yazarak deneyin;
+
+```bash
+echo $track
+echo $playlist
+echo $stream_title
+echo $album
+echo $artist
+```
+
+gibi... Yaptıklarımızın tümünü AppleScript ile yapıp, tek başına çalışan bir
+Application hissi de verebiliriz. Yapmamız gereken AppleScript Editor’ü açmak
+daha sonra;
+
+```applescript
+try
+    set friendfeed_user to "kullanıcı_adınız" as string
+    set friendfeed_password to "remote_keyiniz" as string
+    try
+        tell application "iTunes"
+            set myAlbumName to album of current track as string
+            set mySongName to name of current track as string
+            set myPost to "Dinliyorum : ♪ " & myAlbumName & " - " & mySongName & " via my app!"
+            do shell script "curl -u \"" & friendfeed_user & ":" & friendfeed_password & "\" -d \"title=" & myPost & "\" http://friendfeed.com/api/share"
+        end tell
+        on error err
+            display dialog err
+    end try
+    on error err
+        display dialog err
+end try
+```
+
+Hemen `run` edin ve görün! Bunu sanki bir Mac OS Application’ı gibi tek
+hareketle run etmek için; önce normal bir **save** edin, sonra tekrar
+**save as** diyip aşağıdaki gibi seçenekleri ayarlayın.
+
+<%= card src: 'http://4.bp.blogspot.com/_9jz1qeFrzkQ/SVTC15YKpPI/AAAAAAAAA6A/fPIlpseaESs/s1600/Picture+6.png',
+         alt: 'Ekran görüntüsü, AppleScript Editor’den Save kısmı' %>
+
+Eğer işlemin yapılıp yapılmadığı ile ilgili bir **debug** bir işaret
+isterseniz, `do shell script` satırının altına;
+
+    say "Posted to Friend Feed!"
+
+Satırını ekleyin bakalım ne olacak?
+
+<%= card src: 'http://4.bp.blogspot.com/_9jz1qeFrzkQ/SVTDQmifabI/AAAAAAAAA6I/R3uNQLcb6os/s1600/Picture+5.png',
+         alt: 'Ekran görüntüsü, FriendFeed’den son durum' %>
+
+Offf en sonunda sanırım bitti. Eğer konu ile ilgili merak ettikleriniz varsa,
+yorum bırakarak ya da bana mesaj atarak bilgi isteyebilirsiniz. Eğer yaptığım
+bir hata ya da sizin eklemek istediğiniz birşey olursa da bana bildirin!
+
+### Güncelleme: 8 Temmuz 2016
+
+Ne yazıkki FriendFeed kapanalı çok oldu...
+
+[l1]: http://iconfactory.com/software/twitterrific
+[l2]: http://friendfeed.com/
+[l3]: http://friendfeed.com/remotekey
+

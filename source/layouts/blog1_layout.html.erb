@@ -1,0 +1,76 @@
+<% I18n.locale = :tr %>
+<% wrap_layout :layout do %>
+    
+    <%
+    current_page_hr_date = I18n.l current_page.date, format: config.date_format_long[I18n.locale]
+    current_page_cover = nil
+    if current_page.metadata[:page][:cover]
+        cover_dir = current_page.metadata[:page][:cover_dir] || 'covers'
+        current_page_cover = site_image(current_page.metadata[:page][:cover], dirs=cover_dir)
+    end
+    %>
+    
+    <%= partial 'partials/top_menu', locals: {
+        locale: I18n.locale,
+        current_url: current_page.url,
+    } %>
+    
+    <%= partial 'partials/page_cover', locals: {
+        cover: current_page_cover,
+        cover_title: current_page.metadata[:page][:cover_title] || nil,
+        cover_subtitle: current_page.metadata[:page][:cover_subtitle] || nil,
+    } %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <section id="article">
+                    <h1><%= link_to current_page.title, current_page %></h1>
+                    <% if current_page.metadata[:page][:subtitle] %><h4><%= current_page.metadata[:page][:subtitle] %></h4><% end %>
+
+                    <time pubdate datetime="<%= current_page.date.xmlschema %>" title="<%= current_page_hr_date %>">
+                        <%= current_page_hr_date %>
+                    </time>
+
+                    <% if current_page.tags %>
+                    <header>
+                        <% current_page.tags.each do |tag| %>
+                            <span class="label label-default label-custom"><%= link_to tag, tag_path(tag, I18n.locale) %></span>
+                        <% end %>
+                    </header>
+                    <% end %>
+
+                    <div id="markdown">
+                        <%= yield %>
+                    </div>
+                    
+                    <%= partial 'partials/related_posts', locals: {
+                      current_page: current_page,
+                    } %>
+                    
+                    <ul id="prev-next-articles" class="list-inline">
+                        <% if current_page.previous_article %>
+                        <li class="list-inline-item li-left">
+                            <%= link_to '&laquo; ' + current_page.previous_article.title, current_page.previous_article %>
+                            <time pubdate datetime="<%= current_page.previous_article.date.xmlschema %>" title="<%= I18n.l current_page.previous_article.date, :format => config[:date_format_short][I18n.locale] %>"><%= I18n.l current_page.previous_article.date, :format => config[:date_format_short][I18n.locale] %></time>
+                        </li>
+                        <% end %>
+                        <% if current_page.next_article %>
+                        <li class="list-inline-item pull-sm-right m-r-0 text-md-right li-right">
+                            <%= link_to current_page.next_article.title + ' &raquo;', current_page.next_article %>
+                            <time pubdate datetime="<%= current_page.next_article.date.xmlschema %>" title="<%= I18n.l current_page.next_article.date, :format => config[:date_format_short][I18n.locale] %>"><%= I18n.l current_page.next_article.date, :format => config[:date_format_short][I18n.locale] %></time>
+                        </li>
+                        <% end %>
+                    </ul>
+                </section>
+
+                <%= partial 'partials/disqus', locals: {
+                  lang: I18n.locale,
+                } %>
+
+            </div>
+        </div>
+    </div>
+
+    <%= partial 'partials/footer' %>
+<% end %>

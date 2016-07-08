@@ -1,0 +1,76 @@
+---
+title: "IRB rbenv readline ve Türkçe karakter sorunu / çözümü"
+date: 2012-05-24 22:22
+cover: 2012-05-25-irb-configurasyonu.png
+og_image: 2012-05-25-irb-configurasyonu.png
+tags: irb,rbenv,readline
+comments: true
+---
+
+[RVM][rvm]&rsquo;mi? [Rbenv][rbenv]&rsquo;mi? Her ikiside [Ruby][ruby] için versiyon
+yönetim sistemi. Yani birden farklı değişik veriyon Ruby kullanmak için
+kullanılan yardımcı araçlar. İlk önce **rvm**&rsquo;le başladım fakat daha sonra
+garip durumlar olduğunu gördüm ve **rbenv**&rsquo;e geçtim.
+READ_MORE
+
+Uzun uzadıya `rbenv` tanıtımı yapamayacağım. Belki başka bir yazıda değinirim.
+Keza, [IRB][irb]&rsquo;ye de çok fazla girmeyeceğim. Kısaca interaktif bir
+şekilde Ruby yazıp çalıştırdığımız bir konsol.
+
+[OSX Lion][osx107]&rsquo;la beraber Ruby versiyon **1.8.7** geliyor. Sisteme
+dokunmadan, rbenv yardımıyla **1.9.3-p194** kurdum.
+
+Elimde ad, soyad&rsquo;dan oluşan uzun bir dosya listesi vardı. Türkçe
+karakterler içeren. Amacım, hızlıca IRB&rsquo;yi açıp, bu dosyaları `rename`
+etmekti bir çırpıda. Tabi `ğ` tuşuna bastığım an karşımda bu harfin **unicode**
+değerini görmem sinir sistemimi bozdu!
+
+Hemen;
+
+```bash
+rbenv shell system
+```
+
+yaparak OSX&rsquo;le gelen Ruby&rsquo;ye geçtim ve `ğ` tuşuna orada bastım.
+Tabiiki sorunsuz çalıştı. Geri dönmek için;
+
+```bash
+rbenv shell --unset
+```
+
+yaptım.
+
+Daha önceleri Python ve Ruby&rsquo;yi kendim derlemiştim ve konunun bir 
+şekilde `readline` kütüphanesiyle ilgili olduğunu hissettim.
+
+`rbenv` kullandığıma göre, `rbenv`&rsquo;e derleme yaparken bir şekilde
+[Homebrew][homebrew]&rsquo;dan kurduğum `readline`&rsquo;ı gösterebilmeliydim.
+
+Ufak bir **googlelama** yaparak hemen sorunuma çare buldum. Önce `brew ls` ile
+kontrol yapın, readline kurulu mu? diye. Eğer değilse;
+
+    brew install readline
+
+Daha sonra;
+
+```bash
+export CPPFLAGS=-I/usr/local/Cellar/readline/6.2.2/include
+export LDFLAGS=-L/usr/local/Cellar/readline/6.2.2/lib/
+```
+
+ile `readline`&rsquo;nın yerini bildiriyoruz derleyici flaglerine. Bu
+işlemden sonra kuruluma geçebiliriz.
+
+```bash
+rbenv install 1.9.3-p194
+rbenv global 1.9.3-p194
+```
+
+Şimdi `irb` yazıp konsol&rsquo;a geçin ve `ğ` tuşuna basın.
+
+[rvm]: https://rvm.io
+[rbenv]: https://github.com/sstephenson/rbenv
+[ruby]: http://www.ruby-lang.org/ "Ruby"
+[irb]: http://en.wikipedia.org/wiki/Interactive_Ruby_Shell
+[osx107]: http://en.wikipedia.org/wiki/Mac_OS_X_Lion "Mac OS X Lion"
+[homebrew]: http://mxcl.github.com/homebrew/ "The missing package manager for OS X"

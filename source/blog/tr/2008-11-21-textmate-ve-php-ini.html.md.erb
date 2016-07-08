@@ -1,0 +1,134 @@
+---
+title: "Textmate ve php.ini"
+date: 2008-11-21 21:45
+cover: generic-textmate.png
+og_image: generic-textmate.png
+tags: textmate,php
+comments: true
+---
+
+[TextMate][l1] kullanıyor musunuz? Eğer hayır ise cevabınız çok şey
+kaçırıyorsunuz. Gerçekten de adını hak eden bir yazılım! READ_MORE
+
+## TextMate — The Missing Editor for Mac OS X
+
+<%= card src: 'http://2.bp.blogspot.com/_9jz1qeFrzkQ/SScXNy0ltNI/AAAAAAAAAnE/gX71aP6EWUI/s1600/tmws-01.gif',
+         alt: 'Ekran görüntüsü: TextMate, Bundle Editör',
+         text: '**New Language** seçeneğine tıklayın' %>
+
+
+yani Mac OS’daki büyük bir eksikliği tamamlayan muhteşem bir text editörü.
+(*02 Mart 2012, Cuma , 18:25; hmmm artık böyle düşünmüyorum...*)
+
+TextMate ile ilgili detaylara daha sonraki yazılarımda değinmeye çalışacağım.
+Pek çok farklı iş yapabildiğiniz, tonlarca dil desteği olan, ultra customize
+edilebilen (*Türkçe’sini çıkaramadım*) bir editör. Plugin ve Bundle desteği
+harika.
+
+[Php][l2]’den [Python][l3]’a, [OpenGL][l4]’den [Objective-C][l5]’ye, aklınıza
+gelen neredeyse her tür yazılım diline destek veriyor.
+  
+Bu yazımda, TextMate kullanıcıları için minik bir **bundle** örneği vermek
+istiyorum. Php konfigürasyon dosyası olan `php.ini`yi TextMate’de açınca
+renkli ve anlaşılır bir şekilde görmek için, "comment out" edilen satırların
+"comment out" olduğunu, direktif isimlerini farklı, değerlerini farklı görmek
+ve ini dosyasını bir bakışta anlayabilmek için **Bundle Editor**’e girip yeni
+bir dil ekleyin.
+
+
+TextMate otomatik olarak size "default" bir dil şablonu çıkarır. Bu alana
+aşağıdaki kodu yapıştırın.
+
+    {
+        scopeName = 'php-ini';
+        comment = 'by vigo/bronx';
+        fileTypes = ( 'ini' );
+        foldingStartMarker = '';
+        foldingStopMarker = '';
+        patterns = (
+            {
+                name = 'comment.line';
+                match = '(;).*$\n?';
+            },
+            {
+                name = 'constant';
+                match = '^[\w\.]+';
+            },
+        );
+    }
+
+Daha sonra **Bundle** menüsünden, **Reload Bundles** yapın
+(*Bundles > Bundle Editor > Reload Bundles*). Şimdi `php.ini` dosyasını
+açtığınızda aşağıdaki gibi bir görüntü alırsınız
+  
+<%= card src: 'http://2.bp.blogspot.com/_9jz1qeFrzkQ/SScXbtvCYtI/AAAAAAAAAnM/UB5FrOYOFtU/s1600/tmws-02.gif',
+         alt: 'Ekran görüntüsü: TextMate, php.ini açılınca' %>
+
+Yaptığımız iş kısaca şu;
+
+* Önce bu yeni dile bir isim verdik (*scopeName*)
+* Dosya türünü seçtik yani `.ini`ler için dedik.
+(*sonu ini olan başka bir dosya açarsanız da aynan bu şablon geçerli olur,
+    eğer bunu önlemek isterseniz ini yerine direk php.ini de yazabilirsiniz*)
+* Comment’ler ve değişkenler için kural tanımladık.
+
+`name = comment.line;` dediğimiz şey aslında
+  
+<%= card src: 'http://3.bp.blogspot.com/_9jz1qeFrzkQ/SScfzrizWjI/AAAAAAAAAnU/EKKeXFLDwYs/s1600/tmws-03.gif',
+         alt: 'Ekran görüntüsü: TextMate, Scope selector ve Bundle editör' %>
+
+**Preferences**’daki **Fonts & Colors** ile alakalı bir tanımlama. TextMate
+içinde **default** olarak tanımlı stiller bulunmakta. Bunlar; 
+
+* comment
+* comment.line
+* comment.block
+* comment.documentation
+* ...
+* ...
+
+gibi uzayıp gidiyor. Hani Php ya da JavaScript’te
+
+```js
+var x = 1;
+// var x = 1; line comment
+
+/*
+block comment
+var x = 1;
+*/
+```
+
+durumu! **match**’e yazdığımız şey ise **Regular Expression**. Yani diyoruz ki;
+
+Satır başındaki ilk karakter ; ile başlayan ve takiben her ne karakter
+olursa olsun yakala, satır sonunda da (*new line*) olabilir.
+
+    (;).*$\n?
+
+Eğer bu kriter varsa direk `comment.line` renk stilini uygula... Diğer pattern
+ise değişkenleri yakalamak için. Aslında üşenmeden tek tek tüm `php.ini` de
+tanımlı direktifleri yazarak bir **RegPattern** de yapılabilir ama ben işin
+kolayına kaçtım. Dedim ki;
+
+Satır başında bir **word** yani kelime ve içinde nokta geçenleri kaale al ve
+en az bir tane yakala...
+
+    ^[\w\.]+
+
+Tabi umarım bu yazıyı okuyan kişilerin Regular Expression konusundan haberi
+vardır. Aynen `comment.line` da olduğu gibi, uygun kriter gelince `constant`
+için tanımlı renk stili aktif olacak.
+  
+Dikkat ettiyseniz TextMate’in içinde renk temaları/şablonları var. Siz de
+kendinize uygun bir tema oluşturup, tek tek iligi durumları
+tanımlayabilirsiniz.
+
+[l1]: http://macromates.com/
+[l2]: http://php.net
+[l3]: http://python.org
+[l4]: http://opengl.org
+[l5]: http://en.wikipedia.org/wiki/Objective-C
+
+[b1]: http://2.bp.blogspot.com/_9jz1qeFrzkQ/SScXbtvCYtI/AAAAAAAAAnM/UB5FrOYOFtU/s1600-h/tmws-02.gif
+[b2]: http://3.bp.blogspot.com/_9jz1qeFrzkQ/SScfzrizWjI/AAAAAAAAAnU/EKKeXFLDwYs/s1600-h/tmws-03.gif

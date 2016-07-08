@@ -1,0 +1,316 @@
+---
+title: "Macports, ssh otomatik tamamlama ve genel bilgiler"
+date: 2009-08-27 15:41
+cover: 2009-08-27-macports.png
+og_image: 2009-08-27-macports.png
+tags: macports,bash completion,ssh,config
+comments: true
+---
+
+Daha önceki yazılarımda da bahsetmiştim, [MacPorts][macports] diye harika bir
+şey var! Linux (*debian, ubuntu vs...*) daki paket yönetiminin OS X’cesi.
+READ_MORE
+
+Tonlarca (*abartmiim, yazıyı yazdığım anda toplam 6133 adet*) uygulama, 
+ağırlıkta Linux - Unix dünyasının çok sık kullandığı, osx için port edilmiş
+halde bizi bekliyor! 
+
+## Peki bu uygulamalar bana ne sağlar?
+  
+Eğer development’la uğraşıyorsanız zaten faydalarını saymakla bitiremem. Eğer
+standart bir kullanıcıysanız bile, pek çok **işe yarar** uygulama
+edinebilirsiniz. Unutmadan belirteyim, bu uygulamaların hepsi **open source** 
+(*açık kaynak*) uygulamalar. Bu bakımdan hem kaynak kodu açık, hem de ücretsiz. 
+Hem de sürekli güncelleniyor.
+  
+Dedim ya, eğer yazılım geliştirme işleriyle uğraşmıyorsanız nasıl
+faydalanacaksınız? İlk aklıma gelen şey, eskiden kalma **Mustek CU 1200**
+scanner’ım. Evet, ben bu cihazı, Windows / PC ile uğraşırken satın almış ve
+**Windows XP** dışında hiç bir Windows’da çalıştıramamıştım.
+
+Hatta support’larına mesaj atmış ve **sadece XP’de çalışır** cevabını
+almıştım. Tabii bunun üzerine odamdaki dolapta, hurdaların yanında yerini
+almıştı. Taaki macportsa kadar.
+  
+**S.A.N.E** adında, open source geliştirilen proje: [Scanner Access Now Easy][sane]
+sayesinde, uzunca yıllar kullanamadığım scanner’ımı, Mac’de, Terminal üzerinden
+kullanmaya başladım.
+
+Hatta işin komik tarafı, daha önce **600dpi** tarama yapmayı başaramamıştım!
+Scanner’ı bağlayıp, Terminal’i açıp:
+
+```bash
+scanimage -v -p --format tiff --mode color --resolution 300 > test300.tiff
+```
+
+yazınca, **300dpi** - `tiff` şeklinde scan edilmiş resim. Derseniz ki:
+
+> Kardeşim ben terminal filan anlamam, yok mu bunun kolayı?
+
+evet o da var. [http://www.ellert.se/twain-sane/](http://www.ellert.se/twain-sane/)
+sitesinde, aynen [MacPorts][macports]’da bulunan uygulamanın gui’li hali de var.
+Prefpane’i filan da mevcut, kolay konfigüre edilebiliyor.
+  
+Konuyu süper dağıttığımı görüyorum ve hemen asıl mevzuya dönüyorum. Geçenlerde,
+[bash completion][int-link] konusuna değinmiştim. Hatta bununla da kalmayıp
+[Django için nasıl otomatik tamamlama][int-link2] yapılabileceğini de
+yazmıştım.
+
+**ssh** üzerinden tünel yapma işlerini denerken sevgili iş arkadaşım 
+[Fırat Can Başarır](http://naysaying.com/) bana `ssh_config` hakkında 
+**tips & tricks** verirken aklıma hemen şu soru geldi:
+
+> Acaba uzaktaki makineyi **ssh** üzerinden browse ederken **tab-completion** olabilirmi?
+
+ya da **nasıl olur?**
+  
+Bash haricinde, ZSH’de bunun mümkün olduğunu sevgili kardeşim 
+[Can Burak Çilingir](http://www.canb.net/) sayesinde biliyordum. Acaba aynısını
+bash için yapmak mümkün müydü?
+  
+Eğer konuya zaten hakimseniz, `ssh_config` diye birşey biliyorsunuzdur. Genelde
+bu tarz konfigürasyon olayları hep birbirine benziyor mantık olarak;
+
+* System-Wide (yani tüm kullanıcıları ilgilendiren, /etc/ altında genelde)
+* User Profile (2sadece kullanıcı bazında ~ altında)
+
+Kullanıcı bazlı şeyler genelde `$HOME` dizini altında oluyor:
+
+```bash
+echo $HOME
+```
+
+`$HOME` sizin kullanıcınızın "home" folder’ıdır. Yani sizinle ilgili pek çok
+şey (*Desktop, Müzikler, Videolar vs...*) buradadır. Keza ssh ile ilgili
+şeyler de (*eğer kullanıcı bazlı düşünüyorsak*) burada olmalıdır.
+Terminale girip:
+
+```bash
+ls
+```
+
+dediğimiz zaman gördüğüm ekran;
+
+<%= card src: 'http://2.bp.blogspot.com/_9jz1qeFrzkQ/SpZi8QxYhHI/AAAAAAAACtM/6_bC_vc16tQ/s600/Picture+1.png',
+         alt: 'Ekran görüntüsü: Terminal’de ls çıktısı' %>
+
+
+gibiyse sorun yok, eğer değilse:
+
+```bash
+ls -alhG # bsd tabanlı (mac, bsd vs...)
+```
+
+Şeklinde deneyin. Bu, ne var ne yok listelemenize, hatta renkli ve hatta
+boyutları da anlaşılır bir şekilde listelemenize yardımcı olacak. Eğer `ls` 
+komutunuzun hep böyle kalmasını isterseniz, `~/.profile`’a bir `alias` eklemeniz
+lazım.
+
+Eğer `$HOME`da `.profile` yok ise önce oluşturun:
+
+```bash
+cd ~
+touch .profile
+```
+
+Eğer `~` işaretini yapmakta sorun varsa, **Turkish QWERTY PC** modunda,
+<kbd>⌃</kbd> (alt) + <kbd>Ü</kbd> yapın. Sonra, sevdiğiniz bir text editörde bu dosyayı açın:
+
+```bash
+open -a /Applications/TextEdit.app .profile
+```
+
+Dosyayı açtıktan sonra aşağıdaki bilgiyi ekleyin, kaydedip çıkın programdan.
+Küçük bir not: Ben text editör olarak [TextMate][textmate] kullanıyorum, belki
+yazıyı okuyanlarda da yoktur diye standart / default uygulamalardan örnek
+veriyorum!
+
+```bash
+alias ls="ls -alhG"
+```
+
+Şimdi ya terminali komple kapatıp açacaksınız, ya da:
+    
+```bash
+source $HOME/.profile
+```
+
+yazın enter’a basacaksınız. Şimdi `ls` yaptığınızda tüm detaylarıyla `$HOME`
+folder’ını görebilirsiniz. Eğer `.ssh` diye bir folder yoksa hemen bunu
+oluşturun ve gereken dosyaları ekleyin:
+
+```bash
+cd $HOME
+mkdir .ssh/
+touch config
+```
+
+Şimdi bu `config` dosyasına, `ssh` yapmak istediğimiz sunucuya ait bilgileri
+ekleyeceğiz. Tabii bunun için yine bir text editör ile dosyayı açalım.
+Açtıktan sonra:
+
+    Host SUNUCU_ADI  
+    User KULLANICI_ADI  
+    Port SSH_PORTU  
+    HostName SUNUCU_IP  
+
+şeklinde uygun bilgileri doldurun. Unutmayın! Bu dosyanın mantığı
+**Key** **Value** şeklinde. Key’den sonra ya bir `TAB` ya da `SPACE` koymanız
+lazım. Ben `TAB` kullanıyorum.
+
+Örneğin; ip’si **1.2.3.4** olan bir sunucuya, 22. port’dan ssh yapacaksak ve
+bu sunucuya "Sunucum" diye bir isim takarsak;
+
+    Host Sunucum  
+    User vigo  
+    Port 22  
+    HostName 1.2.3.4  
+
+Eğer **Port** belirtmezseniz sistem bunu otomatik olarak **22** varsayacaktır.
+Bu dosyada **N** tane sunucu tanımlaması yapılabilir. Yani:
+
+    Host Sunucum1  
+    User vigo  
+    Port 22  
+    HostName 1.2.3.4  
+      
+    Host Sunucum2  
+    User vigo  
+    Port 22  
+    HostName 10.20.30.40  
+
+gibi, istediğiniz kadar sunucu ekleyebilirsiniz. Keza, konfigürasyon bilgisi
+olarak da, Host, User, Port vs... dışında pek çok direktif de ekleyebilirsiniz.
+Bu bilgiler nerede? Tabii ki **man page**de!
+
+```bash
+man ssh_config
+```
+
+demeniz yeterli...
+  
+Eğer bunların hiç biri olmasaydı nasıl bağlantı yapacaktık?
+
+```bash
+ssh vigo@1.2.3.4
+```
+
+şeklinde. Hemen yeri gelmişken şunu da anlatalım. Uzaktaki makineye
+bağlanırken sürekli **şifre** girme derdinden kurtulmak için kendinize bir
+**ssh-key** üretebilirsiniz.
+
+Bu ürettiğiniz key’i de uzaktaki makineye eklediğiniz zaman, ssh bağlantısı
+için birdaha size şifre sorulmaz. Nasıl mı? Terminal’de devam ediyoruz:
+
+```bash
+ssh-keygen -t dsa
+```
+
+Enter’a basar basmaz **Generating public/private dsa key pair.** şeklinde bir
+mesaj göreceksiniz. Komut size iki anahtar üretiyor, biri **public** diğeri
+de **private**.
+
+Yani biri ortalıkta dolaşabilen, **PUBLIC key**, diğeri de sadece sizde
+olacak olan **PRIVATE key**. Daha sonra size, bu oluşturulacak anahtarların
+nereye kayıt edileceği soruluyor. Gördüğünüz gibi bu lokasyon, default olarak,
+`$HOME` altında bulunan `.ssh/` folder’ı. Örneğin bana sorulan yer: 
+`/Users/vigo/.ssh/id_dsa` şeklindeydi.
+  
+Daha sonra **passphrase** sorulur. Bu bir tür şifredir ve güvenlik için
+önemlidir. Bu bakımdan bu alanı boş bırakmadan, hatırlayabileceğiniz bir
+şifre seçin. Herşey yolunda gittiyse size:
+
+    The key fingerprint is:  
+    fe:82:ea:3d:c4:..:..:.. user@hostname (uzun olduğu için hepsini yazmadım!)  
+    The keys randomart image is:  
+    +--[ DSA 1024]----+  
+    |E                |  
+    |.                |  
+    |.                |  
+    | .               |  
+    |o+   o  S        |  
+    |* o.. +.         |  
+    | +oo o ..        |  
+    |ooo...o ..       |  
+    |=..+o... ..      |  
+    +-----------------+
+
+şeklinde bir görüntü çıkar ve `.ssh/` altına baktığınızda iki dosya ile
+karşılaşırsınız:
+
+```bash
+ls ~/.ssh/
+
+id_dsa
+id_dsa.pub
+```
+
+
+işte bu sonu `.pub` ile biten dosya sizin **PUBLIC** key’inizdir. Eğer bu
+dosyayı text editör’le açarsanız karşınıza;
+
+    ssh-dss AAAAB3NzaC1kc3MA...... user@hostname
+
+şeklinde devasa bişi çıkar. (*Ben uzun olduğu için sadece minik bir kısmını
+yazdım.*) Şimdi yapmanız gereken, uzaktaki makineye bağlanıp, oradaki
+`$HOME`’unuza gidip, `.ssh/` in altında bulunan `authorized_keys` dosyasına
+bu `id_dsa.pub` dosyasının içinde yazan anahtarı ekleyin. Eğer `authorized_keys`
+dosyasını göremezseniz:
+
+```bash
+cd $HOME
+touch authorized_keys
+```
+
+şeklinde oluşturun. Karşı makinede, en basit text editörü `nano` yardımıyla 
+bunu yapabilirsiniz. Dikkat edilmesi gereken şey, bu up-uzun tek bir satır 
+şeklinde olmalı! (*word-wrape dikkat edin!*)
+
+Kendi tarafınızda elma (*cmd + c*) kopyalayıp, uzaktaki makinede de elma 
+(*cmd + v*) ile yapıştırabilirsiniz. Eğer `nano` kullanmayı bilmeyenler varsa,
+uzaktaki makineye bağlanınca:
+
+```bash
+nano -w $HOME/.ssh/authorized_keys
+```
+
+ile nano’yu açın. elma (*cmd + v*) ile keyinizi yapıştırın, satır sonunda
+`enter` yapın. **Save** edip çıkmak için `kntrl + x`, sorulan soruya `y` 
+cevabı ve enter. Hemen test edelim bakalım olmuşmu?
+
+```bash
+ssh Sunucum1
+```
+
+Enter! evet şifre sormadan bağlandınız! <kbd>⌃</kbd> (kntrl) + <kbd>D</kbd> ile 
+bağlantıyı kesebilirsiniz.
+  
+Bu kadar açıklamadan sonra, asıl olayımızıa gelelim. Uzak makineyi tamamlama!
+Aynı ssh komutu familyasından **scp** ile tanışacağız birazdan. Sistemde
+default bulunan **cp** (*copy*) komutunun secure olanı! Gerekenler:
+  
+[MacPorts][macports] (*bu zaten kurulu diye düşünüyorum*) ve ilgili **port**ları:
+
+* bash-completion
+* gawk
+* gsed
+
+Normalde **bash-completion** kurulunca zaten pek çok sorun halloluyor. Fakat, 
+sistemin içindeki `awk` ve `sed`, bir sebebten dolayı, ssh’i tamamlayamıyor. 
+Bu bakımdan ports’dan **gawk** ve **gsed** paketlerini de kurmamız gerekiyor.
+
+```bash
+sudo port install bash-completion gawk gsed
+```
+
+Eğer `bash-completion` önceden kuruluysa sadece `gawk` ve `gsed`i kurun... Şimdi 
+yapmanız gereken tek şey: **ssh [TAB’e basın]** config’den ya da `/etc/hosts`dan 
+otomatik tamamlama başladı bile... 
+
+Peki **scp**? şimdi **scp Sunucum1[TAB’e basın]** ve basmaya devam edin!
+
+
+[sane]: http://www.sane-project.org/
+[int-link]: /blog/tr/2009/07/26/bash-completion-olayi/
+[int-link2]: /blog/tr/2009/07/29/django-icin-bash-completion/
+[macports]: http://macports.org "Macports"

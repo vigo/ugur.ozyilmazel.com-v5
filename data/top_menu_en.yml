@@ -1,0 +1,21 @@
+links:
+  - 
+    text: Blog
+    url: /blog/en/
+    title: English Blog
+  - 
+    text: About
+    url: /page/en/about/
+    title: About
+  - 
+    text: Contact
+    url: /page/en/contact/
+    title: Contact
+  -
+    text: Resume
+    url: /page/en/resume/
+    title: Resume
+  -
+    text: Demoscene
+    url: /page/en/demoscene/
+    title: My Demoscene Career

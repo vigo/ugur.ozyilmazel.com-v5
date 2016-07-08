@@ -1,0 +1,73 @@
+---
+title: "Kişisel Websitesi"
+---
+
+<% I18n.locale = :tr %>
+
+<%= build_images_array_for_js %>
+
+
+<%= partial 'partials/top_menu', locals: {
+    current_url: current_page.url,
+} %>
+
+<%= partial 'partials/page_cover', locals: {
+    cover_title: 'Uğur &ldquo;vigo&rdquo; Özyılmazel',
+    cover_subtitle: t('homepage_subtitle')
+} %>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <section id="article">
+                <p>
+                    Merhaba, ben vigo! Bilgisayar programcısıyım... <a title="vigo&rsquo;nun GitHub hesabı" href="https://github.com/vigo">Open-Source</a> projeleri,
+                    <a title="Ruby dilinin websitesi" href="https://ruby-lang.org">Ruby</a>&rsquo;yi, 
+                    <a title="GNU Bash&rsquo;in websitesi" href="https://www.gnu.org/software/bash/">Bash</a>&rsquo;i, 
+                    Assembly&rsquo;yi <sup><a title="Amiga için 68000 Assembly" href="https://en.wikibooks.org/wiki/68000_Assembly">1</a></sup>
+                    <sup><a title="Commodore 64&rsquo;ün makine dili: 6502" href="http://6502.org/">2</a></sup>, 
+                    <a title="Amiga için script dili: ARexx" href="https://en.wikipedia.org/wiki/ARexx">ARexx</a>&rsquo;i,
+                    <a title="Unix&rsquo;in wikipedia tanımı" href="https://en.wikipedia.org/wiki/Unix">Unix</a>&rsquo;i, 
+                    Command-Line tool&rsquo;larını çok seviyorum.
+                </p>
+                <p>
+                    <a title="Python programlama dilinin websitesi" href="https://python.org">Python</a>, 
+                    <a title="Go programlama dilinin websitesi" href="https://golang.org/">Go</a>, 
+                    <a title="JavaScript programlama dili ile ilgili websitesi" href="https://www.javascript.com/">JavaScript</a> ve 
+                    web geliştirme işleriyle ilgili diğer diller ve teknolojilerle de 
+                    uğraşıyorum ve takip ediyorum. Sevdiğim konularla ilgili blog tutuyorum. 
+                    Aslında, karşılaştığım sorunları çözdükten sonra bir yerlerde kaydı olması
+                    adına, ileride tekrar aynı sorunla karşılaşırsam ya da başka biri karşılaşırsa
+                    diye de buraya ekliyorum :)
+                </p>
+                
+                <hr/>
+                
+                <%= partial 'partials/index_latest_posts', locals: {
+                  articles: blog("tr").articles,
+                  html_id: 'latest-posts',
+                  header: 'Son eklediğim post&rsquo;lar',
+                } %>
+                
+                <hr/>
+                
+                <h2>Güncel projelerimin bir kısmı</h2>
+                <p class="lead">
+                    GitHub&rsquo;daki açık-kaynak projelerimin tümünü görmek için
+                    <a href="https://github.com/vigo">tıklayabilirsiniz</a>.
+                </p>
+                <div id="github-latests">Yükleniyor...</div>
+                
+                
+            </section>
+        </div>
+    </div>
+</div>
+
+<%= partial 'partials/footer' %>
+
+<% content_for :extra_js do %>
+  <%= javascript_include_tag 'moment.min' %>
+  <%= javascript_include_tag 'moment-tr' %>
+<% end %>

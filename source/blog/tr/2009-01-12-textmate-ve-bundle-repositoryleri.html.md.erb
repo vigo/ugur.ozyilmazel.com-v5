@@ -1,0 +1,124 @@
+---
+title: "TextMate ve Bundle Repository’leri"
+date: 2009-01-12 15:30
+cover: generic-textmate.png
+og_cover: generic-textmate.png
+tags: textmate,bundle,php
+comments: true
+---
+
+Mac OS’un en rahat kullanılan, multi-platform yazılım geliştirme aracı
+[TextMate][mate] ile ilgili güzel bir özellikten bahsetmek istiyorum. READ_MORE
+
+<%= zoomable src: 'http://1.bp.blogspot.com/_9jz1qeFrzkQ/SWswqrcZxlI/AAAAAAAAA-A/wl0ffDmzaFQ/s1600-/bundle-editor.png' %>
+
+## Bundle
+
+TextMate’le pek çok farklı işi yapabilmek, farklı yazılım dillerinde kod
+yazabilmek, her hangi bir veri-tabanı sunucusuna bağlanabilmek ya da otomatik
+tamamlama yapabilmek gibi tonlarca şeyi bu **Bundle** özelliği sayesinde
+yapıyoruz.
+
+Uygulama içinden ilk kurduğunuz zaman pek çok (*built-in*) bundle geliyor.
+İşin güzel yanı, pek çok insan sürekli yeni bundle’lar geliştiriyor ve bunlar
+TextMate’in **Bundle Repository**’sinde bulunuyor.
+
+Bundle dediğimiz şey; aslında bir konfigürasyon ve direktifler yığınıdır.
+Bundle Editore girdiğimizde;
+
+* Commands
+* Drag Commands
+* Macros
+* Snippets
+* Languages
+* Preferences
+* Templates
+
+<%= card src: 'http://3.bp.blogspot.com/_9jz1qeFrzkQ/SWswsCyZxBI/AAAAAAAAA-I/tlxyShn-v74/s400/bundle-types.png' %>
+
+
+gibi seçenekleri olduğunu görürüz. Eğer **Show All** dersek tüm seçenekleri
+görebiliriz. Filtreleme yaparak sadece Snippet’ları ya da Macro’ları
+gösterebiliriz.
+  
+Bu alanda gördüğünüz herşey aslında TextMate’in "Bundle Repository" denen
+yazılım-geliştirme sunucularında depolanmakta ve sürekli güncellenmekte.
+Program ilk kurulduğunda üzerinde gelen bundle’lar `~/Library/Application\ Support/TextMate/Bundles`
+yani sizin kullanıcınıza ait olan bölgede bulunuyor.
+
+TextMate, SVN reposu üzerinde tutuyor Bundle’larını. Keza SVN üzerinden eklenen 
+ya da elle kendi eklediğiniz bundle’lar birbirinden farklı olarak saklanıyor, 
+kimse birbirini bozamıyor.
+
+Yani repodan gelen (*sistem altında!*) ayrı bir yerde, kendi "edit" edip 
+eklediğiniz / düzenlediğiniz ayrı yerde (*kullanıcı yani user dizininde...*)
+  
+Yeni bundle’lar eklemek için önce Terminal’i açıyoruz ve;
+
+```bash
+ls ~/Library/Application\ Support/
+```
+diyerek acaba TextMate’e ait folder var mı? bakıyoruz. Eğer yoksa;
+
+```bash
+mkdir -p ~/Library/Application\ Support/TextMate/Bundles
+cd ~/Library/Application\ Support/TextMate/Bundles
+```
+
+diyoruz ve hemen hangi ekleri (*ya da bundle’ları*) kurmak istiyorsak
+Macromates’in SVN repository’sine gidiyoruz. Web browser açıp
+(*Safari / Firefox vs*) hemen [http://macromates.com/svn/Bundles/trunk/Bundles/][brp]
+adresine gidiyoruz.
+
+Karşımıza büyük bir liste çıkıyor. Buradan istediğimiz Bundle’ı seçiyoruz. 
+Mesela **PHP** ile ilgili Bundle’ı kuralım, hem de PHP fonksiyonları için 
+**auto-complete** de yapıyor bu bundle. Terminal’den devam ediyoruz;
+
+```bash
+cd ~/Library/Application\ Support/TextMate/Bundles
+svn co http://macromates.com/svn/Bundles/trunk/Bundles/PHP.tmbundle
+```
+
+Gördüğünüz gibi gidip PHP ile ilgili bundle’ı repodan indirdik. Şimdi ya
+TextMate kapatıp açıcaz ya da **Bundle Editor** menüsünden **Reload Bundles**
+yapıcaz. (*Bundles > Bundle Editor > Reload Bundles*) Şimdi bir Php dosyası
+yaratalım. (*File > New*) Bu dosyayı "test.php" şeklinde kaydedelim.
+(*İlla kaydetmek zorunda da değilsiniz!*)
+
+Şimdi Php’i komutu yazarken <kbd>⌥</kbd> (alt) ve <kbd>⎋</kbd> (esc) tuşlarına 
+basın!
+  
+<%= card src: 'http://4.bp.blogspot.com/_9jz1qeFrzkQ/SWs6W4ePyII/AAAAAAAAA-Q/JhlPKf3ouDU/s400/php-complete.png' %>
+
+  
+Biraz merak ediyorsanız Bundle Editor’ü açıp bu otomatik tamamlamanın nasıl
+yapıldığına bakabilirsiniz. Çok zor değil, tüm konfigürasyon `KEY: VALUE`
+ikililerinden oluşan direktifler. Yani **Dictionary Object** dediğimiz şey...
+
+Keza, ilgili komuta ait yardım almak için <kbd>⌥</kbd> (alt) + <kbd>F1</kbd>
+  
+<%= card src: 'http://3.bp.blogspot.com/_9jz1qeFrzkQ/SWtFRoy3WCI/AAAAAAAAA-Y/LQd7NMvoJtY/s1600/php-helper.png' %>
+
+
+Belirli aralıklarla (*ayda bir kez mesela*) `svn up` yaparak reponuzu güncel
+tutabilirsiniz. Bunun için `check-out` (co) ettiğiniz yere gidin;
+
+```bash
+cd ~/Library/Application\ Support/Textmate/Bundles/PHP.tmbundle
+svn up
+```
+yapmanız yeterli olacaktır.
+  
+### Güncelleme (8 Ağustos 2009)
+
+Bundle repository adresi değişmiş: [http://svn.textmate.org/trunk/Bundles/][l3]
+
+### Güncelleme (2011)
+
+Neredeyse tüm bundle’lar [Github][l4]’a aktarıldı... Yeni repo:
+[https://github.com/textmate](https://github.com/textmate)
+
+[mate]: http://www.macromates.com/ "TextMate"
+[brp]: http://macromates.com/svn/Bundles/trunk/Bundles/
+[l3]: http://svn.textmate.org/trunk/Bundles/
+[l4]: http://github.com

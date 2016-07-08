@@ -1,0 +1,125 @@
+---
+title: "Django için bash completion"
+date: 2009-07-29 15:59
+cover: generic-django.png
+og_image: generic-django.png
+tags: macports,django,bash completion
+comments: true
+---
+
+Az önce başardığım, aslında çok bilindiğini düşündüğüm fakat etrafımdaki
+[Django][django]’cu kardeşimlerimden duymadığım bir özellikten bahsetmek
+istiyorum! READ_MORE
+
+Birkaç gün önce, [Ubuntu][ubuntu]’dan öğrendiğim **bash-completion** olayının
+[mac os’daki yansımasını][internal-link] yazmıştım. İşin içine biraz daha
+girince gördüm ki, pek çok şey için kendimiz de **auto-complete** yapabiliriz.
+
+Zaten ilk hissettiğim tamamlamaların başında `port` komutu ve `svn` komutu
+geldi... O an kafamda bir ampül yandı ve:
+
+> Kesin bunun bi yolu vardır, ben de kendi tamamlamalarımı yapabilmeliyim!
+
+diye düşünüp daldım google’a... Karşıma süper dökümanlar çıktı ve booom!
+Hemen bu tamamlama işini `django-admin.py` ve `manage.py` için yapabilmem
+lazım! dedim. Sonra bi baktım zaten django için çoktan yapılmışı varmış.
+
+[Django][django] paketini indirince, `extras/` folder’ı içinde gereken
+file var! Hatta;
+
+```bash
+complete -p
+```
+
+yaparsanız **completion** işleminin nasıl çalıştığını da anlarsınız. Sizin
+için hazır gelen komutların listesini de;
+
+```bash
+ls /opt/local/etc/bash_completion.d/
+```
+
+şeklinde görebilirsiniz. Bende;
+
+    _subversion
+    apache2ctl
+    bitkeeper
+    bittorrent
+    brctl
+    cksfv
+    clisp
+    cowsay
+    cpan2dist
+    dsniff
+    freeciv
+    gcl
+    gkrellm
+    gnatmake
+    gpg2
+    harbour
+    isql
+    larch
+    lilypond
+    lisp
+    lzma
+    lzop
+    mailman
+    mcrypt
+    minicom
+    modules
+    monodevelop
+    mtx
+    net-tools
+    p4
+    port
+    povray
+    qdbus
+    qemu
+    quota-tools
+    rdesktop
+    ri
+    sbcl
+    sitecopy
+    snownews
+    ssh
+    svk
+    unace
+    unrar
+    vncviewer
+
+şeklinde. Keza bu dosyaları açıp bakarsanız olayın ne kadar da kolay olduğunu
+görürsünüz.
+  
+Şimdi [Django][django] sitesine gidip, son versiyon `.tar.gz` dosyayı çekin
+(*hatta belki de çoktan çektiniz ve install bile ettiniz!*) Eğer hazırda
+yoksa;
+
+```bash
+tar xzvf Django-1.1.tar.gz
+```
+
+ile paketi açın ve `extras/` dizinin içinde bulunan `django_bash_completion`
+dosyasını **sudo** ile `/opt/local/etc/` altına kopyalayın ve sonra tek yapmanız
+gereken, `~/.profile` dosyasına şunu ekleyin;
+
+```bash
+if [ -f /opt/local/etc/django_bash_completion ]; then
+    . /opt/local/etc/django_bash_completion
+fi
+```
+
+Terminali açıp kapayın ya da;
+
+```bash
+source ~/.profile
+```
+
+yaparak restart edin shell’i... Afiyet olsun!
+
+### Faydalı Linkler
+
+* [An introduction to bash completion: part 1](http://www.debian-administration.org/articles/316)
+* [An introduction to bash completion: part 2](http://www.debian-administration.org/article/An_introduction_to_bash_completion_part_2)  
+
+[internal-link]: /blog/tr/2009/07/26/bash-completion-olayi/
+[django]: https://www.djangoproject.com/ "Django Project"
+[ubuntu]: http://ubuntu.com/ "Ubuntu"

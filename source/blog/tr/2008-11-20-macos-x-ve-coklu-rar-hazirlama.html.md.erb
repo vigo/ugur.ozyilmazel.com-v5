@@ -1,0 +1,101 @@
+---
+title: "Mac OS X ve Çoklu Rar Hazırlama"
+date: 2008-11-20 21:56
+cover: sceneish-02.jpg
+tags: osx,rar,shell
+comments: true
+---
+
+Windows kullanırken vazgeçilemez tool’larımdan biri de [WinRar][rar]’dı. Genelde
+herkes gibi bende (!) gün içinde sık sık rar açan biriyim. Biraz google
+aramasından sonra Mac OS için open source tonla rar açan program buldum.
+READ_MORE
+
+Geçenlerde bir arkadaşım için büyükce bir iso imajını çoklu rar haline
+getirmem gerekti. Peki nasıl yapacaktım? Hemen rar’ın [sitesine][rar] gittim, 
+Mac OS (*3.80*) için olan versiyonunu indirdim. İndirdiğiniz `tar.gz` dosyasına 
+Finder’dan çift tık yapınca Mac OS otomatik bulunduğunuz yere açar tar’ı. Dikkat
+ederseniz adı **rar** olan bir folder oluştu.
+  
+Dosyanın yanında "command line only" diyordu. Hmmm dedim, demekki bir şekilde,
+aynı AmigA günlerinde olduğu gibi shell’den yapıcaz işleri... Öncelikle indirdiğim
+`tar.gz` dosyasını sistemime kopyaladım. Benim default download yerim
+`~/Downloads/`.
+
+Şimdi, `/usr/local/bin` altına `rar380` adında bir folder
+açalım, `~/Downloads/rar/` altındaki dosyaların hepsini `rar380` altına atıp
+sembolik bir link’le `/usr/local/bin` altına `rar` adında bir link dosyası
+oluşturalım.
+
+```bash
+sudo mkdir -p /usr/local/bin/rar380
+cd Downloads/
+sudo cp -R rar/* /usr/local/bin/rar380
+cd /usr/local/bin/
+sudo ln -s rar380/rar rar
+sudo ln -s rar380/unrar unrar
+```
+Böylece Terminal’den `rar` ve `unrar` komutunu çalışır hale getirdim. **rar** ile
+dosyaları sıkıştırma (*rar’lama*), **unrar** ile de rar’lanmış dosyaları açma
+(*unrar/extract*) işlemleri yapılır. Eğer sizde bu folder `/usr/local/bin` yoksa;
+
+```bash
+sudo mkdir -p /usr/local/bin
+```
+
+yaparak önce bu dizini açın. (*Ben XCode kullandığım için belki kurulum
+sırasında bu folder oluşmuş yada ben bişileri compile ederken yapmışımdır
+hatırlamıyorum*)
+  
+Ufak bir hatırlatma: Her seferinde `sudo` yazmak istemiyorsanız;
+
+```bash
+sudo -i
+```
+
+Yaparak `sudo` moduna geçebilirsiniz fakat buna elinizi alıştırmayın.
+Yanlışlıkla istenmeyen dosyaları silebilir ya da hasar verebilirsiniz. Evet,
+rar çalışabiliyorsa (*denemek için Terminal’de rar yazıp enter yapın,
+karşınıza yardım bilgilileri çıkar*) hemen çoklu rar paketi yapmaya başlayalım.
+  
+Hiç sıkıştırma yapmadan, sadece parçalara bölmek için:
+
+```bash
+rar a -m0 -ep -v_KAC_MEGABYTE_M "NEREYE_KAYIT" "KAYNAK_DOSYA"  
+```
+
+sıkıştırmak istediğim dosya, `~/Desktop`’ımda duran: `deneme_dosya.iso`
+(*300 Megabytes*) bunu **50 Megabyte**’lık parçalara böleceğim:
+
+```bash
+cd ~/Desktop
+rar a -m0 -ep -v50M "deneme_parcalar" "deneme_dosya.iso"
+```
+
+Bu "new style" rar isimlendirmesiyle;
+
+    deneme_parcalar.part01
+    deneme_parcalar.part02
+
+gibi çıkış verir. Eğer "old style" yapmak istersiniz yani;
+
+    deneme_parcalar.r00
+    deneme_parcalar.r01
+    deneme_parcalar.rar
+
+gibi;
+
+```bash
+rar a -m0 -ep -v50M -vn "deneme_parcalar" "deneme_dosya.iso"
+```
+
+### Update: Kasım 2014
+
+[Homebrew][homebrew] üzerinden **unrar** kurmak çok kolay!:
+
+```bash
+brew install unrar
+```
+
+[rar]: http://rarlab.com
+[homebrew]: http://mxcl.github.com/homebrew/ "The missing package manager for OS X"

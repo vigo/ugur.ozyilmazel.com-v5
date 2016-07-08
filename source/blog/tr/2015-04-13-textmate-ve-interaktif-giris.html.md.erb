@@ -1,0 +1,72 @@
+---
+title: "TextMate ve İnteraktif Giriş"
+subtitle: "Script çalıştırırken INPUT almak"
+date: 2015-04-13 09:28
+cover: generic-textmate.png
+og_image: generic-textmate.png
+tags: textmate
+comments: true
+---
+
+Çoğu zaman birşeyleri hızla denemek için [TextMate][textmate]’i kullanırım. 
+İstediğim programlama dilinde, anında birşeyleri yazıp çalıştırmak mümkündür
+TextMate’de. READ_MORE
+
+Örneğin **Ruby** çalıştırmak için; aşağıdaki gibi boş bir döküman açıp,
+kayıt bile etmeden;
+
+<%= zoomable src: '2015-04-13-textmate-ruby.png', dir: 'posts', 
+             alt: 'TextMate ekran görüntüsü',
+             title: 'Yeni pencerede <kbd>⌘</kbd> + <kbd>N</kbd>' %>
+
+Yazmak istediğinizi yazıp <kbd>⌘</kbd> + <kbd>R</kbd> yaparak (*bazı dillerde bu tuş kombinasyonu
+farklı olabiliyor ama geneli hep bu...*) hemen çalıştırabilirsiniz.
+
+<%= zoomable src: '2015-04-13-textmate-ruby-2.png', dir: 'posts',
+             alt: 'TextMate ekran görüntüsü',
+             title: 'Çıktı ekranı' %>
+
+
+Fakat bazı durumlarda kullanıcıdan **input** almanız gerekebilir. `STDIN` yani
+standart input’dan **giriş** almanız gerekebilir. Tüm amacım, TextMate ortamını
+terketmeden işlerimi yapmak demiştim :) Acaba bu sorunu çözmenin yolu var mı?
+diye bakarken çok güzel birşeyle karşılaştım.
+
+Zaten bu konu 2009 yılında çözümlenmiş. TextMate’in [blog][tm-blog]’unda 
+yazılanlara baktım. Yıl 2015 ve halen benim gibi en eski **Version 1.5.11 (1635)**
+kullananlar için birisi kafa yormuş ve güzel bir kütüphane hazırlamış.
+
+Yapmanız gereken [alkemist][alkemist] adlı kullanıcın hazırladığı
+[tm\_interactive_input.dylib][repo] paketini indirmek. Paketi indirdikten
+sonra ilgili yere kopyalamak:
+
+```bash
+cd /Applications/TextMate.app/Contents/SharedSupport/Support/lib/
+cp ~/Downloads/tm\_interactive_input.dylib .
+```
+
+Daha sonra TextMate’i bir restart edin. ve aşağıdaki kodu çalıştırmayı
+deneyin: <kbd>⌘</kbd> + <kbd>R</kbd>;
+
+```ruby
+a = gets.chomp        # Kullanıcıdan input alır
+puts "input: #{a}"
+```
+
+<%= card src: '2015-04-13-textmate-ruby-3.png',
+         dir: 'posts',
+         title: 'INPUT istemcisi!',
+         text: 'INPUT istemcisi!' %>
+
+An itibariyle OS X Yosemite 10.10.3’te sıkıntısız çalışıyor ama nereye
+kadar çalışır bilemiyorum. En azından şimdilik işimizi görüyor!
+
+<%= zoomable src: '2015-04-13-textmate-ruby-4.png', dir: 'posts',
+             alt: 'TextMate ekran görüntüsü',
+             title: 'Sonuç: input geldi...' %>
+
+
+[textmate]: http://macromates.com "TextMate: The Missing Editor"
+[tm-blog]: http://blog.macromates.com/2009/interactive-input/
+[alkemist]: https://github.com/alkemist/
+[repo]: https://github.com/alkemist/interactive-input/downloads
