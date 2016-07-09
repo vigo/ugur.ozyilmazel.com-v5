@@ -1,0 +1,12 @@
+<%
+out = []
+blog("en").articles.each_with_index do |article, index|
+    title = article.title
+    title += ' [' + article.tags.join(', ') + ']' if article.tags.count > 0
+    out << {
+        title: title,
+        url: article.url,
+    }
+end
+concat out.to_json
+%>

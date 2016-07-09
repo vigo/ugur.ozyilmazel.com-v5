@@ -11,15 +11,62 @@ title: Personal Blog
 <%= partial 'partials/top_menu' %>
 
 <%= partial 'partials/page_cover', locals: {
-    cover: site_image('index-covers/battery.jpg'),
+    cover: site_image('index-covers/fist2-02.jpg'),
     cover_title: config[:meta_author_name],
     cover_subtitle: t('homepage_subtitle')
 } %>
 
+<% content_for :extra_css do %>
+    <%= stylesheet_link_tag 'easy-autocomplete.css' %>
+<% end %>
+
+<% content_for :extra_js do %>
+    <%= javascript_include_tag 'jquery.easy-autocomplete.js' %>
+    <%
+    placeholder_value = {
+        tr: 'Aramak istediğiniz kelimeyi yazın...',
+        en: 'Type your keyword here...'
+    }
+    %>
+    <script>
+    $(document).ready(function(){
+        var search_options = {
+            url: "/search-<%= I18n.locale %>.json",
+            placeholder: '<%= placeholder_value[I18n.locale] %>',
+            getValue: "title",
+            list: {
+                maxNumberOfElements: 10,
+                match: { enabled: true },
+                onChooseEvent: function(){
+                    var selected = $("#search_keyword").getSelectedItemData().url;
+                    window.location.href = selected;
+                },
+            }
+        };
+
+        $("#search_keyword").easyAutocomplete(search_options);
+    });
+    </script>
+<% end %>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <div id="search-area">
+                <form id="search_form" onsubmit="return false;">
+                    <input type="text" class="form-control" name="search_keyword" id="search_keyword">
+                </form>
+                <hr />
+            </div>
+        </div>
+    </div>
+</div>
+
 <%= partial 'partials/list_posts', locals: {
     need_articles: page_articles,
-    first_page: '/blog/tr/',
-    link_schema: '/blog/tr/sayfa/{num}/',
+    first_page: "/blog/#{I18n.locale}/",
+    link_schema: "/blog/#{I18n.locale}/#{blog(I18n.locale).options[:page_link]}/",
 } %>
 
 <%= partial 'partials/footer' %>

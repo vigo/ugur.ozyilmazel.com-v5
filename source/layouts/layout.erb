@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
         <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
         <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        <%= yield_content :extra_css %>
         <%= stylesheet_link_tag :application %>
         <%= feed_tag :atom, "#{blog(I18n.locale).options.prefix.to_s}/feed-#{I18n.locale}.xml", title: "Atom Feed" %>
         <%= partial 'partials/meta' %>
