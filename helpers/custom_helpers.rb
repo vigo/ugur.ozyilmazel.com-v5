@@ -72,7 +72,8 @@ module CustomHelpers
   
   def markdownify_text_only(text, **options)
     allowed_tags = options[:allowed_tags] || ['em', 'strong', 'a', 'code', 'kbd']
-    Sanitize.fragment(markdown(text), elements: allowed_tags)
+    attributes = options[:attributes] || {'a' => ['href']}
+    Sanitize.fragment(markdown(text), elements: allowed_tags, attributes: attributes)
   end
   
   def card(**options)
