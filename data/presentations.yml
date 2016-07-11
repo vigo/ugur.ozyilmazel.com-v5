@@ -1,0 +1,151 @@
+- date: 2006-03-05 11:00
+  title: "MMC 64 Ne dir?"
+  event:
+    name: "Nightshift 2006"
+    url: http://nightshift.untergrund.net/2006/tr/
+  attachments:
+    video: http://vimeo.com/vigo/mmc64-nedir
+
+
+- date: 2012-10-20 11:00
+  title: "Python ve Django’da Test ile Yürüyen Geliştirme"
+  event:
+    name: "Özgür Web Günleri 2012"
+    url: http://www.ozgurwebgunleri.org.tr/2012/
+  attachments:
+    slide: https://speakerdeck.com/vigo/python-ve-djangoda-testle-yuruyen-gelistirme
+    code: https://github.com/vigo/owg2012-pyhton-django-tyg
+
+
+- date: 2012-12-13 11:00
+  title: "Süper bir fikrim var, Peki hangi teknolojileri kullanmalıyım?"
+  event:
+    name: "eTohum Geliştirici Günleri"
+    url: http://www.etohum.com/
+  attachments:
+    slide: https://speakerdeck.com/vigo/e-tohum-gelistirici-gunleri
+    video: https://vimeo.com/55605993
+
+
+- date: 2013-03-31 10:00
+  title: "Merhaba Sinatra"
+  event:
+    name: "JSPY Konferansı 2013"
+    url: http://jspyconf.org/
+  attachments:
+    slide: https://speakerdeck.com/vigo/merhaba-sinatra
+    code: https://github.com/vigo/jspy2013-sinatra
+    example: http://jspy2013-sinatra.herokuapp.com
+    video: http://www.pozitiftv.com/video/89591ad36acd41bd91030eb11057ea20/ugur-ozylmazel-fontronik-merhaba-sinatra/
+
+
+- date: 2013-04-05 13:00
+  title: "İnsanlar İçin GIT"
+  event:
+    name: "Özgür Yazılım Günleri 2013"
+    url: http://www.ozguryazilimgunleri.org.tr/2013/
+  attachments:
+    slide: https://speakerdeck.com/vigo/insanlar-icin-git
+    code: https://github.com/vigo/oyg2013-git
+
+
+- date: 2014-08-22 14:00
+  title: "Simple Web App Up and Running for Beginners"
+  event:
+    name: "Girişim Fabrikası"
+    url: http://www.girisimfabrikasi.com/
+  attachments:
+    slide: https://speakerdeck.com/webbox/simple-web-app-up-and-running-for-beginners
+
+
+- date: 2014-09-19 15:00
+  title: "Hızlandırma Programı"
+  event:
+    name: "Girişim Fabrikası"
+    url: http://www.girisimfabrikasi.com/
+  attachments:
+    slide: https://speakerdeck.com/webbox/girism-fabrikasi-hizlandirma-programi-merhaba
+
+
+- date: 2013-10-05 15:00
+  title: "Git 101"
+  event:
+    name: "Railsgirls İstanbul"
+    url: http://railsgirls.com/istanbul
+  attachments:
+    slide: https://speakerdeck.com/webbox/git-101-ya-da-100
+
+
+- date: 2013-11-22 11:30
+  title: "Rack uygulamalarını Nginx ve Unicorn’la koşturma"
+  event:
+    name: "Özgür Web Günleri 2013"
+    url: http://www.ozgurwebgunleri.org.tr/2013/
+  attachments:
+    slide: https://speakerdeck.com/vigo/rack-uygulamalarini-nginx-ve-unicornla-kosturma
+    code: https://github.com/vigo/owg2013-rack-unicorn-sinatra
+    video: http://vimeo.com/vigo/rack-vagrant-demo
+
+
+- date: 2015-01-17 15:00
+  title: "Ruby ile Tanışmak!"
+  event:
+    name: "Ruby Türkiye Meetup #01"
+    url: http://www.rubyturkiye.org/
+  attachments:
+    slide: https://speakerdeck.com/vigo/rubyi-taniyalim
+
+
+- date: 2015-02-26 16:00
+  title: "Yazılımcı Kimdir?"
+  event:
+    name: "2.Programlama Günleri, Karabük Üniversitesi"
+    url: http://bilisimkarabuk.com/programlamagunleri/
+  attachments:
+    slide: https://speakerdeck.com/vigo/yazilimci-kimdir
+    video: https://www.youtube.com/watch?v=ooe-qtHerKE
+
+
+- date: 2015-04-15 14:30
+  title: "Vagrant 101"
+  event:
+    name: "Aslanoba Labs, Tech Session"
+    url: "http://labs.aslanobagroup.com"
+  attachments:
+    slide: https://speakerdeck.com/vigo/vagrant-101
+
+
+- date: 2015-04-29 14:30
+  title: "TDD"
+  event:
+    name: "Aslanoba Labs, Tech Session"
+    url: "http://labs.aslanobagroup.com"
+  attachments:
+    slide: https://speakerdeck.com/vigo/tdd-test-driven-development
+
+
+- date: 2015-05-16 11:00
+  title: "Bash 101"
+  event:
+    name: "Istanbul PHP #008"
+    url: http://www.meetup.com/IstanbulPHP/events/222316720/
+  attachments:
+    slide: https://speakerdeck.com/vigo/bash-101
+
+
+- date: 2015-07-26 13:30
+  title: "Gündelik Hayatta GIT İpuçları"
+  event:
+    name: "Phpkonf 2015"
+    url: http://phpkonf.org
+  attachments:
+    slide: https://speakerdeck.com/vigo/gundelik-hayatta-git-ipuclari
+
+- date: 2016-02-27 15:30
+  title: "Django 101"
+  event:
+    name: "3.Programlama Günleri, Karabük Üniversitesi"
+    url: http://bilisimkarabuk.com/programlamagunleri/
+  attachments:
+    slide: https://speakerdeck.com/vigo/django
+

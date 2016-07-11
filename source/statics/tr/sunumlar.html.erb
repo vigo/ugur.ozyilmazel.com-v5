@@ -1,0 +1,62 @@
+---
+title: Sunumlar
+layout: static_pages_layout
+cover: oyuncak-muzesi-05.jpg
+---
+
+<%
+I18n.locale = locals[:lang]
+presentations = data.presentations.map do |item|
+  item['custom_date'] = DateTime.parse(item['date'])
+  item
+end.sort_by{ |item| -item['custom_date'].to_i }
+   .group_by{ |item| item['custom_date'].year }
+
+last_talks_year = presentations.first.first
+first_talks_year = presentations.sort.first.first
+%>
+<p><%= first_talks_year %> - <%= last_talks_year %> yılları arasında, etkinlik ve 
+konferanslarda yaptığım sunumları bu sayfada bulabilirsiniz.</p>
+
+<div id="talks">
+<% presentations.each do |item| %>
+<%
+year = item.first
+talks = item.last
+%>
+<div class="row">
+    <div class="col-md-3">
+        <h3><%= year %></h3>
+    </div>
+    <div class="col-md-7">
+        <ul class="list-unstyled list-talks">
+        <% talks.each do |talk| %>
+        <li>
+            <h2><%= talk.title %></h2>
+            <time pubdate datetime="<%= talk.custom_date.xmlschema %>" title="<%= I18n.l talk.custom_date, :format => config.date_format_long[:tr] %>">
+                <%= I18n.l talk.custom_date, :format => config.date_format_long[:tr] %>
+            </time>
+            <p><strong><%= talk.event.name %></strong> etkinliğindeki sunumum.</p>
+            <%= link_to fa_icon('home', nil, 1), talk.event.url, title: talk.event.name %>
+            <% talk.attachments.each do |attachment| %>
+            <%
+            attachment_type = attachment[0]
+            attachment_url = attachment[1]
+            case attachment_type
+            when 'slide'
+                attachment_icon = 'desktop'
+            when 'code', 'example'
+                attachment_icon = 'code'
+            when 'video'
+                attachment_icon = 'video-camera'
+            end
+            %>
+            <%= link_to fa_icon(attachment_icon, nil, 1), attachment_url, title: attachment_type.titlecase %>
+            <% end %>
+        </li>
+        <% end %>
+        </ul>
+    </div>
+</div>
+<% end %>
+</div>

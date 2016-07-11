@@ -127,3 +127,38 @@ $custom-card-color: darken($title-link-color, 10);
   }
   hr { margin: 2rem 0; }
 }
+
+#talks {
+  margin-top: 4rem;
+}
+
+.list-talks {
+  li {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    &:last-child { border-bottom: none; }
+  }
+  h2 {
+    font-weight: 600 !important;
+    margin: 0 !important;
+  }
+  time {
+    display: block;
+    margin: 0 0 $common-mb 0;
+    font-size: 1rem;
+  }
+  a {
+    margin-right: 1em;
+    .fa-inverse { color: inherit; }
+    &:hover { color:darken($title-link-color, 50%); }
+  }
+  a::after { content: "" !important; }
+  p {
+    font-size: 1.4rem;
+    font-weight: 200;
+    strong {
+      font-weight: 400;
+    }
+  }
+}
