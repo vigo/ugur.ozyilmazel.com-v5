@@ -162,3 +162,14 @@ $custom-card-color: darken($title-link-color, 10);
     }
   }
 }
+
+
+.book {
+  .book-links {
+    a { margin-right: 1rem; }
+  }
+  a::after { content: "" !important; }
+  .book-cover {
+    border: 1px solid #ddd;
+  }
+}
