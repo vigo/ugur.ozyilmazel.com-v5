@@ -24,7 +24,7 @@ $(document).ready(function(){
             url: 'https://api.github.com/users/vigo/repos?sort=pushed',
             dataType: "json",
             error: function(err){
-                $("#github-latests").html('GitHub&rsquo;dan repo&rsquo;ları yükleyemdim...');
+                $("#github-latests").html('GitHub&rsquo;dan repo&rsquo;ları yükleyemedim...');
             },
             success: function(data){
                 var html = ['<ul class="list-unstyled list-latest-posts">'],

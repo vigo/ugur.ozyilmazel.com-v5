@@ -9,20 +9,8 @@ cover: breakpoint2006-02.jpg
     <a href="https://gitbook.com">Gitbook.com</a> platformunda.
 </p>
 
-<div class="book">
-    <h3>Ruby 101</h3>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="book-cover">
-                <img class="img-fluid" src="https://raw.githubusercontent.com/vigo/ruby101-kitap/master/cover.jpg" alt="#">
-            </div>
-        </div>
-        <div class="col-md-9">
-            <p>Bilgisayar programcılığı eğlencelidir! Eğer Ruby ile geliştiriyorsanız! Ruby'nin bu eğlenceli dünyasına katılmak ister misiniz?</p>
-            <p class="book-links">
-                <%= link_to fa_icon('home', nil, 1), 'https://www.gitbook.com/read/book/vigo/ruby-101' %>
-                <%= link_to fa_icon('code', nil, 1), 'https://github.com/vigo/ruby101-kitap' %>
-            </p>
-        </div>
-    </div>
-</div>
+<div id="published-books">Yükleniyor...</div>
+
+<% content_for :extra_js do %>
+    <%= javascript_include_tag 'publish_books' %>
+<% end %>
