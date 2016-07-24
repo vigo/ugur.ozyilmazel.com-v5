@@ -10,6 +10,12 @@ task :preview do
   system "middleman serve"
 end
 
+desc "Deploy"
+task :deploy do
+  system "middleman deploy"
+end
+
+
 desc "New blog post"
 task :post, [:title, :language, :publish_date] do |t, args|
   now = Time.now
