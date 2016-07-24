@@ -12,7 +12,7 @@ end
 
 desc "Deploy"
 task :deploy do
-  system "middleman deploy"
+  system "middleman build"
 end
 
 
