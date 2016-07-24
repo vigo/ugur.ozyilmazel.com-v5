@@ -12,7 +12,16 @@ end
 
 desc "Deploy"
 task :deploy do
-  system "middleman build"
+  now = Time.now.strftime("%Y-%m-%d-%H-%M")
+  system %{
+    middleman build &&
+    cd build/ &&
+    git add . &&
+    git commit -m "release #{now}" &&
+    git push &&
+    git checkout master
+  }
+  puts "Deployed..."
 end
 
 
