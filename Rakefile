@@ -19,7 +19,7 @@ task :deploy do
     git add . &&
     git commit -m "release #{now}" &&
     git push &&
-    git checkout master
+    cd ../
   }
   puts "Deployed..."
 end
