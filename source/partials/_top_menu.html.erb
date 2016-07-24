@@ -15,7 +15,7 @@ yml_data = data.top_menu_en if locale == :en
                         <%
                         yml_data.links.each do |link|
                             li_class = 'list-inline-item nav-item'
-                            li_class += ' active' if rack[:request].env['REQUEST_PATH'] == link.url || (link.url != "/" && rack[:request].env['REQUEST_PATH'].include?(link.url))
+                            li_class += ' active' if current_resource.url == link.url || (link.url != "/" && current_resource.url.include?(link.url))
                             content_tag(:li, class: li_class) do
                                 link_to link.text, link.url
                             end
