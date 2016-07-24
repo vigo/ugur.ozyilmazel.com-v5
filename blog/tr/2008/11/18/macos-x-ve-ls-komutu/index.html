@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title>Uğur “vigo” Özyılmazel | Mac OS X ve ls komutu</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        
+        <link href="/public/css/application.css" rel="stylesheet" />
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
+        <meta name="date" content="2016-07-24T16:19:09+03:00" />
+        <meta name="description" content="Finder pek çok açıdan faydalı ve iş gören bir uygulama/özelliktir.
+Pek çok dosya, sistem icabı hidden yani gizli/görünmez durumdadır." />
+        <meta name="author" content="Uğur “vigo” Özyılmazel"/>
+        <meta name="copyright" content="(c) 2006 / 2016 - Uğur “vigo” Özyılmazel" />
+        <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2008/11/18/macos-x-ve-ls-komutu/" />
+        <meta property="og:title" content="Mac OS X ve ls komutu" />
+        <meta property="og:site_name" content="vigo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Finder pek çok açıdan faydalı ve iş gören bir uygulama/özelliktir.
+Pek çok dosya, sistem icabı hidden yani gizli/görünmez durumdadır." />
+        <meta property="og:image" content="http://ugur.ozyilmazel.com/public/images/covers/2008-11-18-osx-ls.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="3330" />
+        <meta property="og:image:height" content="768" />
+        <link rel="apple-touch-icon-precomposedposed" sizes="144x144" href="/public/images/icons/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/images/icons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/images/icons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/public/images/icons/apple-touch-icon-57-precomposed.png">
+        <link href="/public/images/icons/favicon.png" rel="shortcut icon" type="image/png" />
+
+    </head>
+    <body class="blog blog_tr blog_tr_2008 blog_tr_2008_11 blog_tr_2008_11_18 blog_tr_2008_11_18_macos-x-ve-ls-komutu blog_tr_2008_11_18_macos-x-ve-ls-komutu_index">
+            
+    
+    
+<!-- page-top-nav -->
+<nav id="page-top-nav" class="navbar">
+    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsable_navbar">&#9776;</button>
+    <div class="collapse navbar-toggleable-sm" id="collapsable_navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                    <ul class="list-inline nav navbar-nav">
+<li class="list-inline-item nav-item"><a href="/">Anasayfa</a></li><li class="list-inline-item nav-item active"><a href="/blog/tr/">Blog</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/hakkimda/">Hakkımda</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/sunumlar/">Sunumlar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/kitaplar/">Kitaplar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/iletisim/">İletişim</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/cv/">CV</a></li>                        <li class="list-inline-item nav-item pull-md-right m-r-0">
+                                <a title="English" href="/blog/en/">English</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- /page-top-nav -->
+
+
+
+    
+    <!-- page cover -->
+<div class="jumbotron jumbotron-fluid page-cover hidden-sm-down" style="background-image: url(/public/images/covers/2008-11-18-osx-ls.png);">
+    <div class="page-cover-layer page-cover-layer-solid">
+        <div class="container">
+            <div class="text-xs-center">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page cover -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <section id="article">
+                    <h1><a href="/blog/tr/2008/11/18/macos-x-ve-ls-komutu/">Mac OS X ve ls komutu</a></h1>
+                    
+
+                    <time pubdate datetime="2008-11-18T16:16:00+02:00" title="18 Kasım 2008, Salı 16:16">
+                        18 Kasım 2008, Salı 16:16
+                    </time>
+
+                    <header>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/alias/">alias</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/shell/">shell</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/ls/">ls</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/man/">man</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/col/">col</a></span>
+                    </header>
+
+                    <div id="markdown">
+                        <p>Finder pek çok açıdan faydalı ve iş gören bir uygulama/özelliktir.
+Pek çok dosya, sistem icabı <strong>hidden</strong> yani gizli/görünmez durumdadır.
+</p>
+
+<p>Amacım, gerçekten fiziksel olarak dosyaların ne durumda olduğunu anlama,
+yönetme ve yetkilendirme açısından <strong>shell / Terminal</strong> komutlarının da
+her kullanıcının işine yarayabileceğini göstermek.</p>
+
+<h3>Güncelleme</h3>
+
+<p>Yazımı okuyan sevgili <a href="http://twitter.com/burakyetgin">N.Burak Yetgin</a>’in haklı ikazı üzerine,</p>
+
+<blockquote>
+<p>Peki finder varken ls komutunu neden kullanayım?</p>
+</blockquote>
+
+<p>sorusuna açıklık getirmek istiyorum. Yazıdaki amacım, standart Mac
+kullanıcısı, bilgisiyarındaki dosyalara gözatarken otomatikman Finder’ı
+kullanır.</p>
+
+<p>Genelde Windows kullanımından Mac’e geçiş olunca, GUI
+(<em>Graphical User Interface</em>) alışkanlığımız devam etmektedir. GUI kolay ve
+rahat bir şeydir fakat genelde arka planda ne olduğundan hiç bir zaman
+haberimiz olmaz!</p>
+
+<p>Her nekadar karmaşık gibi görünse de, Terminal kullanarak bilgisayara daha 
+fazla hükmetme şansına sahip oluruz!</p>
+
+<p>&ldquo;Directory Almak&rdquo; nedir? Eğer benim gibi <a href="http://en.wikipedia.org/wiki/Commodore_64">Commodore 64</a>’le başladıysanız:</p>
+<pre class="highlight plaintext"><code>LOAD "$",8
+</code></pre>
+
+<p>komutunu biliyorsunuzdur! Bu komut disketin içindeki listeyi bize gösteren
+komuttur. Yani &ldquo;Directory&quot;yi&hellip; Windows kullanıcıları genelde &quot;My Computer&quot;’a
+tıklar ve folder’ları (<em>dizin’leri</em>) listeler. Pek çok kişinin kullanmadığı 
+<strong>Command Prompt</strong> (<em>Start &gt; Run &gt; cmd.exe</em>) a çıkarak da aynen directory’i
+listeleyebilirsiniz:</p>
+<pre class="highlight plaintext"><code>C:\dir
+</code></pre>
+
+<p>Linux/Unix işletim sistemlerinde aynı işi yapan <code>ls</code> komutulu bulunmaktadır.
+Kullanımı:</p>
+<pre class="highlight shell"><code>ls
+</code></pre>
+
+<p>şeklindedir. Genelde her komuta karşılık gelen bir yardım / açıklama sayfası
+bulunur. Buna <strong>MAN PAGES</strong> yani kullanım kılavuzu <code>manual</code> sayfası denir.
+Eğer komutun ne işe yaradığını bilmiyorsanız bunu anlamak için:</p>
+<pre class="highlight shell"><code>man KOMUT
+</code></pre>
+
+<p>yaparsınız. yani <code>ls</code> komutunun olaylarını anlamak için:</p>
+<pre class="highlight shell"><code>man ls
+</code></pre>
+
+<p>yaparsınız. Karşınıza devasa bir açıklama sayfası çıkar. Genelde ben çoğu
+şeyin nasıl yapıldığını ve kullanıldığını tam anlayamam. Sanırım daha üstün
+anlama kabiliyeti olan insanlar için tasarlanmış bu yardım sayfaları.</p>
+
+<div class="full zoomable"><img src="/public/images/posts/2008-11-18-man-ls.png" alt="this is an image | bu bir resim"></div>
+
+<p><code>man</code> sayfalarında <kbd>space</kbd> tuşuna basarak yazının devamını görürsünüz.
+(<em>yani -more- manasında</em>). Çıkmak için <kbd>Q</kbd> ve bu metin içinde arama 
+yapmak için <kbd>/</kbd></p>
+
+<p>Eğer bu help dosyasını daha rahat okumak isterseniz,</p>
+
+<blockquote>
+<p>ya keşke şunu bir text editörle filan açabilsem rahat rahat okusam</p>
+</blockquote>
+
+<p>derseniz:</p>
+<pre class="highlight shell"><code><span class="nb">cd</span> ~/Desktop
+man ls | col -b &gt; ls_help.txt
+open ls_help.txt
+</code></pre>
+
+<p>Böylece <strong>pipe</strong> yardımıyla, <code>man ls</code> den dönenleri <code>col</code> komutuna geçtik.
+Bu iki işlemden dönen sonucu da <code>ls_help.txt</code> dosyasına dönüştürdük. Neyse,
+<code>ls</code> komutuna geri dönüyorum.</p>
+
+<p>Sizinde gördüğünüz gibi, <code>ls</code>e ait tonlarca parametre, özellik mevcut. Ben
+en çok kullandığım bir-iki özelliği sizinle paylaşmak istiyorum. Linux’un
+türüne göre <code>ls</code> komutu da farklılıklar gösteriyor.</p>
+
+<p>Örneğin pek çok Linux sürümünde directory’i renkli görmek işlemi <code>--color</code>
+ile gerçekleşirken Mac OS’da durum farklı. (<em>Bilemiyorum belki darwin-kernel
+için farklı bir BSD olayı olabilir</em>)</p>
+
+<p>Bulunduğunuz dizin (<em>folder/directory</em>) de ne var ne yok görmek için:</p>
+<pre class="highlight shell"><code>ls -al
+</code></pre>
+
+<p>yazmamız gerekiyor. Bu, adı nokta ile başlayan dosya/dizinleri de gösteren
+<code>a</code> ve gösterme şekli olarak da en detaylı <code>l</code> yani <strong>long format</strong> denilen 
+şekilde bilgiyi ekrana yollar.</p>
+
+<p>Bu şekilde listeleme yapınca karşımıza şu tarz bir görüntü çıkar:</p>
+<pre class="highlight plaintext"><code>rwxrwxrwx@  1  vigo  staff      13780  1 Kas 15:30 TexmateFirefoxSplit.app
+drwxr-xr-x  31 vigo  staff       1054 16 Kas 23:13 Trash 
+drwxr-xr-x  17 vigo  staff        578 28 Eki 09:33 Vice2.0.6
+drwxr-xr-x@  7 vigo  staff        238 23 Eyl 06:02 Warblade Full
+-rw-r--r--   1 vigo  staff  166069960 17 Kas 19:34 cf208.mp4
+-rwxr-xr-x@  1 vigo  staff        886  9 Kas 22:22 deneme.sh
+-rw-r--r--@  1 vigo  staff      61087 16 Kas 23:07 fisherking.jpg
+-rw-r--r--@  1 vigo  staff         99 25 Eki 20:26 index.php
+</code></pre>
+
+<p>İlk blok, yani <code>rwxrwx</code> şeklinde görünen alan <strong>file attributes/permissions</strong>
+şeklinde ifade edilir. Yani bir dosya mı? directory (<em>dizin</em>) mi? sahibinin 
+hakları, grubun hakları, diğerlerinin hakları şeklinde bir anlam ifade eder.
+<code>deneme.sh</code> dosyasının bulunduğu satıra bakılırsa:</p>
+<pre class="highlight plaintext"><code>-rwxr-xr-x@  1 vigo  staff        886  9 Kas 22:22 deneme.sh
+
+-   : bunun bir standart file (dosya) olduğunu, (ilk karakter)
+rwx : bu dosyanın sahibinin (yani owner) read, write ve execute
+      (okuma, yazma ve çalıştırma) haklarına sahip olduğunu,
+r-x : bağlı bulunduğu grubun read ve execute hakkı olduğunu,
+r-x : yine diğer (others) lerinin de read ve execute hakkı olduğunu
+</code></pre>
+
+<p>gösterir. (<code>-rwxr-xr-x@</code>)</p>
+
+<p>Eğer ilk karakter <code>d</code> ise bu directory (<em>folder yani dizin</em>) olduğu
+anlamındadır. Başka harfler de görmek mümkün (<em>b, c, l, s, p gibi</em>)</p>
+
+<p>Bu garip harflerden sonra gelen sayısal değer &quot;kaç tane link&rdquo; olduğu
+anlamındadır. Yani eğer bu bir folder olsaydı (<em>d</em>) ve sayı olarak da <strong>3</strong>
+yazsaydı, buradan şunu anlardık: <strong>bu folder altında 3 tane dosya var</strong>
+Keza;</p>
+<pre class="highlight plaintext"><code>drwxr-xr-x@  7 vigo  staff        238 23 Eyl 06:02 Warblade Full
+</code></pre>
+
+<p>Baktığımızda, <strong>Warblade Full</strong>ün bir directory/folder (<em>dizin</em>) olduğunu ve
+altında <strong>7</strong> adet link (<em>bu dosyada olabilir, folder da</em>) olduğunu görürüz.
+İçine girince;</p>
+<pre class="highlight plaintext"><code>vigbookpro:Desktop vigo$ ls -al Warblade\ Full/
+total 184 
+drwxr-xr-x@  7 vigo  staff    238 23 Eyl 06:02 .
+drwx------+ 28 vigo  staff    952 17 Kas 20:02 ..
+-rwxrwxrwx@  1 vigo  staff   7205 23 Eyl 00:58 Important new version notes_V1.33_Eng.txt
+-rw-r--r--@  1 vigo  staff      0 23 Mar  2008 Warblade Homepage on the net.webloc
+drwxr-xr-x@  4 vigo  staff    136 29 Eki 18:45 Warblade.app
+-rwxrwxrwx@  1 vigo  staff  75562 23 Eyl 01:01 Warblade_Manual_V1.33_Eng.txt
+-rwx------@  1 vigo  staff   1671 22 Mar  2008 license.txt
+</code></pre>
+
+<p>Dikkat ederseniz <strong>total 184</strong> diye bir şey görürsünüz. Keza, ilk iki satırı
+<code>.</code> ve <code>..</code> şeklinde görürsünüz. Tek nokta kendisini (<em>Current Path</em>),
+çift nokta da (<code>..</code>) bir üst path’i yani Parent Path’i ifade eden linklerdir.
+Dolayısıyla bu path ifadeleri dahil toplam <strong>7 link</strong> görünür.
+(<em>2 path, 5 adet dosya!</em>)</p>
+
+<p>Peki <strong>total 184</strong> nereden geldi? Yani benim anladığım burada 184 adet
+link var! Evet yanlış anlamadınız&hellip; Tam 184 adet link var ama nerede?
+<code>Warblade.app</code> adlı dosyada. Aslında o bir dosya değil. Bir paket. Bir tür 
+sıkışmış zip gibi düşünün ama bir folder gibi içine girebildiğiniz bişi.</p>
+
+<p>Tabi onun içinde de çeşitli paketcikler, dizinler, dosyalar tonla şey var.
+Bunlar da hesaba girince ilgili dizinimizde toplam 184 adet link bulunmuş
+oluyor&hellip;</p>
+
+<p>Komut satırından bakınca;</p>
+<pre class="highlight shell"><code>ls -al Warblade<span class="se">\ </span>Full/Warblade.app/Contents/Resources/data/music/
+</code></pre>
+
+<p>gibi giden bir şey görüyorum. Umarım otomatik tamamlama işlemleri için <kbd>TAB</kbd>
+tuşuna basmayı biliyorsunuzdur. Yani yukarıdaki uzun path’i ben elle yazmadım.
+<code>ls -al</code> yazdıktan sonra <strong>W</strong> yazdom ve sonra <kbd>TAB</kbd>’e bastım, ilgili
+path bilgileri otomatik geldi. Aynı şekilde <kbd>TAB</kbd>’e basa basa ne var
+ne yok gördüm&hellip;</p>
+
+<p>Neyse, link sayısından sonra görülen <code>vigo</code> ve <code>staff</code> kelimeleri, ilgili
+link’in <strong>vigo</strong> adlı kullanıcıya ve <strong>staff</strong> adlı kullanıcı grubuna ait
+olduğunu ifade ediyor. Bu, tam olarak ilgili dosya ile bişi yapabilecekler
+<strong>vigo adlı kullanıcı ve staff grubuna üye kullanıcılardır</strong> anlamına gelir.</p>
+
+<p>Unix user/permission olayları biraz kazık. Bunu; vaktim olursa başka bir
+zaman detaylı anlatmak istiyorum.</p>
+
+<p>Kullanıcı ve Grup bilgisinden sonra gelen bilgi link’in <strong>byte</strong> cinsinden
+büyüklüğünü verir. Yani <code>cf208.mp4</code> adlı dosya <strong>166069960 bytes</strong>
+büyüklüğündedir.</p>
+
+<p>Bir şey anladınız mı? bende anlamadım. <strong>166,069,960</strong> yani <strong>166milyon byte</strong>.
+Bu kaç K ? yada kaç Megabyte? Bu sayıyı 1024’e bölünce kaç KB olduğunu,
+sonucu da bir daha 1024’e bölünce kaç MB olduğunu buluruz.</p>
+
+<p>Yani bizi asıl ilgilendiren rakkam yaklaşık olarak: <code>158.4</code>dür. Yani bu
+<strong>158.4 Megabytelık</strong> bir dosyadır.</p>
+
+<p>Ya bunu anlamak için mühendis mi olmak lazım? İşte bu noktada <code>ls</code>’in <code>-h</code>
+opsiyonu imdada yetişir. Yani;</p>
+<pre class="highlight shell"><code>ls -alh
+</code></pre>
+
+<p>Deyince;</p>
+<pre class="highlight plaintext"><code> rwxr-xr-x  17 vigo  staff   578B 28 Eki 09:33 Vice2.0.6
+drwxr-xr-x@  7 vigo  staff   238B 23 Eyl 06:02 Warblade Full
+-rw-r--r--   1 vigo  staff   158M 17 Kas 19:34 cf208.mp4
+-rwxr-xr-x@  1 vigo  staff   886B  9 Kas 22:22 deneme.sh
+-rw-r--r--@  1 vigo  staff    60K 16 Kas 23:07 fisherking.jpg
+</code></pre>
+
+<p>Şeklinde bir görüntü gelir. Gördüğünüz gibi <strong>158M</strong> olarak dosya boyu yazar.
+Kiminin yanında B (<em>Bytes</em>) kiminin yanında K (<em>Kilobytes</em>) gibi, en makül ve
+anlaşılır olanı neyse o yazar.</p>
+
+<p>Son olarak, dosyanın cinsine göre renkli görünmesi durumu vardır. Directory’ler
+farklı renk, <strong>Write Protection</strong> (<em>Silinemez/Yazılamaz</em>) olanlar farklı renk,
+script olan (<em>Executable</em>) text olan farklı renk şeklinde görünür.
+Bu çok rahat anlaşılan bir durumdur. Bunu sağlamak için de;</p>
+<pre class="highlight shell"><code>ls -alhG
+</code></pre>
+
+<p>Şeklinde kullanırız. Bunun sonucunda da aşağıdaki gibi rengarek bir görüntü
+elde ederiz!</p>
+
+<div class="full zoomable"><img src="/public/images/posts/2008-11-18-ls-color.png" alt="this is an image | bu bir resim"></div>
+  
+
+<p>Tabi <code>ls</code>’in manual’ini iyice okursanız bu renkleri de nasıl
+ayarlayabileceğinizi görebilirsiniz. Eğer bu hoşunuza gittiyse ve her
+Terminal’i açtığınızda <code>ls</code> yapınca yukarıdaki gibi görünmesini istiyorsanız
+<code>alias</code> kullanımı yapabilirsiniz. Terminalde;</p>
+<pre class="highlight shell"><code><span class="nb">alias </span><span class="nv">ls</span><span class="o">=</span><span class="s2">"ls -alhG"</span>
+</code></pre>
+
+<p>Yaparsanız artık sizin <code>ls</code> diye çağırdığınız şey otomatikman <code>ls -alhG</code>
+olarak yorumlanacaktır. Tabi bilgisayarınızı her açtığınızda bunun otomatikman
+oluşmasını isterseniz iki şekilde yapabilirsiniz;</p>
+
+<ul>
+<li>System-Wide denilen, yani makinenizdeki tüm kullanıcıları kapsayan şekilde</li>
+<li>Sadece kendi / tekil kullanıcıyı kapsayacak şekilde.</li>
+</ul>
+
+<p>Yani sadece ben, vigo adlı user için bu kullanımı aktif etmek istiyorsam,
+ilgili şeyi; <code>~/.profile</code> dosyasına, eğer tüm kullanıcıların istifade etmesini 
+istiyorsam; <code>/etc/profile</code> dosyasına bu eklemeyi yapmam lazım. </p>
+
+<p>Tabi <code>/etc/</code> bölümü sakat yerlerden olduğu için öyle yol geçen hanı gibi önüne 
+gelen her kullanıcı bu dosyada bir değişiklik yapma hakkına sahip değildir.
+(<em>Tabi siz özel bir durum belirtmediyseniz</em>)</p>
+
+<p>Bu bakımdan, <strong>sudo</strong> gücünü kullanmanız gerekir. Tek becerebildiğim shell
+editörü olan <code>nano</code> ile <code>/etc/profile</code> dosyasını açmak için;</p>
+<pre class="highlight shell"><code>sudo nano -w /etc/profile
+</code></pre>
+
+<p>diyin, karşınıza aşağıdaki gibi bir dosya çıkar;</p>
+<pre class="highlight shell"><code><span class="c"># System-wide .profile for sh(1)</span>
+<span class="k">if</span> <span class="o">[</span> -x /usr/libexec/path_helper <span class="o">]</span>; <span class="k">then
+    </span><span class="nb">eval</span> <span class="sb">`</span>/usr/libexec/path_helper -s<span class="sb">`</span>
+<span class="k">fi
+if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BASH</span><span class="p">-no</span><span class="k">}</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"no"</span> <span class="o">]</span>; <span class="k">then</span>
+    <span class="o">[</span> -r /etc/bashrc <span class="o">]</span> <span class="o">&amp;&amp;</span> . /etc/bashrc
+<span class="k">fi</span>
+</code></pre>
+
+<p>Bu dosyaya aşağıdaki satırı ekleyip kaydedin ve çıkın: <kbd>⌃</kbd> + <kbd>O</kbd> ve
+<kbd>⌃</kbd> + <kbd>X</kbd></p>
+<pre class="highlight shell"><code><span class="nb">alias </span><span class="nv">ls</span><span class="o">=</span><span class="s2">"ls -alhG"</span>
+</code></pre>
+
+<p>Terminal’den de çıkın komple kapatın. Şimdi yeniden Terminali açın ve deneyin!
+Keza belki Windows’dan hatırlarsınız,</p>
+<pre class="highlight plaintext"><code>dir *.jpg
+</code></pre>
+
+<p>yapınca bize sonu <code>.jpg</code> olan dosyalar görüntülenir. Aslında burada
+çaktırmadan <strong>Regular Expression</strong> olayı kullanılır. Yani bu başı ne olursa
+olsun, sonu <code>.jpg</code> ile bitsin anlamındadır. Tabi bu tarz Regex
+(<em>Regular Expression yani Türkçesi sanırım Düzenli İfade oluyor</em>)
+kullanımların kralı, esası, aslı Linux / Unix sistemlerdir.</p>
+
+<p>Tabiki <code>ls</code>de de babalar gibi her tür Regex numaraları yapabilirsiniz;</p>
+<pre class="highlight shell"><code>ls <span class="k">*</span>.mp[34]
+</code></pre>
+
+<p>yaptığınızda, extension’ı <code>mp3</code> ya da <code>mp4</code> olan dosyalar listelenir.
+Aynen Windows’da olduğu gibi sadece jpg’leri listelemek için;</p>
+<pre class="highlight shell"><code>ls <span class="k">*</span>.jpg
+</code></pre>
+
+<p>yapabilirsiniz. Aslında <code>grep</code> kullanarak daha çılgın sorgulamalar da yapmak 
+mümkün. Bu konulara daha sonra girmeyi düşünüyorum.</p>
+
+<h3>Update: 29 Şubat 2012, Çarşamba, 11:12 itibariyle</h3>
+
+<p>Demekki bu yazıyı yazdığımda çok başlangıç noktasındaymışım. Aslında herşey o 
+kadar anlaşılır ki!</p>
+
+                    </div>
+                    
+                    <hr/>
+<div id="related-articles">
+    <ul class="list-unstyled">
+    <li>
+        <h1>İlişkili Makaleler</h1>
+        <p>Konu ile ilgili toplam “4” adet bağlantılı makale bulunuyor.</p>
+    </li>
+        <li>
+            <h3><a href="/blog/tr/2009/07/26/bash-completion-olayi/">Bash Completion olayı!</a></h3>
+            <time pubdate datetime="2009-07-26T15:12:00+03:00" title="26 Temmuz 2009, Pazar 15:12">
+                26 Temmuz 2009, Pazar 15:12
+            </time>
+            <p>Bilgisayar kullanmaya Commodore 64’le başlayan, ilk ciddi anlamda parayı Amiga 
+ile kazanan ben, kaderin cilvesi olarak, uzun yıllar Windows kullanmak zorunda 
+kalmıştım.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2008/12/26/itunes-friendfeed-twitter-twitterrific-ve-shell/">iTunes, FriendFeed, Twitter, Twitterrific ve Shell</a></h3>
+            <time pubdate datetime="2008-12-26T13:44:00+02:00" title="26 Aralık 2008, Cuma 13:44">
+                26 Aralık 2008, Cuma 13:44
+            </time>
+            <p>Süper bir başlık oldu değil mi? Bir süredir büyük bir keyifle iTunes’daki
+radyoları dinliyorum. Benim gibi 80’ler aşığı iseniz harika kanallar mevcut.
+Biran aklıma: “Keşke dinlediğim şarkıların adını Twitter’a post edebilsem?”
+diye bir fikir geldi!</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2008/11/20/macos-x-ve-coklu-rar-hazirlama/">Mac OS X ve Çoklu Rar Hazırlama</a></h3>
+            <time pubdate datetime="2008-11-20T21:56:00+02:00" title="20 Kasım 2008, Perşembe 21:56">
+                20 Kasım 2008, Perşembe 21:56
+            </time>
+            <p>Windows kullanırken vazgeçilemez tool’larımdan biri de <a href="http://rarlab.com">WinRar</a>’dı. Genelde
+herkes gibi bende (!) gün içinde sık sık rar açan biriyim. Biraz google
+aramasından sonra Mac OS için open source tonla rar açan program buldum.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2008/11/17/ds-store-sorunsali/">.DS_Store sorunsalı</a></h3>
+            <time pubdate datetime="2008-11-17T16:05:00+02:00" title="17 Kasım 2008, Pazartesi 16:05">
+                17 Kasım 2008, Pazartesi 16:05
+            </time>
+            <p>Windows’dan Mac OS’a geçince yaşadığım en büyük farklardan biri de sevgili
+Finder’ın sürekli olarak <code>.DS_Store</code> adlı dosyalar üreterek fazladan file
+kalabalığı yaratmasıydı.</p>
+        </li>
+    </ul>
+</div>
+<hr/>
+
+                    
+                    <ul id="prev-next-articles" class="list-inline">
+                        <li class="list-inline-item li-left">
+                            <a href="/blog/tr/2008/11/17/ds-store-sorunsali/">&laquo; .DS_Store sorunsalı</a>
+                            <time pubdate datetime="2008-11-17T16:05:00+02:00" title="17 Kasım 2008, Pazartesi">17 Kasım 2008, Pazartesi</time>
+                        </li>
+                        <li class="list-inline-item pull-sm-right m-r-0 text-md-right li-right">
+                            <a href="/blog/tr/2008/11/20/iphone-icin-macos-uygulamasi-diskaid/">iPhone için Mac OS uygulaması: DiskAid &raquo;</a>
+                            <time pubdate datetime="2008-11-20T11:50:00+02:00" title="20 Kasım 2008, Perşembe">20 Kasım 2008, Perşembe</time>
+                        </li>
+                    </ul>
+                </section>
+
+                    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'ugurozyilmazel';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Lütfen, <a href="http://disqus.com/?ref_noscript">Disqus</a> tarafından sağlanan yorumları görmek için JavaScript&rsquo;i aktive edin.
+    </noscript>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                <nav id="footer-nav">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a title="C64 Scener Database" href="http://csdb.dk/scener/?id=8379">CSDB</a></li>
+                        <li class="list-inline-item"><a title="Zombie Boys" href="http://zombieboys.net">Zombie Boys</a></li>
+                        <li class="list-inline-item"><a title="Bronx" href="http://bronxwhq.org">Bronx</a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="/feed-tr.xml"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-rss fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="https://github.com/vigo"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0"><a title="Twitter" href="https://twitter.com/vigobronx"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /footer -->
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        
+        
+        
+        <script src="/public/js/application.js"></script>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-6463685-2', 'auto');
+          ga('send', 'pageview');
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Uğur “vigo” Özyılmazel</title>
+  <subtitle>Yazılım geliştirici</subtitle>
+  <id>http://ugur.ozyilmazel.com</id>
+  <link href="http://ugur.ozyilmazel.com"/>
+  <link href="http://ugur.ozyilmazel.com/feed-en.xml" rel="self"/>
+  <updated>2016-07-24T15:07:00+03:00</updated>
+  <author>
+    <name>Uğur “vigo” Özyılmazel</name>
+  </author>
+  <entry>
+    <title>Hello world</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/en/2016/07/24/hello-world/"/>
+    <id>http://ugur.ozyilmazel.com/blog/en/2016/07/24/hello-world/</id>
+    <published>2016-07-24T15:07:00+03:00</published>
+    <updated>2016-07-24T15:42:09+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;I’ve decided to write in English. &lt;/p&gt;
+
+&lt;p&gt;Hello friends! I’ve been thinking about this for a long time. I’d like to
+share my blog both in Turkish and English. I’m planning to write more about
+Ruby, Python, Golang, Bash and OS X related topics.&lt;/p&gt;
+
+&lt;p&gt;I hope I’ll make it 8)&lt;/p&gt;
+</content>
+  </entry>
+</feed>

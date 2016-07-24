@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title>Uğur “vigo” Özyılmazel | Rake için bash-completion</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        
+        <link href="/public/css/application.css" rel="stylesheet" />
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
+        <meta name="date" content="2016-07-24T16:19:17+03:00" />
+        <meta name="description" content="Terminal’de çalışırken hep işimi hızlı ve en kolay şekilde yapabilmenin yollarını ararım.
+Bu sayede pek çok yeni şey de öğrendim. Octopress sağolsun ciddi ciddi Ruby
+öğrenmeme büyük katkıda bulundu…" />
+        <meta name="author" content="Uğur “vigo” Özyılmazel"/>
+        <meta name="copyright" content="(c) 2006 / 2016 - Uğur “vigo” Özyılmazel" />
+        <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2012/02/02/rake-icin-bash-completion/" />
+        <meta property="og:title" content="Rake için bash-completion" />
+        <meta property="og:site_name" content="vigo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Terminal’de çalışırken hep işimi hızlı ve en kolay şekilde yapabilmenin yollarını ararım.
+Bu sayede pek çok yeni şey de öğrendim. Octopress sağolsun ciddi ciddi Ruby
+öğrenmeme büyük katkıda bulundu…" />
+        <meta property="og:image" content="http://ugur.ozyilmazel.com/public/images/covers/2012-02-02-rake-completion.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="3330" />
+        <meta property="og:image:height" content="768" />
+        <link rel="apple-touch-icon-precomposedposed" sizes="144x144" href="/public/images/icons/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/images/icons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/images/icons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/public/images/icons/apple-touch-icon-57-precomposed.png">
+        <link href="/public/images/icons/favicon.png" rel="shortcut icon" type="image/png" />
+
+    </head>
+    <body class="blog blog_tr blog_tr_2012 blog_tr_2012_02 blog_tr_2012_02_02 blog_tr_2012_02_02_rake-icin-bash-completion blog_tr_2012_02_02_rake-icin-bash-completion_index">
+            
+    
+    
+<!-- page-top-nav -->
+<nav id="page-top-nav" class="navbar">
+    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsable_navbar">&#9776;</button>
+    <div class="collapse navbar-toggleable-sm" id="collapsable_navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                    <ul class="list-inline nav navbar-nav">
+<li class="list-inline-item nav-item"><a href="/">Anasayfa</a></li><li class="list-inline-item nav-item active"><a href="/blog/tr/">Blog</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/hakkimda/">Hakkımda</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/sunumlar/">Sunumlar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/kitaplar/">Kitaplar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/iletisim/">İletişim</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/cv/">CV</a></li>                        <li class="list-inline-item nav-item pull-md-right m-r-0">
+                                <a title="English" href="/blog/en/">English</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- /page-top-nav -->
+
+
+
+    
+    <!-- page cover -->
+<div class="jumbotron jumbotron-fluid page-cover hidden-sm-down" style="background-image: url(/public/images/covers/2012-02-02-rake-completion.png);">
+    <div class="page-cover-layer page-cover-layer-solid">
+        <div class="container">
+            <div class="text-xs-center">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page cover -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <section id="article">
+                    <h1><a href="/blog/tr/2012/02/02/rake-icin-bash-completion/">Rake için bash-completion</a></h1>
+                    
+
+                    <time pubdate datetime="2012-02-02T15:30:00+02:00" title="02 Şubat 2012, Perşembe 15:30">
+                        02 Şubat 2012, Perşembe 15:30
+                    </time>
+
+                    <header>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/ruby/">ruby</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/rake/">rake</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/bash-completion/">bash completion</a></span>
+                    </header>
+
+                    <div id="markdown">
+                        <p>Terminal’de çalışırken hep işimi hızlı ve en kolay şekilde yapabilmenin yollarını ararım.
+Bu sayede pek çok yeni şey de öğrendim. Octopress sağolsun ciddi ciddi <a href="http://www.ruby-lang.org/" title="Ruby">Ruby</a>
+öğrenmeme büyük katkıda bulundu&hellip;
+</p>
+
+<p><code>Rakefile</code> sayesinde pek çok şeyi otomatize ediyoruz. Eğer;</p>
+<pre class="highlight plaintext"><code>rake -T
+</code></pre>
+
+<p>bize yapabileceğimiz işlerin listesini veriyor. Örneğin Octopress sitenizde
+bunu denerseniz:</p>
+<pre class="highlight shell"><code>rake clean                      <span class="c"># Clean out caches: .pygments-cache, .gist-cache, .sass-cache</span>
+rake copydot[source,dest]       <span class="c"># copy dot files for deployment</span>
+rake deploy                     <span class="c"># Default deploy task</span>
+rake gen_deploy                 <span class="c"># Generate website and deploy</span>
+rake generate                   <span class="c"># Generate jekyll site</span>
+</code></pre>
+
+<p>gibi pek çok <strong>rake task</strong>’i görebilirsiniz. Aklıma ilk şu geldi:</p>
+
+<blockquote>
+<p>peki ben tüm <code>rake</code> komutlarını ezbere mi bileceğim?</p>
+</blockquote>
+
+<p>Bunun mutlaka <code>bash-completion</code>’ı vardır dedim ve buldum. Mac OS X kullanıyorum
+ve paket yöneticisi olarak <a href="http://mxcl.github.com/homebrew/" title="The missing package manager for OS X">Homebrew</a> kullanıyorum. Eğer yoksa ilk
+olarak ilgili paketi kurmanız gerekiyor :</p>
+<pre class="highlight shell"><code><span class="c"># önce kontrol edin</span>
+brew ls bash-completion <span class="c"># eğer yoksa hata verir...</span>
+
+<span class="c"># yoksa</span>
+brew update
+brew install bash-completion
+</code></pre>
+
+<p>Kurumdan sonra; <code>/usr/local/etc/bash_completion.d</code> altına <code>completion_rake</code>
+adında bir dosya oluşturup içine aşağıdaki fonksiyonu yazın:</p>
+<pre class="highlight shell"><code>
+touch /usr/local/etc/bash_completion.d/completion_rake <span class="c"># dosyayı oluşturduk</span>
+nano /usr/local/etc/bash_completion.d/completion_rake <span class="c"># açtık</span>
+
+<span class="c"># eğer TextMate’iniz ayarlıysa</span>
+mate /usr/local/etc/bash_completion.d/completion_rake
+</code></pre>
+<pre class="highlight shell"><code>_rake<span class="o">()</span>
+<span class="o">{</span>
+    <span class="k">if</span> <span class="o">[[</span> ! -e Rakefile <span class="o">]]</span>; <span class="k">then
+        return
+    fi
+    </span><span class="nv">opts</span><span class="o">=</span><span class="k">$(</span>rake -T | awk <span class="s1">'NR != 1 {print $2}'</span><span class="k">)</span>
+    <span class="nv">cur</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">COMP_WORDS</span><span class="p">[COMP_CWORD]</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nv">COMPREPLY</span><span class="o">=(</span> <span class="k">$(</span><span class="nb">compgen</span> -W <span class="s2">"</span><span class="k">${</span><span class="nv">opts</span><span class="k">}</span><span class="s2">"</span> -- <span class="k">${</span><span class="nv">cur</span><span class="k">})</span> <span class="o">)</span>
+<span class="o">}</span>
+<span class="nb">complete</span> -F _rake rake
+</code></pre>
+
+<p>Benim <code>.dotfiles</code> şeklinde kendi ayarlarım var bu bakımdan tüm bash-completion
+dosyalarım <code>~/Dotfiles/completions/</code> altında bulunuyor bu bakımdan ben
+<code>/usr/local/etc/bash_completion.d</code> altına linkliyorum dosyayı.</p>
+<pre class="highlight plaintext"><code>ln -s ~/Dotfiles/completions/completion_rake /usr/local/etc/bash_completion.d/completion_rake
+</code></pre>
+
+<p>şeklinde yapıyorum.</p>
+
+                    </div>
+                    
+                    <hr/>
+<div id="related-articles">
+    <ul class="list-unstyled">
+    <li>
+        <h1>İlişkili Makaleler</h1>
+        <p>Konu ile ilgili toplam “7” adet bağlantılı makale bulunuyor.</p>
+    </li>
+        <li>
+            <h3><a href="/blog/tr/2013/02/20/bash-completion-anotomisi/">Bash Completion Anotomisi</a></h3>
+            <time pubdate datetime="2013-02-20T23:37:00+02:00" title="20 Şubat 2013, Çarşamba 23:37">
+                20 Şubat 2013, Çarşamba 23:37
+            </time>
+            <p>Terminal’le, <a href="http://www.gnu.org/software/bash/" title="Bash">Bash</a>’le ilk tanıştığım andan itibaren <code>tab-completion</code> olayının
+hastası olmuş, hemen:</p>
+
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2012/05/02/irb-icin-yardimci-gem-ori/">IRB için yardımcı gem: ORI</a></h3>
+            <time pubdate datetime="2012-05-02T13:51:00+03:00" title="02 Mayıs 2012, Çarşamba 13:51">
+                02 Mayıs 2012, Çarşamba 13:51
+            </time>
+            <p><a href="http://peepcode.com">Peepcode</a> screencast’lerinden <a href="https://peepcode.com/products/play-by-play-tenderlove-ruby-on-rails" title="PLAY BY PLAY: AARON PATTERSON">Play by play: Aaron Patterson</a>’ı
+izlerken daldan dala atladım ve <a href="http://en.wikipedia.org/wiki/Interactive_Ruby_Shell">IRB</a> ile ilgili çok işe yarar bir gem
+buldum: <strong>ORI</strong></p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/03/30/textmate-ve-path-sorunsali/">TextMate ve Path sorunsalı</a></h3>
+            <time pubdate datetime="2011-03-30T14:40:00+03:00" title="30 Mart 2011, Çarşamba 14:40">
+                30 Mart 2011, Çarşamba 14:40
+            </time>
+            <p>TextMate’in sevdiğim özelliklerinden biri <strong>in-line</strong> olarak programlama
+yapabilmek. Örneğin <strong>html</strong> ile uğraşıyorsunuz, hemen bir <code>div</code> ve o div’in
+içinde 15 tane <code>p</code> ve p’lerin içinde de <code>span</code>’e ihtiyacınız var (<em>iyi uydurdum dimi?</em>)
+basit bir hareketle bunu programatik olarak yapabilirsiniz.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/03/29/kendi-rubyini-gemini-kendin-kur/">Kendi Ruby’ini Gem’ini kendin kur</a></h3>
+            <time pubdate datetime="2011-03-29T00:39:00+03:00" title="29 Mart 2011, Salı 00:39">
+                29 Mart 2011, Salı 00:39
+            </time>
+            <p>Sıcağı sıcağına hemen yazmak istiyorum. “Kendin kur” kampanyamızın devamı yeni
+bir maceraya daha hoş geldiniz. Amacımız Mac OS X’e Ruby kurmak. Öncelikle
+macports’un kurulu olması gerekiyor!</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/02/22/pip-icin-bash-completion/">Pip için bash completion</a></h3>
+            <time pubdate datetime="2011-02-22T11:05:00+02:00" title="22 Şubat 2011, Salı 11:05">
+                22 Şubat 2011, Salı 11:05
+            </time>
+            <p>Bir <a href="/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/">önceki yazımda</a> unutmuşum, yeni farkettim. <code>pip</code>’i
+terminalde kullanırken <code>bash-completion</code> özelliğinden de faydalanabiliriz. Bunun
+için, pip’le gelen bash-completion’ı sisteme eklemek gerekiyor. Tabi, sizde
+zaten <code>bash-completion</code> kurulu diye var sayıyorum.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2009/08/27/macports-ssh-otomatik-tamamlama-ve-genel-bilgiler/">Macports, ssh otomatik tamamlama ve genel bilgiler</a></h3>
+            <time pubdate datetime="2009-08-27T15:41:00+03:00" title="27 Ağustos 2009, Perşembe 15:41">
+                27 Ağustos 2009, Perşembe 15:41
+            </time>
+            <p>Daha önceki yazılarımda da bahsetmiştim, <a href="http://macports.org" title="Macports">MacPorts</a> diye harika bir
+şey var! Linux (<em>debian, ubuntu vs…</em>) daki paket yönetiminin OS X’cesi.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2009/07/29/django-icin-bash-completion/">Django için bash completion</a></h3>
+            <time pubdate datetime="2009-07-29T15:59:00+03:00" title="29 Temmuz 2009, Çarşamba 15:59">
+                29 Temmuz 2009, Çarşamba 15:59
+            </time>
+            <p>Az önce başardığım, aslında çok bilindiğini düşündüğüm fakat etrafımdaki
+<a href="https://www.djangoproject.com/" title="Django Project">Django</a>’cu kardeşimlerimden duymadığım bir özellikten bahsetmek
+istiyorum!</p>
+        </li>
+    </ul>
+</div>
+<hr/>
+
+                    
+                    <ul id="prev-next-articles" class="list-inline">
+                        <li class="list-inline-item li-left">
+                            <a href="/blog/tr/2012/02/02/ve-blogumu-octopress-tr-altyapisiyla-kendi-sunucuma-tasidim/">&laquo; ve Blog’umu Octopress-TR altyapısıyla kendi sunucuma taşıdım</a>
+                            <time pubdate datetime="2012-02-02T00:41:00+02:00" title="02 Şubat 2012, Perşembe">02 Şubat 2012, Perşembe</time>
+                        </li>
+                        <li class="list-inline-item pull-sm-right m-r-0 text-md-right li-right">
+                            <a href="/blog/tr/2012/05/02/irb-icin-yardimci-gem-ori/">IRB için yardımcı gem: ORI &raquo;</a>
+                            <time pubdate datetime="2012-05-02T13:51:00+03:00" title="02 Mayıs 2012, Çarşamba">02 Mayıs 2012, Çarşamba</time>
+                        </li>
+                    </ul>
+                </section>
+
+                    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'ugurozyilmazel';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Lütfen, <a href="http://disqus.com/?ref_noscript">Disqus</a> tarafından sağlanan yorumları görmek için JavaScript&rsquo;i aktive edin.
+    </noscript>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                <nav id="footer-nav">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a title="C64 Scener Database" href="http://csdb.dk/scener/?id=8379">CSDB</a></li>
+                        <li class="list-inline-item"><a title="Zombie Boys" href="http://zombieboys.net">Zombie Boys</a></li>
+                        <li class="list-inline-item"><a title="Bronx" href="http://bronxwhq.org">Bronx</a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="/feed-tr.xml"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-rss fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="https://github.com/vigo"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0"><a title="Twitter" href="https://twitter.com/vigobronx"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /footer -->
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        
+        
+        
+        <script src="/public/js/application.js"></script>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-6463685-2', 'auto');
+          ga('send', 'pageview');
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,1439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Uğur “vigo” Özyılmazel</title>
+  <subtitle>Yazılım geliştirici</subtitle>
+  <id>http://ugur.ozyilmazel.com</id>
+  <link href="http://ugur.ozyilmazel.com"/>
+  <link href="http://ugur.ozyilmazel.com/feed-tr.xml" rel="self"/>
+  <updated>2015-04-13T09:28:00+03:00</updated>
+  <author>
+    <name>Uğur “vigo” Özyılmazel</name>
+  </author>
+  <entry>
+    <title>TextMate ve İnteraktif Giriş</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2015/04/13/textmate-ve-interaktif-giris/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2015/04/13/textmate-ve-interaktif-giris/</id>
+    <published>2015-04-13T09:28:00+03:00</published>
+    <updated>2016-07-24T15:42:09+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;Çoğu zaman birşeyleri hızla denemek için &lt;a href="http://macromates.com" title="TextMate: The Missing Editor"&gt;TextMate&lt;/a&gt;’i kullanırım. 
+İstediğim programlama dilinde, anında birşeyleri yazıp çalıştırmak mümkündür
+TextMate’de. &lt;/p&gt;
+
+&lt;p&gt;Örneğin &lt;strong&gt;Ruby&lt;/strong&gt; çalıştırmak için; aşağıdaki gibi boş bir döküman açıp,
+kayıt bile etmeden;&lt;/p&gt;
+
+&lt;div class="full zoomable"&gt;&lt;img src="/public/images/posts/2015-04-13-textmate-ruby.png" alt="TextMate ekran görüntüsü"&gt;&lt;p&gt; Yeni pencerede &lt;kbd&gt;⌘&lt;/kbd&gt; + &lt;kbd&gt;N&lt;/kbd&gt; 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;Yazmak istediğinizi yazıp &lt;kbd&gt;⌘&lt;/kbd&gt; + &lt;kbd&gt;R&lt;/kbd&gt; yaparak (&lt;em&gt;bazı dillerde bu tuş kombinasyonu
+farklı olabiliyor ama geneli hep bu&amp;hellip;&lt;/em&gt;) hemen çalıştırabilirsiniz.&lt;/p&gt;
+
+&lt;div class="full zoomable"&gt;&lt;img src="/public/images/posts/2015-04-13-textmate-ruby-2.png" alt="TextMate ekran görüntüsü"&gt;&lt;p&gt; Çıktı ekranı 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;Fakat bazı durumlarda kullanıcıdan &lt;strong&gt;input&lt;/strong&gt; almanız gerekebilir. &lt;code&gt;STDIN&lt;/code&gt; yani
+standart input’dan &lt;strong&gt;giriş&lt;/strong&gt; almanız gerekebilir. Tüm amacım, TextMate ortamını
+terketmeden işlerimi yapmak demiştim :) Acaba bu sorunu çözmenin yolu var mı?
+diye bakarken çok güzel birşeyle karşılaştım.&lt;/p&gt;
+
+&lt;p&gt;Zaten bu konu 2009 yılında çözümlenmiş. TextMate’in &lt;a href="http://blog.macromates.com/2009/interactive-input/"&gt;blog&lt;/a&gt;’unda 
+yazılanlara baktım. Yıl 2015 ve halen benim gibi en eski &lt;strong&gt;Version 1.5.11 (1635)&lt;/strong&gt;
+kullananlar için birisi kafa yormuş ve güzel bir kütüphane hazırlamış.&lt;/p&gt;
+
+&lt;p&gt;Yapmanız gereken &lt;a href="https://github.com/alkemist/"&gt;alkemist&lt;/a&gt; adlı kullanıcın hazırladığı
+&lt;a href="https://github.com/alkemist/interactive-input/downloads"&gt;tm_interactive_input.dylib&lt;/a&gt; paketini indirmek. Paketi indirdikten
+sonra ilgili yere kopyalamak:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /Applications/TextMate.app/Contents/SharedSupport/Support/lib/
+cp ~/Downloads/tm&lt;span class="se"&gt;\_&lt;/span&gt;interactive_input.dylib .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Daha sonra TextMate’i bir restart edin. ve aşağıdaki kodu çalıştırmayı
+deneyin: &lt;kbd&gt;⌘&lt;/kbd&gt; + &lt;kbd&gt;R&lt;/kbd&gt;;&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;gets&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;chomp&lt;/span&gt;        &lt;span class="c1"&gt;# Kullanıcıdan input alır&lt;/span&gt;
+&lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;"input: &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div class="card card-custom" title="INPUT istemcisi!"&gt;&lt;img src="/public/images/posts/2015-04-13-textmate-ruby-3.png" alt="this is an image | bu bir resim"&gt;&lt;div class="card-block"&gt;&lt;p class="card-text"&gt;INPUT istemcisi!&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;An itibariyle OS X Yosemite 10.10.3’te sıkıntısız çalışıyor ama nereye
+kadar çalışır bilemiyorum. En azından şimdilik işimizi görüyor!&lt;/p&gt;
+
+&lt;div class="full zoomable"&gt;&lt;img src="/public/images/posts/2015-04-13-textmate-ruby-4.png" alt="TextMate ekran görüntüsü"&gt;&lt;p&gt; Sonuç: input geldi&amp;hellip; 
+&lt;/p&gt;&lt;/div&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Yeniden Merhaba</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2014/11/25/yeniden-merhaba/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2014/11/25/yeniden-merhaba/</id>
+    <published>2014-11-25T22:20:00+02:00</published>
+    <updated>2016-07-24T15:42:09+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;Bir çılgınlık yaptım ve websitemi &lt;a href="https://github.com/vigo/octopress"&gt;Octopress&lt;/a&gt; yerine 
+&lt;a href="http://middlemanapp.com/"&gt;Middleman&lt;/a&gt;’e taşıdım! &lt;/p&gt;
+
+&lt;p&gt;Bahaneyle tüm post’larımı elden geçirdim, düzenlemeler yaptım. Hatta şunu
+anladım ki, insan belli zamanlarda geri dönüp blog postlarına bir göz
+atmalı! Örneğin bu yeni siteye, bazı eski postlarımı taşımadım. Çeşitli firmalara
+kızmışım, sonra hıncımı blog yazarak almışım gibi olmuş. Haklı olmama
+rağmen, bugün baktığımda komik ve gereksiz geliyor.&lt;/p&gt;
+
+&lt;p&gt;Uzun uzun kastırıp yazdığım bazı şeylerin bugün hiçbir değerinin kalmadığını da
+gördüm. &lt;a href="http://macports.org" title="Macports"&gt;Macports&lt;/a&gt; diye bişiden bahsetmişim&amp;hellip; 3-5 yazıda değinmişim. Kimler
+hatırlıyor şu an? &lt;a href="http://mxcl.github.com/homebrew/" title="The missing package manager for OS X"&gt;Homebrew&lt;/a&gt; duman etti ports’u&amp;hellip; 
+&lt;em&gt;Ruby’i nasıl derleriz ?&lt;/em&gt; bunu anlatmaşım kaç defa&amp;hellip; Bugün &lt;a href="https://github.com/sstephenson/rbenv"&gt;Rbenv&lt;/a&gt; 
+diye birşey kullanıyoruz, anında görüntü şıp diye kuruluyor hiç yormadan 
+üzmeden.&lt;/p&gt;
+
+&lt;p&gt;Uğraşıp &lt;strong&gt;MobileMe&lt;/strong&gt; servisini (&lt;em&gt;Apple’ın iCloud’dan önceki servisi&lt;/em&gt;) çarşaf
+çarşaf yazmışım :) Tarih oldu gitti&amp;hellip; Demekki blog yazmak da biraz nankör bişi.&lt;/p&gt;
+
+&lt;p&gt;Blog’umun source’u &lt;a href="https://github.com/vigo/ugur.ozyilmazel.com"&gt;GitHub&lt;/a&gt;’da var. İsteyen herkes aynı şekilde kendi
+blogunu kolayca yapsın diye. Gereken açıklamaları &lt;a href="https://github.com/vigo/ugur.ozyilmazel.com/blob/master/readme.md"&gt;readme.md&lt;/a&gt; dosyasında
+bulabilirsiniz.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>TextMate 1 ve Yosemite</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2014/11/14/textmate-1-ve-yosemite/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2014/11/14/textmate-1-ve-yosemite/</id>
+    <published>2014-11-14T13:29:00+02:00</published>
+    <updated>2016-07-24T15:42:09+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;Eğer siz de benim gibi dinozorsanız ve halen en eski &lt;a href="http://macromates.com" title="TextMate: The Missing Editor"&gt;TextMate&lt;/a&gt;’i
+Version &lt;strong&gt;1.5.11&lt;/strong&gt; (1635)’i kullanıyorsanız bu yazıyı okumanız iyi olur :)
+&lt;/p&gt;
+
+&lt;p&gt;Yıl geçmiyor ki OS X’in yeni sürümü çıkmaya görsün. Her yeni versiyon
+demek, yeni bir install demek benim adıma! Neden? Herzaman &lt;strong&gt;Clean Install&lt;/strong&gt;
+yaptığım için, sıfırdan herşeyi kurmak durumunda kalıyorum.&lt;/p&gt;
+
+&lt;p&gt;Pek çok kullanıcı &lt;strong&gt;Upgrade&lt;/strong&gt; yapıyor, hatta taa OS X Tiger’dan Yosemite’ye
+kadar gelenleri bile tanıyorum.&lt;/p&gt;
+
+&lt;p&gt;TextMate 1, eski bir tool olduğu için, ne yazıkki iç işlemlerinde Ruby’nin
+en eski versiyonlarından birine ihtiyaç duyuyor. Ruby versiyon 1.8.7. Apple,
+son bir kaç sürümdür, Ruby 2.0+ ile birlikte geliyor. Eğer eski sisteminizden
+upgrade yaparak ilerliyorsanız, halen en eski Ruby 1.8.7 sistemde kaldığı
+için hiçbir sıkıntı yaşamadan hayatınıza devam edebilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;Eğer sıfırdan kurulum yaparsanız işte o an sorunlar başlıyor.&lt;/p&gt;
+
+&lt;p&gt;Yapılacak ilk iş, Ruby 1.8.7 kurmak. Ama öncesinde &lt;a href="http://mxcl.github.com/homebrew/" title="The missing package manager for OS X"&gt;Homebrew&lt;/a&gt;
+kurmanız gerekiyor. Sağolsun Homebrew, size XCode Commandline Tools’u da
+kuruyor otomatik olarak. Homebrew kurulduktan sonra bazı minik paketlere de
+ihtiyacımız oluyor:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;brew install readline homebrew/dupes/apple-gcc42 openssl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bu paketleri kurduktan sonra Ruby versiyon yöneticisi de kurmamız lazım.
+Ben &lt;a href="https://github.com/sstephenson/rbenv"&gt;Rbenv&lt;/a&gt;’ci olduğum için hemen kuruyorum:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="nb"&gt;cd
+&lt;/span&gt;git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bu işlem ardından, &lt;code&gt;~/.bashrc&lt;/code&gt; ya da &lt;code&gt;~/.profile&lt;/code&gt; dosyanıza ek yapmanız lazım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="nb"&gt;export &lt;/span&gt;&lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="nv"&gt;$HOME&lt;/span&gt;&lt;span class="s2"&gt;/.rbenv/bin:&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;span class="nb"&gt;eval&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;rbenv init -&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ya Terminal’i restart edin ya da &lt;code&gt;exec $SHELL&lt;/code&gt; yapın. Şimdi eski Ruby’yi
+kuralım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="nv"&gt;CONFIGURE_OPTS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"--with-readline-dir=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;brew --prefix readline&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; rbenv install 1.8.7-p358
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Kurulum bittikten sonra, TextMate’i açıp, Preferences’dan Shell Variables’da
+&lt;code&gt;PATH&lt;/code&gt;’e ön ek yapacağız, &lt;strong&gt;KULLANICI_ADINIZ&lt;/strong&gt; kısmına kendi kullanıcı adınızı
+yazmayı unutmayın! Şunu başa ekleyeceğiz:&lt;/p&gt;
+
+&lt;div class="card card-custom" title="TextMate configürasyon ekranı"&gt;&lt;img src="http://i.imgur.com/oPGZLOC.png" alt="this is an image | bu bir resim"&gt;&lt;div class="card-block"&gt;&lt;p class="card-text"&gt;TextMate configürasyon ekranı&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;/Users/KULLANICI_ADINIZ/.rbenv/versions/1.8.7-p358/bin:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Son durumda aşağıdaki gibi bir şey görmeniz gerekiyor:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;/Users/KULLANICI_ADINIZ/.rbenv/versions/1.8.7-p358/bin:/usr/bin:/bin:/usr/sbin:/sbin
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Rubygem Hazırlıyoruz</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2014/09/23/rubygem-hazirliyoruz/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2014/09/23/rubygem-hazirliyoruz/</id>
+    <published>2014-09-23T12:45:00+03:00</published>
+    <updated>2016-07-24T15:42:09+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://howistart.org/"&gt;How I start&lt;/a&gt; sitesinde görüp, kesinlikle Türkçe’si
+de olmalı dediğim, sıfırdan Ruby GEM’i hazırlamayı anlatan blog
+postuma hoşgeldiniz!
+&lt;/p&gt;
+
+&lt;h2&gt;Gerekenler&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://rubygems.org"&gt;Rubygems&lt;/a&gt;’de hesap&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com"&gt;GitHub&lt;/a&gt;’da hesap&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://rvm.io"&gt;RVM&lt;/a&gt; ya da &lt;a href="https://github.com/sstephenson/rbenv"&gt;Rbenv&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://bundler.io/"&gt;Bundler&lt;/a&gt; gem’i&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://git-scm.com/"&gt;GIT&lt;/a&gt; revizyon kontrol&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Öncelikle ilk ihtiyacımız olan şey &lt;a href="https://rubygems.org"&gt;Rubygems.org&lt;/a&gt; sitesinde
+bir hesap olması! Eğer yoksa hızlıca bu sitede bir hesap oluşturmanız gerekiyor.&lt;/p&gt;
+
+&lt;p&gt;Hangi &lt;code&gt;ruby&lt;/code&gt; versiyonunu kullanıyorsanız kullanın, mutlaka &lt;code&gt;bundler&lt;/code&gt; gem’i de
+kurulu olmalı. Eğer kurulu değilse;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;gem install bundler
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;şeklinde kurabilirsiniz. Ya &lt;a href="http://rvm.io"&gt;RVM&lt;/a&gt; ya da &lt;a href="https://github.com/sstephenson/rbenv"&gt;RBENV&lt;/a&gt; 
+kullandığınızı varsayıyorum. Keza aynı şekilde sisteminizde &lt;a href="http://git-scm.com/"&gt;GIT&lt;/a&gt; revizyon
+kontrol sisteminin de kurulu olduğunu varsayıyorum. &lt;/p&gt;
+
+&lt;p&gt;İlk olarak Rubygems’deki credentials’ımızı lokal makinemize aktaralım. Hesap
+oluştururken belirlediğiniz &lt;strong&gt;KULLANICI_ADI&lt;/strong&gt;’nı aşağıdaki yere girerek
+gerekli kimlik bilgilerini çekiyoruz. Bu sayede, en son safhada yapacağımız
+&lt;code&gt;gem push&lt;/code&gt; etme işlemini yapabilme yetkisini ayarlıyoruz.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;curl -u KULLANICI_ADI https://rubygems.org/api/v1/api_key.yaml &amp;gt; ~/.gem/credentials; chmod 0600 ~/.gem/credentials
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Örnek olması adına, çok basit bir iş yapan uygulama hazırlayacağız. Basit
+bir hesap makinesi. 2 sayı ve yapacağı işlemi vereceğiz bize sonucunu geri
+dönecek. Uygulamanın adı &lt;strong&gt;simple_calcu&lt;/strong&gt; olsun.&lt;/p&gt;
+
+&lt;p&gt;Şimdi, ilgili &lt;code&gt;gem&lt;/code&gt; iskeletini oluşturalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bundle gem simple_calcu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;işlem sonunda;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;      create  simple_calcu/Gemfile
+      create  simple_calcu/Rakefile
+      create  simple_calcu/LICENSE.txt
+      create  simple_calcu/README.md
+      create  simple_calcu/.gitignore
+      create  simple_calcu/simple_calcu.gemspec
+      create  simple_calcu/lib/simple_calcu.rb
+      create  simple_calcu/lib/simple_calcu/version.rb
+Initializing git repo in /private/tmp/simple_calcu
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;gerekli dosyalar oluşturuldu. &lt;strong&gt;Bundler&lt;/strong&gt; bizim için pek çok şeyi
+otomatik olarak üretti. Şimdi &lt;code&gt;cd simple_calcu/&lt;/code&gt; diyip projenin içine
+girelim ve &lt;code&gt;bundle exec rake -T&lt;/code&gt; diyerek bize sunulan &lt;strong&gt;default&lt;/strong&gt;
+task’lere bakalım:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;rake build    # Build simple_calcu-0.0.1.gem into the pkg directory
+rake install  # Build and install simple_calcu-0.0.1.gem into system gems
+rake release  # Create tag v0.0.1 and build and push simple_calcu-0.0.1.gem to Rubygems
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;rake build&lt;/code&gt; ile hazırlayacağımız &lt;code&gt;gem&lt;/code&gt;’i paketleyeceğiz. &lt;code&gt;rake install&lt;/code&gt; ile
+yaptığımız &lt;code&gt;gem&lt;/code&gt; kurup test edeceğiz. En son olarak &lt;code&gt;rake release&lt;/code&gt; ile
+Rubygems’e push edeceğiz.&lt;/p&gt;
+
+&lt;h3&gt;.gemspec&lt;/h3&gt;
+
+&lt;p&gt;Otomatik olarak oluşan dosya aşağıdaki gibi:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# coding: utf-8&lt;/span&gt;
+&lt;span class="n"&gt;lib&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;expand_path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'../lib'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kp"&gt;__FILE__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="vg"&gt;$LOAD_PATH&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;unshift&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;unless&lt;/span&gt; &lt;span class="vg"&gt;$LOAD_PATH&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;include?&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'simple_calcu/version'&lt;/span&gt;
+
+&lt;span class="no"&gt;Gem&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Specification&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;name&lt;/span&gt;          &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"simple_calcu"&lt;/span&gt;
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;version&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;VERSION&lt;/span&gt;
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;authors&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"Uğur Özyılmazel"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;email&lt;/span&gt;         &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"ugurozyilmazel@gmail.com"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;summary&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sx"&gt;%q{TODO: Write a short summary. Required.}&lt;/span&gt;
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;description&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sx"&gt;%q{TODO: Write a longer description. Optional.}&lt;/span&gt;
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;homepage&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;""&lt;/span&gt;
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;license&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"MIT"&lt;/span&gt;
+
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;files&lt;/span&gt;         &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sb"&gt;`git ls-files -z`&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\x0&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;executables&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;files&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;grep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;%r{^bin/}&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="no"&gt;File&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;basename&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;test_files&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;files&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;grep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;%r{^(test|spec|features)/}&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;require_paths&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"lib"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;add_development_dependency&lt;/span&gt; &lt;span class="s2"&gt;"bundler"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"~&amp;gt; 1.6"&lt;/span&gt;
+  &lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;add_development_dependency&lt;/span&gt; &lt;span class="s2"&gt;"rake"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"~&amp;gt; 10.0"&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;spec.authors&lt;/code&gt; ve &lt;code&gt;spec.email&lt;/code&gt; bilgileri &lt;code&gt;.gitconfig&lt;/code&gt;’den otomatik olarak
+geldi. Hemen bu uygulama ile ilgili bir kısa bir de uzun açıklama yazalım
+&lt;code&gt;spec.summary&lt;/code&gt; ve &lt;code&gt;spec.description&lt;/code&gt; alanına;&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;summary&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sx"&gt;%q{Simple Calculator.}&lt;/span&gt;
+&lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;description&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sx"&gt;%q{Make 4 basic calculations like addition/subtraction/multiplication and division via 2 numbers.}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;şimdi bir &lt;code&gt;commit&lt;/code&gt; yapalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;git add .
+git commit -m &lt;span class="s2"&gt;"init"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Test için gereken bağlımlılığı (&lt;em&gt;dependency&lt;/em&gt;) ekleyelim &lt;code&gt;.gemspec&lt;/code&gt; dosyasına;&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;add_development_dependency&lt;/span&gt; &lt;span class="s2"&gt;"rake"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"~&amp;gt; 10.0"&lt;/span&gt; &lt;span class="c1"&gt;# bu satırın altına&lt;/span&gt;
+&lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;add_development_dependency&lt;/span&gt; &lt;span class="s2"&gt;"minitest"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tekrar &lt;code&gt;commit&lt;/code&gt; yapalım;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;git add .
+git commit -m &lt;span class="s2"&gt;"Minitest dependency added"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Otomatik olarak üretilmiş olan &lt;code&gt;README.md&lt;/code&gt; dosyasına da baktığınızda, içini
+doldurabileceğimiz, düzenleme yapabileceğimiz türden hazır bir açıklama
+dosyası görürüz. Bu dosyayı en sonda düzenleyeceğiz.&lt;/p&gt;
+
+&lt;p&gt;Testlerimizi çalıştırabilmek için &lt;code&gt;Rakefile&lt;/code&gt;’a eklemeler yapıyoruz ve
+aşağıdaki hale getiriyoruz:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;"bundler/gem_tasks"&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;"rake/testtask"&lt;/span&gt;
+
+&lt;span class="no"&gt;Rake&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;TestTask&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;test_files&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;FileList&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'test/*_test.rb'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="n"&gt;task&lt;/span&gt; &lt;span class="ss"&gt;default: :test&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Yaptığımız işlemi kontrol etmek için;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bundle &lt;span class="nb"&gt;exec &lt;/span&gt;rake
+&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$?&lt;/span&gt;
+&lt;span class="c"&gt;# 0 görürsek herşey yolunda!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tekrar &lt;code&gt;commit&lt;/code&gt; yapalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;git add .
+git commit -m &lt;span class="s2"&gt;"Rakefile modified for test tasks"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şimdi, unit-test’lerimizi yazmak için test dizini oluşturup ilgili test
+dosyalarını ekleyeceğiz:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;mkdir &lt;span class="nb"&gt;test
+cd test&lt;/span&gt;/
+touch calculator_test.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;calculator_test.rb&lt;/code&gt; dosyasını açıp;&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'minitest/autorun'&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'simple_calcu'&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CalculatorTest&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;Minitest&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Test&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_addition&lt;/span&gt;
+    &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ekleyelim ve test’i çalıştıralım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bundle &lt;span class="nb"&gt;exec &lt;/span&gt;rake
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ve Güüüüüüüüm! Test patladı:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Run options: --seed 7929
+
+# Running:
+
+E
+
+Finished in 0.001493s, 669.7924 runs/s, 0.0000 assertions/s.
+
+  1) Error:
+CalculatorTest#test_addition:
+NoMethodError: undefined method `add' for SimpleCalcu:Module
+    /private/tmp/simple_calcu/test/calculator_test.rb:6:in `test_addition'
+
+1 runs, 0 assertions, 0 failures, 1 errors, 0 skips
+rake aborted!
+Command failed with status (1): [ruby -I"lib" -I"/Users/vigo/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/rake-10.3.2/lib" "/Users/vigo/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/rake-10.3.2/lib/rake/rake_test_loader.rb" "test/calculator_test.rb" ]
+
+Tasks: TOP =&amp;gt; default =&amp;gt; test
+(See full trace by running task with --trace)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dediği şu: &lt;code&gt;SimpleCalcu:Module&lt;/code&gt; de &lt;code&gt;add&lt;/code&gt; diye bir method yok! Hemen bu method’u
+implemente edeceğiz, &lt;code&gt;lib/simple_calcu.rb&lt;/code&gt; dosyasını açıyoruz:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;"simple_calcu/version"&lt;/span&gt;
+
+&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;SimpleCalcu&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nc"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;number1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Test’i tekrar çalıtırıyoruz &lt;code&gt;bundle exec rake&lt;/code&gt; ile&amp;hellip; ve test başarıyla
+tamamlandı!&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Run options: --seed 34247
+
+# Running:
+
+.
+
+Finished in 0.001307s, 765.1109 runs/s, 765.1109 assertions/s.
+
+1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;1&lt;/strong&gt; işlem çalıştı, &lt;strong&gt;1&lt;/strong&gt; assertion çalıştı ve fail eden &lt;strong&gt;0&lt;/strong&gt;, hata &lt;strong&gt;0&lt;/strong&gt; ve pas geçilen
+(&lt;em&gt;test edilmeden&lt;/em&gt;) &lt;strong&gt;0&lt;/strong&gt; olarak raporlandı!&lt;/p&gt;
+
+&lt;p&gt;Hemen &lt;code&gt;commit&lt;/code&gt; yapalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;git add .
+git commit -m &lt;span class="s2"&gt;"first test unit passed the test : addition"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şimdi diğer işlemleri yapalım &lt;code&gt;calculator_test.rb&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'minitest/autorun'&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'simple_calcu'&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CalculatorTest&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;Minitest&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Test&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_addition&lt;/span&gt;
+    &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_subtraction&lt;/span&gt;
+    &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="nb"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_multiplication&lt;/span&gt;
+    &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;mul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_division&lt;/span&gt;
+    &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;3333333333333335&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;assert_raises&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;ZeroDivisionError&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ve &lt;code&gt;bundle exec rake&lt;/code&gt; ile testleri çalıştıralım:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Run options: --seed 45605
+
+# Running:
+
+....
+
+Finished in 0.001264s, 3164.5570 runs/s, 3164.5570 assertions/s.
+
+4 runs, 4 assertions, 0 failures, 0 errors, 0 skips
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hemen &lt;code&gt;commit&lt;/code&gt; yapalım ve yolumuza devam edelim:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;git add .
+git commit -m &lt;span class="s2"&gt;"4 basic math operation tests are passed"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şimdi asıl işi yapacak fonksiyonumuz için test’i geliştirelim:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_calculator&lt;/span&gt;
+  &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;calculate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"+"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;calculate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"+"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;calculate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"-"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;calculate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"-"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;calculate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"*"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;44&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;calculate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"*"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;22&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;calculate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"/"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;assert_equal&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="no"&gt;SimpleCalcu&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;calculate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"/"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hemen &lt;code&gt;calculate&lt;/code&gt; method’u olmadığı için test fail edecek. Bu bakımdan
+hemen ilgili method’u oluşturalım &lt;code&gt;simple_calcu.rb&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nc"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;calculate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;operator&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="n"&gt;operator&lt;/span&gt;
+  &lt;span class="k"&gt;when&lt;/span&gt; &lt;span class="s2"&gt;"+"&lt;/span&gt;
+    &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;when&lt;/span&gt; &lt;span class="s2"&gt;"-"&lt;/span&gt;
+    &lt;span class="nb"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;when&lt;/span&gt; &lt;span class="s2"&gt;"*"&lt;/span&gt;
+    &lt;span class="n"&gt;mul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;when&lt;/span&gt; &lt;span class="s2"&gt;"/"&lt;/span&gt;
+    &lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tekrar testleri çalıştıralım. &lt;code&gt;bundle exec rake&lt;/code&gt;. Tüm testlerimiz sorunsuz çalıştı!&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Run options: --seed 15050
+
+# Running:
+
+.....
+
+Finished in 0.001841s, 2715.9153 runs/s, 7604.5627 assertions/s.
+
+5 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şimdi &lt;code&gt;commit&lt;/code&gt; zamanı!&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;git add .
+git commit -m &lt;span class="s2"&gt;"All tests pass like a charm!"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şimdi yazdığımız uygulamayı dökümante edelim, &lt;code&gt;version.rb&lt;/code&gt; dosyasına;&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;SimpleCalcu&lt;/span&gt;
+  &lt;span class="c1"&gt;# The current version of SimpleCalcu&lt;/span&gt;
+  &lt;span class="no"&gt;VERSION&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"0.0.1"&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;yorumu ekledikten sonra, &lt;code&gt;simple_calcu.rb&lt;/code&gt; dosyasını da;&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;"simple_calcu/version"&lt;/span&gt;
+
+&lt;span class="c1"&gt;# All code in the gem is namespaced under this module.&lt;/span&gt;
+&lt;span class="k"&gt;module&lt;/span&gt; &lt;span class="nn"&gt;SimpleCalcu&lt;/span&gt;
+
+  &lt;span class="c1"&gt;# Adds given two numbers&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nc"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;number1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+
+  &lt;span class="c1"&gt;# Subtracts given number1 from number2&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nc"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;number1&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+
+  &lt;span class="c1"&gt;# Multiplies given two numbers&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nc"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;mul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;number1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+
+  &lt;span class="c1"&gt;# Divides given number2 to number1&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nc"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;div&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;number1&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+
+  &lt;span class="c1"&gt;# Main calculator method. Requires 3 arguments&lt;/span&gt;
+  &lt;span class="c1"&gt;# First and Last arguments must be numbers&lt;/span&gt;
+  &lt;span class="c1"&gt;# Second argument could be "+", "-", "*" or "/" and must be string&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nc"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;calculate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;operator&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;case&lt;/span&gt; &lt;span class="n"&gt;operator&lt;/span&gt;
+    &lt;span class="k"&gt;when&lt;/span&gt; &lt;span class="s2"&gt;"+"&lt;/span&gt;
+      &lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;when&lt;/span&gt; &lt;span class="s2"&gt;"-"&lt;/span&gt;
+      &lt;span class="nb"&gt;sub&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;when&lt;/span&gt; &lt;span class="s2"&gt;"*"&lt;/span&gt;
+      &lt;span class="n"&gt;mul&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;when&lt;/span&gt; &lt;span class="s2"&gt;"/"&lt;/span&gt;
+      &lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;number2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;haline getirip ilgili yorumları ekleylim ve &lt;code&gt;rdoc&lt;/code&gt; ile döküman oluşturalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;rdoc lib
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;doc/&lt;/code&gt; dizini altına &lt;code&gt;html&lt;/code&gt; olarak dökümantasyon oluştu. &lt;code&gt;index.html&lt;/code&gt; dosyasını
+tarayıcıda açarak oluşan dökümantasyona bakabilirsiniz.&lt;/p&gt;
+
+&lt;p&gt;Şimdi son durumu da &lt;code&gt;commit&lt;/code&gt; edelim:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;git add .
+git commit -m &lt;span class="s2"&gt;"Document comments for rdoc"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Artık &lt;code&gt;gem&lt;/code&gt; hazır hale geldi. Bu noktada artık GitHub’a push edebiliriz.
+GitHub’da &lt;code&gt;simple_calcu&lt;/code&gt; adında bir repo açıyorum ve sonra buraya push
+ediyorum, tabii siz kendi repo adresinizi yazın!:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;git remote add origin git@github.com:vigo/simple_calcu.git
+git push -u origin master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bu işlemden sonra, kendi tarafımızda &lt;code&gt;gem&lt;/code&gt;imizi test etmemiz lazım. Bunun
+için &lt;code&gt;bundle exec rake install&lt;/code&gt; ile sanki uzaktan kuruyor gibi kurulum
+yapmamız gerekiyor.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bundle &lt;span class="nb"&gt;exec &lt;/span&gt;rake install
+simple_calcu 0.0.1 built to pkg/simple_calcu-0.0.1.gem.
+simple_calcu &lt;span class="o"&gt;(&lt;/span&gt;0.0.1&lt;span class="o"&gt;)&lt;/span&gt; installed.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şeklinde görümemiz gerekiyor. Hemen &lt;code&gt;gem list&lt;/code&gt; diyerek sağlamasını yapalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;gem list
+
+:
+:
+simple_calcu &lt;span class="o"&gt;(&lt;/span&gt;0.0.1&lt;span class="o"&gt;)&lt;/span&gt;
+:
+:
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;gibi listede görmeliyiz. Hemen &lt;code&gt;irb&lt;/code&gt; açarak kontrol edelim:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;irb
+&lt;span class="gp"&gt;irb(main):001:0&amp;gt; &lt;/span&gt;require &lt;span class="s1"&gt;'simple_calcu'&lt;/span&gt;
+&lt;span class="gp"&gt;=&amp;gt; &lt;/span&gt;&lt;span class="nb"&gt;true
+&lt;/span&gt;&lt;span class="gp"&gt;irb(main):002:0&amp;gt; &lt;/span&gt;SimpleCalcu::calculate&lt;span class="o"&gt;(&lt;/span&gt;2, &lt;span class="s2"&gt;"+"&lt;/span&gt;, 3&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="gp"&gt;=&amp;gt; &lt;/span&gt;5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Herşey yolunda gibi! Yapmamız gereken, tekrar &lt;code&gt;gemspec&lt;/code&gt; dosyasını açıp;
+&lt;code&gt;spec.homepage&lt;/code&gt; yerine uygulamanın homepage adresini yazmak:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;spec&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;homepage&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"https://github.com/vigo/simple_calcu"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;haydi son kez &lt;code&gt;commit&lt;/code&gt; edip &lt;code&gt;push&lt;/code&gt; edelim:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;git add .
+git commit -m &lt;span class="s2"&gt;"gemspec, homepage added"&lt;/span&gt;
+git push
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Artık &lt;code&gt;gem&lt;/code&gt; paketlenip &lt;a href="https://rubygems.org"&gt;Rubygems&lt;/a&gt;’e gitmeye hazır!&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;bundle &lt;span class="nb"&gt;exec &lt;/span&gt;rake release
+
+simple_calcu 0.0.1 built to pkg/simple_calcu-0.0.1.gem.
+Tagged v0.0.1.
+Pushed git commits and tags.
+Pushed simple_calcu 0.0.1 to rubygems.org.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Artık sizin de kendinize ait bir &lt;code&gt;gem&lt;/code&gt;iniz oldu. Şimdi isterseniz &lt;code&gt;README.md&lt;/code&gt;
+dosyasını düzenleyip, &lt;code&gt;VERSION = &amp;quot;0.0.2&amp;quot;&lt;/code&gt; yapıp tekrar &lt;code&gt;bundle exec rake release&lt;/code&gt;
+yapabilirsiniz.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>TextMate 1 ve Mavericks</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2013/10/24/textmate-1-ve-mavericks/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2013/10/24/textmate-1-ve-mavericks/</id>
+    <published>2013-10-24T14:00:00+03:00</published>
+    <updated>2016-07-24T15:42:09+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;Mac OS X’in yeni sürümü Mavericks’i eğer &lt;strong&gt;upgrade&lt;/strong&gt; yöntemiyle güncellediyseniz
+&lt;a href="http://macromates.com" title="TextMate: The Missing Editor"&gt;TextMate 1&lt;/a&gt; Bundle’larının büyük bir kısmı çalışmayacaktır!
+&lt;/p&gt;
+
+&lt;p&gt;Çözüm aslında çok kolay. Yapmamız gereken şey, eski Ruby’nin yerini &lt;code&gt;path&lt;/code&gt;e
+eklemek. OS X Mavericks yeni Ruby ile geliyor (&lt;em&gt;ruby 2.0.0p247&lt;/em&gt;).&lt;/p&gt;
+
+&lt;p&gt;TextMate 1 Bundle’larının büyük bir çoğunluğu eski Ruby kullandığı için bu
+sorun oluşuyor. Bu sabah Macromates tüm kullanıcılarına e-mail atmış, &lt;strong&gt;lütfen
+TextMate 2’ye geçin&lt;/strong&gt; diye.&lt;/p&gt;
+
+&lt;p&gt;Büyük bir TextMate fan’i olarak ne yazıkki halen 1 kullanıyorum ve 2’ye bir
+türlü geçemiyorum.&lt;/p&gt;
+
+&lt;p&gt;Lütfen şu konuyu atlamayın, eğer &lt;strong&gt;clean install&lt;/strong&gt; yani sıfırdan kurulum
+yaptıysanız bu anlatacağım yöntem işe yaramaz! Bunun için başka formüller
+gerekiyor. Eğer başta da belirttiğim gibi &lt;strong&gt;upgrade&lt;/strong&gt; yaptıysanız;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;bilgisini &lt;strong&gt;TextMate &amp;gt; Preferences &amp;gt; Advanced &amp;gt; Shell Variables&lt;/strong&gt; kısmından
+&lt;code&gt;PATH&lt;/code&gt; yazan bölüme, en başa eklemeniz gerekiyor.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;gibi olmalı.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Bash Completion Anotomisi</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2013/02/20/bash-completion-anotomisi/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2013/02/20/bash-completion-anotomisi/</id>
+    <published>2013-02-20T23:37:00+02:00</published>
+    <updated>2016-07-24T15:42:09+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;Terminal’le, &lt;a href="http://www.gnu.org/software/bash/" title="Bash"&gt;Bash&lt;/a&gt;’le ilk tanıştığım andan itibaren &lt;code&gt;tab-completion&lt;/code&gt; olayının
+hastası olmuş, hemen:&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Hmmm&amp;hellip; Kesin öğrenmeliyim! Ben de kendi komutlarımı oluşturmalıyım!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;demiştim. Neticede bir şekilde programlanabilir birşey olmalıydı. Mac OS’la
+uğraşmaya başladığım ilk günlerde tanıştığım &lt;a href="http://macports.org" title="Macports"&gt;MacPorts&lt;/a&gt; içinde
+pek çok &lt;code&gt;bash-completion&lt;/code&gt; eklentileriyle geliyordu. Bu sayede &lt;code&gt;tab&lt;/code&gt; ile tamamlama
+yapabilmek için gerekli kaynağı inceleme şansı bulmuştum.&lt;/p&gt;
+
+&lt;p&gt;Mantık olarak, bir şekilde, bir değişkende bir yerde tamamlanacak kelimeler
+durmalıydı. &lt;code&gt;tab&lt;/code&gt; bu kelimeler içinde &lt;code&gt;cycle&lt;/code&gt; yapmayı sağlamalıydı.&lt;/p&gt;
+
+&lt;h3&gt;dscacheutil&lt;/h3&gt;
+
+&lt;p&gt;Denemek için ilk yaptığım tamamlama &lt;code&gt;dscacheutil&lt;/code&gt; içindi. DNS işleriyle ilgili
+bu tool’u dns-cache’i silmek için kullanıyordum. Komutu:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;dscacheutil -flushcache
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;şeklinde kullanıyordum. Yapmak istediğim şey &lt;code&gt;dscacheutil&lt;/code&gt; yazdıktan sonra &lt;code&gt;-&lt;/code&gt;
+yazıp &lt;code&gt;tab&lt;/code&gt; tuşuna basmak ve ilgili opsiyonları otomatik olarak yazdırmaktı.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;dscacheutil -h
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ile baktım başka ne gibi opsiyonlar var. Pekde anlamadım diğer özellikleri.
+İçlerin kafama yatanları seçtim:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;-flushcache -statistics -configuration -cachedump -h -q
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Bash’in &lt;code&gt;complete&lt;/code&gt; adında minik bir komutu var. Mantık olarak, şu komut
+yazılıp &lt;code&gt;tab&lt;/code&gt; tuşuna basılınca bu fonksiyon çalışsın.&lt;/p&gt;
+
+&lt;p&gt;Gördüğüm örneklerde tamamlama işini yapacak fonksiyon adı, ilgili komut adına
+&lt;code&gt;_&lt;/code&gt; eklenerek oluyor. Yani &lt;code&gt;dscacheutil&lt;/code&gt; için yazacağınız fonksiyonun adı
+&lt;code&gt;_dscacheutil&lt;/code&gt; olmalı. Bu sadece bir notasyon yani zorunlu bir durum değil.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="nb"&gt;complete&lt;/span&gt; -F FONKSİYON KOMUT
+&lt;span class="nb"&gt;complete&lt;/span&gt; -F _dscacheutil dscacheutil
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Düşe kalka bir şekilde ilk completion’ımı yazmayı başarmıştım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;_dscacheutil&lt;span class="o"&gt;()&lt;/span&gt; 
+&lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="nb"&gt;local &lt;/span&gt;cur prev opts
+    &lt;span class="nv"&gt;COMPREPLY&lt;/span&gt;&lt;span class="o"&gt;=()&lt;/span&gt;
+    &lt;span class="nv"&gt;cur&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;COMP_WORDS&lt;/span&gt;&lt;span class="p"&gt;[COMP_CWORD]&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+    &lt;span class="nv"&gt;prev&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;COMP_WORDS&lt;/span&gt;&lt;span class="p"&gt;[COMP_CWORD-1]&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+    &lt;span class="nv"&gt;opts&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"-flushcache -statistics -configuration -cachedump -h -q"&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[[&lt;/span&gt; &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;cur&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; -&lt;span class="k"&gt;*&lt;/span&gt; &lt;span class="o"&gt;]]&lt;/span&gt; ; &lt;span class="k"&gt;then
+        &lt;/span&gt;&lt;span class="nv"&gt;COMPREPLY&lt;/span&gt;&lt;span class="o"&gt;=(&lt;/span&gt; &lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nb"&gt;compgen&lt;/span&gt; -W &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;opts&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; -- &lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;cur&lt;/span&gt;&lt;span class="k"&gt;})&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+        &lt;span class="k"&gt;return &lt;/span&gt;0
+    &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="nb"&gt;complete&lt;/span&gt; -F _dscacheutil dscacheutil
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Satır Satır &lt;code&gt;_dscacheutil&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Şimdi, &lt;strong&gt;4.&lt;/strong&gt;satırda &lt;code&gt;COMPREPLY&lt;/code&gt; adında boş bir &lt;code&gt;array&lt;/code&gt; var. &lt;code&gt;cur&lt;/code&gt; Current / Cursor
+yani &lt;code&gt;tab&lt;/code&gt; basıldığında aktif olarak yakalanan / gelen. &lt;code&gt;prev&lt;/code&gt; de Previous yani
+tamamlanacak olan kelimelerde, &lt;strong&gt;aktif&lt;/strong&gt; olandan bir önceki. Yani tamamlamak
+istediğimiz kelimeler &lt;strong&gt;7.&lt;/strong&gt;satırdaki &lt;code&gt;opts&lt;/code&gt; değişkeninde sırasıyla;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;-flushcache -statistics -configuration -cachedump -h -q
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;şeklinde duruyor. &lt;code&gt;dscacheutil&lt;/code&gt; yazıp bir boşluk verip &lt;code&gt;tab&lt;/code&gt;e ilk bastığınızda
+&lt;strong&gt;index&lt;/strong&gt; 0 ve ilk kelime: &lt;strong&gt;-flushcache&lt;/strong&gt; yani &lt;code&gt;cur&lt;/code&gt; daki değer olur.&lt;/p&gt;
+
+&lt;p&gt;Eğer &lt;code&gt;dscacheutil&lt;/code&gt; yazıp, bir boşluk bırakıp, &lt;code&gt;-s&lt;/code&gt; yazıp &lt;code&gt;tab&lt;/code&gt;e bastığınızda
+tamamlanacak kelimler listesindeki &lt;strong&gt;ikinci&lt;/strong&gt; kelimeyi &lt;strong&gt;Current&lt;/strong&gt; yani &lt;code&gt;cur&lt;/code&gt;
+yapmış olursunuz. Çünkü kelimelerde &lt;code&gt;-s&lt;/code&gt; ile başlayan bir tek &lt;code&gt;-statistics&lt;/code&gt;
+var. Eğer &lt;code&gt;-s&lt;/code&gt; ile başlayan iki kelime olsaydı, &lt;code&gt;-statistics&lt;/code&gt; ve &lt;code&gt;-super&lt;/code&gt;
+gibi; İlk &lt;code&gt;tab&lt;/code&gt;e basışta &lt;code&gt;cur&lt;/code&gt;: &lt;strong&gt;-statistics&lt;/strong&gt;, ikincide &lt;code&gt;cur&lt;/code&gt;: &lt;strong&gt;-super&lt;/strong&gt; ve
+&lt;code&gt;prev&lt;/code&gt;: &lt;strong&gt;-statistics&lt;/strong&gt; olacaktı.&lt;/p&gt;
+
+&lt;p&gt;Bu fonksiyonun asıl gizli silahı &lt;code&gt;compgen&lt;/code&gt;. &lt;code&gt;-W&lt;/code&gt; parametresi &lt;strong&gt;WORD LIST&lt;/strong&gt; yani
+kelime listesi anlamında. Hemen daha iyi anlamak için:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;compgen -W "ali veli selami"
+# ali
+# veli
+# selami
+
+compgen -W "ali veli selami" -- veli
+# veli
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;şeklinde çıktı verir. Yani yukarıdaki örnekte &lt;code&gt;opts&lt;/code&gt;: &lt;strong&gt;ali veli selami&lt;/strong&gt;,
+&lt;code&gt;cur&lt;/code&gt;: &lt;strong&gt;veli&lt;/strong&gt; olmuş ve işlem bize sonuç olarak &lt;code&gt;veli&lt;/code&gt; dönmüştür. Yani
+&lt;strong&gt;9.&lt;/strong&gt;satırı düşünürsek:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;COMPREPLY=( $(compgen -W "ali veli selami" -- veli) )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;gibi. &lt;strong&gt;8.&lt;/strong&gt;satıra bakarsak;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;if [[ ${cur} == -* ]] ; then
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;yani; &lt;code&gt;-&lt;/code&gt; ile başlayanları yakala. &lt;code&gt;opts&lt;/code&gt; içinde geçen ve &lt;code&gt;-&lt;/code&gt; ile başlayan.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;complete -F _dscacheutil dscacheutil
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;-F function&lt;/code&gt; yani, &lt;code&gt;dscacheutil&lt;/code&gt; komutu için &lt;code&gt;_dscacheutil&lt;/code&gt; fonksiyonunu
+kullanarak tamamlama yap.&lt;/p&gt;
+
+&lt;p&gt;Özetle, &lt;code&gt;dscacheutil&lt;/code&gt; komutundan sonra &lt;code&gt;-&lt;/code&gt; + &lt;code&gt;tab&lt;/code&gt; yapınca
+&lt;code&gt;-flushcache -statistics -configuration -cachedump -h -q&lt;/code&gt; kelimeleri içinde
+dönüp duracağız.&lt;/p&gt;
+
+&lt;h3&gt;bundle exec&lt;/h3&gt;
+
+&lt;p&gt;İlk denemem üzerinden epeyce bir zaman geçmişti. Keza geçen süre içinde
+bash bilgim de arttı. Hep gördüğüm, merak ettiğim bir konu da zincirleme
+tamamlama. Yani;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;KOMUT ALT-KOMUT ALT-KOMUT / OPSIYON
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;gibi tamamlamalar. Buna en güzel örnek &lt;a href="https://github.com/nvie/gitflow" title="Gitflow"&gt;Gitflow&lt;/a&gt;. &lt;code&gt;git&lt;/code&gt; &lt;code&gt;flow&lt;/code&gt;
+&lt;code&gt;feature&lt;/code&gt; &lt;code&gt;start&lt;/code&gt; şeklinde arka arkaya 3-4 komutu tamamlamak mümkün. Bu
+durumdan yola çıkarak &lt;code&gt;bundle&lt;/code&gt; komutu için benzer bir yardımcı yazmaya
+karar verdim.&lt;/p&gt;
+
+&lt;p&gt;Umarım yazıyı okuyanlar &lt;a href="http://www.ruby-lang.org/" title="Ruby"&gt;Ruby&lt;/a&gt; ile ilgilidir. Çünkü &lt;a href="http://gembundler.com" title="Bundler"&gt;Bundler&lt;/a&gt;
+Ruby ve &lt;a href="http://rubyonrails.org/" title="Ruby on Rails"&gt;Rails&lt;/a&gt; dünyasının çok yakından bildiği ve kullandığı
+ruby modülü / kütüphanesi paket yöneticisidir. Özellikle bu okuduğunuz
+blog’da kullandığım &lt;a href="http://octopress.org" title="Octopress"&gt;Octopress&lt;/a&gt;’de bile &lt;strong&gt;Bundler&lt;/strong&gt; kullanmaktayım.&lt;/p&gt;
+
+&lt;p&gt;Tamamlama işlemi için &lt;code&gt;bundle&lt;/code&gt; &lt;code&gt;exec&lt;/code&gt; &lt;code&gt;rake&lt;/code&gt; ve rake’e ait alt özellikler vs
+zincirleme işlem yapmam gerekiyor. Öncelikle &lt;code&gt;bundle&lt;/code&gt;a ait alt komutları,
+daha sonra da &lt;code&gt;rake&lt;/code&gt;e ait komutları tamamlamam gerekiyor.&lt;/p&gt;
+
+&lt;script src="https://gist.github.com/vigo/5008330.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;İlk önce &lt;strong&gt;8.&lt;/strong&gt;satırda yazan &lt;code&gt;bundle&lt;/code&gt; komutlarını buldum. &lt;code&gt;bundle --help&lt;/code&gt;
+ile tek tek baktım neler var diye. Tabi bir başka durum daha vardı. Bu
+tamamlama özelliği eğer &lt;code&gt;bundle&lt;/code&gt; komutu varsa çalışmalıydı. Bundler’ı
+genelde tüm sisteme kurmak yerine proje bazlı kullanmak daha temizdir.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;gem&lt;/code&gt;leri kurarken;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;bundle install --path vendor/bundle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;şeklinde kullanıyorum. Bulunduğum proje altında &lt;code&gt;vendor/bundle&lt;/code&gt; dizinine
+kurduruyorum. Bu bakımdan tüm sistem yerine proje bazlı kurulum var. Yani
+ilgili proje / ruby versiyonu aktif olduğu zaman, eğer varsa Bundler aktif
+oluyor. Bunun içinde fonksiyonun en başında &lt;code&gt;which bundle&lt;/code&gt; ile kontrol
+ediyorum.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bundle&lt;/code&gt; komutuna ait alt komutlar ve opsiyonlar var. Opsiyonlar &lt;code&gt;--&lt;/code&gt; ile
+başlıyor. Yani &lt;code&gt;bundle&lt;/code&gt; &lt;code&gt;--verbose&lt;/code&gt; &lt;code&gt;install&lt;/code&gt; şeklinde bir tamamlama sekansı
+olabilir. Keza, &lt;code&gt;rake&lt;/code&gt; veya &lt;code&gt;exec&lt;/code&gt; arkasında da ilgili tamamlamalar gelmeli.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;rake&lt;/code&gt; komutu da başlı başına kendine has opsiyonlara sahip. &lt;code&gt;rake -T&lt;/code&gt;
+özelliği ile ilgili &lt;strong&gt;RAKE TASK&lt;/strong&gt;’leri listeleyebiliyorsunuz. Örnek;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;rake -T
+
+rake clean                      &lt;span class="c"&gt;# Clean out caches: .pygments-cache, .gist-cache, .sass-cache&lt;/span&gt;
+rake copydot[source,dest]       &lt;span class="c"&gt;# copy dot files for deployment&lt;/span&gt;
+rake deploy                     &lt;span class="c"&gt;# Default deploy task&lt;/span&gt;
+rake gen_deploy                 &lt;span class="c"&gt;# Generate website and deploy&lt;/span&gt;
+rake generate                   &lt;span class="c"&gt;# Generate jekyll site&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;gibi&amp;hellip; Tabi &lt;code&gt;rake&lt;/code&gt; komutu da aynı &lt;code&gt;bundle&lt;/code&gt; komutu gibi başka bir dosyanın
+varlığına bağlı. &lt;code&gt;Rakefile&lt;/code&gt; tüm task’lerin ve diğer ayarların bulunduğu
+dosya. Eğer &lt;code&gt;Rakefile&lt;/code&gt; olmazsa &lt;code&gt;rake&lt;/code&gt; komutu da çalışmaz.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;gem&lt;/code&gt;lerin yeri aktif olan ruby modülleri bölgesinde olmadığı için, &lt;code&gt;bundle&lt;/code&gt;
+komutuyla &lt;code&gt;vendor/bundle&lt;/code&gt; altına kurduğumuz &lt;code&gt;executable&lt;/code&gt; yani çalıştıralabilir
+dosyaları da çağırabiliyoruz. &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bundle exec&lt;/code&gt; ile, &lt;code&gt;vendor/bundle&lt;/code&gt; altına kurulan &lt;code&gt;gem&lt;/code&gt;lerin &lt;code&gt;executable&lt;/code&gt;larını da
+çağırabiliyorsunuz. Örneğin, Octopress için kurulan &lt;code&gt;gem&lt;/code&gt;lerin içinde;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;compass    jekyll    posix-spawn-benchmark  redcloth     tilt
+dw         kramdown  rackup                 sass        
+haml       maruku    rake                   sass-convert
+html2haml  marutex   rdiscount              scss        
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;binary&lt;/code&gt; dosyalar var.. Çalıştırmak için: &lt;code&gt;bundle exec html2haml&lt;/code&gt; gibi
+kullanabilirsiniz. Bu bakımdan &lt;code&gt;bund&lt;/code&gt; &lt;code&gt;exec&lt;/code&gt; dedikten sonra komutu da 
+tamamlamamız / bulmamız gerekiyor. Bunun için &lt;strong&gt;28&lt;/strong&gt; ve &lt;strong&gt;29.&lt;/strong&gt;satırlara
+bakalım. Önce, &lt;code&gt;vendor/bundle&lt;/code&gt; altındaki &lt;code&gt;bin&lt;/code&gt; dizinlerini bulmamız gerekiyor.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;find . -name 'bin' # içinde bin kelimesi geçen file/folder’ları bul
+
+./vendor/bundle/ruby/1.9.1/bin
+./vendor/bundle/ruby/1.9.1/gems/classifier-1.3.3/bin
+./vendor/bundle/ruby/1.9.1/gems/compass-0.11.6/bin
+./vendor/bundle/ruby/1.9.1/gems/directory_watcher-1.4.1/bin
+./vendor/bundle/ruby/1.9.1/gems/haml-3.1.4/bin
+./vendor/bundle/ruby/1.9.1/gems/haml-3.1.4/vendor/sass/bin
+./vendor/bundle/ruby/1.9.1/gems/jekyll-0.11.0/bin
+./vendor/bundle/ruby/1.9.1/gems/kramdown-0.13.4/bin
+./vendor/bundle/ruby/1.9.1/gems/maruku-0.6.0/bin
+./vendor/bundle/ruby/1.9.1/gems/posix-spawn-0.3.6/bin
+./vendor/bundle/ruby/1.9.1/gems/rack-1.3.5/bin
+./vendor/bundle/ruby/1.9.1/gems/rake-0.9.2.2/bin
+./vendor/bundle/ruby/1.9.1/gems/rb-fsevent-0.9.1/bin
+./vendor/bundle/ruby/1.9.1/gems/rdiscount-1.6.8/bin
+./vendor/bundle/ruby/1.9.1/gems/RedCloth-4.2.9/bin
+./vendor/bundle/ruby/1.9.1/gems/sass-3.1.12/bin
+./vendor/bundle/ruby/1.9.1/gems/tilt-1.3.3/bin
+
+# xargs ile bu sonuçları tek satır yapıyoruz
+
+find . -name 'bin' | xargs
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Elimizde, &lt;code&gt;space&lt;/code&gt; karakteri ile ayrılmış upuzun bir &lt;strong&gt;string&lt;/strong&gt; var artık.
+Yani aynı ilk &lt;code&gt;_dscacheutil&lt;/code&gt; örneğindeki &lt;code&gt;$opts&lt;/code&gt; gibi oldu. Yapmanız gereken
+elimizdeki liste içinden ilk elemanı almak. Bunun için küçük bir nurmara
+yapıyoruz.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt; bin_folder=( $(find . -name 'bin' | xargs) # ./vendor/bundle/ruby/1.9.1/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Artık içine bakmamız gereken dizini biliyoruz. Şimdi yapmamız gereken aynı
+şekilde liste alıp &lt;code&gt;space&lt;/code&gt; ile ayrılmış &lt;strong&gt;string&lt;/strong&gt; oluşturmak.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt; executables=`command ls ${bin_folder} | xargs`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;command ls&lt;/code&gt; aslında bildiğiniz &lt;code&gt;ls&lt;/code&gt; komutunu çağırıyor ama eğer &lt;code&gt;alias&lt;/code&gt; ya da
+başka bir &lt;code&gt;override&lt;/code&gt; durumu varsa; Yani siz belkide:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;alias ls="ls -al --color"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;yaptınız ve her &lt;code&gt;ls&lt;/code&gt; komutu çalıştığında aslında &lt;code&gt;ls -al --color&lt;/code&gt; çalıştırıyor
+olabilirsiniz. Bunu engellemek için bash’in içindeki &lt;strong&gt;default&lt;/strong&gt; komutu çağırmak
+gerekiyor. &lt;code&gt;command&lt;/code&gt; bu işe yarıyor.&lt;/p&gt;
+
+&lt;p&gt;Son olarak &lt;strong&gt;34.&lt;/strong&gt; satırda;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;word list&lt;/code&gt; olarak &lt;code&gt;compgen&lt;/code&gt; komutuna &lt;code&gt;$commands&lt;/code&gt; değişkenini geçiyoruz. Yani
+tüm yaptığımız, en son satırda kullanacağımız &lt;code&gt;COMPREPLY&lt;/code&gt; için gerekli
+&lt;strong&gt;string&lt;/strong&gt;’i oluşturmak.&lt;/p&gt;
+
+&lt;p&gt;Bu tamamlama fonksiyonunu kullanabilmek için; &lt;code&gt;.bashrc&lt;/code&gt; ya da &lt;code&gt;.profile&lt;/code&gt; ya da
+her ne kullanıyorsanız, o dosyaya eklemek. Örneğin bu &lt;code&gt;_bundler_complete&lt;/code&gt;
+fonksiyonunu &lt;code&gt;$HOME/bundler_complete.sh&lt;/code&gt; şeklinde kaydettiyseniz; kullandığınız
+&lt;code&gt;.bashrc&lt;/code&gt; içinde&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;source $HOME/bundler_complete.sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;yapmanız gerekiyor. &lt;a href="http://www.gnu.org/software/bash/manual/html_node/Programmable-Completion.html#Programmable-Completion" title="Bash Completion"&gt;Bash Completion&lt;/a&gt; konusuyla ilgili daha fazla
+ve detaylı bilgi için &lt;a href="http://www.gnu.org/software/bash/manual/html_node/Programmable-Completion.html#Programmable-Completion" title="Bash Completion"&gt;link&lt;/a&gt;’e tıklayabilirsiniz.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Derlenmiş Python Dosyaları Bazen Sizi Yanıltabilir</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/</id>
+    <published>2013-02-04T12:15:00+02:00</published>
+    <updated>2016-07-24T15:42:09+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;Suç kesinlikle Python’da değil! Yanlış anlaşılma olmasın! Geçtiğimiz günlerde 
+yaşadığım iki dikkatsizliğin bana ciddi vakit kaybettirmesi bu blog postunu 
+yazmama sebeb oldu.
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://www.djangoproject.com/" title="Django Project"&gt;Django&lt;/a&gt; framework kullanarak bir uygulama geliştiriyoruz. Yaklaşık 6
+aydır üzerinde çalışıyoruz. Django, gereken yerlerde ilgili python dosyalarını
+derliyor. Yani; &lt;code&gt;admin.py&lt;/code&gt; adında bir dosya varsa, development sunucusunu
+çalıştırdıktan sonra &lt;code&gt;admin.pyc&lt;/code&gt; dosyasının oluştuğunu görürüz.&lt;/p&gt;
+
+&lt;p&gt;Derlenen python hem hız hem de hafıza yönetimi açısından işleri kolay ve çabuk
+hale getiriyor. Buraya kadar hiç bir sıkıntı yok. Sıkıntı, uzun saatler
+çalışıp dikkati kaybettiğiniz anda başlıyor.&lt;/p&gt;
+
+&lt;p&gt;Hiç farkında olmadan ilgili app’in altındaki &lt;code&gt;admin.py&lt;/code&gt; dosyasını silmişim.
+&lt;code&gt;admin.pyc&lt;/code&gt; dosyası ise halen oradaymış. Ben farkında bile değilim. Admin
+panel’e rahat rahat giriyorum, çıkıyorum hiçbir sıkıntı yok. Ne zaman kadar?
+&lt;code&gt;ModelAdmin&lt;/code&gt; e yeni özellik ekleyene kadar&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;İşin kötüsü, django programcıları bilirler, &lt;code&gt;admin.py&lt;/code&gt; de de çok fazla şey vardı.
+&lt;strong&gt;Custom&lt;/strong&gt; pek çok şey&amp;hellip; Hepsi uçmuş gitmiş&amp;hellip; Ne yapacağız? Silme öyle bir
+silme ki, versiyon kontrol’den de çıkartmışım nasıl yaptıysam? Yani &lt;code&gt;git rm&lt;/code&gt;
+ile silmiş ve bu silme işinden sonra yazmışım tüm kodu gibi&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Hemen google’ladım, &lt;code&gt;.pyc&lt;/code&gt; dosyasından nasıl &lt;code&gt;.py&lt;/code&gt; üretebilirim diye. Hemen
+&lt;a href="https://github.com/gstarnberger/uncompyle"&gt;uncompyle&lt;/a&gt;’ı buldum. Kullanımı çok kolay&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;uncompyler.py DOSYA.pyc &amp;gt; DOSYA_KURTAR.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;şeklinde dosyayı kurtardım.&lt;/p&gt;
+
+&lt;p&gt;Bu da yetmedi, evde çalışmak için projeyi clone’ladım. Gereken kurulumları
+yaptım. Çalıştırdım&amp;hellip; BOOOOM! Hata mesajı! Hata ne? neredeyse uygulamanın
+&lt;strong&gt;ana&lt;/strong&gt; kütüphanelerinden biri olan dosyayı &lt;code&gt;import&lt;/code&gt; edemiyor&amp;hellip; Klasik
+&lt;code&gt;PATH&lt;/code&gt; sorunu ama böyle birşey olması mümkün değil&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Saatlerce uğraşıp yine görüyorum ki, &lt;code&gt;libs/&lt;/code&gt; altında bulunması gereken
+&lt;code&gt;__init__.py&lt;/code&gt; dosyası uçmuş&amp;hellip; Diğer makinelerde düzgün çalışıyor çünkü
+derlenmiş hali bu sorunu kurtarıyor. Yani dosya varken python derlemiş,
+dosya uçmuş ama sorun yok. &lt;code&gt;.pyc&lt;/code&gt; her şeyi çözüyor.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git blame&lt;/code&gt; ile bakıyorum, yine ben, neredeyse 1 ay önce silmişim dosyayı.
+Python’da &lt;code&gt;__init__.py&lt;/code&gt; çok önemlidir. Herhangi bir dizin içinde bu dosya
+varsa; o dizinin paket/modül gibi kullanılabileceğini anlatır.&lt;/p&gt;
+
+&lt;p&gt;Yani;&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;my_project.libs.functions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;test_function&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;dersem; bu &lt;code&gt;my_project/libs/functions.py&lt;/code&gt; dosyasından &lt;code&gt;test_function&lt;/code&gt; adlı
+fonksiyonu import et anlamına gelir. (&lt;em&gt;Kabaca verdim bu örneği&lt;/em&gt;) Bu örneğin
+sağlıklı çalışması için &lt;code&gt;my_project&lt;/code&gt; dizini altında &lt;code&gt;__init__.py&lt;/code&gt; olması
+&lt;strong&gt;zorunludur&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Yaşadığım iki sorun da aslında ilk ve büyük hata tabiki bende. Daha dikkatli
+olsam bunlar başıma gelmeyecekti. Şunu gördüm ki, ben bile, bile derken en az
+15 yıldır yazılım geliştiriyorum, çok basit hataları yapabiliyorum.&lt;/p&gt;
+
+&lt;p&gt;Önemli olan bu hatalardan ders çıkarıp tekrar bu kuyuya düşmemek.&lt;/p&gt;
+
+&lt;p&gt;Bunun içinde, yaptığım ilk iş Python’un &lt;code&gt;pyc&lt;/code&gt; ya da &lt;code&gt;pyo&lt;/code&gt; dosyası oluşturma
+işini kapattım. Proje bazlı. &lt;a href="http://http//www.virtualenv.org/"&gt;virtualenv&lt;/a&gt; ve &lt;a href="http://www.doughellmann.com/projects/virtualenvwrapper/"&gt;virtualenvwrapper&lt;/a&gt;
+kullanıyorum. Çalıştığım projeye geçerken ufak bir hook ile şu değişkeni
+set ediyorum:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;export PYTHONDONTWRITEBYTECODE="1"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Böylece &lt;code&gt;pyc&lt;/code&gt; dosyaları otomatik olarak oluşmayacak. Ben de yanlışlıkla
+birşeyleri sildiğim zaman &lt;strong&gt;anında&lt;/strong&gt; farkedeceğim.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>JS İstanbul 2012</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2012/10/28/js-istanbul-2012/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2012/10/28/js-istanbul-2012/</id>
+    <published>2012-10-28T12:25:00+02:00</published>
+    <updated>2016-07-24T15:42:09+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;Yaklaşık &lt;strong&gt;3 ay&lt;/strong&gt;&amp;rsquo;lık bir gecikme ardından &lt;a href="http://jstanbul.org/2012/" title="JS İstanbul 2012"&gt;JS İstanbul 2012&lt;/a&gt; ile ilgili
+yazımı yazmaya fırsat bulabildim!
+&lt;/p&gt;
+
+&lt;p&gt;28 - 29 Temmuz 2012&amp;rsquo;de Bahçeşehir Üniversitesi, Beşiktaş kampüsünde
+düzenlenen etkinliğe katılım tahminlerin üzerinde oldu. Cumartesi - Pazar
+günlerine gelen etkinliğin sadece ilk gününe katılabildim.&lt;/p&gt;
+
+&lt;p&gt;Sabah saat 10:30&amp;rsquo;daki açılış konuşmasının yapıldığı salon tıklım tıklım
+doluydu. Tahminimce 200+ kişi vardı. Hatta o esnada yanımda oturan python
+programcısı arkadaşım &lt;a href="https://twitter.com/amiroff" title="Metin Amiroff"&gt;Metin Amiroff&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Acaba &lt;strong&gt;PythonCon&lt;/strong&gt; yapsak bu kadar kişi gelirmi?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;diye sordu&amp;hellip; Ben de &amp;ldquo;&lt;strong&gt;biraz zor&amp;hellip;&lt;/strong&gt;&amp;rdquo; dedim&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;JavaScript, pek çok farklı alandaki insana hitap ediyor:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Grafik tasarımcısı&lt;/li&gt;
+&lt;li&gt;Backend programcı (&lt;em&gt;php, python, ruby, java, dotnet vs&amp;hellip;&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;Frontend (&lt;em&gt;html, css, js&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Yani işi &lt;strong&gt;WEB&lt;/strong&gt; olan herkesin yolu bir şekilde JavaScript&amp;rsquo;le kesişmek zorunda!&lt;/p&gt;
+
+&lt;h3&gt;Konuşmacılar&lt;/h3&gt;
+
+&lt;p&gt;Yaklaşık 17 kişi vardı. İşin güzel yanı, hiç bir sunum / konuşma diğeriyle
+çakışmıyordu. Bu bakımdan etkinliğin iki güne yayılması izleyici açısından
+çok iyi birşey&amp;hellip; Genelde zaman ve mekan kısıtlamaları yüzünden, şahsen ben,
+tercih yapmak zorunda kalmaktan nefret ediyorum. İlgimi çeken iki konuya da
+girmek istiyorum ama birini seçiyorum. &lt;strong&gt;İşte bu etkinlikte böyle bir durum
+olmadı!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Etkinliğin önemli konuklarından biri, taaa Amerika&amp;rsquo;dan gelen,
+Backbone.js&amp;rsquo;in &lt;strong&gt;core&lt;/strong&gt; yazılımcılarından &lt;a href="https://twitter.com/tbranyen" title="Tim Branyen"&gt;Tim Branyen&lt;/a&gt;&amp;rsquo;di.
+Diğer konuşmacılarsa;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://disqus.org"&gt;Disqus&lt;/a&gt;&amp;rsquo;tan &lt;a href="https://twitter.com/madbyk" title="Burak Yiğit Kaya"&gt;Burak Yiğit Kaya&lt;/a&gt; &amp;ldquo;JS ve REST Uyumlu API İletişimi&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Rocket GmbH&amp;rsquo;dan &lt;a href="https://twitter.com/yuxel" title="Osman Yüksel"&gt;Osman Yüksel&lt;/a&gt; &amp;ldquo;Jasmine ile Behavior Driven Development&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Social Wire&amp;rsquo;dan &lt;a href="https://twitter.com/linkibol" title="Volkan Özçelik"&gt;Volkan Özçelik&lt;/a&gt; &amp;ldquo;JavaScript ile Widget Geliştirmek&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Markafoni&amp;rsquo;den &lt;a href="https://twitter.com/fkadev" title="Fatih Kadir Akın"&gt;Fatih Kadir Akın&lt;/a&gt; &amp;ldquo;Backbone Fundamentals&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Fatih Hayrioğlu &amp;ldquo;CSS3’ün JavaScript’ten Rol Çalması&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Emrah Olgun &amp;ldquo;Yazılım evlerinde Ön Yüz Geliştiricileri Konumlamak&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Armağan Amcalar &amp;ldquo;tartJS ile Büyük Ölçekli Uygulama Geliştirme&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Kadir Pekel &amp;ldquo;Node, Connect ve Meryl ile Web Uygulama Geliştirme&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Burcu Doğan &amp;ldquo;Node Ortamının Mimarisi&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Altan Yılmaz &amp;ldquo;Javascript Mobile Applications&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Fatih Acet &amp;ldquo;JavaScript Debugging Yöntemleri&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Emrah Ayanoğlu &amp;ldquo;Node.js ve Socket.io ile Mutliplayer HTML5 Oyun Geliştirme&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Serdar Akarca &amp;ldquo;Knockout.js ve Sammy.js ile Uygulama Geliştirme&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Emre Evren Yalçın &amp;ldquo;JavaScript Injections&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Sinan Taga &amp;ldquo;Javascript - Nereden Nereye, Kısa bir tarihçe&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/emirkarsiyakali" title="Emir Karşıyakalı"&gt;Emir Karşıyakalı&lt;/a&gt; &amp;ldquo;Jstanbul.org Açılış Konuşması&amp;rdquo;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ülkemizde bu tür etkinlikleri görmek gurur veriyor. Özellikle arkasına
+büyük kurumları almadan büyük işlere girişmek herkesin yapabileceği birşey
+değil. Katıldığım ilk günden çok memnun ayrıldım. Hem girdiğim sunular hem de
+öğle arasında arkadaşlarla yaptığımız muhabbetler çok zevkliydi.&lt;/p&gt;
+
+&lt;p&gt;JS İstanbul 2013&amp;rsquo;ü iple çekiyorum!&lt;/p&gt;
+
+&lt;h3&gt;Fotoğraflar&lt;/h3&gt;
+
+&lt;div class="photo-gallery"&gt;
+&lt;div class="row"&gt;
+&lt;div class="col-lg-6 col-xl-4"&gt;
+&lt;img src="https://dl.dropbox.com/u/490540/Photos/jstanbul-2012/1123.jpg" alt="Açılış"&gt;
+&lt;p&gt;Açılış&lt;p&gt;
+&lt;/div&gt;
+
+&lt;div class="col-lg-6 col-xl-4"&gt;
+&lt;img src="https://dl.dropbox.com/u/490540/Photos/jstanbul-2012/1125.jpg" alt="Ziyaretçiler"&gt;
+&lt;p&gt;Ziyaretçiler&lt;p&gt;
+&lt;/div&gt;
+
+&lt;div class="col-lg-6 col-xl-4"&gt;
+&lt;img src="https://dl.dropbox.com/u/490540/Photos/jstanbul-2012/1133.jpg" alt="Ziyaretçiler"&gt;
+&lt;p&gt;Ziyaretçiler&lt;p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;/div&gt;
+&lt;div class="row"&gt;
+&lt;div class="col-lg-6 col-xl-4"&gt;
+&lt;img src="https://dl.dropbox.com/u/490540/Photos/jstanbul-2012/1135.jpg" alt="@fkadev sunumda"&gt;
+&lt;p&gt;@fkadev sunumda&lt;p&gt;
+&lt;/div&gt;
+&lt;div class="col-lg-6 col-xl-4"&gt;
+&lt;img src="https://dl.dropbox.com/u/490540/Photos/jstanbul-2012/1138.jpg" alt="@tbranyen sunumda"&gt;
+&lt;p&gt;@tbranyen sunumda&lt;p&gt;
+&lt;/div&gt;
+&lt;div class="col-lg-6 col-xl-4"&gt;
+&lt;img src="https://dl.dropbox.com/u/490540/Photos/jstanbul-2012/1129.jpg" alt="@grkn, @vigobronx, @ahmetalpbalkan, @erenturkay, ???, @tunix"&gt;
+&lt;p&gt;@grkn, @vigobronx, @ahmetalpbalkan, @erenturkay, ???, @tunix&lt;p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="row"&gt;
+&lt;div class="col-lg-6 col-xl-4"&gt;
+&lt;img src="https://dl.dropbox.com/u/490540/Photos/jstanbul-2012/1139.jpg" alt="@vigobronx ve @mengukagan"&gt;
+&lt;p&gt;@vigobronx ve @mengukagan&lt;p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Python fonksiyonu nasıl yazılmalı?</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2012/10/26/python-fonksiyonu-nasil-yazilmali/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2012/10/26/python-fonksiyonu-nasil-yazilmali/</id>
+    <published>2012-10-26T00:03:00+03:00</published>
+    <updated>2016-07-24T15:42:09+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://coursera.org" title="Coursera"&gt;Coursera&lt;/a&gt;&amp;rsquo;dan aldığım &lt;a href="https://class.coursera.org/programming1-2012-001/class/index"&gt;Learn to Program: The Fundamentals&lt;/a&gt; dersinde
+bugüne kadar görmediğim bir şeyi sizlerle paylaşmak istiyorum.
+&lt;/p&gt;
+
+&lt;p&gt;Sevgili hocalarım &lt;strong&gt;Jennifer Campbell&lt;/strong&gt; ve &lt;strong&gt;Paul Gries&lt;/strong&gt; ufkumu genişlettiler&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.utoronto.ca" title="University of Toronto"&gt;Toronto Üniversitesi&lt;/a&gt; tarafından hazırlanan ders, Python 101 yani
+Python&amp;rsquo;a giriş ve temel öğeleri kapsıyor. Geçenlerde Python fonksiyonun
+anatomisi vardı derste.&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;area&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;                                        &lt;span class="c"&gt;# Header&lt;/span&gt;
+    &lt;span class="s"&gt;''' (number, number) -&amp;gt; number                             # Type Contract
+
+    Return the area of a triange with dimensions base          # Description
+    and height.
+
+    &amp;gt;&amp;gt;&amp;gt; area(10, 5)                                            # Examples
+    25.0
+    &amp;gt;&amp;gt;&amp;gt; area(2.5, 3)
+    3.75
+    '''&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;                                   &lt;span class="c"&gt;# Body&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şimdi teker teker bakalım.&lt;/p&gt;
+
+&lt;h3&gt;def area(base, height):&lt;/h3&gt;
+
+&lt;p&gt;Bu kısım yani ilk satır, fonksiyonun &lt;strong&gt;Header&lt;/strong&gt;&amp;rsquo;ı yani başı.
+&lt;strong&gt;def&lt;/strong&gt; define anlamında. &lt;strong&gt;area&lt;/strong&gt; fonsiyonun adı. &lt;strong&gt;base&lt;/strong&gt; ve &lt;strong&gt;height&lt;/strong&gt; da
+fonksiyonun aldığı parametreler / argümanlar.&lt;/p&gt;
+
+&lt;h3&gt;(number, number) -&amp;gt; number&lt;/h3&gt;
+
+&lt;p&gt;Bu kısım, &lt;strong&gt;Docstring&lt;/strong&gt; dediğimiz yerin ilk satırı; &lt;strong&gt;Type Contract&lt;/strong&gt; olarak
+adlandırılıyor. Bu bölümde, fonksiyona geçilecek parametreler, adeti, türleri
+ve sonunda fonksiyonun geri döndüğü şey ve tipi belirtiliyor.&lt;/p&gt;
+
+&lt;p&gt;Bu örnekte fonksiyona 2 adet &lt;strong&gt;sayı&lt;/strong&gt; geçiyoruz. Python&amp;rsquo;da &lt;strong&gt;number&lt;/strong&gt; diye
+bir tip yok bildiğiniz gibi. (&lt;em&gt;int, float, long, complex tipleri var&lt;/em&gt;)
+Fakat tip olarak &lt;strong&gt;number&lt;/strong&gt; geçmek ve dönmek şu manaya geliyor;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Fonksiyon&amp;rsquo;a &lt;code&gt;int&lt;/code&gt; ya da &lt;code&gt;float&lt;/code&gt;
+geçebiliriz, sonuç da bize &lt;code&gt;int&lt;/code&gt; ya da &lt;code&gt;float&lt;/code&gt; dönebilir.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Yuvarlak olarak bu iki farklı sayı tipi için kısaca &lt;strong&gt;number&lt;/strong&gt; demişler.&lt;/p&gt;
+
+&lt;h3&gt;Return the area of a triange&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;Örnekteki 4 ve 5.satırlar &lt;strong&gt;Description&lt;/strong&gt; satırları. Yani fonksiyonun ne
+yapacağını bize anlatan açıklama alanı&amp;hellip;&lt;/p&gt;
+
+&lt;h3&gt;&amp;gt;&amp;gt;&amp;gt; area(10, 5)&lt;/h3&gt;
+
+&lt;p&gt;7 - 10.satırlar &lt;strong&gt;Examples&lt;/strong&gt; olarak geçiyor. Yani fonksiyonun kullanım
+örneği&amp;hellip; Hatta &lt;strong&gt;Docstring Test&lt;/strong&gt; için de kullanılacak bir alan. Bize
+söylediği şu; &lt;strong&gt;area(10, 5)&lt;/strong&gt; bize sonuç olarak &lt;strong&gt;25.0&lt;/strong&gt; dönmeli.&lt;/p&gt;
+
+&lt;h3&gt;return base * height / 2&lt;/h3&gt;
+
+&lt;p&gt;Bu kısım da fonksiyonun esas işi yaptığı alan yani &lt;strong&gt;Body&lt;/strong&gt; yani fonksiyonun
+gövdesi. Örnek şaşırtmasın, tek satır olmak zorunda değil 8)&lt;/p&gt;
+
+&lt;p&gt;Gerçekten çok ilgimi çeken bir yaklaşım oldu. Paylaşmak istedim. Umarım
+sizlerin de işine yarar faydalı olur&amp;hellip;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Özgür Web Günleri 2012</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2012/10/25/ozgur-web-gunleri-2012/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2012/10/25/ozgur-web-gunleri-2012/</id>
+    <published>2012-10-25T15:50:00+03:00</published>
+    <updated>2016-07-24T15:42:09+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;Geçtiğimiz hafta düzenlenen (&lt;em&gt;19-20 Ekim&lt;/em&gt;) &lt;a href="http://www.ozgurwebgunleri.org.tr/2012/" title="Özgür Web Günleri, 2012"&gt;Özgür Web Günleri 2012&lt;/a&gt;&amp;rsquo;de
+hayatımın ilk sunumunu yaptım! Evet, ilk sunum. Aslında daha önceleri 
+&lt;a href="http://en.wikipedia.org/wiki/Demoscene" title="Demoscene"&gt;Demoscene&lt;/a&gt; partilerinde pek çok kez sunum, açık oturum, panel vs
+gibi şeylere katılmış / yapmıştım ama&amp;hellip;
+&lt;/p&gt;
+
+&lt;p&gt;İzleyici olarak katıldığım etkinliklerde genelde sunumları acımasızca eleştiren
+biriyim. Beni yakından tanıyanlar iyi bilir. Özellikle sunuma özensiz hazırlanmışsa
+çıldırırım izlerken.&lt;/p&gt;
+
+&lt;p&gt;Gördüm ki, seyirci koltuğundan atıp-tutmak çok kolay ve rahatmış. Stressiz,
+yayıla yayıla izlemek!&lt;/p&gt;
+
+&lt;p&gt;Etkinliğin ilk günü genelde hep Cuma gününe denk geliyor. Cuma - Cumartesi
+şeklinde organizasyon yapılıyor. İlk gün ferah fezah bir şekilde ilgilimi çeken
+sunumlara katıldım. İlk günden aklımda kalanlar sevgili
+&lt;a href="https://twitter.com/fehmicansaglam"&gt;Fehmi Can Sağlam&lt;/a&gt;&amp;rsquo;ın &amp;ldquo;CoffeeScript JavaScript’e Derlenen 
+Bir Programlama Dili&amp;rdquo; adlı sunumu ve sevgili &lt;a href="https://twitter.com/fkadev"&gt;Fatih K. Akın&lt;/a&gt;&amp;rsquo;ın
+&amp;ldquo;Backbone.js ile Uygulama Geliştirme&amp;rdquo; sunumuydu.&lt;/p&gt;
+
+&lt;p&gt;İlk günün sonu yaklaştığımda birden içimde bir his belirdi&amp;hellip;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Evet, yarın sabah saat 10:00&amp;rsquo;da senin sunum var &lt;strong&gt;vigooooooooo!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;İşte o andan itibaren heyecan başladı&amp;hellip; Yaklaşık &lt;strong&gt;1 ay&lt;/strong&gt; boyunca üzerinde
+çalışmış ve hazırlık yapmıştım sunumla ilgili olarak. Güzel bir konu seçtiğimi
+düşünüyorum:&lt;/p&gt;
+
+&lt;h3&gt;Python ve Django&amp;rsquo;da Test ile Yürüyen Geliştirme&lt;/h3&gt;
+
+&lt;p&gt;Pek çok uygulama geliştiricisi test yazarak geliştirme yapmıyor. Nereden mi
+biliyorum? Ben de uzun yıllardan beri bu işle uğraşmama rağmen ancak son
+bir yıldır konu üzerine ağırlık verebildim. Sonrasında da, en ufak bir iş
+yapacağım zaman hemen önce test&amp;rsquo;ini yazmakla başlıyorum işe.&lt;/p&gt;
+
+&lt;p&gt;İlk garipliğimi akşam yaptım. Hani sabah saat &lt;strong&gt;10&lt;/strong&gt;&amp;rsquo;da sunumum var ya,
+bunu &lt;a href="http://twitter.com/ugurozyilmazel" title="Uğur Özyılmazel Twitter #2"&gt;Twitter&lt;/a&gt; üzerinden takip edenlere hatırlatma
+amacıyla bildireceğim ya&amp;hellip; &lt;a href="https://twitter.com/ugurozyilmazel/status/259351810274390016"&gt;Tweet&amp;rsquo;i post ediyorum&lt;/a&gt;:&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;blockquote class="twitter-tweet" data-lang="tr"&gt;
+    &lt;p lang="tr" dir="ltr"&gt;yarın sabah 10:30’da özgür web günlerinde “python ve django’da testle yürüyen geliştirme” sunumum var. beklerim efenin!&lt;/p&gt;
+    &amp;mdash; Uğur Özyılmazel (@ugurozyilmazel) &lt;a href="https://twitter.com/ugurozyilmazel/status/259351810274390016"&gt;19 Ekim 2012&lt;/a&gt;
+&lt;/blockquote&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Dikkat ettiyseniz &lt;strong&gt;10:30&lt;/strong&gt; yazmışım&amp;hellip; Nasıl yani??? İnsan kendi sunucağı
+bir olayın saatini nasıl &lt;strong&gt;yanlış&lt;/strong&gt; yazar? Bilemiyorum&amp;hellip; İşin daha da acısı
+bunu ne zaman farkettim biliyormusunuz? Aslında ben değil, eşim farketti&amp;hellip;
+Sunumu yapacağım salonda saat &lt;strong&gt;09:55&lt;/strong&gt;&amp;rsquo;de &lt;a href="http://twitter.com/yesimfo"&gt;eşim&lt;/a&gt; dediki:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Sen saat&amp;rsquo;i yanlış duyurmuşsun? 10:30 yazmışsın?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Yani sunuma 5 dakika kala saatini yanlış duyurduğumu farkettim. O esnada
+salonda bir kişi vardı&amp;hellip; İşte bu psikoloji içinde saatin 10:00 olmasını
+beklemeye başladım&amp;hellip; Birden kapı açıldı ve içeri 5-10 kişi girdi. Meğer
+etkinliğin servis otobüsü kampüse yeni ulaşmış&amp;hellip; Beş dakika daha bekleyip
+sunuma başladım&amp;hellip;&lt;/p&gt;
+
+&lt;div class="full zoomable"&gt;&lt;img src="http://f.cl.ly/items/0d2z1A0z1w2W2T0H0F2c/ezelimle-sunum.jpg" alt="Kızım Ezel ile birlikte fotoğrafım"&gt;&lt;p&gt; Desteklemeye gelenler arasında canım kızım Ezel de vardı&amp;hellip; 
+&lt;/p&gt;&lt;/div&gt;
+
+&lt;p&gt;İşte o andan itibaren sanki biri geldi, beynimi / bildiklerimi söktü aldı&amp;hellip;
+Karşımda bilgisayar, sağ yanımda iPad. iPad&amp;rsquo;e slide sırasını yazdım ve
+küçük notlar aldım. Sol yanıma da telefonu koydum, kronometresini çalıştırdım.
+&lt;strong&gt;45 dakika&lt;/strong&gt;ya sığdırmalıydım sunumu&amp;hellip; Daha önce test ettiğimde tam &lt;strong&gt;60 dakika&lt;/strong&gt;
+oluyordu&amp;hellip; Bir şekilde bunu bilerek ayarlama yapmam lazımdı&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Başladım, kendimi tanıttım vs derken sanki koşu bantında koşuyormuş gibi nefesimin
+yetmediğini hissettim. Anlatıyorum anlatıyorum ama nefesim yetmiyor&amp;hellip; Bir an
+bulup hüüüüüüüüüüüüüüüüüp diye derince bir nefes almam gerekiyor. Hatta öyle
+oldu ki bir an durup izleyenlere de &amp;ldquo;&lt;strong&gt;Nefesimi yetiştiremiyorum&lt;/strong&gt;&amp;rdquo; dedim.&lt;/p&gt;
+
+&lt;p&gt;Eşim de salonda ön sıradan hem izliyor hem fotoğraf çekiyor. Moral / destek
+veriyor. Zaten izleyenlerin belkide yarısını tanıyorum. Yani resmen biz-bize
+bir durum var&amp;hellip; Bunca olumlu şeye rağmen inanılmaz bir panik yaşamaya başladım.
+Hatta bir an için kendimi suyun altında nefessiz kalmış gibi hissettim.&lt;/p&gt;
+
+&lt;div class="flash-video" title="Video"&gt;&lt;div&gt;&lt;iframe src="http://player.vimeo.com/video/52177751?color=ffffff&amp;amp;title=0&amp;amp;byline=0&amp;amp;portrait=0" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Sunumum bittikten sonra &lt;a href="https://twitter.com/burakdede"&gt;Burak Dede&lt;/a&gt; tarafından yapılan
+&amp;ldquo;Tornado Web Çatısı ile Gerçek Zamanlı Uygulamalar Geliştirme&amp;rdquo; ye katıldım.
+Gayet güzel bir sunum oldu. 35 dakikada sürdü sunum. Sorulara zaman bile kaldı.&lt;/p&gt;
+
+&lt;p&gt;Daha sonra &lt;a href="https://www.django-cms.org" title="Django-CMS"&gt;Django-CMS&lt;/a&gt;&amp;rsquo;in developer&amp;rsquo;ı &lt;a href="https://twitter.com/ojiidotch"&gt;Jonas Obrist&lt;/a&gt;
+uzun bir &amp;ldquo;Introduction to Django&amp;rdquo; sunumu sonuna Django Avrupa durumunu ilave etti.
+Bu sunumdan sonra yemek arası oldu. Yemek dönüşünde ben de eve döndüm.&lt;/p&gt;
+
+&lt;p&gt;Güzel iki gün geçirdim, yeni insanlarla tanıştım. Kendimce çeşitli dersler
+çıkarttım.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>IRB konfigürasyonu ve ufak tefek ayarlar</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2012/05/25/irb-konfigurasyonu-ve-ufak-tefek-ayarlar/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2012/05/25/irb-konfigurasyonu-ve-ufak-tefek-ayarlar/</id>
+    <published>2012-05-25T00:06:00+03:00</published>
+    <updated>2016-07-24T15:42:09+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Interactive_Ruby_Shell"&gt;IRB&lt;/a&gt; konfigüre edilebilen bir interaktif konsoldur. Aynı &lt;a href="http://ipython.org/"&gt;IPython&lt;/a&gt; gibi.
+Hem test yapmak, hem de günlük ihtiyaçları kullanmak için en sık başvurduğum
+&lt;strong&gt;tool&lt;/strong&gt;&amp;rsquo;dur. &lt;a href="http://python.org" title="Python"&gt;Python&lt;/a&gt;&amp;rsquo;dan alıştığım &lt;a href="http://docs.python.org/library/pprint.html"&gt;Pretty Print&lt;/a&gt; beni IRB uzmanı
+olmaya yöneltti.
+&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$HOME/.irbrc&lt;/code&gt; adlı dosya, kullanıcı bazında IRB konfigürasyon dosyasıdır.
+İlk çalışma sırasında ne olacak? Hangi modüller default olarak yüklenmeli? Bu
+ve buna benzer şeyler standart &lt;a href="http://www.ruby-lang.org/" title="Ruby"&gt;Ruby&lt;/a&gt; script&amp;rsquo;i şeklinde yazılır.&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# encoding: utf-8&lt;/span&gt;
+
+&lt;span class="c1"&gt;# http://pablotron.org/software/wirble/README&lt;/span&gt;
+&lt;span class="c1"&gt;# required gems:&lt;/span&gt;
+&lt;span class="c1"&gt;# wirble pri awesome_print ruby-duration&lt;/span&gt;
+
+&lt;span class="no"&gt;IRB_START_TIME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Time&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;now&lt;/span&gt;
+
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'rubygems'&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;"irb/completion"&lt;/span&gt;
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'irb/ext/save-history'&lt;/span&gt;
+
+&lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="ss"&gt;:RUBY_DURATION&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;:exists&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;'ruby-duration'&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="ss"&gt;:WIRBLE&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;:exists&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;'wirble'&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="ss"&gt;:ORI&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;:exists&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;'ori'&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="ss"&gt;:AWESOME_PRINT&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;:exists&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;'awesome_print'&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;begin&lt;/span&gt;
+  &lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'ruby-duration'&lt;/span&gt;
+&lt;span class="k"&gt;rescue&lt;/span&gt; &lt;span class="no"&gt;LoadError&lt;/span&gt;
+  &lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RUBY_DURATION&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:exists&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;false&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;begin&lt;/span&gt;
+  &lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'wirble'&lt;/span&gt;
+&lt;span class="k"&gt;rescue&lt;/span&gt; &lt;span class="no"&gt;LoadError&lt;/span&gt;
+  &lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WIRBLE&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:exists&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;false&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;begin&lt;/span&gt;
+  &lt;span class="c1"&gt;# ori usage:&lt;/span&gt;
+  &lt;span class="c1"&gt;# "".ri&lt;/span&gt;
+  &lt;span class="c1"&gt;# "".ri :upcase&lt;/span&gt;
+  &lt;span class="c1"&gt;# Array.ri&lt;/span&gt;
+  &lt;span class="c1"&gt;# "".ri :pretty_print&lt;/span&gt;
+  &lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'ori'&lt;/span&gt;
+&lt;span class="k"&gt;rescue&lt;/span&gt; &lt;span class="no"&gt;LoadError&lt;/span&gt;
+  &lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:ORI&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:exists&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;false&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;begin&lt;/span&gt;
+  &lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'awesome_print'&lt;/span&gt;
+&lt;span class="k"&gt;rescue&lt;/span&gt; &lt;span class="no"&gt;LoadError&lt;/span&gt;
+  &lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:AWESOME_PRINT&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:exists&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;false&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="c1"&gt;# ARGV.concat ["--readline", "--prompt-mode", "simple"]&lt;/span&gt;
+&lt;span class="c1"&gt;# ARGV.concat ["--readline", "--noprompt"]&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Colors for prompt&lt;/span&gt;
+&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[0m"&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:BOLD&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[1m"&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:UNDERLINE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[4m"&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:LGRAY&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[0;37m"&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:GRAY&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[0;90m"&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RED&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[31m"&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:GREEN&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[32m"&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:YELLOW&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[33m"&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:BLUE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[34m"&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:MAGENTA&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[35m"&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:CYAN&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[36m"&lt;/span&gt;
+&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WHITE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[37m"&lt;/span&gt;
+&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Colors for array, hash etc...&lt;/span&gt;
+&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="no"&gt;Wirble&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;init&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+  &lt;span class="ss"&gt;:skip_prompt&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="ss"&gt;:skip_history&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="no"&gt;Wirble&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;colorize&lt;/span&gt;
+&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
+
+
+&lt;span class="c1"&gt;# IRB configuration&lt;/span&gt;
+&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="no"&gt;MY_CUSTOM_PROMPT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WHITE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%03n&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;:&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:YELLOW&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%i&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+
+&lt;span class="no"&gt;IRB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:SAVE_HISTORY&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10000&lt;/span&gt;
+&lt;span class="no"&gt;IRB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:HISTORY_FILE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'HOME'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/.irb_history"&lt;/span&gt;
+&lt;span class="no"&gt;IRB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:USE_READLINE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;
+&lt;span class="no"&gt;IRB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:AUTO_INDENT&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;
+&lt;span class="no"&gt;IRB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:PROMPT&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:SIMPLE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="ss"&gt;:PROMPT_I&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;MY_CUSTOM_PROMPT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &amp;gt; "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="ss"&gt;:PROMPT_N&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;MY_CUSTOM_PROMPT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &amp;gt;&amp;gt; "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="ss"&gt;:PROMPT_S&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;MY_CUSTOM_PROMPT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:MAGENTA&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%l&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="ss"&gt;:PROMPT_C&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;MY_CUSTOM_PROMPT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WHITE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;*&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="ss"&gt;:RETURN&lt;/span&gt;   &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:GREEN&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="no"&gt;IRB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:PROMPT_MODE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="ss"&gt;:SIMPLE&lt;/span&gt;
+&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
+
+
+&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;each&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;p&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;"need '&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RED&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}#{&lt;/span&gt;&lt;span class="nb"&gt;p&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:file&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;' gem"&lt;/span&gt; &lt;span class="k"&gt;unless&lt;/span&gt; &lt;span class="nb"&gt;p&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:exists&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
+
+&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="nb"&gt;at_exit&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RUBY_DURATION&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:exists&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;delta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Duration&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;Time&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;now&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="no"&gt;IRB_START_TIME&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WHITE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%h&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; %~h, &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WHITE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%m&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; %~m, &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WHITE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%s&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; %~s"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;delta&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Standart kütüphanede olmayan 4 adet modül kullanıyorum. (&lt;em&gt;gem&lt;/em&gt;) Bunlar:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ruby-duration&lt;/li&gt;
+&lt;li&gt;wirble&lt;/li&gt;
+&lt;li&gt;ori&lt;/li&gt;
+&lt;li&gt;awesome_print&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;ruby-duration&lt;/code&gt; basit bir zaman hesabı işi için kullanılıyor. &lt;code&gt;wirble&lt;/code&gt;
+renklendirme için. &lt;code&gt;ori&lt;/code&gt; ri dökümantasyonuna erişmek için. Konu ile ilgili
+daha önce &lt;a href="/blog/tr/2012/05/02/irb-icin-yardimci-gem-ori/"&gt;yazmıştım&lt;/a&gt;. &lt;code&gt;awesome_print&lt;/code&gt; ise belkide içlerindeki
+en süper gem. &lt;code&gt;Hash&lt;/code&gt; &lt;code&gt;Array&lt;/code&gt; ya da &lt;code&gt;Class&lt;/code&gt; bu objeleri print etmek ve çıktıyı
+anlamak &lt;code&gt;awesome_print&lt;/code&gt; sayesinde çok kolay.&lt;/p&gt;
+
+&lt;p&gt;Modüller dışında, IRB&amp;rsquo;nin prompt&amp;rsquo;unu da değiştirdim. Hem renkli
+hem de daha anlaşılır oldu.&lt;/p&gt;
+
+&lt;p&gt;İlk çalışma anında gereken &lt;code&gt;gem&lt;/code&gt; kontrolü yapılıp uyarı geliyor. Çıkışta da
+geçen süre yazılıyor ekrana. En önemlisi, &lt;a href="/blog/tr/2012/05/24/irb-rbenv-readline-ve-turkce-karakter/"&gt;önceki diğer bir yazımda&lt;/a&gt; anlattığım
+&lt;code&gt;readline&lt;/code&gt; kütüphanesi yardımıyla, &lt;code&gt;INPUTRC&lt;/code&gt; çalışıyor. Bu şu anlama geliyor;
+&lt;code&gt;HISTORY&lt;/code&gt; içinden otomatik tamamlama.&lt;/p&gt;
+
+&lt;p&gt;Ufak bir video hazırladım:&lt;/p&gt;
+
+&lt;div class="flash-video" title="Video"&gt;&lt;div&gt;&lt;iframe src="http://www.screenr.com/embed/7kX8" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+  </entry>
+</feed>

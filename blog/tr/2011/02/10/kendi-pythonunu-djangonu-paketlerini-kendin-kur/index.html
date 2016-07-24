@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title>Uğur “vigo” Özyılmazel | Kendi Python’unu Django’nu paketlerini kendin kur</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        
+        <link href="/public/css/application.css" rel="stylesheet" />
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
+        <meta name="date" content="2016-07-24T16:19:15+03:00" />
+        <meta name="description" content="Düzeltme: 23 Mart 2011, 15:33 
+Lütfen önce bu yazıyı okuyun!" />
+        <meta name="author" content="Uğur “vigo” Özyılmazel"/>
+        <meta name="copyright" content="(c) 2006 / 2016 - Uğur “vigo” Özyılmazel" />
+        <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/" />
+        <meta property="og:title" content="Kendi Python’unu Django’nu paketlerini kendin kur" />
+        <meta property="og:site_name" content="vigo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Düzeltme: 23 Mart 2011, 15:33 
+Lütfen önce bu yazıyı okuyun!" />
+        <meta property="og:image" content="http://ugur.ozyilmazel.com/public/images/covers/2011-03-30-python-path.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="3330" />
+        <meta property="og:image:height" content="768" />
+        <link rel="apple-touch-icon-precomposedposed" sizes="144x144" href="/public/images/icons/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/images/icons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/images/icons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/public/images/icons/apple-touch-icon-57-precomposed.png">
+        <link href="/public/images/icons/favicon.png" rel="shortcut icon" type="image/png" />
+
+    </head>
+    <body class="blog blog_tr blog_tr_2011 blog_tr_2011_02 blog_tr_2011_02_10 blog_tr_2011_02_10_kendi-pythonunu-djangonu-paketlerini-kendin-kur blog_tr_2011_02_10_kendi-pythonunu-djangonu-paketlerini-kendin-kur_index">
+            
+    
+    
+<!-- page-top-nav -->
+<nav id="page-top-nav" class="navbar">
+    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsable_navbar">&#9776;</button>
+    <div class="collapse navbar-toggleable-sm" id="collapsable_navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                    <ul class="list-inline nav navbar-nav">
+<li class="list-inline-item nav-item"><a href="/">Anasayfa</a></li><li class="list-inline-item nav-item active"><a href="/blog/tr/">Blog</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/hakkimda/">Hakkımda</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/sunumlar/">Sunumlar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/kitaplar/">Kitaplar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/iletisim/">İletişim</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/cv/">CV</a></li>                        <li class="list-inline-item nav-item pull-md-right m-r-0">
+                                <a title="English" href="/blog/en/">English</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- /page-top-nav -->
+
+
+
+    
+    <!-- page cover -->
+<div class="jumbotron jumbotron-fluid page-cover hidden-sm-down" style="background-image: url(/public/images/covers/2011-03-30-python-path.jpg);">
+    <div class="page-cover-layer page-cover-layer-solid">
+        <div class="container">
+            <div class="text-xs-center">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page cover -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <section id="article">
+                    <h1><a href="/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/">Kendi Python’unu Django’nu paketlerini kendin kur</a></h1>
+                    
+
+                    <time pubdate datetime="2011-02-10T12:58:00+02:00" title="10 Şubat 2011, Perşembe 12:58">
+                        10 Şubat 2011, Perşembe 12:58
+                    </time>
+
+                    <header>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/python/">python</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/django/">django</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/pip/">pip</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/macports/">macports</a></span>
+                    </header>
+
+                    <div id="markdown">
+                        <p><strong>Düzeltme: 23 Mart 2011, 15:33</strong><br>
+Lütfen önce <a href="/blog/tr/2011/03/23/bu-defa-son/">bu yazıyı</a> okuyun!
+</p>
+
+<hr>
+
+<p>Sevgili kardeşim <a href="http://twitter.com/firat">Fırat Can Başarır</a> uzunca zamandır
+bana:</p>
+
+<blockquote>
+<p>abi, python paketlerini pip’ten kuralım, ports’dan kurmayalım, bu şekilde
+çok rahat ederiz</p>
+</blockquote>
+
+<p>diyordu&hellip; Peki, haydi yapalım&hellip; Gidip <a href="http://python.org" title="Python">Python.org</a>’dan Mac OS
+için hazırlanmış installer’ı çektik. Kuruluma geçtik, işlemler bitti, süper!
+python’u kurduk sisteme&hellip;</p>
+
+<p>Hemen python’un interactive shell’ine girdik. Yıllardır bitip tükenmek 
+bilmeyen <strong>locale</strong> sorunları yüzünden ( <em>tarih ve Türkçe harfler</em> ) ilk
+yaptığım iş shell’de <code>ğ</code> harfine basmak oldu&hellip;</p>
+
+<h2>BUUUUUUUUUUM!</h2>
+
+<p>Türkçe harler çalışmıyor? yani <code>ğ</code> <code>ş</code> <code>ü</code> gibi harflere basınca hata sesi çıkıyor
+ve saçma sapan karakterler çıkıyor ekrana&hellip;</p>
+
+<p>Bunun aynısı macos’la birlikte gelen <a href="http://www.nano-editor.org/" title="Nano">Nano</a> adlı
+text editörde de yaşamış, çözümü <a href="http://macports.org" title="Macports">macports</a>’da bulmuştum.
+Nano’yu macports’dan kurunca hem versiyon güncellenmiş hem de Türkçe sorunları
+ortadan kalkmıştı&hellip;</p>
+
+<p>Yani koskoca <a href="http://python.org" title="Python">Python.org</a>’dan indirdiğimiz uygulamada bile <strong>locale</strong> sorunu yaşamak
+hakikatten komikti&hellip; Bunun tahmini 2 sebebi vardı:</p>
+
+<ol>
+<li>macos’la gelen <a href="http://www.gnu.org/s/readline/">readline</a> kütüphanesinde <strong>Türkçe</strong> karakter desteği yoktu</li>
+<li>python <code>utf-8</code> desteği ile compile (<em>derleme</em>) edilmemişti!</li>
+</ol>
+
+<p>Bugüne kadar hep macports’tan python kurulumu yaptığımız için hiç bir sıkıntı
+yaşamamıştık&hellip; Hemen macports’un <code>pyton27</code> ile ilgili <a href="http://trac.macports.org/browser/trunk/dports/lang/python27/Portfile">ports dosyasına</a>
+baktık.</p>
+
+<p><strong>depends_lib</strong> kısmında, python’u derlemek için gerekecek diğer kütüphaneler
+listesini gördük. Bunlar:</p>
+<pre class="highlight plaintext"><code>gettext
+zlib
+openssl
+sqlite3
+db46
+ncurses
+gdbm
+bzip2
+readline
+</code></pre>
+
+<p>şeklindeydi. <code>configure.args</code>’a baktığımda; <code>--enable-framework</code> ve
+<code>--enable-unicode</code> dikkatimi çekti. İşin esas can alıcı kısmı ise <strong>unicode</strong>
+ile ilgili olan parametresiydi. Hemen <code>$HOME</code> folder’ıma gidip işe koyuldum. Eğer
+<code>depends_lib</code>’deki paketler sizde yoksa önce bu paketleri kurun:</p>
+<pre class="highlight shell"><code>sudo port selfupdate <span class="c"># önce paket listesini güncelle</span>
+port installed | grep PAKET_ADI <span class="c"># paket zaten kurulumu?</span>
+port installed PAKET_ADI <span class="c"># 29 Ocak 2012, Pazar, 20:23 itibariyle paket kontrolü</span>
+port search PAKED_ADI <span class="c"># ilgili paketi ara</span>
+sudo port install PAKET_ADI <span class="c"># geren paketi kur</span>
+</code></pre>
+
+<p>Eğer tüm paketler hazırsa python’u derlemeye başlayalım. Hemen
+<a href="http://python.org/download/">http://python.org/download/</a> adresinden source’u
+çekelim. Ben bu post’u yazarken kullandığım source <a href="http://python.org/ftp/python/2.7.1/Python-2.7.1.tgz">buydu</a></p>
+<pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
+mkdir .local
+mkdir .local/Packages
+<span class="nb">cd</span> ~/Downloads <span class="c"># Python-2.7.1.tgz buradaysa</span>
+tar xvzf http://python.org/ftp/python/2.7.1/Python-2.7.1.tgz
+</code></pre>
+
+<p><code>setup.py</code> dosyasında minik bir ayar yapacağız. Dosyayı, kullandığınız text
+editörü ile açıp aşağıdaki satırları bulun.</p>
+<pre class="highlight python"><code><span class="n">add_dir_to_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">library_dirs</span><span class="p">,</span> <span class="s">'/usr/local/lib'</span><span class="p">)</span>
+<span class="n">add_dir_to_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">include_dirs</span><span class="p">,</span> <span class="s">'/usr/local/include'</span><span class="p">)</span>
+</code></pre>
+
+<p>Hemen altına aşağıdaki satırları ilave edin:</p>
+<pre class="highlight python"><code><span class="n">add_dir_to_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">library_dirs</span><span class="p">,</span> <span class="s">'/opt/local/lib'</span><span class="p">)</span>
+<span class="n">add_dir_to_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">include_dirs</span><span class="p">,</span> <span class="s">'/opt/local/include'</span><span class="p">)</span>
+</code></pre>
+
+<p>Bu sayede, macports’la kurduğunuz kütüphanelerin de kullanılmasını sağlıyoruz.
+Şimdi derleme işine geçebiliriz.</p>
+<pre class="highlight shell"><code>./configure --enable-unicode<span class="o">=</span>ucs4 --prefix<span class="o">=</span><span class="nv">$HOME</span>/.local --enable-framework<span class="o">=</span><span class="nv">$HOME</span>/.local/Library/Frameworks
+make
+make install
+</code></pre>
+
+<p>Derleme işlermleri başarıyla biterse (<em>ki bitmeli</em>) hemen kurulum yaptığınız
+yere gidip bakın:</p>
+<pre class="highlight shell"><code><span class="nb">cd</span> ~/.local/
+ls -al
+</code></pre>
+<pre class="highlight plaintext"><code>Applications
+Library
+Packages
+bin
+</code></pre>
+
+<p>gibi folder’lar görmeniz gerekiyor. Aslında yazıyı yazarken &ldquo;<strong>keşke
+.local/python diye bir folder açıp, herşeyi o şekilde kursaydım</strong>&rdquo; diye de
+aklımdan geçirdim. İleride belki <strong>Ruby</strong>’i ya da başka bir şeyi de kendim kurmam
+gerekirse karışıklık olmadan yapabilirdim diye düşündüm&hellip;</p>
+
+<p>Herşey tamamsa, hemen <code>ENVIRONMENT</code> değişkenlerine ayar yapalım: Bunun için
+<code>.bashrc</code> ya da <code>.profile</code> ya da ne kullanıyorsanız o dosyayı açıp aşağıdakileri
+ekleyin:</p>
+<pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/Packages/bin:<span class="nv">$PATH</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/bin:<span class="nv">$PATH</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/Library/Frameworks/Python.framework/Versions/Current/bin:<span class="nv">$PATH</span>
+<span class="nb">export </span><span class="nv">PYTHONIOENCODING</span><span class="o">=</span>utf-8
+</code></pre>
+
+<p>Şimdi sırada <strong>easy_install</strong> var. Bunun için <a href="http://pypi.python.org/pypi/setuptools">Setuptools</a>’u
+kurmamız lazım. Source’u indirdikten ve extract ettikten sonra, klasik
+python modülü kurma işlemi yapıyoruz:</p>
+<pre class="highlight shell"><code>python setup.py install
+</code></pre>
+
+<p>İşem bitince hemen kontrol ediyoruz, easy_install’un yeri neresi?</p>
+<pre class="highlight shell"><code>which easy_install
+</code></pre>
+
+<p>Görmek istediğimiz path, kullanıcı folder’ınızın altında (<code>$HOME</code>)</p>
+<pre class="highlight plaintext"><code>/.local/Library/Frameworks/Python.framework/Versions/Current/bin/easy_install
+</code></pre>
+
+<p>gibi olmalıdır.</p>
+
+<p>Eğer herşey yolundaysa hemen pip’i kuralım:</p>
+<pre class="highlight shell"><code>easy_install pip
+</code></pre>
+
+<p>Kurulum bitince tekrar <code>ENVIRONMENT</code>’a ayar yapmamız gerekiyor:</p>
+<pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PIP_INSTALL_OPTION</span><span class="o">=</span><span class="s2">"--prefix=</span><span class="nv">$HOME</span><span class="s2">/.local/Packages/"</span>
+<span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/Packages/lib/python2.7/site-packages
+</code></pre>
+
+<p>Bu sayede, ilgili python paketlerimizi de <code>.local</code> içine alıyoruz. Böylece,
+ileriede bir gün makineyi yeniden kurduğunuzda ya da başka bir durumda,
+kasmadan tüm paketlerinizi vs kolayca taşıyabileceksiniz. Şimdi <code>pip</code> ile
+gereken paketleri kurabiliriz. Benim en çok kullandıklarım:</p>
+<pre class="highlight plaintext"><code>pip install django ipython south simplejson PIL
+</code></pre>
+
+<p><strong>pip</strong> direk <a href="http://pypi.python.org/pypi" title="Python Package Index">pypi</a>’dan indirdiği için hem paketleri güncellemeniz hem de 
+yönetmeniz çok kolay oluyor. Macports’la ya da <a href="http://ubuntu.com/" title="Ubuntu">Ubuntu</a>’daki <strong>aptitude</strong>’la 
+bazen sıkıntılar çıkabiliyor. Python paketleri için en rahat çözüm <code>pip</code> oluyor.</p>
+
+<h3>Güncelleme: 6 Temmuz 2016</h3>
+
+<p>Ne yazıkki burada yazan şeylerle uğraşmadan <a href="http://brew.sh">Homebrew</a>
+üzerinden: <code>brew install python</code> demek yeterli :)</p>
+
+                    </div>
+                    
+                    <hr/>
+<div id="related-articles">
+    <ul class="list-unstyled">
+    <li>
+        <h1>İlişkili Makaleler</h1>
+        <p>Konu ile ilgili toplam “12” adet bağlantılı makale bulunuyor.</p>
+    </li>
+        <li>
+            <h3><a href="/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/">Derlenmiş Python Dosyaları Bazen Sizi Yanıltabilir</a></h3>
+            <time pubdate datetime="2013-02-04T12:15:00+02:00" title="04 Şubat 2013, Pazartesi 12:15">
+                04 Şubat 2013, Pazartesi 12:15
+            </time>
+            <p>Suç kesinlikle Python’da değil! Yanlış anlaşılma olmasın! Geçtiğimiz günlerde 
+yaşadığım iki dikkatsizliğin bana ciddi vakit kaybettirmesi bu blog postunu 
+yazmama sebeb oldu.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2012/10/26/python-fonksiyonu-nasil-yazilmali/">Python fonksiyonu nasıl yazılmalı?</a></h3>
+            <time pubdate datetime="2012-10-26T00:03:00+03:00" title="26 Ekim 2012, Cuma 00:03">
+                26 Ekim 2012, Cuma 00:03
+            </time>
+            <p><a href="http://coursera.org" title="Coursera">Coursera</a>’dan aldığım <a href="https://class.coursera.org/programming1-2012-001/class/index">Learn to Program: The Fundamentals</a> dersinde
+bugüne kadar görmediğim bir şeyi sizlerle paylaşmak istiyorum.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2012/10/25/ozgur-web-gunleri-2012/">Özgür Web Günleri 2012</a></h3>
+            <time pubdate datetime="2012-10-25T15:50:00+03:00" title="25 Ekim 2012, Perşembe 15:50">
+                25 Ekim 2012, Perşembe 15:50
+            </time>
+            <p>Geçtiğimiz hafta düzenlenen (<em>19-20 Ekim</em>) <a href="http://www.ozgurwebgunleri.org.tr/2012/" title="Özgür Web Günleri, 2012">Özgür Web Günleri 2012</a>’de
+hayatımın ilk sunumunu yaptım! Evet, ilk sunum. Aslında daha önceleri 
+<a href="http://en.wikipedia.org/wiki/Demoscene" title="Demoscene">Demoscene</a> partilerinde pek çok kez sunum, açık oturum, panel vs
+gibi şeylere katılmış / yapmıştım ama…</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/11/26/webkit2png-ile-ekran-goruntusu-almak/">webkit2png ile ekran görüntüsü almak</a></h3>
+            <time pubdate datetime="2011-11-26T23:56:00+02:00" title="26 Kasım 2011, Cumartesi 23:56">
+                26 Kasım 2011, Cumartesi 23:56
+            </time>
+            <p>Uzunca bir zamandır yazmak istediğim fakat fırsat bulamadığım bir konu:
+Python’la yazılmış <strong>CommandLine Tool</strong>’u yani Terminal’den çalışan bir script.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/03/30/pythonpathe-ilave/">PYTHONPATH’e ilave</a></h3>
+            <time pubdate datetime="2011-03-30T15:40:00+03:00" title="30 Mart 2011, Çarşamba 15:40">
+                30 Mart 2011, Çarşamba 15:40
+            </time>
+            <p><a href="http://en.wikipedia.org/wiki/AppleScript" title="AppleScript">AppleScript</a> ile pek çok uygulama (<em>tabi desteği varsa</em>) kontrol edilebiliyor.
+Yine daldan dala atlarken python için yazılmış <a href="http://pypi.python.org/pypi/appscript/1.0.0">appscript</a>
+diye bir modül gördüm. Hemen <code>pip</code>’den kurayım dedim.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/03/23/bu-defa-son/">Bu defa son</a></h3>
+            <time pubdate datetime="2011-03-23T15:30:00+02:00" title="23 Mart 2011, Çarşamba 15:30">
+                23 Mart 2011, Çarşamba 15:30
+            </time>
+            <p>Biliyorum daha dün (<em>ya da önceki gün</em>) bu konu ile ilgili bir güncelleme
+yapmıştım fakat asıl yapmam gerekeni daha yeni hatırladım. Hatta kendi
+tarafımda pek çok şeyi de düzeltmek zorunda kaldım.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/03/22/kendi-pythonunu-kendin-kur-yazimda-eksik-yerler-buldum/">Kendi Python’unu kendin kur yazımda eksik yerler buldum</a></h3>
+            <time pubdate datetime="2011-03-22T15:45:00+02:00" title="22 Mart 2011, Salı 15:45">
+                22 Mart 2011, Salı 15:45
+            </time>
+            <p>Geçtiğimiz günlerde yazdığım <a href="/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/">yazımda</a> çok önemli bir eksiklik
+yaptığımı bugün farkettim. Neden bugün? Bugün yeni makine kuruyordum ve sıra
+<a href="http://python.org" title="Python">Python</a>’u kurmaya gelmişti. Hemen blog’umu açıp kendi yazdığım yazımı 
+okumaya başladım.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2010/02/28/python-kitabi/">Python kitabı</a></h3>
+            <time pubdate datetime="2010-02-28T11:44:00+02:00" title="28 Şubat 2010, Pazar 11:44">
+                28 Şubat 2010, Pazar 11:44
+            </time>
+            <p>Cuma günü, her cuma olduğu gibi, İstanbul Cevahir AVM’ne gittik. Cuma bizim 
+ofiste <a href="http://cils.blogspot.com/search/label/cevahir" title="Cevahir etiketli ofis postları">CEVO</a> günüdür, öğlen Çin yemeği yeriz <strong>Great Dong Fang</strong> 
+adlı restoranda.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2009/07/29/django-icin-bash-completion/">Django için bash completion</a></h3>
+            <time pubdate datetime="2009-07-29T15:59:00+03:00" title="29 Temmuz 2009, Çarşamba 15:59">
+                29 Temmuz 2009, Çarşamba 15:59
+            </time>
+            <p>Az önce başardığım, aslında çok bilindiğini düşündüğüm fakat etrafımdaki
+<a href="https://www.djangoproject.com/" title="Django Project">Django</a>’cu kardeşimlerimden duymadığım bir özellikten bahsetmek
+istiyorum!</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/02/22/pip-icin-bash-completion/">Pip için bash completion</a></h3>
+            <time pubdate datetime="2011-02-22T11:05:00+02:00" title="22 Şubat 2011, Salı 11:05">
+                22 Şubat 2011, Salı 11:05
+            </time>
+            <p>Bir <a href="/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/">önceki yazımda</a> unutmuşum, yeni farkettim. <code>pip</code>’i
+terminalde kullanırken <code>bash-completion</code> özelliğinden de faydalanabiliriz. Bunun
+için, pip’le gelen bash-completion’ı sisteme eklemek gerekiyor. Tabi, sizde
+zaten <code>bash-completion</code> kurulu diye var sayıyorum.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2009/08/27/macports-ssh-otomatik-tamamlama-ve-genel-bilgiler/">Macports, ssh otomatik tamamlama ve genel bilgiler</a></h3>
+            <time pubdate datetime="2009-08-27T15:41:00+03:00" title="27 Ağustos 2009, Perşembe 15:41">
+                27 Ağustos 2009, Perşembe 15:41
+            </time>
+            <p>Daha önceki yazılarımda da bahsetmiştim, <a href="http://macports.org" title="Macports">MacPorts</a> diye harika bir
+şey var! Linux (<em>debian, ubuntu vs…</em>) daki paket yönetiminin OS X’cesi.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2009/07/26/bash-completion-olayi/">Bash Completion olayı!</a></h3>
+            <time pubdate datetime="2009-07-26T15:12:00+03:00" title="26 Temmuz 2009, Pazar 15:12">
+                26 Temmuz 2009, Pazar 15:12
+            </time>
+            <p>Bilgisayar kullanmaya Commodore 64’le başlayan, ilk ciddi anlamda parayı Amiga 
+ile kazanan ben, kaderin cilvesi olarak, uzun yıllar Windows kullanmak zorunda 
+kalmıştım.</p>
+        </li>
+    </ul>
+</div>
+<hr/>
+
+                    
+                    <ul id="prev-next-articles" class="list-inline">
+                        <li class="list-inline-item li-left">
+                            <a href="/blog/tr/2011/01/20/27inch-imac/">&laquo; 27inch iMac</a>
+                            <time pubdate datetime="2011-01-20T20:43:00+02:00" title="20 Ocak 2011, Perşembe">20 Ocak 2011, Perşembe</time>
+                        </li>
+                        <li class="list-inline-item pull-sm-right m-r-0 text-md-right li-right">
+                            <a href="/blog/tr/2011/02/22/pip-icin-bash-completion/">Pip için bash completion &raquo;</a>
+                            <time pubdate datetime="2011-02-22T11:05:00+02:00" title="22 Şubat 2011, Salı">22 Şubat 2011, Salı</time>
+                        </li>
+                    </ul>
+                </section>
+
+                    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'ugurozyilmazel';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Lütfen, <a href="http://disqus.com/?ref_noscript">Disqus</a> tarafından sağlanan yorumları görmek için JavaScript&rsquo;i aktive edin.
+    </noscript>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                <nav id="footer-nav">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a title="C64 Scener Database" href="http://csdb.dk/scener/?id=8379">CSDB</a></li>
+                        <li class="list-inline-item"><a title="Zombie Boys" href="http://zombieboys.net">Zombie Boys</a></li>
+                        <li class="list-inline-item"><a title="Bronx" href="http://bronxwhq.org">Bronx</a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="/feed-tr.xml"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-rss fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="https://github.com/vigo"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0"><a title="Twitter" href="https://twitter.com/vigobronx"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /footer -->
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        
+        
+        
+        <script src="/public/js/application.js"></script>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-6463685-2', 'auto');
+          ga('send', 'pageview');
+        </script>
+        
+    </body>
+</html>

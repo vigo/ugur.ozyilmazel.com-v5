@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title>Uğur “vigo” Özyılmazel | Mac OS X: CFUserTextEncoding ve UTF-8 sorunsalı</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        
+        <link href="/public/css/application.css" rel="stylesheet" />
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
+        <meta name="date" content="2016-07-24T16:19:16+03:00" />
+        <meta name="description" content="Mac OS X’le tanıştığım günden beri sinir olduğum ve kimsenin çözümünü
+bilemediği bir sorunum var. Aslında bu sorun, Amerikalı olmayan herkesin
+sorunu. Bu sorun yüzünden ne Python’la ne de Ruby’le bile 
+işlem yapmakta sıkıntı oluyor" />
+        <meta name="author" content="Uğur “vigo” Özyılmazel"/>
+        <meta name="copyright" content="(c) 2006 / 2016 - Uğur “vigo” Özyılmazel" />
+        <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2011/07/21/mac-os-x-cfusertextencoding-ve-utf-8-sorunsali/" />
+        <meta property="og:title" content="Mac OS X: CFUserTextEncoding ve UTF-8 sorunsalı" />
+        <meta property="og:site_name" content="vigo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Mac OS X’le tanıştığım günden beri sinir olduğum ve kimsenin çözümünü
+bilemediği bir sorunum var. Aslında bu sorun, Amerikalı olmayan herkesin
+sorunu. Bu sorun yüzünden ne Python’la ne de Ruby’le bile 
+işlem yapmakta sıkıntı oluyor" />
+        <meta property="og:image" content="http://ugur.ozyilmazel.com/public/images/covers/2011-07-21-cfusertextencoding.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="3330" />
+        <meta property="og:image:height" content="768" />
+        <link rel="apple-touch-icon-precomposedposed" sizes="144x144" href="/public/images/icons/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/images/icons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/images/icons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/public/images/icons/apple-touch-icon-57-precomposed.png">
+        <link href="/public/images/icons/favicon.png" rel="shortcut icon" type="image/png" />
+
+    </head>
+    <body class="blog blog_tr blog_tr_2011 blog_tr_2011_07 blog_tr_2011_07_21 blog_tr_2011_07_21_mac-os-x-cfusertextencoding-ve-utf-8-sorunsali blog_tr_2011_07_21_mac-os-x-cfusertextencoding-ve-utf-8-sorunsali_index">
+            
+    
+    
+<!-- page-top-nav -->
+<nav id="page-top-nav" class="navbar">
+    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsable_navbar">&#9776;</button>
+    <div class="collapse navbar-toggleable-sm" id="collapsable_navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                    <ul class="list-inline nav navbar-nav">
+<li class="list-inline-item nav-item"><a href="/">Anasayfa</a></li><li class="list-inline-item nav-item active"><a href="/blog/tr/">Blog</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/hakkimda/">Hakkımda</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/sunumlar/">Sunumlar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/kitaplar/">Kitaplar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/iletisim/">İletişim</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/cv/">CV</a></li>                        <li class="list-inline-item nav-item pull-md-right m-r-0">
+                                <a title="English" href="/blog/en/">English</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- /page-top-nav -->
+
+
+
+    
+    <!-- page cover -->
+<div class="jumbotron jumbotron-fluid page-cover hidden-sm-down" style="background-image: url(/public/images/covers/2011-07-21-cfusertextencoding.jpg);">
+    <div class="page-cover-layer page-cover-layer-solid">
+        <div class="container">
+            <div class="text-xs-center">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page cover -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <section id="article">
+                    <h1><a href="/blog/tr/2011/07/21/mac-os-x-cfusertextencoding-ve-utf-8-sorunsali/">Mac OS X: CFUserTextEncoding ve UTF-8 sorunsalı</a></h1>
+                    
+
+                    <time pubdate datetime="2011-07-21T23:22:00+03:00" title="21 Temmuz 2011, Perşembe 23:22">
+                        21 Temmuz 2011, Perşembe 23:22
+                    </time>
+
+                    <header>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/mac-os-x/">mac os x</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/encoding/">encoding</a></span>
+                    </header>
+
+                    <div id="markdown">
+                        <p>Mac OS X’le tanıştığım günden beri sinir olduğum ve kimsenin çözümünü
+bilemediği bir sorunum var. Aslında bu sorun, Amerikalı olmayan herkesin
+sorunu. Bu sorun yüzünden ne <a href="http://python.org" title="Python">Python</a>’la ne de <a href="http://www.ruby-lang.org/" title="Ruby">Ruby</a>’le bile 
+işlem yapmakta sıkıntı oluyor.</p>
+
+<p>Bu sorunu ilk kez <a href="http://en.wikipedia.org/wiki/Quick_Look" title="Quicklook">Quicklook</a>’la tanışınca yaşamıştım. Çok sevdiğim bir
+özelliktir quicklook. Dosyayı açmadan içine bakmak. Bir tür hızlı önizleme.
+UTF-8 olarak kaydedilmiş text dosyalarına quicklook’la bakmak istediğimde
+Türkçe harflerin bozuk olduğunu görmüştüm.</p>
+
+<p>Başladım aramaya google’da&hellip; Sonra gördümki bu sorun sırf Türkçe için geçerli
+değil. Fince, Almanca, Norveç dili vs, İngilizce olmayan yani ASCII’nin
+dışında kalan her dilde bu sorun varmış.</p>
+
+<p>Çeşitli çözümlemeleri var. Örneğin her oluşturduğunuz text dosyası için elle,
+manuel olarak <strong>bom</strong> yani byte order mark eklemek. Bu delilik. Hele hele Mac
+OS’un pek çok harika özelliğini düşünürsek bu kabus gibi bir şey!</p>
+
+<p>FriendFeed’den takip ettiğim developer <a href="http://friendfeed.com/bluesign" title="Deniz Edincik">Deniz &ldquo;Bluesign&rdquo; Edincik</a>, 
+ilgili bir FriendFeed yorumunda:</p>
+
+<blockquote>
+<p>eğer içine 0x08000100:0x08000100 yazarsanız quicklook’da türkçe sorununu çözersiniz.</p>
+</blockquote>
+
+<p>demişti. <code>$HOME</code> folder’ınızda bulunan <code>.CFUserTextEncoding</code>dosyasını 
+Terminal’den görebilirsiniz:</p>
+<pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
+ls -al
+
+<span class="c"># ya da</span>
+ls -al .CFUserTextEncoding
+</code></pre>
+
+<p>Evet, söylediği de doğruydu. Denedim, çalışmıştı. Fakat daha sonra garip
+problemler çıkmaya başladı sistemde. DVD-ROM çalışmamaya başladı, Safari ara
+ara sapıtmaya başladı vs&hellip; Geriye dönüp düşündüğümde; en son yaptığım şey
+neydi? dediğimde bu <strong>CFUserTextEncoding</strong> olayını hatırladım ve tekrar
+eski/orijinal değeri olan <strong>0:0</strong>’a geri döndüm ve herşey düzeldi.</p>
+
+<p>Araştırdım günlerce. Meğerse bu <strong>CFUserTextEncoding</strong> çok ciddi anlamda
+sistemin <strong>core</strong> elementlerindenmiş. <em>XXX:XXX</em> şeklinde verilen iki parametre
+şu anlama geliyormuş;</p>
+
+<p>İlk değer kullanıcının <strong>tercih ettiği encoding</strong>, ikinci değer de 
+<strong>default encoding</strong>. Aslında <code>0x08000100:0</code> da yazsak; yani ilki 
+Türkçe (<em>kullanıcı tercihi</em>), ikinci 0 (<em>default</em>) olarak da çalışan bir durum 
+var ortada.</p>
+
+<p>Bu bakımdan her iki değeri de <code>0x08000100:0x08000100</code> yapınca sistemdeki diğer
+uygulamalar hatta donanıma kadar giden bir zincir içinde sorunlar
+çıkabiliyormuş. Akıllara durgunluk verecek bir durum. Bu olaylar <strong>Windows</strong>’da
+bile olmuyor&hellip;</p>
+
+<p>Her ne kadar da <strong>System Preferences</strong>’dan Language listesinde <strong>Türkçe</strong> olsa da,
+Finder türkçe file/folder adlarını doğru sort etse de Terminal/Shell’deki
+sorunlar hiç bitmiyor.</p>
+
+<p>Aynı sorunu <a href="http://mobileme.com/idisk">iDisk</a>’te yaşadım. iPhone için Apple iDisk uygulaması çıkarttığında
+hemen bu durumu kontrol ettim. Aynen Mac OS’da olduğu gibi iDisk’te de Türkçe
+karakterler bozuk çıktı. Bu olay beni gerçekten çok sinir etti. Koskoca Apple
+daha doğru dürüst <code>UTF-8</code>desteğini veremiyor.</p>
+
+<p>İşin komiği, ücretsiz servis veren <a href="http://www.dropbox.com/" title="Dropbox">Dropbox</a>’da (<em>iPhone/iPad app</em>) böyle bir
+sıkıntı yok! Aslanlar gibi <code>Türkçe</code> / <code>UTF-8</code> dosyaları görebiliyorsunuz. Yani
+yıllık <strong>$100</strong>’a yakın para ödediğim servis daha doğru dürüst <code>UTF-8</code> text
+dosyasını dahi gösteremezken ücretsiz servis/uygulama sorunsuz çalışıyor&hellip;</p>
+
+<p>Üşenmedim, bu durumları Apple’ın ilgili sitesine <a href="http://bugreport.apple.com">bug-report</a> yaptım. 
+<strong>18 Aralık 2009</strong>’dan beri (<em>2 yıl neredeyse</em>) bu ticket açık halen&hellip; 
+Muhtemelen Apple, kendi halinde bir Türk yazılımcısının hata raporunu; 
+Türkçe sort vs gibi sorununu kaale almadı? sallamadı&hellip;</p>
+
+<div class="card card-custom"><img src="http://media.tumblr.com/tumblr_lop7weE9O21qafg0z.png" alt="this is an image | bu bir resim"></div>
+
+<div class="card card-custom"><img src="http://media.tumblr.com/tumblr_lop9n6aYNH1qafg0z.png" alt="this is an image | bu bir resim"></div>
+
+<div class="card card-custom"><img src="http://media.tumblr.com/tumblr_lop9nibfZi1qafg0z.png" alt="this is an image | bu bir resim"></div>
+
+<p>Şoklar devam etti. <a href="http://en.wikipedia.org/wiki/Mac_OS_X_Snow_Leopard" title="Mac OS X Snow Leopard">Snow Leopard</a> çıktı. Sorun aynen devam ediyor.
+Hatta daha acı şeyler oldu. OS ile birlikte gelen unix tool’larının hiç
+birinde Türkçe karakter kullanılamıyor! </p>
+
+<p>Örneğin sistemle gelen <a href="http://python.org" title="Python">Python</a>&hellip; Python’un interaktif shell’i var.
+Açtım ve ilk olarak <code>ğ</code> harfine bastım. Tabiik basmadı. Daha sonra 
+<a href="http://www.nano-editor.org/" title="Nano">nano</a> text editor’ü açtım aynen&hellip; Türke yazamıyorsunuz.</p>
+
+<p>python.org’dan Mac OS için hazırlanmış installation paketini indirip kurdum,
+Python’un versiyonunu yükseltmek için. Baktım aynı sorun onda da var ????????
+Yani <a href="http://ubuntu.com/" title="Ubuntu">Ubuntu</a>’da <a href="http://www.gentoo.org/" title="Gentoo">Gentoo</a>’da ya da Debian’da olmayan
+her türlü sorun bunda&hellip;</p>
+
+<p>Demekki sorun ne python’da ne de nano’da&hellip; Çünkü sistemin (<em>unix</em>) kalbi
+sayılabilecek kütüphanelerden biri olan &ldquo;<strong>readline</strong>&rdquo; apple tarafından
+derlenirken <code>UTF-8</code> desteği atlanmış&hellip; Yazdığım önceki python derleme yazılarımda
+bundan bahsetmiştim.</p>
+
+<p>Zaten kendi kendine derlemek ve <a href="http://macports.org" title="Macports">macports</a>’a <a href="http://mxcl.github.com/homebrew/" title="The missing package manager for OS X">homebrew</a>’a 
+yöneliş hep bu eksiklikler yüzünden oldu.</p>
+
+<p>Neyse, sözü uzatmadan, 2 hafta önce <a href="http://en.wikipedia.org/wiki/Mac_OS_X_Lion" title="Mac OS X Lion">OS X Lion</a> (<em>10.7</em>)’i ofisteki test
+makinesine kurdum ve ilk yaptığım iş nano’yu açıp <code>ğ</code> yazmak oldu ve gözlerim
+yaşardı! Evet bu kez nix tool’ları için <strong>readline</strong> doğru derlenmişti.
+Hemen python’u denedim. O da sorunsuz çalıştı ama yine <strong>2009</strong>’da submit ettiğim
+sort işini yapamama, shell locale sorunu aynen olduğu gibi duruyordu.</p>
+
+<p>Pek çok şey denedim, Shell’den <code>LOCALE</code>, <code>LC_ALL</code> set edilemiyor. Edilmiş gibi
+görünüyor ama çalışmıyor. Bu locale olayları yüzünden sisteme eklediğim
+fontlarla bile sorunlar yaşadım. (<em>Başka bir blog post olur bundan!</em>)</p>
+
+<p>Quicklook’a gelince, takip ettiğim bir blog’da konu hakkında güzel yorumlar ve
+çözümler yazılmış. Arkadaşların çoğu İskandinav ülkelerinde yaşadıkları için
+onların da bizim gibi kendi dillerinde karakter sorunları var. Oradaki
+arkadaşlardan biri demişki:</p>
+
+<blockquote>
+<p>Quicklook, text dosyasını preview edeceği zaman gidip TextEdit’i kullanıyor.
+Bu bakımdan eğer TextEdit’in default dosya açma özelliği UTF-8 değilse
+Quicklook’da sorun oluyor.</p>
+</blockquote>
+
+<p>Denedim, hakikatten arkadaş haklıymış.</p>
+
+<div class="card card-custom"><img src="http://media.tumblr.com/tumblr_lop8goUZqZ1qafg0z.png" alt="this is an image | bu bir resim"></div>
+
+<p>Quicklook için text dosyalarını TextMate ile preview yaptırabiliyorsunuz hatta
+bunun için TextMate’in süper bir Quicklook Plug’ini bile var. Tek dezavantajı
+arka planda TextMate’in hep açık olması gerekiyor aksi taktirde <code>space</code>’e
+basında text dosyası üzerinde, ekrana hiç bir şey çıkmıyor&hellip;</p>
+
+<p>Bu yazıdaki amacım Apple’ı kötülemek değil. Ben büyük bir Apple / Mac OS sever
+olarak, diğer Unix/Linux türevlerinde yıllar yıllar önce çözülmüş sorunları
+neden <strong>2011</strong> yılında dahi Mac’de yaşıyorum? Bu konular o kadar basit konularki.
+Beni nasıl mı etkiliyor?</p>
+
+<p>Yazılım geliştiricisi olarak, python’la ya da ruby’le ya da 2007’den beri
+kullanmadığım php ile bir proje yaparken, saydığım dillerin hiç birinde
+<code>array/list/tuple/hash</code> vs sort özelliğini kullanamayacağım. Elimde 10 kişinin
+adı soyadı olacak bir listede (<em>ya da array’de</em>) ve ben bunları tek bir
+hareketle sort edemeyeceğim.</p>
+
+<p>Bu en basit örnek. Olay sırf sort değil. Upper/Lower case için özel yöntemler
+icat etmem gerekecek vs&hellip; Bir dünya dert.</p>
+
+<p>Tek avunduğum nokta production server’larımız ya <strong>gentoo</strong> ya da <strong>ubuntu</strong>.
+Yani kaya gibi <strong>Linux</strong>&hellip; Bu bakımdan local’de buglı çalışan sort işleminin en
+azından remote’da sorunsuz olacağını biliyorum.</p>
+
+<p>Sonuç;</p>
+
+<ol>
+<li><code>.CFUserTextEncoding</code> ile oynamamak lazım</li>
+<li><strong>Quicklook</strong>’da Türkçe text için TextEdit’e ayar yapmak lazım</li>
+<li>Dua edelim Apple sesimizi duysun ve unix tarafında gerekli ayarlamaları yapsın!</li>
+</ol>
+
+                    </div>
+                    
+                    
+                    
+                    <ul id="prev-next-articles" class="list-inline">
+                        <li class="list-inline-item li-left">
+                            <a href="/blog/tr/2011/06/26/rails-istanbul-bulusmasi-2/">&laquo; Rails İstanbul Buluşması #2</a>
+                            <time pubdate datetime="2011-06-26T14:19:00+03:00" title="26 Haziran 2011, Pazar">26 Haziran 2011, Pazar</time>
+                        </li>
+                        <li class="list-inline-item pull-sm-right m-r-0 text-md-right li-right">
+                            <a href="/blog/tr/2011/10/07/gule-gule-steve-jobs/">Güle güle Steve Jobs &raquo;</a>
+                            <time pubdate datetime="2011-10-07T15:45:00+03:00" title="07 Ekim 2011, Cuma">07 Ekim 2011, Cuma</time>
+                        </li>
+                    </ul>
+                </section>
+
+                    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'ugurozyilmazel';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Lütfen, <a href="http://disqus.com/?ref_noscript">Disqus</a> tarafından sağlanan yorumları görmek için JavaScript&rsquo;i aktive edin.
+    </noscript>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                <nav id="footer-nav">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a title="C64 Scener Database" href="http://csdb.dk/scener/?id=8379">CSDB</a></li>
+                        <li class="list-inline-item"><a title="Zombie Boys" href="http://zombieboys.net">Zombie Boys</a></li>
+                        <li class="list-inline-item"><a title="Bronx" href="http://bronxwhq.org">Bronx</a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="/feed-tr.xml"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-rss fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="https://github.com/vigo"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0"><a title="Twitter" href="https://twitter.com/vigobronx"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /footer -->
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        
+        
+        
+        <script src="/public/js/application.js"></script>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-6463685-2', 'auto');
+          ga('send', 'pageview');
+        </script>
+        
+    </body>
+</html>

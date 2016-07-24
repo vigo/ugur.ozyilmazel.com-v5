@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title>Uğur “vigo” Özyılmazel | SSH üzerinden tünel yapmak!</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        
+        <link href="/public/css/application.css" rel="stylesheet" />
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
+        <meta name="date" content="2016-07-24T16:19:13+03:00" />
+        <meta name="description" content="Daha önceki yazımda, Terminal’den kolay ssh yapma yöntemini anlatmıştım. 
+Şimdi, ssh yardımıyla nasıl tünel yaparız buna bakalım." />
+        <meta name="author" content="Uğur “vigo” Özyılmazel"/>
+        <meta name="copyright" content="(c) 2006 / 2016 - Uğur “vigo” Özyılmazel" />
+        <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2010/02/17/ssh-uzerinden-tunel-yapmak/" />
+        <meta property="og:title" content="SSH üzerinden tünel yapmak!" />
+        <meta property="og:site_name" content="vigo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Daha önceki yazımda, Terminal’den kolay ssh yapma yöntemini anlatmıştım. 
+Şimdi, ssh yardımıyla nasıl tünel yaparız buna bakalım." />
+        <meta property="og:image" content="http://ugur.ozyilmazel.com/public/images/covers/2010-02-17-ssh-tunel.jpg" />
+        <meta property="og:image:type" content="image/jpg" />
+        <meta property="og:image:width" content="3330" />
+        <meta property="og:image:height" content="768" />
+        <link rel="apple-touch-icon-precomposedposed" sizes="144x144" href="/public/images/icons/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/images/icons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/images/icons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/public/images/icons/apple-touch-icon-57-precomposed.png">
+        <link href="/public/images/icons/favicon.png" rel="shortcut icon" type="image/png" />
+
+    </head>
+    <body class="blog blog_tr blog_tr_2010 blog_tr_2010_02 blog_tr_2010_02_17 blog_tr_2010_02_17_ssh-uzerinden-tunel-yapmak blog_tr_2010_02_17_ssh-uzerinden-tunel-yapmak_index">
+            
+    
+    
+<!-- page-top-nav -->
+<nav id="page-top-nav" class="navbar">
+    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsable_navbar">&#9776;</button>
+    <div class="collapse navbar-toggleable-sm" id="collapsable_navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                    <ul class="list-inline nav navbar-nav">
+<li class="list-inline-item nav-item"><a href="/">Anasayfa</a></li><li class="list-inline-item nav-item active"><a href="/blog/tr/">Blog</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/hakkimda/">Hakkımda</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/sunumlar/">Sunumlar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/kitaplar/">Kitaplar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/iletisim/">İletişim</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/cv/">CV</a></li>                        <li class="list-inline-item nav-item pull-md-right m-r-0">
+                                <a title="English" href="/blog/en/">English</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- /page-top-nav -->
+
+
+
+    
+    <!-- page cover -->
+<div class="jumbotron jumbotron-fluid page-cover hidden-sm-down" style="background-image: url(/public/images/covers/2010-02-17-ssh-tunel.jpg);">
+    <div class="page-cover-layer page-cover-layer-solid">
+        <div class="container">
+            <div class="text-xs-center">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page cover -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <section id="article">
+                    <h1><a href="/blog/tr/2010/02/17/ssh-uzerinden-tunel-yapmak/">SSH üzerinden tünel yapmak!</a></h1>
+                    
+
+                    <time pubdate datetime="2010-02-17T10:37:00+02:00" title="17 Şubat 2010, Çarşamba 10:37">
+                        17 Şubat 2010, Çarşamba 10:37
+                    </time>
+
+                    <header>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/ports/">ports</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/firefox/">firefox</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/tsocks/">tsocks</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/ssh/">ssh</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/proxy/">proxy</a></span>
+                    </header>
+
+                    <div id="markdown">
+                        <p>Daha <a href="/blog/tr/2009/08/27/macports-ssh-otomatik-tamamlama-ve-genel-bilgiler/">önceki yazımda</a>, Terminal’den kolay <strong>ssh</strong> yapma yöntemini anlatmıştım. 
+Şimdi, ssh yardımıyla nasıl tünel yaparız buna bakalım.
+</p>
+
+<p>Gerekenler:</p>
+
+<ol>
+<li>Uzaklarda bir makine (<em>ssh yapabileceğimiz</em>)</li>
+<li>Mac OS X (<em>Linux / Unix’de olur</em>)</li>
+<li><a href="http://macports.org" title="Macports">MacPorts</a></li>
+<li><code>tsocks</code> port’u</li>
+</ol>
+
+<p>MacPorts paketlerine <code>port</code> denir, aslında paketler uygulamalardan ya da 
+kütüphanelerden oluşur, bu bakımdan <code>xxxx</code> port’u dersem anlayınki bu bir 
+ports paketi!</p>
+
+<p>Daha önce de anlattığım gibi, <code>$HOME</code> dizininizde duran; kullanıcı adınız 
+eğer <code>vigo</code> ise, <code>/Users/vigo/</code> yada <code>~</code> işareti ile ifade edilen yer; 
+<code>.ssh/config</code> dosyanıza, o uzaklardaki makine bilgilerini girdiniz:</p>
+<pre class="highlight plaintext"><code>Host UZAKLARDA # bu ad ile erişeceğiz  
+User vigo # uzak makinedeki kullanıcı adınız  
+Port 22 # SSH portu genelde 22dir  
+HostName 1.2.3.4 # uzak makinenin IP adresi
+</code></pre>
+
+<p>Aynı şekide, daha önce yazdığım yazıdaki gibi, <strong>ssh-key</strong> olayını da halletmiş 
+olduğunuzu düşünüyorum. Yani uzaktaki makineye ssh yapmak için (<em>Yukarıdaki 
+confige göre</em>)</p>
+<pre class="highlight shell"><code>ssh UZAKLARDA
+</code></pre>
+
+<p>denemiz yeterli olmalı&hellip; Eğer bu aşamaya kadar sorun yoksa, hemen 
+<a href="http://macports.org" title="Macports">MacPorts</a>’dan <strong>tsock</strong>’sı kuralım:</p>
+<pre class="highlight shell"><code>sudo port install tsocks
+</code></pre>
+
+<p>Kurulum bitince asıl hayati mevzu başlıyor, hemen ilgili konfigürasyonu yapmak 
+lazım, aksi halde <code>tsocks</code> çalışmıyor; hemen <code>/opt/local/etc/</code> altında duran 
+<code>tsocks.conf.sample</code>’dan bir kopya alalım ve düzenleyelim:</p>
+<pre class="highlight shell"><code><span class="nb">cd</span> /opt/local/etc/
+sudo cp tsocks.conf.sample tsocks.conf
+</code></pre>
+
+<p>Şimdi hangi text editör’ü kullanıyorsanız, o editör’le <code>tsocks.conf</code> 
+dosyasını açın ve aşağıdaki gibi yapın:</p>
+<pre class="highlight plaintext"><code>local = 127.0.0.1/255.255.255.255  
+server = 127.0.0.1  
+server_port = 1234  
+server_type = 5  
+tordns_enable = false
+</code></pre>
+
+<p>Şimdi burada dikkat edilecek husular şunlar;</p>
+
+<ol>
+<li>proxy portumuz: <strong>1234</strong></li>
+<li>proxy tipi: <strong>SOCKS 5</strong></li>
+</ol>
+
+<p>Bu bilgiler ışığında hemen uzaktaki makineye bağlanıyoruz:</p>
+<pre class="highlight shell"><code>ssh -N UZAKLARDA -D 1234
+</code></pre>
+
+<p><strong>UZAKLARDA</strong>: hani demin config’de belirtmiştik, <strong>-D 1234</strong> ise <code>tsocks</code>’daki 
+server_port&hellip; Şimdi başka bir TAB açıp (<kbd>⌘</kbd> + <kbd>T</kbd>) deneme yapalım:</p>
+<pre class="highlight shell"><code>curl --connect-timeout 3 http://www.whatismyip.org/
+tsocks curl --connect-timeout 3 http://www.whatismyip.org/
+</code></pre>
+
+<p>İlk komut, sistemin default bağlantısı ile çalışıp, sizin gerçek IP’nizi 
+çözdü, ikincisi ise, <strong>ssh</strong> üzerinden tünel yaptı ve sanki uzaktaki 
+makinedeymişsiniz gibi çözdü IP adresinizi. <code>tsocks</code> ile işlem yapmak için 
+Terminal’de:</p>
+<pre class="highlight shell"><code>tsocks KOMUT  
+sudo tsocks KOMUT
+</code></pre>
+
+<p>şekillerinde kullanabilirsiniz. Eğer tüneli Terminal uygulamaları üzerinden 
+değilde, desktop uygulamaları için kullanmak isterseniz (<em>Safari, FireFox 
+vs&hellip;</em>) yine aynı şekilde önce ssh’i çalıştırın:</p>
+<pre class="highlight shell"><code>ssh -N UZAKLARDA -D 1234
+</code></pre>
+
+<p>sonra <a href="http://www.mozilla.org/tr/firefox" title="Firefox Web Browser">FireFox</a>’u açın ve aşağıdaki gibi yapın ayarlarınızı:</p>
+
+<div class="card card-custom"><img src="http://2.bp.blogspot.com/_9jz1qeFrzkQ/S3uzebiXjAI/AAAAAAAADLI/Jqk6Xzp4p6Y/s600/Screen+shot+2010-02-17+at+11.13.49.png" alt="Ekran görüntüsü, Firefox’un ayarlar ekranı, Manual Proxy Configuration bölümü"><div class="card-block"><p class="card-text">SOCKS Host: <strong>localhost</strong>, Port: <strong>1234</strong></p></div></div>
+
+<p>yapmamız yetti. Eğer bu işlemi, ssh bağlantısını yapmadan önce yaparsanız 
+hiç bir sayfaya ulaşamazsınız! Çünkü yukarıda şunu söylüyorsunuz FireFox’a: </p>
+
+<blockquote>
+<p>Tüm bağlantılarımı <strong>localhost</strong> üzerinden <strong>1234</strong>’ücü port üzerinden yap.</p>
+</blockquote>
+
+<p>Eğer <strong>ssh</strong> yoksa bağlantı da yok!!! Hemen akıllara şu soru gelebilir: 
+&ldquo;Bu benim ne işime yarayacak?&rdquo;</p>
+
+<p>Eğer Amerika ya da Avrupa üzerinden bir sunucu kiralarsanız o kadar çok 
+işinize yarar ki! Bazen bağlı olduğum servis sağlayıcının DNS’lerinde sorun 
+oluyor, ya da sebebsiz bir şekilde bazı sunuculara erişilemiyor.</p>
+
+<p>Geçenlerde <a href="http://php.net" title="Php">Php</a>’nin interaktif shell’inde bir işlem yapacaktım, <a href="http://macports.org" title="Macports">ports</a> 
+üzerinden kuramadım, neden? <code>libxml2</code>’nin sunulduğu sunucuya erişemedim ?
+işte bu durumlarda hemen kendi proxy’nizi kullanıp yolunuza devam 
+edebilirsiniz&hellip; </p>
+
+                    </div>
+                    
+                    <hr/>
+<div id="related-articles">
+    <ul class="list-unstyled">
+    <li>
+        <h1>İlişkili Makaleler</h1>
+        <p>Konu ile ilgili toplam “2” adet bağlantılı makale bulunuyor.</p>
+    </li>
+        <li>
+            <h3><a href="/blog/tr/2009/07/26/bash-completion-olayi/">Bash Completion olayı!</a></h3>
+            <time pubdate datetime="2009-07-26T15:12:00+03:00" title="26 Temmuz 2009, Pazar 15:12">
+                26 Temmuz 2009, Pazar 15:12
+            </time>
+            <p>Bilgisayar kullanmaya Commodore 64’le başlayan, ilk ciddi anlamda parayı Amiga 
+ile kazanan ben, kaderin cilvesi olarak, uzun yıllar Windows kullanmak zorunda 
+kalmıştım.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2009/08/27/macports-ssh-otomatik-tamamlama-ve-genel-bilgiler/">Macports, ssh otomatik tamamlama ve genel bilgiler</a></h3>
+            <time pubdate datetime="2009-08-27T15:41:00+03:00" title="27 Ağustos 2009, Perşembe 15:41">
+                27 Ağustos 2009, Perşembe 15:41
+            </time>
+            <p>Daha önceki yazılarımda da bahsetmiştim, <a href="http://macports.org" title="Macports">MacPorts</a> diye harika bir
+şey var! Linux (<em>debian, ubuntu vs…</em>) daki paket yönetiminin OS X’cesi.</p>
+        </li>
+    </ul>
+</div>
+<hr/>
+
+                    
+                    <ul id="prev-next-articles" class="list-inline">
+                        <li class="list-inline-item li-left">
+                            <a href="/blog/tr/2009/12/12/15-dakikada-cig-kofte-yaptim/">&laquo; 15 dakikada çiğ köfte yaptım!</a>
+                            <time pubdate datetime="2009-12-12T16:45:00+02:00" title="12 Aralık 2009, Cumartesi">12 Aralık 2009, Cumartesi</time>
+                        </li>
+                        <li class="list-inline-item pull-sm-right m-r-0 text-md-right li-right">
+                            <a href="/blog/tr/2010/02/28/python-kitabi/">Python kitabı &raquo;</a>
+                            <time pubdate datetime="2010-02-28T11:44:00+02:00" title="28 Şubat 2010, Pazar">28 Şubat 2010, Pazar</time>
+                        </li>
+                    </ul>
+                </section>
+
+                    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'ugurozyilmazel';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Lütfen, <a href="http://disqus.com/?ref_noscript">Disqus</a> tarafından sağlanan yorumları görmek için JavaScript&rsquo;i aktive edin.
+    </noscript>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                <nav id="footer-nav">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a title="C64 Scener Database" href="http://csdb.dk/scener/?id=8379">CSDB</a></li>
+                        <li class="list-inline-item"><a title="Zombie Boys" href="http://zombieboys.net">Zombie Boys</a></li>
+                        <li class="list-inline-item"><a title="Bronx" href="http://bronxwhq.org">Bronx</a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="/feed-tr.xml"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-rss fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="https://github.com/vigo"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0"><a title="Twitter" href="https://twitter.com/vigobronx"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /footer -->
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        
+        
+        
+        <script src="/public/js/application.js"></script>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-6463685-2', 'auto');
+          ga('send', 'pageview');
+        </script>
+        
+    </body>
+</html>

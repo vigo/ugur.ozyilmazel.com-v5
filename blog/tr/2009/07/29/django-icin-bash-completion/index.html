@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title>Uğur “vigo” Özyılmazel | Django için bash completion</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        
+        <link href="/public/css/application.css" rel="stylesheet" />
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
+        <meta name="date" content="2016-07-24T16:19:13+03:00" />
+        <meta name="description" content="Az önce başardığım, aslında çok bilindiğini düşündüğüm fakat etrafımdaki
+Django’cu kardeşimlerimden duymadığım bir özellikten bahsetmek
+istiyorum!" />
+        <meta name="author" content="Uğur “vigo” Özyılmazel"/>
+        <meta name="copyright" content="(c) 2006 / 2016 - Uğur “vigo” Özyılmazel" />
+        <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2009/07/29/django-icin-bash-completion/" />
+        <meta property="og:title" content="Django için bash completion" />
+        <meta property="og:site_name" content="vigo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Az önce başardığım, aslında çok bilindiğini düşündüğüm fakat etrafımdaki
+Django’cu kardeşimlerimden duymadığım bir özellikten bahsetmek
+istiyorum!" />
+        <meta property="og:image" content="http://ugur.ozyilmazel.com/public/images/covers/generic-django.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="3330" />
+        <meta property="og:image:height" content="768" />
+        <link rel="apple-touch-icon-precomposedposed" sizes="144x144" href="/public/images/icons/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/images/icons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/images/icons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/public/images/icons/apple-touch-icon-57-precomposed.png">
+        <link href="/public/images/icons/favicon.png" rel="shortcut icon" type="image/png" />
+
+    </head>
+    <body class="blog blog_tr blog_tr_2009 blog_tr_2009_07 blog_tr_2009_07_29 blog_tr_2009_07_29_django-icin-bash-completion blog_tr_2009_07_29_django-icin-bash-completion_index">
+            
+    
+    
+<!-- page-top-nav -->
+<nav id="page-top-nav" class="navbar">
+    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsable_navbar">&#9776;</button>
+    <div class="collapse navbar-toggleable-sm" id="collapsable_navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                    <ul class="list-inline nav navbar-nav">
+<li class="list-inline-item nav-item"><a href="/">Anasayfa</a></li><li class="list-inline-item nav-item active"><a href="/blog/tr/">Blog</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/hakkimda/">Hakkımda</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/sunumlar/">Sunumlar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/kitaplar/">Kitaplar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/iletisim/">İletişim</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/cv/">CV</a></li>                        <li class="list-inline-item nav-item pull-md-right m-r-0">
+                                <a title="English" href="/blog/en/">English</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- /page-top-nav -->
+
+
+
+    
+    <!-- page cover -->
+<div class="jumbotron jumbotron-fluid page-cover hidden-sm-down" style="background-image: url(/public/images/covers/generic-django.png);">
+    <div class="page-cover-layer page-cover-layer-solid">
+        <div class="container">
+            <div class="text-xs-center">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page cover -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <section id="article">
+                    <h1><a href="/blog/tr/2009/07/29/django-icin-bash-completion/">Django için bash completion</a></h1>
+                    
+
+                    <time pubdate datetime="2009-07-29T15:59:00+03:00" title="29 Temmuz 2009, Çarşamba 15:59">
+                        29 Temmuz 2009, Çarşamba 15:59
+                    </time>
+
+                    <header>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/macports/">macports</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/django/">django</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/bash-completion/">bash completion</a></span>
+                    </header>
+
+                    <div id="markdown">
+                        <p>Az önce başardığım, aslında çok bilindiğini düşündüğüm fakat etrafımdaki
+<a href="https://www.djangoproject.com/" title="Django Project">Django</a>’cu kardeşimlerimden duymadığım bir özellikten bahsetmek
+istiyorum! </p>
+
+<p>Birkaç gün önce, <a href="http://ubuntu.com/" title="Ubuntu">Ubuntu</a>’dan öğrendiğim <strong>bash-completion</strong> olayının
+<a href="/blog/tr/2009/07/26/bash-completion-olayi/">mac os’daki yansımasını</a> yazmıştım. İşin içine biraz daha
+girince gördüm ki, pek çok şey için kendimiz de <strong>auto-complete</strong> yapabiliriz.</p>
+
+<p>Zaten ilk hissettiğim tamamlamaların başında <code>port</code> komutu ve <code>svn</code> komutu
+geldi&hellip; O an kafamda bir ampül yandı ve:</p>
+
+<blockquote>
+<p>Kesin bunun bi yolu vardır, ben de kendi tamamlamalarımı yapabilmeliyim!</p>
+</blockquote>
+
+<p>diye düşünüp daldım google’a&hellip; Karşıma süper dökümanlar çıktı ve booom!
+Hemen bu tamamlama işini <code>django-admin.py</code> ve <code>manage.py</code> için yapabilmem
+lazım! dedim. Sonra bi baktım zaten django için çoktan yapılmışı varmış.</p>
+
+<p><a href="https://www.djangoproject.com/" title="Django Project">Django</a> paketini indirince, <code>extras/</code> folder’ı içinde gereken
+file var! Hatta;</p>
+<pre class="highlight shell"><code><span class="nb">complete</span> -p
+</code></pre>
+
+<p>yaparsanız <strong>completion</strong> işleminin nasıl çalıştığını da anlarsınız. Sizin
+için hazır gelen komutların listesini de;</p>
+<pre class="highlight shell"><code>ls /opt/local/etc/bash_completion.d/
+</code></pre>
+
+<p>şeklinde görebilirsiniz. Bende;</p>
+<pre class="highlight plaintext"><code>_subversion
+apache2ctl
+bitkeeper
+bittorrent
+brctl
+cksfv
+clisp
+cowsay
+cpan2dist
+dsniff
+freeciv
+gcl
+gkrellm
+gnatmake
+gpg2
+harbour
+isql
+larch
+lilypond
+lisp
+lzma
+lzop
+mailman
+mcrypt
+minicom
+modules
+monodevelop
+mtx
+net-tools
+p4
+port
+povray
+qdbus
+qemu
+quota-tools
+rdesktop
+ri
+sbcl
+sitecopy
+snownews
+ssh
+svk
+unace
+unrar
+vncviewer
+</code></pre>
+
+<p>şeklinde. Keza bu dosyaları açıp bakarsanız olayın ne kadar da kolay olduğunu
+görürsünüz.</p>
+
+<p>Şimdi <a href="https://www.djangoproject.com/" title="Django Project">Django</a> sitesine gidip, son versiyon <code>.tar.gz</code> dosyayı çekin
+(<em>hatta belki de çoktan çektiniz ve install bile ettiniz!</em>) Eğer hazırda
+yoksa;</p>
+<pre class="highlight shell"><code>tar xzvf Django-1.1.tar.gz
+</code></pre>
+
+<p>ile paketi açın ve <code>extras/</code> dizinin içinde bulunan <code>django_bash_completion</code>
+dosyasını <strong>sudo</strong> ile <code>/opt/local/etc/</code> altına kopyalayın ve sonra tek yapmanız
+gereken, <code>~/.profile</code> dosyasına şunu ekleyin;</p>
+<pre class="highlight shell"><code><span class="k">if</span> <span class="o">[</span> -f /opt/local/etc/django_bash_completion <span class="o">]</span>; <span class="k">then</span>
+    . /opt/local/etc/django_bash_completion
+<span class="k">fi</span>
+</code></pre>
+
+<p>Terminali açıp kapayın ya da;</p>
+<pre class="highlight shell"><code><span class="nb">source</span> ~/.profile
+</code></pre>
+
+<p>yaparak restart edin shell’i&hellip; Afiyet olsun!</p>
+
+<h3>Faydalı Linkler</h3>
+
+<ul>
+<li><a href="http://www.debian-administration.org/articles/316">An introduction to bash completion: part 1</a></li>
+<li><a href="http://www.debian-administration.org/article/An_introduction_to_bash_completion_part_2">An introduction to bash completion: part 2</a><br></li>
+</ul>
+
+                    </div>
+                    
+                    <hr/>
+<div id="related-articles">
+    <ul class="list-unstyled">
+    <li>
+        <h1>İlişkili Makaleler</h1>
+        <p>Konu ile ilgili toplam “8” adet bağlantılı makale bulunuyor.</p>
+    </li>
+        <li>
+            <h3><a href="/blog/tr/2011/03/22/kendi-pythonunu-kendin-kur-yazimda-eksik-yerler-buldum/">Kendi Python’unu kendin kur yazımda eksik yerler buldum</a></h3>
+            <time pubdate datetime="2011-03-22T15:45:00+02:00" title="22 Mart 2011, Salı 15:45">
+                22 Mart 2011, Salı 15:45
+            </time>
+            <p>Geçtiğimiz günlerde yazdığım <a href="/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/">yazımda</a> çok önemli bir eksiklik
+yaptığımı bugün farkettim. Neden bugün? Bugün yeni makine kuruyordum ve sıra
+<a href="http://python.org" title="Python">Python</a>’u kurmaya gelmişti. Hemen blog’umu açıp kendi yazdığım yazımı 
+okumaya başladım.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/">Kendi Python’unu Django’nu paketlerini kendin kur</a></h3>
+            <time pubdate datetime="2011-02-10T12:58:00+02:00" title="10 Şubat 2011, Perşembe 12:58">
+                10 Şubat 2011, Perşembe 12:58
+            </time>
+            <p><strong>Düzeltme: 23 Mart 2011, 15:33</strong><br>
+Lütfen önce <a href="/blog/tr/2011/03/23/bu-defa-son/">bu yazıyı</a> okuyun!</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2009/08/27/macports-ssh-otomatik-tamamlama-ve-genel-bilgiler/">Macports, ssh otomatik tamamlama ve genel bilgiler</a></h3>
+            <time pubdate datetime="2009-08-27T15:41:00+03:00" title="27 Ağustos 2009, Perşembe 15:41">
+                27 Ağustos 2009, Perşembe 15:41
+            </time>
+            <p>Daha önceki yazılarımda da bahsetmiştim, <a href="http://macports.org" title="Macports">MacPorts</a> diye harika bir
+şey var! Linux (<em>debian, ubuntu vs…</em>) daki paket yönetiminin OS X’cesi.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2009/07/26/bash-completion-olayi/">Bash Completion olayı!</a></h3>
+            <time pubdate datetime="2009-07-26T15:12:00+03:00" title="26 Temmuz 2009, Pazar 15:12">
+                26 Temmuz 2009, Pazar 15:12
+            </time>
+            <p>Bilgisayar kullanmaya Commodore 64’le başlayan, ilk ciddi anlamda parayı Amiga 
+ile kazanan ben, kaderin cilvesi olarak, uzun yıllar Windows kullanmak zorunda 
+kalmıştım.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/">Derlenmiş Python Dosyaları Bazen Sizi Yanıltabilir</a></h3>
+            <time pubdate datetime="2013-02-04T12:15:00+02:00" title="04 Şubat 2013, Pazartesi 12:15">
+                04 Şubat 2013, Pazartesi 12:15
+            </time>
+            <p>Suç kesinlikle Python’da değil! Yanlış anlaşılma olmasın! Geçtiğimiz günlerde 
+yaşadığım iki dikkatsizliğin bana ciddi vakit kaybettirmesi bu blog postunu 
+yazmama sebeb oldu.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2012/10/25/ozgur-web-gunleri-2012/">Özgür Web Günleri 2012</a></h3>
+            <time pubdate datetime="2012-10-25T15:50:00+03:00" title="25 Ekim 2012, Perşembe 15:50">
+                25 Ekim 2012, Perşembe 15:50
+            </time>
+            <p>Geçtiğimiz hafta düzenlenen (<em>19-20 Ekim</em>) <a href="http://www.ozgurwebgunleri.org.tr/2012/" title="Özgür Web Günleri, 2012">Özgür Web Günleri 2012</a>’de
+hayatımın ilk sunumunu yaptım! Evet, ilk sunum. Aslında daha önceleri 
+<a href="http://en.wikipedia.org/wiki/Demoscene" title="Demoscene">Demoscene</a> partilerinde pek çok kez sunum, açık oturum, panel vs
+gibi şeylere katılmış / yapmıştım ama…</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2012/02/02/rake-icin-bash-completion/">Rake için bash-completion</a></h3>
+            <time pubdate datetime="2012-02-02T15:30:00+02:00" title="02 Şubat 2012, Perşembe 15:30">
+                02 Şubat 2012, Perşembe 15:30
+            </time>
+            <p>Terminal’de çalışırken hep işimi hızlı ve en kolay şekilde yapabilmenin yollarını ararım.
+Bu sayede pek çok yeni şey de öğrendim. Octopress sağolsun ciddi ciddi <a href="http://www.ruby-lang.org/" title="Ruby">Ruby</a>
+öğrenmeme büyük katkıda bulundu…</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/02/22/pip-icin-bash-completion/">Pip için bash completion</a></h3>
+            <time pubdate datetime="2011-02-22T11:05:00+02:00" title="22 Şubat 2011, Salı 11:05">
+                22 Şubat 2011, Salı 11:05
+            </time>
+            <p>Bir <a href="/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/">önceki yazımda</a> unutmuşum, yeni farkettim. <code>pip</code>’i
+terminalde kullanırken <code>bash-completion</code> özelliğinden de faydalanabiliriz. Bunun
+için, pip’le gelen bash-completion’ı sisteme eklemek gerekiyor. Tabi, sizde
+zaten <code>bash-completion</code> kurulu diye var sayıyorum.</p>
+        </li>
+    </ul>
+</div>
+<hr/>
+
+                    
+                    <ul id="prev-next-articles" class="list-inline">
+                        <li class="list-inline-item li-left">
+                            <a href="/blog/tr/2009/07/28/dergiler/">&laquo; Dergiler</a>
+                            <time pubdate datetime="2009-07-28T11:18:00+03:00" title="28 Temmuz 2009, Salı">28 Temmuz 2009, Salı</time>
+                        </li>
+                        <li class="list-inline-item pull-sm-right m-r-0 text-md-right li-right">
+                            <a href="/blog/tr/2009/08/08/textmate-ve-xhtml-tag-tamamlama-olayi/">TextMate ve XHTML tag tamamlama olayı &raquo;</a>
+                            <time pubdate datetime="2009-08-08T14:57:00+03:00" title="08 Ağustos 2009, Cumartesi">08 Ağustos 2009, Cumartesi</time>
+                        </li>
+                    </ul>
+                </section>
+
+                    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'ugurozyilmazel';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Lütfen, <a href="http://disqus.com/?ref_noscript">Disqus</a> tarafından sağlanan yorumları görmek için JavaScript&rsquo;i aktive edin.
+    </noscript>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                <nav id="footer-nav">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a title="C64 Scener Database" href="http://csdb.dk/scener/?id=8379">CSDB</a></li>
+                        <li class="list-inline-item"><a title="Zombie Boys" href="http://zombieboys.net">Zombie Boys</a></li>
+                        <li class="list-inline-item"><a title="Bronx" href="http://bronxwhq.org">Bronx</a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="/feed-tr.xml"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-rss fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="https://github.com/vigo"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0"><a title="Twitter" href="https://twitter.com/vigobronx"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /footer -->
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        
+        
+        
+        <script src="/public/js/application.js"></script>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-6463685-2', 'auto');
+          ga('send', 'pageview');
+        </script>
+        
+    </body>
+</html>

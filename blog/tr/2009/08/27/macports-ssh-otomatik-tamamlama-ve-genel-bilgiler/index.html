@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title>Uğur “vigo” Özyılmazel | Macports, ssh otomatik tamamlama ve genel bilgiler</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        
+        <link href="/public/css/application.css" rel="stylesheet" />
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
+        <meta name="date" content="2016-07-24T16:19:13+03:00" />
+        <meta name="description" content="Daha önceki yazılarımda da bahsetmiştim, MacPorts diye harika bir
+şey var! Linux (debian, ubuntu vs…) daki paket yönetiminin OS X’cesi." />
+        <meta name="author" content="Uğur “vigo” Özyılmazel"/>
+        <meta name="copyright" content="(c) 2006 / 2016 - Uğur “vigo” Özyılmazel" />
+        <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2009/08/27/macports-ssh-otomatik-tamamlama-ve-genel-bilgiler/" />
+        <meta property="og:title" content="Macports, ssh otomatik tamamlama ve genel bilgiler" />
+        <meta property="og:site_name" content="vigo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Daha önceki yazılarımda da bahsetmiştim, MacPorts diye harika bir
+şey var! Linux (debian, ubuntu vs…) daki paket yönetiminin OS X’cesi." />
+        <meta property="og:image" content="http://ugur.ozyilmazel.com/public/images/covers/2009-08-27-macports.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="3330" />
+        <meta property="og:image:height" content="768" />
+        <link rel="apple-touch-icon-precomposedposed" sizes="144x144" href="/public/images/icons/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/images/icons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/images/icons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/public/images/icons/apple-touch-icon-57-precomposed.png">
+        <link href="/public/images/icons/favicon.png" rel="shortcut icon" type="image/png" />
+
+    </head>
+    <body class="blog blog_tr blog_tr_2009 blog_tr_2009_08 blog_tr_2009_08_27 blog_tr_2009_08_27_macports-ssh-otomatik-tamamlama-ve-genel-bilgiler blog_tr_2009_08_27_macports-ssh-otomatik-tamamlama-ve-genel-bilgiler_index">
+            
+    
+    
+<!-- page-top-nav -->
+<nav id="page-top-nav" class="navbar">
+    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsable_navbar">&#9776;</button>
+    <div class="collapse navbar-toggleable-sm" id="collapsable_navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                    <ul class="list-inline nav navbar-nav">
+<li class="list-inline-item nav-item"><a href="/">Anasayfa</a></li><li class="list-inline-item nav-item active"><a href="/blog/tr/">Blog</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/hakkimda/">Hakkımda</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/sunumlar/">Sunumlar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/kitaplar/">Kitaplar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/iletisim/">İletişim</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/cv/">CV</a></li>                        <li class="list-inline-item nav-item pull-md-right m-r-0">
+                                <a title="English" href="/blog/en/">English</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- /page-top-nav -->
+
+
+
+    
+    <!-- page cover -->
+<div class="jumbotron jumbotron-fluid page-cover hidden-sm-down" style="background-image: url(/public/images/covers/2009-08-27-macports.png);">
+    <div class="page-cover-layer page-cover-layer-solid">
+        <div class="container">
+            <div class="text-xs-center">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page cover -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <section id="article">
+                    <h1><a href="/blog/tr/2009/08/27/macports-ssh-otomatik-tamamlama-ve-genel-bilgiler/">Macports, ssh otomatik tamamlama ve genel bilgiler</a></h1>
+                    
+
+                    <time pubdate datetime="2009-08-27T15:41:00+03:00" title="27 Ağustos 2009, Perşembe 15:41">
+                        27 Ağustos 2009, Perşembe 15:41
+                    </time>
+
+                    <header>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/macports/">macports</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/bash-completion/">bash completion</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/ssh/">ssh</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/config/">config</a></span>
+                    </header>
+
+                    <div id="markdown">
+                        <p>Daha önceki yazılarımda da bahsetmiştim, <a href="http://macports.org" title="Macports">MacPorts</a> diye harika bir
+şey var! Linux (<em>debian, ubuntu vs&hellip;</em>) daki paket yönetiminin OS X’cesi.
+</p>
+
+<p>Tonlarca (<em>abartmiim, yazıyı yazdığım anda toplam 6133 adet</em>) uygulama, 
+ağırlıkta Linux - Unix dünyasının çok sık kullandığı, osx için port edilmiş
+halde bizi bekliyor! </p>
+
+<h2>Peki bu uygulamalar bana ne sağlar?</h2>
+
+<p>Eğer development’la uğraşıyorsanız zaten faydalarını saymakla bitiremem. Eğer
+standart bir kullanıcıysanız bile, pek çok <strong>işe yarar</strong> uygulama
+edinebilirsiniz. Unutmadan belirteyim, bu uygulamaların hepsi <strong>open source</strong> 
+(<em>açık kaynak</em>) uygulamalar. Bu bakımdan hem kaynak kodu açık, hem de ücretsiz. 
+Hem de sürekli güncelleniyor.</p>
+
+<p>Dedim ya, eğer yazılım geliştirme işleriyle uğraşmıyorsanız nasıl
+faydalanacaksınız? İlk aklıma gelen şey, eskiden kalma <strong>Mustek CU 1200</strong>
+scanner’ım. Evet, ben bu cihazı, Windows / PC ile uğraşırken satın almış ve
+<strong>Windows XP</strong> dışında hiç bir Windows’da çalıştıramamıştım.</p>
+
+<p>Hatta support’larına mesaj atmış ve <strong>sadece XP’de çalışır</strong> cevabını
+almıştım. Tabii bunun üzerine odamdaki dolapta, hurdaların yanında yerini
+almıştı. Taaki macportsa kadar.</p>
+
+<p><strong>S.A.N.E</strong> adında, open source geliştirilen proje: <a href="http://www.sane-project.org/">Scanner Access Now Easy</a>
+sayesinde, uzunca yıllar kullanamadığım scanner’ımı, Mac’de, Terminal üzerinden
+kullanmaya başladım.</p>
+
+<p>Hatta işin komik tarafı, daha önce <strong>600dpi</strong> tarama yapmayı başaramamıştım!
+Scanner’ı bağlayıp, Terminal’i açıp:</p>
+<pre class="highlight shell"><code>scanimage -v -p --format tiff --mode color --resolution 300 &gt; test300.tiff
+</code></pre>
+
+<p>yazınca, <strong>300dpi</strong> - <code>tiff</code> şeklinde scan edilmiş resim. Derseniz ki:</p>
+
+<blockquote>
+<p>Kardeşim ben terminal filan anlamam, yok mu bunun kolayı?</p>
+</blockquote>
+
+<p>evet o da var. <a href="http://www.ellert.se/twain-sane/">http://www.ellert.se/twain-sane/</a>
+sitesinde, aynen <a href="http://macports.org" title="Macports">MacPorts</a>’da bulunan uygulamanın gui’li hali de var.
+Prefpane’i filan da mevcut, kolay konfigüre edilebiliyor.</p>
+
+<p>Konuyu süper dağıttığımı görüyorum ve hemen asıl mevzuya dönüyorum. Geçenlerde,
+<a href="/blog/tr/2009/07/26/bash-completion-olayi/">bash completion</a> konusuna değinmiştim. Hatta bununla da kalmayıp
+<a href="/blog/tr/2009/07/29/django-icin-bash-completion/">Django için nasıl otomatik tamamlama</a> yapılabileceğini de
+yazmıştım.</p>
+
+<p><strong>ssh</strong> üzerinden tünel yapma işlerini denerken sevgili iş arkadaşım 
+<a href="http://naysaying.com/">Fırat Can Başarır</a> bana <code>ssh_config</code> hakkında 
+<strong>tips &amp; tricks</strong> verirken aklıma hemen şu soru geldi:</p>
+
+<blockquote>
+<p>Acaba uzaktaki makineyi <strong>ssh</strong> üzerinden browse ederken <strong>tab-completion</strong> olabilirmi?</p>
+</blockquote>
+
+<p>ya da <strong>nasıl olur?</strong></p>
+
+<p>Bash haricinde, ZSH’de bunun mümkün olduğunu sevgili kardeşim 
+<a href="http://www.canb.net/">Can Burak Çilingir</a> sayesinde biliyordum. Acaba aynısını
+bash için yapmak mümkün müydü?</p>
+
+<p>Eğer konuya zaten hakimseniz, <code>ssh_config</code> diye birşey biliyorsunuzdur. Genelde
+bu tarz konfigürasyon olayları hep birbirine benziyor mantık olarak;</p>
+
+<ul>
+<li>System-Wide (yani tüm kullanıcıları ilgilendiren, /etc/ altında genelde)</li>
+<li>User Profile (2sadece kullanıcı bazında ~ altında)</li>
+</ul>
+
+<p>Kullanıcı bazlı şeyler genelde <code>$HOME</code> dizini altında oluyor:</p>
+<pre class="highlight shell"><code><span class="nb">echo</span> <span class="nv">$HOME</span>
+</code></pre>
+
+<p><code>$HOME</code> sizin kullanıcınızın &ldquo;home&rdquo; folder’ıdır. Yani sizinle ilgili pek çok
+şey (<em>Desktop, Müzikler, Videolar vs&hellip;</em>) buradadır. Keza ssh ile ilgili
+şeyler de (<em>eğer kullanıcı bazlı düşünüyorsak</em>) burada olmalıdır.
+Terminale girip:</p>
+<pre class="highlight shell"><code>ls
+</code></pre>
+
+<p>dediğimiz zaman gördüğüm ekran;</p>
+
+<div class="card card-custom"><img src="http://2.bp.blogspot.com/_9jz1qeFrzkQ/SpZi8QxYhHI/AAAAAAAACtM/6_bC_vc16tQ/s600/Picture+1.png" alt="Ekran görüntüsü: Terminal’de ls çıktısı"></div>
+
+<p>gibiyse sorun yok, eğer değilse:</p>
+<pre class="highlight shell"><code>ls -alhG <span class="c"># bsd tabanlı (mac, bsd vs...)</span>
+</code></pre>
+
+<p>Şeklinde deneyin. Bu, ne var ne yok listelemenize, hatta renkli ve hatta
+boyutları da anlaşılır bir şekilde listelemenize yardımcı olacak. Eğer <code>ls</code> 
+komutunuzun hep böyle kalmasını isterseniz, <code>~/.profile</code>’a bir <code>alias</code> eklemeniz
+lazım.</p>
+
+<p>Eğer <code>$HOME</code>da <code>.profile</code> yok ise önce oluşturun:</p>
+<pre class="highlight shell"><code><span class="nb">cd</span> ~
+touch .profile
+</code></pre>
+
+<p>Eğer <code>~</code> işaretini yapmakta sorun varsa, <strong>Turkish QWERTY PC</strong> modunda,
+<kbd>⌃</kbd> (alt) + <kbd>Ü</kbd> yapın. Sonra, sevdiğiniz bir text editörde bu dosyayı açın:</p>
+<pre class="highlight shell"><code>open -a /Applications/TextEdit.app .profile
+</code></pre>
+
+<p>Dosyayı açtıktan sonra aşağıdaki bilgiyi ekleyin, kaydedip çıkın programdan.
+Küçük bir not: Ben text editör olarak [TextMate][textmate] kullanıyorum, belki
+yazıyı okuyanlarda da yoktur diye standart / default uygulamalardan örnek
+veriyorum!</p>
+<pre class="highlight shell"><code><span class="nb">alias </span><span class="nv">ls</span><span class="o">=</span><span class="s2">"ls -alhG"</span>
+</code></pre>
+
+<p>Şimdi ya terminali komple kapatıp açacaksınız, ya da:</p>
+<pre class="highlight shell"><code><span class="nb">source</span> <span class="nv">$HOME</span>/.profile
+</code></pre>
+
+<p>yazın enter’a basacaksınız. Şimdi <code>ls</code> yaptığınızda tüm detaylarıyla <code>$HOME</code>
+folder’ını görebilirsiniz. Eğer <code>.ssh</code> diye bir folder yoksa hemen bunu
+oluşturun ve gereken dosyaları ekleyin:</p>
+<pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
+mkdir .ssh/
+touch config
+</code></pre>
+
+<p>Şimdi bu <code>config</code> dosyasına, <code>ssh</code> yapmak istediğimiz sunucuya ait bilgileri
+ekleyeceğiz. Tabii bunun için yine bir text editör ile dosyayı açalım.
+Açtıktan sonra:</p>
+<pre class="highlight plaintext"><code>Host SUNUCU_ADI  
+User KULLANICI_ADI  
+Port SSH_PORTU  
+HostName SUNUCU_IP  
+</code></pre>
+
+<p>şeklinde uygun bilgileri doldurun. Unutmayın! Bu dosyanın mantığı
+<strong>Key</strong> <strong>Value</strong> şeklinde. Key’den sonra ya bir <code>TAB</code> ya da <code>SPACE</code> koymanız
+lazım. Ben <code>TAB</code> kullanıyorum.</p>
+
+<p>Örneğin; ip’si <strong>1.2.3.4</strong> olan bir sunucuya, 22. port’dan ssh yapacaksak ve
+bu sunucuya &ldquo;Sunucum&rdquo; diye bir isim takarsak;</p>
+<pre class="highlight plaintext"><code>Host Sunucum  
+User vigo  
+Port 22  
+HostName 1.2.3.4  
+</code></pre>
+
+<p>Eğer <strong>Port</strong> belirtmezseniz sistem bunu otomatik olarak <strong>22</strong> varsayacaktır.
+Bu dosyada <strong>N</strong> tane sunucu tanımlaması yapılabilir. Yani:</p>
+<pre class="highlight plaintext"><code>Host Sunucum1  
+User vigo  
+Port 22  
+HostName 1.2.3.4  
+
+Host Sunucum2  
+User vigo  
+Port 22  
+HostName 10.20.30.40  
+</code></pre>
+
+<p>gibi, istediğiniz kadar sunucu ekleyebilirsiniz. Keza, konfigürasyon bilgisi
+olarak da, Host, User, Port vs&hellip; dışında pek çok direktif de ekleyebilirsiniz.
+Bu bilgiler nerede? Tabii ki <strong>man page</strong>de!</p>
+<pre class="highlight shell"><code>man ssh_config
+</code></pre>
+
+<p>demeniz yeterli&hellip;</p>
+
+<p>Eğer bunların hiç biri olmasaydı nasıl bağlantı yapacaktık?</p>
+<pre class="highlight shell"><code>ssh vigo@1.2.3.4
+</code></pre>
+
+<p>şeklinde. Hemen yeri gelmişken şunu da anlatalım. Uzaktaki makineye
+bağlanırken sürekli <strong>şifre</strong> girme derdinden kurtulmak için kendinize bir
+<strong>ssh-key</strong> üretebilirsiniz.</p>
+
+<p>Bu ürettiğiniz key’i de uzaktaki makineye eklediğiniz zaman, ssh bağlantısı
+için birdaha size şifre sorulmaz. Nasıl mı? Terminal’de devam ediyoruz:</p>
+<pre class="highlight shell"><code>ssh-keygen -t dsa
+</code></pre>
+
+<p>Enter’a basar basmaz <strong>Generating public/private dsa key pair.</strong> şeklinde bir
+mesaj göreceksiniz. Komut size iki anahtar üretiyor, biri <strong>public</strong> diğeri
+de <strong>private</strong>.</p>
+
+<p>Yani biri ortalıkta dolaşabilen, <strong>PUBLIC key</strong>, diğeri de sadece sizde
+olacak olan <strong>PRIVATE key</strong>. Daha sonra size, bu oluşturulacak anahtarların
+nereye kayıt edileceği soruluyor. Gördüğünüz gibi bu lokasyon, default olarak,
+<code>$HOME</code> altında bulunan <code>.ssh/</code> folder’ı. Örneğin bana sorulan yer: 
+<code>/Users/vigo/.ssh/id_dsa</code> şeklindeydi.</p>
+
+<p>Daha sonra <strong>passphrase</strong> sorulur. Bu bir tür şifredir ve güvenlik için
+önemlidir. Bu bakımdan bu alanı boş bırakmadan, hatırlayabileceğiniz bir
+şifre seçin. Herşey yolunda gittiyse size:</p>
+<pre class="highlight plaintext"><code>The key fingerprint is:  
+fe:82:ea:3d:c4:..:..:.. user@hostname (uzun olduğu için hepsini yazmadım!)  
+The keys randomart image is:  
++--[ DSA 1024]----+  
+|E                |  
+|.                |  
+|.                |  
+| .               |  
+|o+   o  S        |  
+|* o.. +.         |  
+| +oo o ..        |  
+|ooo...o ..       |  
+|=..+o... ..      |  
++-----------------+
+</code></pre>
+
+<p>şeklinde bir görüntü çıkar ve <code>.ssh/</code> altına baktığınızda iki dosya ile
+karşılaşırsınız:</p>
+<pre class="highlight shell"><code>ls ~/.ssh/
+
+id_dsa
+id_dsa.pub
+</code></pre>
+
+<p>işte bu sonu <code>.pub</code> ile biten dosya sizin <strong>PUBLIC</strong> key’inizdir. Eğer bu
+dosyayı text editör’le açarsanız karşınıza;</p>
+<pre class="highlight plaintext"><code>ssh-dss AAAAB3NzaC1kc3MA...... user@hostname
+</code></pre>
+
+<p>şeklinde devasa bişi çıkar. (<em>Ben uzun olduğu için sadece minik bir kısmını
+yazdım.</em>) Şimdi yapmanız gereken, uzaktaki makineye bağlanıp, oradaki
+<code>$HOME</code>’unuza gidip, <code>.ssh/</code> in altında bulunan <code>authorized_keys</code> dosyasına
+bu <code>id_dsa.pub</code> dosyasının içinde yazan anahtarı ekleyin. Eğer <code>authorized_keys</code>
+dosyasını göremezseniz:</p>
+<pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
+touch authorized_keys
+</code></pre>
+
+<p>şeklinde oluşturun. Karşı makinede, en basit text editörü <code>nano</code> yardımıyla 
+bunu yapabilirsiniz. Dikkat edilmesi gereken şey, bu up-uzun tek bir satır 
+şeklinde olmalı! (<em>word-wrape dikkat edin!</em>)</p>
+
+<p>Kendi tarafınızda elma (<em>cmd + c</em>) kopyalayıp, uzaktaki makinede de elma 
+(<em>cmd + v</em>) ile yapıştırabilirsiniz. Eğer <code>nano</code> kullanmayı bilmeyenler varsa,
+uzaktaki makineye bağlanınca:</p>
+<pre class="highlight shell"><code>nano -w <span class="nv">$HOME</span>/.ssh/authorized_keys
+</code></pre>
+
+<p>ile nano’yu açın. elma (<em>cmd + v</em>) ile keyinizi yapıştırın, satır sonunda
+<code>enter</code> yapın. <strong>Save</strong> edip çıkmak için <code>kntrl + x</code>, sorulan soruya <code>y</code> 
+cevabı ve enter. Hemen test edelim bakalım olmuşmu?</p>
+<pre class="highlight shell"><code>ssh Sunucum1
+</code></pre>
+
+<p>Enter! evet şifre sormadan bağlandınız! <kbd>⌃</kbd> (kntrl) + <kbd>D</kbd> ile 
+bağlantıyı kesebilirsiniz.</p>
+
+<p>Bu kadar açıklamadan sonra, asıl olayımızıa gelelim. Uzak makineyi tamamlama!
+Aynı ssh komutu familyasından <strong>scp</strong> ile tanışacağız birazdan. Sistemde
+default bulunan <strong>cp</strong> (<em>copy</em>) komutunun secure olanı! Gerekenler:</p>
+
+<p><a href="http://macports.org" title="Macports">MacPorts</a> (<em>bu zaten kurulu diye düşünüyorum</em>) ve ilgili <strong>port</strong>ları:</p>
+
+<ul>
+<li>bash-completion</li>
+<li>gawk</li>
+<li>gsed</li>
+</ul>
+
+<p>Normalde <strong>bash-completion</strong> kurulunca zaten pek çok sorun halloluyor. Fakat, 
+sistemin içindeki <code>awk</code> ve <code>sed</code>, bir sebebten dolayı, ssh’i tamamlayamıyor. 
+Bu bakımdan ports’dan <strong>gawk</strong> ve <strong>gsed</strong> paketlerini de kurmamız gerekiyor.</p>
+<pre class="highlight shell"><code>sudo port install bash-completion gawk gsed
+</code></pre>
+
+<p>Eğer <code>bash-completion</code> önceden kuruluysa sadece <code>gawk</code> ve <code>gsed</code>i kurun&hellip; Şimdi 
+yapmanız gereken tek şey: <strong>ssh [TAB’e basın]</strong> config’den ya da <code>/etc/hosts</code>dan 
+otomatik tamamlama başladı bile&hellip; </p>
+
+<p>Peki <strong>scp</strong>? şimdi <strong>scp Sunucum1[TAB’e basın]</strong> ve basmaya devam edin!</p>
+
+                    </div>
+                    
+                    <hr/>
+<div id="related-articles">
+    <ul class="list-unstyled">
+    <li>
+        <h1>İlişkili Makaleler</h1>
+        <p>Konu ile ilgili toplam “7” adet bağlantılı makale bulunuyor.</p>
+    </li>
+        <li>
+            <h3><a href="/blog/tr/2011/03/22/kendi-pythonunu-kendin-kur-yazimda-eksik-yerler-buldum/">Kendi Python’unu kendin kur yazımda eksik yerler buldum</a></h3>
+            <time pubdate datetime="2011-03-22T15:45:00+02:00" title="22 Mart 2011, Salı 15:45">
+                22 Mart 2011, Salı 15:45
+            </time>
+            <p>Geçtiğimiz günlerde yazdığım <a href="/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/">yazımda</a> çok önemli bir eksiklik
+yaptığımı bugün farkettim. Neden bugün? Bugün yeni makine kuruyordum ve sıra
+<a href="http://python.org" title="Python">Python</a>’u kurmaya gelmişti. Hemen blog’umu açıp kendi yazdığım yazımı 
+okumaya başladım.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/">Kendi Python’unu Django’nu paketlerini kendin kur</a></h3>
+            <time pubdate datetime="2011-02-10T12:58:00+02:00" title="10 Şubat 2011, Perşembe 12:58">
+                10 Şubat 2011, Perşembe 12:58
+            </time>
+            <p><strong>Düzeltme: 23 Mart 2011, 15:33</strong><br>
+Lütfen önce <a href="/blog/tr/2011/03/23/bu-defa-son/">bu yazıyı</a> okuyun!</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2009/07/29/django-icin-bash-completion/">Django için bash completion</a></h3>
+            <time pubdate datetime="2009-07-29T15:59:00+03:00" title="29 Temmuz 2009, Çarşamba 15:59">
+                29 Temmuz 2009, Çarşamba 15:59
+            </time>
+            <p>Az önce başardığım, aslında çok bilindiğini düşündüğüm fakat etrafımdaki
+<a href="https://www.djangoproject.com/" title="Django Project">Django</a>’cu kardeşimlerimden duymadığım bir özellikten bahsetmek
+istiyorum!</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2009/07/26/bash-completion-olayi/">Bash Completion olayı!</a></h3>
+            <time pubdate datetime="2009-07-26T15:12:00+03:00" title="26 Temmuz 2009, Pazar 15:12">
+                26 Temmuz 2009, Pazar 15:12
+            </time>
+            <p>Bilgisayar kullanmaya Commodore 64’le başlayan, ilk ciddi anlamda parayı Amiga 
+ile kazanan ben, kaderin cilvesi olarak, uzun yıllar Windows kullanmak zorunda 
+kalmıştım.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2012/02/02/rake-icin-bash-completion/">Rake için bash-completion</a></h3>
+            <time pubdate datetime="2012-02-02T15:30:00+02:00" title="02 Şubat 2012, Perşembe 15:30">
+                02 Şubat 2012, Perşembe 15:30
+            </time>
+            <p>Terminal’de çalışırken hep işimi hızlı ve en kolay şekilde yapabilmenin yollarını ararım.
+Bu sayede pek çok yeni şey de öğrendim. Octopress sağolsun ciddi ciddi <a href="http://www.ruby-lang.org/" title="Ruby">Ruby</a>
+öğrenmeme büyük katkıda bulundu…</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/02/22/pip-icin-bash-completion/">Pip için bash completion</a></h3>
+            <time pubdate datetime="2011-02-22T11:05:00+02:00" title="22 Şubat 2011, Salı 11:05">
+                22 Şubat 2011, Salı 11:05
+            </time>
+            <p>Bir <a href="/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/">önceki yazımda</a> unutmuşum, yeni farkettim. <code>pip</code>’i
+terminalde kullanırken <code>bash-completion</code> özelliğinden de faydalanabiliriz. Bunun
+için, pip’le gelen bash-completion’ı sisteme eklemek gerekiyor. Tabi, sizde
+zaten <code>bash-completion</code> kurulu diye var sayıyorum.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2010/02/17/ssh-uzerinden-tunel-yapmak/">SSH üzerinden tünel yapmak!</a></h3>
+            <time pubdate datetime="2010-02-17T10:37:00+02:00" title="17 Şubat 2010, Çarşamba 10:37">
+                17 Şubat 2010, Çarşamba 10:37
+            </time>
+            <p>Daha <a href="/blog/tr/2009/08/27/macports-ssh-otomatik-tamamlama-ve-genel-bilgiler/">önceki yazımda</a>, Terminal’den kolay <strong>ssh</strong> yapma yöntemini anlatmıştım. 
+Şimdi, ssh yardımıyla nasıl tünel yaparız buna bakalım.</p>
+        </li>
+    </ul>
+</div>
+<hr/>
+
+                    
+                    <ul id="prev-next-articles" class="list-inline">
+                        <li class="list-inline-item li-left">
+                            <a href="/blog/tr/2009/08/16/agustos-dergileri/">&laquo; Ağustos dergileri</a>
+                            <time pubdate datetime="2009-08-16T12:31:00+03:00" title="16 Ağustos 2009, Pazar">16 Ağustos 2009, Pazar</time>
+                        </li>
+                        <li class="list-inline-item pull-sm-right m-r-0 text-md-right li-right">
+                            <a href="/blog/tr/2009/11/14/leopard-snow-leopard-utf8-turkce-sorunu-bitmiiiiyoooorrr/">Leopard / Snow Leopard UTF8 - Türkçe sorunu bitmiiiiyoooorrr!!! &raquo;</a>
+                            <time pubdate datetime="2009-11-14T19:21:00+02:00" title="14 Kasım 2009, Cumartesi">14 Kasım 2009, Cumartesi</time>
+                        </li>
+                    </ul>
+                </section>
+
+                    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'ugurozyilmazel';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Lütfen, <a href="http://disqus.com/?ref_noscript">Disqus</a> tarafından sağlanan yorumları görmek için JavaScript&rsquo;i aktive edin.
+    </noscript>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                <nav id="footer-nav">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a title="C64 Scener Database" href="http://csdb.dk/scener/?id=8379">CSDB</a></li>
+                        <li class="list-inline-item"><a title="Zombie Boys" href="http://zombieboys.net">Zombie Boys</a></li>
+                        <li class="list-inline-item"><a title="Bronx" href="http://bronxwhq.org">Bronx</a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="/feed-tr.xml"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-rss fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="https://github.com/vigo"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0"><a title="Twitter" href="https://twitter.com/vigobronx"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /footer -->
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        
+        
+        
+        <script src="/public/js/application.js"></script>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-6463685-2', 'auto');
+          ga('send', 'pageview');
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title>Uğur “vigo” Özyılmazel | Rubygem Hazırlıyoruz</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        
+        <link href="/public/css/application.css" rel="stylesheet" />
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
+        <meta name="date" content="2016-07-24T16:19:18+03:00" />
+        <meta name="description" content="How I start sitesinde görüp, kesinlikle Türkçe’si
+de olmalı dediğim, sıfırdan Ruby GEM’i hazırlamayı anlatan blog
+postuma hoşgeldiniz!" />
+        <meta name="author" content="Uğur “vigo” Özyılmazel"/>
+        <meta name="copyright" content="(c) 2006 / 2016 - Uğur “vigo” Özyılmazel" />
+        <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2014/09/23/rubygem-hazirliyoruz/" />
+        <meta property="og:title" content="Rubygem Hazırlıyoruz" />
+        <meta property="og:site_name" content="vigo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="How I start sitesinde görüp, kesinlikle Türkçe’si
+de olmalı dediğim, sıfırdan Ruby GEM’i hazırlamayı anlatan blog
+postuma hoşgeldiniz!" />
+        <meta property="og:image" content="http://ugur.ozyilmazel.com/public/images/covers/2014-09-23-rubygems.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="3330" />
+        <meta property="og:image:height" content="768" />
+        <link rel="apple-touch-icon-precomposedposed" sizes="144x144" href="/public/images/icons/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/images/icons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/images/icons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/public/images/icons/apple-touch-icon-57-precomposed.png">
+        <link href="/public/images/icons/favicon.png" rel="shortcut icon" type="image/png" />
+
+    </head>
+    <body class="blog blog_tr blog_tr_2014 blog_tr_2014_09 blog_tr_2014_09_23 blog_tr_2014_09_23_rubygem-hazirliyoruz blog_tr_2014_09_23_rubygem-hazirliyoruz_index">
+            
+    
+    
+<!-- page-top-nav -->
+<nav id="page-top-nav" class="navbar">
+    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsable_navbar">&#9776;</button>
+    <div class="collapse navbar-toggleable-sm" id="collapsable_navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                    <ul class="list-inline nav navbar-nav">
+<li class="list-inline-item nav-item"><a href="/">Anasayfa</a></li><li class="list-inline-item nav-item active"><a href="/blog/tr/">Blog</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/hakkimda/">Hakkımda</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/sunumlar/">Sunumlar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/kitaplar/">Kitaplar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/iletisim/">İletişim</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/cv/">CV</a></li>                        <li class="list-inline-item nav-item pull-md-right m-r-0">
+                                <a title="English" href="/blog/en/">English</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- /page-top-nav -->
+
+
+
+    
+    <!-- page cover -->
+<div class="jumbotron jumbotron-fluid page-cover hidden-sm-down" style="background-image: url(/public/images/covers/2014-09-23-rubygems.png);">
+    <div class="page-cover-layer page-cover-layer-solid">
+        <div class="container">
+            <div class="text-xs-center">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page cover -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <section id="article">
+                    <h1><a href="/blog/tr/2014/09/23/rubygem-hazirliyoruz/">Rubygem Hazırlıyoruz</a></h1>
+                    
+
+                    <time pubdate datetime="2014-09-23T12:45:00+03:00" title="23 Eylül 2014, Salı 12:45">
+                        23 Eylül 2014, Salı 12:45
+                    </time>
+
+                    <header>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/gem/">gem</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/bundler/">bundler</a></span>
+                    </header>
+
+                    <div id="markdown">
+                        <p><a href="http://howistart.org/">How I start</a> sitesinde görüp, kesinlikle Türkçe’si
+de olmalı dediğim, sıfırdan Ruby GEM’i hazırlamayı anlatan blog
+postuma hoşgeldiniz!
+</p>
+
+<h2>Gerekenler</h2>
+
+<ul>
+<li><a href="https://rubygems.org">Rubygems</a>’de hesap</li>
+<li><a href="https://github.com">GitHub</a>’da hesap</li>
+<li><a href="http://rvm.io">RVM</a> ya da <a href="https://github.com/sstephenson/rbenv">Rbenv</a></li>
+<li><a href="http://bundler.io/">Bundler</a> gem’i</li>
+<li><a href="http://git-scm.com/">GIT</a> revizyon kontrol</li>
+</ul>
+
+<p>Öncelikle ilk ihtiyacımız olan şey <a href="https://rubygems.org">Rubygems.org</a> sitesinde
+bir hesap olması! Eğer yoksa hızlıca bu sitede bir hesap oluşturmanız gerekiyor.</p>
+
+<p>Hangi <code>ruby</code> versiyonunu kullanıyorsanız kullanın, mutlaka <code>bundler</code> gem’i de
+kurulu olmalı. Eğer kurulu değilse;</p>
+<pre class="highlight shell"><code>gem install bundler
+</code></pre>
+
+<p>şeklinde kurabilirsiniz. Ya <a href="http://rvm.io">RVM</a> ya da <a href="https://github.com/sstephenson/rbenv">RBENV</a> 
+kullandığınızı varsayıyorum. Keza aynı şekilde sisteminizde <a href="http://git-scm.com/">GIT</a> revizyon
+kontrol sisteminin de kurulu olduğunu varsayıyorum. </p>
+
+<p>İlk olarak Rubygems’deki credentials’ımızı lokal makinemize aktaralım. Hesap
+oluştururken belirlediğiniz <strong>KULLANICI_ADI</strong>’nı aşağıdaki yere girerek
+gerekli kimlik bilgilerini çekiyoruz. Bu sayede, en son safhada yapacağımız
+<code>gem push</code> etme işlemini yapabilme yetkisini ayarlıyoruz.</p>
+<pre class="highlight shell"><code>curl -u KULLANICI_ADI https://rubygems.org/api/v1/api_key.yaml &gt; ~/.gem/credentials; chmod 0600 ~/.gem/credentials
+</code></pre>
+
+<p>Örnek olması adına, çok basit bir iş yapan uygulama hazırlayacağız. Basit
+bir hesap makinesi. 2 sayı ve yapacağı işlemi vereceğiz bize sonucunu geri
+dönecek. Uygulamanın adı <strong>simple_calcu</strong> olsun.</p>
+
+<p>Şimdi, ilgili <code>gem</code> iskeletini oluşturalım:</p>
+<pre class="highlight shell"><code>bundle gem simple_calcu
+</code></pre>
+
+<p>işlem sonunda;</p>
+<pre class="highlight plaintext"><code>      create  simple_calcu/Gemfile
+      create  simple_calcu/Rakefile
+      create  simple_calcu/LICENSE.txt
+      create  simple_calcu/README.md
+      create  simple_calcu/.gitignore
+      create  simple_calcu/simple_calcu.gemspec
+      create  simple_calcu/lib/simple_calcu.rb
+      create  simple_calcu/lib/simple_calcu/version.rb
+Initializing git repo in /private/tmp/simple_calcu
+</code></pre>
+
+<p>gerekli dosyalar oluşturuldu. <strong>Bundler</strong> bizim için pek çok şeyi
+otomatik olarak üretti. Şimdi <code>cd simple_calcu/</code> diyip projenin içine
+girelim ve <code>bundle exec rake -T</code> diyerek bize sunulan <strong>default</strong>
+task’lere bakalım:</p>
+<pre class="highlight plaintext"><code>rake build    # Build simple_calcu-0.0.1.gem into the pkg directory
+rake install  # Build and install simple_calcu-0.0.1.gem into system gems
+rake release  # Create tag v0.0.1 and build and push simple_calcu-0.0.1.gem to Rubygems
+</code></pre>
+
+<p><code>rake build</code> ile hazırlayacağımız <code>gem</code>’i paketleyeceğiz. <code>rake install</code> ile
+yaptığımız <code>gem</code> kurup test edeceğiz. En son olarak <code>rake release</code> ile
+Rubygems’e push edeceğiz.</p>
+
+<h3>.gemspec</h3>
+
+<p>Otomatik olarak oluşan dosya aşağıdaki gibi:</p>
+<pre class="highlight ruby"><code><span class="c1"># coding: utf-8</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s1">'../lib'</span><span class="p">,</span> <span class="kp">__FILE__</span><span class="p">)</span>
+<span class="vg">$LOAD_PATH</span><span class="p">.</span><span class="nf">unshift</span><span class="p">(</span><span class="n">lib</span><span class="p">)</span> <span class="k">unless</span> <span class="vg">$LOAD_PATH</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">lib</span><span class="p">)</span>
+<span class="nb">require</span> <span class="s1">'simple_calcu/version'</span>
+
+<span class="no">Gem</span><span class="o">::</span><span class="no">Specification</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">spec</span><span class="o">|</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">name</span>          <span class="o">=</span> <span class="s2">"simple_calcu"</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">version</span>       <span class="o">=</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="no">VERSION</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">authors</span>       <span class="o">=</span> <span class="p">[</span><span class="s2">"Uğur Özyılmazel"</span><span class="p">]</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">email</span>         <span class="o">=</span> <span class="p">[</span><span class="s2">"ugurozyilmazel@gmail.com"</span><span class="p">]</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">summary</span>       <span class="o">=</span> <span class="sx">%q{TODO: Write a short summary. Required.}</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">description</span>   <span class="o">=</span> <span class="sx">%q{TODO: Write a longer description. Optional.}</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">homepage</span>      <span class="o">=</span> <span class="s2">""</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">license</span>       <span class="o">=</span> <span class="s2">"MIT"</span>
+
+  <span class="n">spec</span><span class="p">.</span><span class="nf">files</span>         <span class="o">=</span> <span class="sb">`git ls-files -z`</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\x0</span><span class="s2">"</span><span class="p">)</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">executables</span>   <span class="o">=</span> <span class="n">spec</span><span class="p">.</span><span class="nf">files</span><span class="p">.</span><span class="nf">grep</span><span class="p">(</span><span class="sr">%r{^bin/}</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="no">File</span><span class="p">.</span><span class="nf">basename</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="p">}</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">test_files</span>    <span class="o">=</span> <span class="n">spec</span><span class="p">.</span><span class="nf">files</span><span class="p">.</span><span class="nf">grep</span><span class="p">(</span><span class="sr">%r{^(test|spec|features)/}</span><span class="p">)</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">require_paths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"lib"</span><span class="p">]</span>
+
+  <span class="n">spec</span><span class="p">.</span><span class="nf">add_development_dependency</span> <span class="s2">"bundler"</span><span class="p">,</span> <span class="s2">"~&gt; 1.6"</span>
+  <span class="n">spec</span><span class="p">.</span><span class="nf">add_development_dependency</span> <span class="s2">"rake"</span><span class="p">,</span> <span class="s2">"~&gt; 10.0"</span>
+<span class="k">end</span>
+</code></pre>
+
+<p><code>spec.authors</code> ve <code>spec.email</code> bilgileri <code>.gitconfig</code>’den otomatik olarak
+geldi. Hemen bu uygulama ile ilgili bir kısa bir de uzun açıklama yazalım
+<code>spec.summary</code> ve <code>spec.description</code> alanına;</p>
+<pre class="highlight ruby"><code><span class="n">spec</span><span class="p">.</span><span class="nf">summary</span>       <span class="o">=</span> <span class="sx">%q{Simple Calculator.}</span>
+<span class="n">spec</span><span class="p">.</span><span class="nf">description</span>   <span class="o">=</span> <span class="sx">%q{Make 4 basic calculations like addition/subtraction/multiplication and division via 2 numbers.}</span>
+</code></pre>
+
+<p>şimdi bir <code>commit</code> yapalım:</p>
+<pre class="highlight shell"><code>git add .
+git commit -m <span class="s2">"init"</span>
+</code></pre>
+
+<p>Test için gereken bağlımlılığı (<em>dependency</em>) ekleyelim <code>.gemspec</code> dosyasına;</p>
+<pre class="highlight ruby"><code><span class="n">spec</span><span class="p">.</span><span class="nf">add_development_dependency</span> <span class="s2">"rake"</span><span class="p">,</span> <span class="s2">"~&gt; 10.0"</span> <span class="c1"># bu satırın altına</span>
+<span class="n">spec</span><span class="p">.</span><span class="nf">add_development_dependency</span> <span class="s2">"minitest"</span>
+</code></pre>
+
+<p>Tekrar <code>commit</code> yapalım;</p>
+<pre class="highlight shell"><code>git add .
+git commit -m <span class="s2">"Minitest dependency added"</span>
+</code></pre>
+
+<p>Otomatik olarak üretilmiş olan <code>README.md</code> dosyasına da baktığınızda, içini
+doldurabileceğimiz, düzenleme yapabileceğimiz türden hazır bir açıklama
+dosyası görürüz. Bu dosyayı en sonda düzenleyeceğiz.</p>
+
+<p>Testlerimizi çalıştırabilmek için <code>Rakefile</code>’a eklemeler yapıyoruz ve
+aşağıdaki hale getiriyoruz:</p>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s2">"bundler/gem_tasks"</span>
+<span class="nb">require</span> <span class="s2">"rake/testtask"</span>
+
+<span class="no">Rake</span><span class="o">::</span><span class="no">TestTask</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+  <span class="n">t</span><span class="p">.</span><span class="nf">test_files</span> <span class="o">=</span> <span class="no">FileList</span><span class="p">[</span><span class="s1">'test/*_test.rb'</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="n">task</span> <span class="ss">default: :test</span>
+</code></pre>
+
+<p>Yaptığımız işlemi kontrol etmek için;</p>
+<pre class="highlight shell"><code>bundle <span class="nb">exec </span>rake
+<span class="nb">echo</span> <span class="nv">$?</span>
+<span class="c"># 0 görürsek herşey yolunda!</span>
+</code></pre>
+
+<p>Tekrar <code>commit</code> yapalım:</p>
+<pre class="highlight shell"><code>git add .
+git commit -m <span class="s2">"Rakefile modified for test tasks"</span>
+</code></pre>
+
+<p>Şimdi, unit-test’lerimizi yazmak için test dizini oluşturup ilgili test
+dosyalarını ekleyeceğiz:</p>
+<pre class="highlight shell"><code>mkdir <span class="nb">test
+cd test</span>/
+touch calculator_test.rb
+</code></pre>
+
+<p><code>calculator_test.rb</code> dosyasını açıp;</p>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+<span class="nb">require</span> <span class="s1">'simple_calcu'</span>
+
+<span class="k">class</span> <span class="nc">CalculatorTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_addition</span>
+    <span class="n">assert_equal</span> <span class="mi">5</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>ekleyelim ve test’i çalıştıralım:</p>
+<pre class="highlight shell"><code>bundle <span class="nb">exec </span>rake
+</code></pre>
+
+<p>ve Güüüüüüüüm! Test patladı:</p>
+<pre class="highlight plaintext"><code>Run options: --seed 7929
+
+# Running:
+
+E
+
+Finished in 0.001493s, 669.7924 runs/s, 0.0000 assertions/s.
+
+  1) Error:
+CalculatorTest#test_addition:
+NoMethodError: undefined method `add' for SimpleCalcu:Module
+    /private/tmp/simple_calcu/test/calculator_test.rb:6:in `test_addition'
+
+1 runs, 0 assertions, 0 failures, 1 errors, 0 skips
+rake aborted!
+Command failed with status (1): [ruby -I"lib" -I"/Users/vigo/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/rake-10.3.2/lib" "/Users/vigo/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/rake-10.3.2/lib/rake/rake_test_loader.rb" "test/calculator_test.rb" ]
+
+Tasks: TOP =&gt; default =&gt; test
+(See full trace by running task with --trace)
+</code></pre>
+
+<p>Dediği şu: <code>SimpleCalcu:Module</code> de <code>add</code> diye bir method yok! Hemen bu method’u
+implemente edeceğiz, <code>lib/simple_calcu.rb</code> dosyasını açıyoruz:</p>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s2">"simple_calcu/version"</span>
+
+<span class="k">module</span> <span class="nn">SimpleCalcu</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+    <span class="n">number1</span> <span class="o">+</span> <span class="n">number2</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Test’i tekrar çalıtırıyoruz <code>bundle exec rake</code> ile&hellip; ve test başarıyla
+tamamlandı!</p>
+<pre class="highlight plaintext"><code>Run options: --seed 34247
+
+# Running:
+
+.
+
+Finished in 0.001307s, 765.1109 runs/s, 765.1109 assertions/s.
+
+1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
+</code></pre>
+
+<p><strong>1</strong> işlem çalıştı, <strong>1</strong> assertion çalıştı ve fail eden <strong>0</strong>, hata <strong>0</strong> ve pas geçilen
+(<em>test edilmeden</em>) <strong>0</strong> olarak raporlandı!</p>
+
+<p>Hemen <code>commit</code> yapalım:</p>
+<pre class="highlight shell"><code>git add .
+git commit -m <span class="s2">"first test unit passed the test : addition"</span>
+</code></pre>
+
+<p>Şimdi diğer işlemleri yapalım <code>calculator_test.rb</code>:</p>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+<span class="nb">require</span> <span class="s1">'simple_calcu'</span>
+
+<span class="k">class</span> <span class="nc">CalculatorTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
+  <span class="k">def</span> <span class="nf">test_addition</span>
+    <span class="n">assert_equal</span> <span class="mi">5</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">test_subtraction</span>
+    <span class="n">assert_equal</span> <span class="mi">7</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="nb">sub</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">test_multiplication</span>
+    <span class="n">assert_equal</span> <span class="mi">25</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">mul</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="k">def</span> <span class="nf">test_division</span>
+    <span class="n">assert_equal</span> <span class="mi">5</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">div</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">assert_equal</span> <span class="mi">3</span><span class="o">.</span><span class="mi">3333333333333335</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">div</span><span class="p">(</span><span class="mi">10</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">assert_raises</span><span class="p">(</span><span class="no">ZeroDivisionError</span><span class="p">)</span> <span class="p">{</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">div</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>ve <code>bundle exec rake</code> ile testleri çalıştıralım:</p>
+<pre class="highlight plaintext"><code>Run options: --seed 45605
+
+# Running:
+
+....
+
+Finished in 0.001264s, 3164.5570 runs/s, 3164.5570 assertions/s.
+
+4 runs, 4 assertions, 0 failures, 0 errors, 0 skips
+</code></pre>
+
+<p>Hemen <code>commit</code> yapalım ve yolumuza devam edelim:</p>
+<pre class="highlight shell"><code>git add .
+git commit -m <span class="s2">"4 basic math operation tests are passed"</span>
+</code></pre>
+
+<p>Şimdi asıl işi yapacak fonksiyonumuz için test’i geliştirelim:</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">test_calculator</span>
+  <span class="n">assert_equal</span> <span class="mi">5</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"+"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+  <span class="n">assert_equal</span> <span class="mi">8</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"+"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+  <span class="n">assert_equal</span> <span class="mi">2</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+  <span class="n">assert_equal</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="n">assert_equal</span> <span class="mi">25</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"*"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+  <span class="n">assert_equal</span> <span class="mi">44</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"*"</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+  <span class="n">assert_equal</span> <span class="mi">2</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">"/"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="n">assert_equal</span> <span class="mi">2</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">5</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"/"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Hemen <code>calculate</code> method’u olmadığı için test fail edecek. Bu bakımdan
+hemen ilgili method’u oluşturalım <code>simple_calcu.rb</code>:</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">calculate</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+  <span class="k">case</span> <span class="n">operator</span>
+  <span class="k">when</span> <span class="s2">"+"</span>
+    <span class="n">add</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+  <span class="k">when</span> <span class="s2">"-"</span>
+    <span class="nb">sub</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+  <span class="k">when</span> <span class="s2">"*"</span>
+    <span class="n">mul</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+  <span class="k">when</span> <span class="s2">"/"</span>
+    <span class="n">div</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Tekrar testleri çalıştıralım. <code>bundle exec rake</code>. Tüm testlerimiz sorunsuz çalıştı!</p>
+<pre class="highlight plaintext"><code>Run options: --seed 15050
+
+# Running:
+
+.....
+
+Finished in 0.001841s, 2715.9153 runs/s, 7604.5627 assertions/s.
+
+5 runs, 14 assertions, 0 failures, 0 errors, 0 skips
+</code></pre>
+
+<p>Şimdi <code>commit</code> zamanı!</p>
+<pre class="highlight shell"><code>git add .
+git commit -m <span class="s2">"All tests pass like a charm!"</span>
+</code></pre>
+
+<p>Şimdi yazdığımız uygulamayı dökümante edelim, <code>version.rb</code> dosyasına;</p>
+<pre class="highlight ruby"><code><span class="k">module</span> <span class="nn">SimpleCalcu</span>
+  <span class="c1"># The current version of SimpleCalcu</span>
+  <span class="no">VERSION</span> <span class="o">=</span> <span class="s2">"0.0.1"</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>yorumu ekledikten sonra, <code>simple_calcu.rb</code> dosyasını da;</p>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s2">"simple_calcu/version"</span>
+
+<span class="c1"># All code in the gem is namespaced under this module.</span>
+<span class="k">module</span> <span class="nn">SimpleCalcu</span>
+
+  <span class="c1"># Adds given two numbers</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+    <span class="n">number1</span> <span class="o">+</span> <span class="n">number2</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Subtracts given number1 from number2</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">sub</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+    <span class="n">number1</span> <span class="o">-</span> <span class="n">number2</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Multiplies given two numbers</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">mul</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+    <span class="n">number1</span> <span class="o">*</span> <span class="n">number2</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Divides given number2 to number1</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">div</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+    <span class="n">number1</span> <span class="o">/</span> <span class="n">number2</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Main calculator method. Requires 3 arguments</span>
+  <span class="c1"># First and Last arguments must be numbers</span>
+  <span class="c1"># Second argument could be "+", "-", "*" or "/" and must be string</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">calculate</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+    <span class="k">case</span> <span class="n">operator</span>
+    <span class="k">when</span> <span class="s2">"+"</span>
+      <span class="n">add</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+    <span class="k">when</span> <span class="s2">"-"</span>
+      <span class="nb">sub</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+    <span class="k">when</span> <span class="s2">"*"</span>
+      <span class="n">mul</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+    <span class="k">when</span> <span class="s2">"/"</span>
+      <span class="n">div</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>haline getirip ilgili yorumları ekleylim ve <code>rdoc</code> ile döküman oluşturalım:</p>
+<pre class="highlight shell"><code>rdoc lib
+</code></pre>
+
+<p><code>doc/</code> dizini altına <code>html</code> olarak dökümantasyon oluştu. <code>index.html</code> dosyasını
+tarayıcıda açarak oluşan dökümantasyona bakabilirsiniz.</p>
+
+<p>Şimdi son durumu da <code>commit</code> edelim:</p>
+<pre class="highlight shell"><code>git add .
+git commit -m <span class="s2">"Document comments for rdoc"</span>
+</code></pre>
+
+<p>Artık <code>gem</code> hazır hale geldi. Bu noktada artık GitHub’a push edebiliriz.
+GitHub’da <code>simple_calcu</code> adında bir repo açıyorum ve sonra buraya push
+ediyorum, tabii siz kendi repo adresinizi yazın!:</p>
+<pre class="highlight shell"><code>git remote add origin git@github.com:vigo/simple_calcu.git
+git push -u origin master
+</code></pre>
+
+<p>Bu işlemden sonra, kendi tarafımızda <code>gem</code>imizi test etmemiz lazım. Bunun
+için <code>bundle exec rake install</code> ile sanki uzaktan kuruyor gibi kurulum
+yapmamız gerekiyor.</p>
+<pre class="highlight shell"><code>bundle <span class="nb">exec </span>rake install
+simple_calcu 0.0.1 built to pkg/simple_calcu-0.0.1.gem.
+simple_calcu <span class="o">(</span>0.0.1<span class="o">)</span> installed.
+</code></pre>
+
+<p>Şeklinde görümemiz gerekiyor. Hemen <code>gem list</code> diyerek sağlamasını yapalım:</p>
+<pre class="highlight shell"><code>gem list
+
+:
+:
+simple_calcu <span class="o">(</span>0.0.1<span class="o">)</span>
+:
+:
+</code></pre>
+
+<p>gibi listede görmeliyiz. Hemen <code>irb</code> açarak kontrol edelim:</p>
+<pre class="highlight shell"><code>irb
+<span class="gp">irb(main):001:0&gt; </span>require <span class="s1">'simple_calcu'</span>
+<span class="gp">=&gt; </span><span class="nb">true
+</span><span class="gp">irb(main):002:0&gt; </span>SimpleCalcu::calculate<span class="o">(</span>2, <span class="s2">"+"</span>, 3<span class="o">)</span>
+<span class="gp">=&gt; </span>5
+</code></pre>
+
+<p>Herşey yolunda gibi! Yapmamız gereken, tekrar <code>gemspec</code> dosyasını açıp;
+<code>spec.homepage</code> yerine uygulamanın homepage adresini yazmak:</p>
+<pre class="highlight ruby"><code><span class="n">spec</span><span class="p">.</span><span class="nf">homepage</span>      <span class="o">=</span> <span class="s2">"https://github.com/vigo/simple_calcu"</span>
+</code></pre>
+
+<p>haydi son kez <code>commit</code> edip <code>push</code> edelim:</p>
+<pre class="highlight shell"><code>git add .
+git commit -m <span class="s2">"gemspec, homepage added"</span>
+git push
+</code></pre>
+
+<p>Artık <code>gem</code> paketlenip <a href="https://rubygems.org">Rubygems</a>’e gitmeye hazır!</p>
+<pre class="highlight shell"><code>bundle <span class="nb">exec </span>rake release
+
+simple_calcu 0.0.1 built to pkg/simple_calcu-0.0.1.gem.
+Tagged v0.0.1.
+Pushed git commits and tags.
+Pushed simple_calcu 0.0.1 to rubygems.org.
+</code></pre>
+
+<p>Artık sizin de kendinize ait bir <code>gem</code>iniz oldu. Şimdi isterseniz <code>README.md</code>
+dosyasını düzenleyip, <code>VERSION = &quot;0.0.2&quot;</code> yapıp tekrar <code>bundle exec rake release</code>
+yapabilirsiniz.</p>
+
+                    </div>
+                    
+                    
+                    
+                    <ul id="prev-next-articles" class="list-inline">
+                        <li class="list-inline-item li-left">
+                            <a href="/blog/tr/2013/10/24/textmate-1-ve-mavericks/">&laquo; TextMate 1 ve Mavericks</a>
+                            <time pubdate datetime="2013-10-24T14:00:00+03:00" title="24 Ekim 2013, Perşembe">24 Ekim 2013, Perşembe</time>
+                        </li>
+                        <li class="list-inline-item pull-sm-right m-r-0 text-md-right li-right">
+                            <a href="/blog/tr/2014/11/14/textmate-1-ve-yosemite/">TextMate 1 ve Yosemite &raquo;</a>
+                            <time pubdate datetime="2014-11-14T13:29:00+02:00" title="14 Kasım 2014, Cuma">14 Kasım 2014, Cuma</time>
+                        </li>
+                    </ul>
+                </section>
+
+                    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'ugurozyilmazel';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Lütfen, <a href="http://disqus.com/?ref_noscript">Disqus</a> tarafından sağlanan yorumları görmek için JavaScript&rsquo;i aktive edin.
+    </noscript>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                <nav id="footer-nav">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a title="C64 Scener Database" href="http://csdb.dk/scener/?id=8379">CSDB</a></li>
+                        <li class="list-inline-item"><a title="Zombie Boys" href="http://zombieboys.net">Zombie Boys</a></li>
+                        <li class="list-inline-item"><a title="Bronx" href="http://bronxwhq.org">Bronx</a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="/feed-tr.xml"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-rss fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="https://github.com/vigo"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0"><a title="Twitter" href="https://twitter.com/vigobronx"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /footer -->
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        
+        
+        
+        <script src="/public/js/application.js"></script>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-6463685-2', 'auto');
+          ga('send', 'pageview');
+        </script>
+        
+    </body>
+</html>

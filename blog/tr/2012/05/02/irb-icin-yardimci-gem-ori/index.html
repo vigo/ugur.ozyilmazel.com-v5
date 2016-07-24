@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title>Uğur “vigo” Özyılmazel | IRB için yardımcı gem: ORI</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        
+        <link href="/public/css/application.css" rel="stylesheet" />
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
+        <meta name="date" content="2016-07-24T16:19:18+03:00" />
+        <meta name="description" content="Peepcode screencast’lerinden Play by play: Aaron Patterson’ı
+izlerken daldan dala atladım ve IRB ile ilgili çok işe yarar bir gem
+buldum: ORI" />
+        <meta name="author" content="Uğur “vigo” Özyılmazel"/>
+        <meta name="copyright" content="(c) 2006 / 2016 - Uğur “vigo” Özyılmazel" />
+        <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2012/05/02/irb-icin-yardimci-gem-ori/" />
+        <meta property="og:title" content="IRB için yardımcı gem: ORI" />
+        <meta property="og:site_name" content="vigo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Peepcode screencast’lerinden Play by play: Aaron Patterson’ı
+izlerken daldan dala atladım ve IRB ile ilgili çok işe yarar bir gem
+buldum: ORI" />
+        <meta property="og:image" content="http://ugur.ozyilmazel.com/public/images/covers/2012-05-25-irb-configurasyonu.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="2560" />
+        <meta property="og:image:height" content="1200" />
+        <link rel="apple-touch-icon-precomposedposed" sizes="144x144" href="/public/images/icons/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/images/icons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/images/icons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/public/images/icons/apple-touch-icon-57-precomposed.png">
+        <link href="/public/images/icons/favicon.png" rel="shortcut icon" type="image/png" />
+
+    </head>
+    <body class="blog blog_tr blog_tr_2012 blog_tr_2012_05 blog_tr_2012_05_02 blog_tr_2012_05_02_irb-icin-yardimci-gem-ori blog_tr_2012_05_02_irb-icin-yardimci-gem-ori_index">
+            
+    
+    
+<!-- page-top-nav -->
+<nav id="page-top-nav" class="navbar">
+    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsable_navbar">&#9776;</button>
+    <div class="collapse navbar-toggleable-sm" id="collapsable_navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                    <ul class="list-inline nav navbar-nav">
+<li class="list-inline-item nav-item"><a href="/">Anasayfa</a></li><li class="list-inline-item nav-item active"><a href="/blog/tr/">Blog</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/hakkimda/">Hakkımda</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/sunumlar/">Sunumlar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/kitaplar/">Kitaplar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/iletisim/">İletişim</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/cv/">CV</a></li>                        <li class="list-inline-item nav-item pull-md-right m-r-0">
+                                <a title="English" href="/blog/en/">English</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- /page-top-nav -->
+
+
+
+    
+    <!-- page cover -->
+<div class="jumbotron jumbotron-fluid page-cover hidden-sm-down" style="background-image: url(/public/images/covers/2012-05-25-irb-configurasyonu.png);">
+    <div class="page-cover-layer page-cover-layer-solid">
+        <div class="container">
+            <div class="text-xs-center">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page cover -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <section id="article">
+                    <h1><a href="/blog/tr/2012/05/02/irb-icin-yardimci-gem-ori/">IRB için yardımcı gem: ORI</a></h1>
+                    
+
+                    <time pubdate datetime="2012-05-02T13:51:00+03:00" title="02 Mayıs 2012, Çarşamba 13:51">
+                        02 Mayıs 2012, Çarşamba 13:51
+                    </time>
+
+                    <header>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/ruby/">ruby</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/irb/">irb</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/ori/">ori</a></span>
+                    </header>
+
+                    <div id="markdown">
+                        <p><a href="http://peepcode.com">Peepcode</a> screencast’lerinden <a href="https://peepcode.com/products/play-by-play-tenderlove-ruby-on-rails" title="PLAY BY PLAY: AARON PATTERSON">Play by play: Aaron Patterson</a>’ı
+izlerken daldan dala atladım ve <a href="http://en.wikipedia.org/wiki/Interactive_Ruby_Shell">IRB</a> ile ilgili çok işe yarar bir gem
+buldum: <strong>ORI</strong>
+</p>
+
+<h2>Object-Oriented RI for IRB Console (ori)</h2>
+
+<p>İnteraktif konsollar sayesinde, başka bir araca ihtiyaç duymadan, istediğimiz
+gibi yazılım denemeleri yapabiliriz. Pek çok dilde bu özellik var.
+(<em>Php, Python, Ruby gibi&hellip;</em>)</p>
+<pre class="highlight shell"><code>php -a
+</code></pre>
+<pre class="highlight shell"><code>pip install ipython <span class="c"># eğer ipython yoksa kurmak için... sudo gerektirebilir</span>
+ipython
+</code></pre>
+<pre class="highlight shell"><code>irb
+</code></pre>
+
+<p><a href="http://ipython.org/">iPython</a>’da çok kullandığım <code>help()</code> özelliğini irb’de aradım fakat
+bulamadım. Dediğim gibi, screencast’i izlerken 6.dakikada durup daldan dala
+google’da zıplamaya başladım. Ve tam o sırada <strong>ORI</strong>’ye denk geldim.</p>
+<pre class="highlight python"><code><span class="n">help</span><span class="p">()</span>
+<span class="n">help</span><span class="p">(</span><span class="s">"print"</span><span class="p">)</span>
+<span class="n">help</span><span class="p">(</span><span class="s">"string"</span><span class="p">)</span>
+</code></pre>
+
+<p>Pek çok şeyin olduğu gibi IRB’nin de <code>.irbrc</code> dosyası var. Genelde *nix
+ortamında pekçok programın konfigürasyon dosyası benzer şekillerde olur. Bu
+dosyaya bir-iki ekleme yaparak işlerimi kolay hale getireceğiz.</p>
+
+<p>Önce ilgili <code>gem</code>’i kuralım. (<em>Eğer <strong>rvm</strong> ya da <strong>rbenv</strong> kullanıyorsanız
+istediğiniz ruby versiyonuna geçip gem’i öyle kurun.</em>)</p>
+<pre class="highlight shell"><code>gem install ori <span class="c"># gerekiyorsa başına sudo ekleyin...</span>
+</code></pre>
+
+<p>Eğer yoksa, <code>$HOME/.irbrc</code> dosyasını oluşturmamız lazım.</p>
+<pre class="highlight shell"><code>touch <span class="nv">$HOME</span>/.irbrc
+</code></pre>
+
+<p>Daha sonra kullandığınız text-editörü ile dosyayı açın:</p>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rubygems'</span>
+<span class="nb">require</span> <span class="s2">"irb/completion"</span>
+<span class="nb">require</span> <span class="s1">'irb/ext/save-history'</span>
+<span class="nb">require</span> <span class="s1">'ori'</span>
+
+<span class="no">IRB</span><span class="p">.</span><span class="nf">conf</span><span class="p">[</span><span class="ss">:SAVE_HISTORY</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="no">IRB</span><span class="p">.</span><span class="nf">conf</span><span class="p">[</span><span class="ss">:HISTORY_FILE</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'HOME'</span><span class="p">]</span><span class="si">}</span><span class="s2">/.irb_history"</span>
+</code></pre>
+
+<p>Son iki satırda irb&#39;ye diyoruz ki;</p>
+
+<ul>
+<li>History tut, maksimum 10000 satır olabilir.</li>
+<li>Bu history dosyasının adı <code>.irb_history</code> olsun ve yeri de <code>$HOME</code> altında
+olsun.</li>
+</ul>
+
+<p>Bu işlemlerden sonra; hemen <code>irb</code> yazıp çalıştırın ve;</p>
+<pre class="highlight ruby"><code><span class="s2">""</span><span class="p">.</span><span class="nf">ri</span>                                  <span class="c1"># String ile ilgili help</span>
+<span class="s2">""</span><span class="p">.</span><span class="nf">ri</span> <span class="ss">:upcase</span>                          <span class="c1"># String’in upcase metodu ile ilgili help</span>
+<span class="no">Array</span><span class="p">.</span><span class="nf">ri</span>                               <span class="c1"># Array ile ilgili help</span>
+<span class="s2">""</span><span class="p">.</span><span class="nf">ri</span> <span class="ss">:pretty_print</span>                    <span class="c1"># String’in pretty_print metodu ile ilgili help</span>
+<span class="no">Hash</span><span class="p">.</span><span class="nf">ri</span> <span class="ss">:[]</span>                            <span class="c1"># Birden fazla döküman bulunması durumu</span>
+<span class="no">String</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">//</span>                           <span class="c1"># Tüm metodlar</span>
+<span class="s2">""</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">/case/</span>                           <span class="c1"># String metodları içinde case geçen metodlar</span>
+<span class="s2">""</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">/^to_/</span>                           <span class="c1"># String metodları içinde to_ ile başlayanlar</span>
+<span class="no">Hash</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">//</span><span class="p">,</span> <span class="ss">:all</span> <span class="o">=&gt;</span> <span class="kp">true</span>               <span class="c1"># Hash’in public/private tüm metodları</span>
+<span class="no">Hash</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">//</span><span class="p">,</span> <span class="ss">:all</span>                       <span class="c1"># Alternatifi</span>
+<span class="no">Time</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">//</span><span class="p">,</span> <span class="ss">:own</span> <span class="o">=&gt;</span> <span class="kp">true</span>               <span class="c1"># Kendisine ait metodları</span>
+<span class="no">Time</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">//</span><span class="p">,</span> <span class="ss">:own</span>                       <span class="c1"># Alternatifi</span>
+<span class="no">String</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">//</span><span class="p">,</span> <span class="ss">:access</span> <span class="o">=&gt;</span> <span class="s2">"::"</span>          <span class="c1"># Sadece Class / Instance metodları</span>
+<span class="no">String</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">//</span><span class="p">,</span> <span class="ss">:access</span> <span class="o">=&gt;</span> <span class="s2">"#"</span>           <span class="c1"># Sadece Class / Instance metodları</span>
+<span class="no">String</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">//</span><span class="p">,</span> <span class="ss">:visibility</span> <span class="o">=&gt;</span> <span class="ss">:private</span>  <span class="c1"># Sadece private metodları</span>
+
+<span class="no">String</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">//</span><span class="p">,</span> <span class="ss">:visibility</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:public</span><span class="p">,</span> <span class="ss">:protected</span><span class="p">]</span>
+                                       <span class="c1"># Public ve protected metodları</span>
+
+<span class="no">String</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">//</span><span class="p">,</span> <span class="ss">:fullre</span> <span class="o">=&gt;</span> <span class="sr">/\(Object\)::/</span>
+                                       <span class="c1"># Receiver’ı Object olan String metodları</span>
+
+<span class="no">String</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">//</span><span class="p">,</span> <span class="ss">:fullre</span> <span class="o">=&gt;</span> <span class="sr">/\(Object\)::/</span><span class="p">,</span> <span class="ss">:access</span> <span class="o">=&gt;</span> <span class="s2">"::"</span><span class="p">,</span> <span class="ss">:visibility</span> <span class="o">=&gt;</span> <span class="ss">:private</span>
+</code></pre>
+
+<p>Nasıl? benim çok işime yaradı. Umarım sizin de işinize yarar. Konu ile ilgili
+harika bir <a href="http://www.screencast-o-matic.com/watch/cXVVYuXpH">video</a> var, örnekler vs. izlemenizi tavsiye ederim.
+Projenin <a href="https://github.com/dadooda/ori">github</a> sayfasını da ziyaret edebilirsiniz.</p>
+
+<p>Son olarak <code>~/.irbrc</code> dosyasına bir ek yapalım. Önce <code>wirble</code> gem’ini kuralım:</p>
+<pre class="highlight shell"><code>gem install wirble <span class="c"># gerekiyorsa başına sudo ekleyin...</span>
+</code></pre>
+
+<p>Daha sonra; <code>~/.irbrc</code> dosyasını text-editörde açın ve en alt satıra;</p>
+<pre class="highlight ruby"><code><span class="no">Wirble</span><span class="p">.</span><span class="nf">init</span><span class="p">({</span>
+  <span class="ss">:skip_prompt</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+<span class="p">})</span>
+<span class="no">Wirble</span><span class="p">.</span><span class="nf">colorize</span>
+</code></pre>
+
+<p>Artık renkli bir irb’ye sahip olacaksınız!</p>
+
+<h3>Update: 25 Kasım 2014, Salı, 22:23</h3>
+
+<p>Geçtiğimiz yıl Peepcode, <a href="http://www.pluralsight.com/">Pluralsight</a> şirketine satıldı.</p>
+
+                    </div>
+                    
+                    <hr/>
+<div id="related-articles">
+    <ul class="list-unstyled">
+    <li>
+        <h1>İlişkili Makaleler</h1>
+        <p>Konu ile ilgili toplam “6” adet bağlantılı makale bulunuyor.</p>
+    </li>
+        <li>
+            <h3><a href="/blog/tr/2013/02/20/bash-completion-anotomisi/">Bash Completion Anotomisi</a></h3>
+            <time pubdate datetime="2013-02-20T23:37:00+02:00" title="20 Şubat 2013, Çarşamba 23:37">
+                20 Şubat 2013, Çarşamba 23:37
+            </time>
+            <p>Terminal’le, <a href="http://www.gnu.org/software/bash/" title="Bash">Bash</a>’le ilk tanıştığım andan itibaren <code>tab-completion</code> olayının
+hastası olmuş, hemen:</p>
+
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2012/02/02/rake-icin-bash-completion/">Rake için bash-completion</a></h3>
+            <time pubdate datetime="2012-02-02T15:30:00+02:00" title="02 Şubat 2012, Perşembe 15:30">
+                02 Şubat 2012, Perşembe 15:30
+            </time>
+            <p>Terminal’de çalışırken hep işimi hızlı ve en kolay şekilde yapabilmenin yollarını ararım.
+Bu sayede pek çok yeni şey de öğrendim. Octopress sağolsun ciddi ciddi <a href="http://www.ruby-lang.org/" title="Ruby">Ruby</a>
+öğrenmeme büyük katkıda bulundu…</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/03/30/textmate-ve-path-sorunsali/">TextMate ve Path sorunsalı</a></h3>
+            <time pubdate datetime="2011-03-30T14:40:00+03:00" title="30 Mart 2011, Çarşamba 14:40">
+                30 Mart 2011, Çarşamba 14:40
+            </time>
+            <p>TextMate’in sevdiğim özelliklerinden biri <strong>in-line</strong> olarak programlama
+yapabilmek. Örneğin <strong>html</strong> ile uğraşıyorsunuz, hemen bir <code>div</code> ve o div’in
+içinde 15 tane <code>p</code> ve p’lerin içinde de <code>span</code>’e ihtiyacınız var (<em>iyi uydurdum dimi?</em>)
+basit bir hareketle bunu programatik olarak yapabilirsiniz.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/03/29/kendi-rubyini-gemini-kendin-kur/">Kendi Ruby’ini Gem’ini kendin kur</a></h3>
+            <time pubdate datetime="2011-03-29T00:39:00+03:00" title="29 Mart 2011, Salı 00:39">
+                29 Mart 2011, Salı 00:39
+            </time>
+            <p>Sıcağı sıcağına hemen yazmak istiyorum. “Kendin kur” kampanyamızın devamı yeni
+bir maceraya daha hoş geldiniz. Amacımız Mac OS X’e Ruby kurmak. Öncelikle
+macports’un kurulu olması gerekiyor!</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2012/05/25/irb-konfigurasyonu-ve-ufak-tefek-ayarlar/">IRB konfigürasyonu ve ufak tefek ayarlar</a></h3>
+            <time pubdate datetime="2012-05-25T00:06:00+03:00" title="25 Mayıs 2012, Cuma 00:06">
+                25 Mayıs 2012, Cuma 00:06
+            </time>
+            <p><a href="http://en.wikipedia.org/wiki/Interactive_Ruby_Shell">IRB</a> konfigüre edilebilen bir interaktif konsoldur. Aynı <a href="http://ipython.org/">IPython</a> gibi.
+Hem test yapmak, hem de günlük ihtiyaçları kullanmak için en sık başvurduğum
+<strong>tool</strong>’dur. <a href="http://python.org" title="Python">Python</a>’dan alıştığım <a href="http://docs.python.org/library/pprint.html">Pretty Print</a> beni IRB uzmanı
+olmaya yöneltti.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2012/05/24/irb-rbenv-readline-ve-turkce-karakter/">IRB rbenv readline ve Türkçe karakter sorunu / çözümü</a></h3>
+            <time pubdate datetime="2012-05-24T22:22:00+03:00" title="24 Mayıs 2012, Perşembe 22:22">
+                24 Mayıs 2012, Perşembe 22:22
+            </time>
+            <p><a href="https://rvm.io">RVM</a>’mi? <a href="https://github.com/sstephenson/rbenv">Rbenv</a>’mi? Her ikiside <a href="http://www.ruby-lang.org/" title="Ruby">Ruby</a> için versiyon
+yönetim sistemi. Yani birden farklı değişik veriyon Ruby kullanmak için
+kullanılan yardımcı araçlar. İlk önce <strong>rvm</strong>’le başladım fakat daha sonra
+garip durumlar olduğunu gördüm ve <strong>rbenv</strong>’e geçtim.</p>
+        </li>
+    </ul>
+</div>
+<hr/>
+
+                    
+                    <ul id="prev-next-articles" class="list-inline">
+                        <li class="list-inline-item li-left">
+                            <a href="/blog/tr/2012/02/02/rake-icin-bash-completion/">&laquo; Rake için bash-completion</a>
+                            <time pubdate datetime="2012-02-02T15:30:00+02:00" title="02 Şubat 2012, Perşembe">02 Şubat 2012, Perşembe</time>
+                        </li>
+                        <li class="list-inline-item pull-sm-right m-r-0 text-md-right li-right">
+                            <a href="/blog/tr/2012/05/24/irb-rbenv-readline-ve-turkce-karakter/">IRB rbenv readline ve Türkçe karakter sorunu / çözümü &raquo;</a>
+                            <time pubdate datetime="2012-05-24T22:22:00+03:00" title="24 Mayıs 2012, Perşembe">24 Mayıs 2012, Perşembe</time>
+                        </li>
+                    </ul>
+                </section>
+
+                    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'ugurozyilmazel';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Lütfen, <a href="http://disqus.com/?ref_noscript">Disqus</a> tarafından sağlanan yorumları görmek için JavaScript&rsquo;i aktive edin.
+    </noscript>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                <nav id="footer-nav">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a title="C64 Scener Database" href="http://csdb.dk/scener/?id=8379">CSDB</a></li>
+                        <li class="list-inline-item"><a title="Zombie Boys" href="http://zombieboys.net">Zombie Boys</a></li>
+                        <li class="list-inline-item"><a title="Bronx" href="http://bronxwhq.org">Bronx</a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="/feed-tr.xml"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-rss fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="https://github.com/vigo"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0"><a title="Twitter" href="https://twitter.com/vigobronx"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /footer -->
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        
+        
+        
+        <script src="/public/js/application.js"></script>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-6463685-2', 'auto');
+          ga('send', 'pageview');
+        </script>
+        
+    </body>
+</html>

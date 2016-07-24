@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="tr">
+    <head>
+        <title>Uğur “vigo” Özyılmazel | Bash Completion olayı!</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
+        <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        
+        <link href="/public/css/application.css" rel="stylesheet" />
+        <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
+        <meta name="date" content="2016-07-24T16:19:13+03:00" />
+        <meta name="description" content="Bilgisayar kullanmaya Commodore 64’le başlayan, ilk ciddi anlamda parayı Amiga 
+ile kazanan ben, kaderin cilvesi olarak, uzun yıllar Windows kullanmak zorunda 
+kalmıştım." />
+        <meta name="author" content="Uğur “vigo” Özyılmazel"/>
+        <meta name="copyright" content="(c) 2006 / 2016 - Uğur “vigo” Özyılmazel" />
+        <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2009/07/26/bash-completion-olayi/" />
+        <meta property="og:title" content="Bash Completion olayı!" />
+        <meta property="og:site_name" content="vigo" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Bilgisayar kullanmaya Commodore 64’le başlayan, ilk ciddi anlamda parayı Amiga 
+ile kazanan ben, kaderin cilvesi olarak, uzun yıllar Windows kullanmak zorunda 
+kalmıştım." />
+        <meta property="og:image" content="http://ugur.ozyilmazel.com/public/images/covers/2009-07-26-bash-completion.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="3330" />
+        <meta property="og:image:height" content="768" />
+        <link rel="apple-touch-icon-precomposedposed" sizes="144x144" href="/public/images/icons/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/public/images/icons/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/public/images/icons/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/public/images/icons/apple-touch-icon-57-precomposed.png">
+        <link href="/public/images/icons/favicon.png" rel="shortcut icon" type="image/png" />
+
+    </head>
+    <body class="blog blog_tr blog_tr_2009 blog_tr_2009_07 blog_tr_2009_07_26 blog_tr_2009_07_26_bash-completion-olayi blog_tr_2009_07_26_bash-completion-olayi_index">
+            
+    
+    
+<!-- page-top-nav -->
+<nav id="page-top-nav" class="navbar">
+    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsable_navbar">&#9776;</button>
+    <div class="collapse navbar-toggleable-sm" id="collapsable_navbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                    <ul class="list-inline nav navbar-nav">
+<li class="list-inline-item nav-item"><a href="/">Anasayfa</a></li><li class="list-inline-item nav-item active"><a href="/blog/tr/">Blog</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/hakkimda/">Hakkımda</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/sunumlar/">Sunumlar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/kitaplar/">Kitaplar</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/iletisim/">İletişim</a></li><li class="list-inline-item nav-item"><a href="/sayfa/tr/cv/">CV</a></li>                        <li class="list-inline-item nav-item pull-md-right m-r-0">
+                                <a title="English" href="/blog/en/">English</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- /page-top-nav -->
+
+
+
+    
+    <!-- page cover -->
+<div class="jumbotron jumbotron-fluid page-cover hidden-sm-down" style="background-image: url(/public/images/covers/2009-07-26-bash-completion.png);">
+    <div class="page-cover-layer page-cover-layer-solid">
+        <div class="container">
+            <div class="text-xs-center">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page cover -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+                <section id="article">
+                    <h1><a href="/blog/tr/2009/07/26/bash-completion-olayi/">Bash Completion olayı!</a></h1>
+                    
+
+                    <time pubdate datetime="2009-07-26T15:12:00+03:00" title="26 Temmuz 2009, Pazar 15:12">
+                        26 Temmuz 2009, Pazar 15:12
+                    </time>
+
+                    <header>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/macports/">macports</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/bash/">bash</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/ports/">ports</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/ubuntu/">ubuntu</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/shell/">shell</a></span>
+                            <span class="label label-default label-custom"><a href="/blog/tr/etiket/terminal/">terminal</a></span>
+                    </header>
+
+                    <div id="markdown">
+                        <p>Bilgisayar kullanmaya Commodore 64’le başlayan, ilk ciddi anlamda parayı Amiga 
+ile kazanan ben, kaderin cilvesi olarak, uzun yıllar Windows kullanmak zorunda 
+kalmıştım.
+</p>
+
+<p>Neyse efendim, Unix dünyasına geri dönünce (<em>geri dönüş diyorum 
+çünkü Amiga Os kullanıcısıyım</em>) hep söylediğim gibi, gözümün önündeki perde
+kalktı!</p>
+
+<p>Terminal / CLI (<em>Command Line Interface</em>) / Shell vs&hellip; En sevdiğim 
+özelliği TAB-COMPLETION (<em>tab tuşuna basark tamamlama</em>) olayıdır. Aslında 
+hakkını yememek lazım, bu Windows’da da var&hellip; Onda pek cmd kullanmadığımız 
+için dikkat etmiyoruz&hellip; Süper bi şekilde path’i tamamlama olayı&hellip;</p>
+
+<p>Ofisteki development makinesini, Debian’dan Ubuntu’ya çevirdiğimizde ilk 
+dikkatimi çeken şeyin ilave tamamlama özelliği olmasıydı. Debian / Ubuntu 
+kullananlar bilir, <strong>aptitude</strong> komutu ile paket yönetimi&hellip; Eğer bir paket
+arıyorsanız;</p>
+<pre class="highlight shell"><code>aptitude search PAKET_ADI
+</code></pre>
+
+<p>şeklinde kullanırsınız. <strong>aptitude</strong> yazıp boşluk bırakıp <kbd>TAB</kbd>’e 
+basınca ilgili komutların çıkması süper hoşuma gitmişti ve;</p>
+
+<blockquote>
+<p>aa ne güzel bu herşeyi tamamlıyor!</p>
+</blockquote>
+
+<p>demiştim. Bu bakımdan Ubuntu, daha da çok hoşuma gitmişti!</p>
+
+<h2>Bilmemek Ayıp Değil!</h2>
+
+<p>Geçenlerde test için sanal makine kiraladım, hemen <a href="http://ubuntu.com/" title="Ubuntu">Ubuntu</a> deploy
+ettim. <code>aptitude</code> yazdım, <strong>search</strong> yapıcam, boşluk bırakıp <code>s</code> yazıp
+<kbd>TAB</kbd>’e bastım, hiç birşey olmadı? Haydaaa dedim, ne oldu? 
+Hani <a href="http://ubuntu.com/" title="Ubuntu">Ubuntu</a>’da bu özellik vardı?</p>
+
+<p>Meğer bu işin sırrı <strong>bash-completion</strong> adlı paketteymiş. bash-completion
+kurduğunuz zaman yapmanız gereken tek şey ilgili <code>~/.profile</code> şunu eklemek;</p>
+<pre class="highlight shell"><code><span class="k">if</span> <span class="o">[</span> -f /opt/local/etc/bash_completion <span class="o">]</span>; <span class="k">then</span>
+    . /opt/local/etc/bash_completion
+<span class="k">fi</span>
+</code></pre>
+
+<p>Ben <code>~/.profile</code> kullandığım için oraya ekledim. Şimdi bu kadar şeyi neden
+anlattım? Aynı işi <a href="http://www.apple.com/macosx/" title="Mac OS X">Mac OS</a>’da da yaptım o bakımdan;
+<a href="http://macports.org" title="Macports">MacPorts</a> kullananlar için;</p>
+<pre class="highlight shell"><code>sudo port install bash-completion
+</code></pre>
+
+<p>Sonra iş bitince size <code>.bash_profile</code> dosyasına ekleyin diyor ama eğer
+<code>.profile</code> kullanıyorsanız (<em>ki kolayı bu</em>) <code>.profile</code>’a ekleyin!</p>
+
+                    </div>
+                    
+                    <hr/>
+<div id="related-articles">
+    <ul class="list-unstyled">
+    <li>
+        <h1>İlişkili Makaleler</h1>
+        <p>Konu ile ilgili toplam “10” adet bağlantılı makale bulunuyor.</p>
+    </li>
+        <li>
+            <h3><a href="/blog/tr/2011/03/22/kendi-pythonunu-kendin-kur-yazimda-eksik-yerler-buldum/">Kendi Python’unu kendin kur yazımda eksik yerler buldum</a></h3>
+            <time pubdate datetime="2011-03-22T15:45:00+02:00" title="22 Mart 2011, Salı 15:45">
+                22 Mart 2011, Salı 15:45
+            </time>
+            <p>Geçtiğimiz günlerde yazdığım <a href="/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/">yazımda</a> çok önemli bir eksiklik
+yaptığımı bugün farkettim. Neden bugün? Bugün yeni makine kuruyordum ve sıra
+<a href="http://python.org" title="Python">Python</a>’u kurmaya gelmişti. Hemen blog’umu açıp kendi yazdığım yazımı 
+okumaya başladım.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/">Kendi Python’unu Django’nu paketlerini kendin kur</a></h3>
+            <time pubdate datetime="2011-02-10T12:58:00+02:00" title="10 Şubat 2011, Perşembe 12:58">
+                10 Şubat 2011, Perşembe 12:58
+            </time>
+            <p><strong>Düzeltme: 23 Mart 2011, 15:33</strong><br>
+Lütfen önce <a href="/blog/tr/2011/03/23/bu-defa-son/">bu yazıyı</a> okuyun!</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2009/08/27/macports-ssh-otomatik-tamamlama-ve-genel-bilgiler/">Macports, ssh otomatik tamamlama ve genel bilgiler</a></h3>
+            <time pubdate datetime="2009-08-27T15:41:00+03:00" title="27 Ağustos 2009, Perşembe 15:41">
+                27 Ağustos 2009, Perşembe 15:41
+            </time>
+            <p>Daha önceki yazılarımda da bahsetmiştim, <a href="http://macports.org" title="Macports">MacPorts</a> diye harika bir
+şey var! Linux (<em>debian, ubuntu vs…</em>) daki paket yönetiminin OS X’cesi.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2009/07/29/django-icin-bash-completion/">Django için bash completion</a></h3>
+            <time pubdate datetime="2009-07-29T15:59:00+03:00" title="29 Temmuz 2009, Çarşamba 15:59">
+                29 Temmuz 2009, Çarşamba 15:59
+            </time>
+            <p>Az önce başardığım, aslında çok bilindiğini düşündüğüm fakat etrafımdaki
+<a href="https://www.djangoproject.com/" title="Django Project">Django</a>’cu kardeşimlerimden duymadığım bir özellikten bahsetmek
+istiyorum!</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2013/02/20/bash-completion-anotomisi/">Bash Completion Anotomisi</a></h3>
+            <time pubdate datetime="2013-02-20T23:37:00+02:00" title="20 Şubat 2013, Çarşamba 23:37">
+                20 Şubat 2013, Çarşamba 23:37
+            </time>
+            <p>Terminal’le, <a href="http://www.gnu.org/software/bash/" title="Bash">Bash</a>’le ilk tanıştığım andan itibaren <code>tab-completion</code> olayının
+hastası olmuş, hemen:</p>
+
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2010/02/17/ssh-uzerinden-tunel-yapmak/">SSH üzerinden tünel yapmak!</a></h3>
+            <time pubdate datetime="2010-02-17T10:37:00+02:00" title="17 Şubat 2010, Çarşamba 10:37">
+                17 Şubat 2010, Çarşamba 10:37
+            </time>
+            <p>Daha <a href="/blog/tr/2009/08/27/macports-ssh-otomatik-tamamlama-ve-genel-bilgiler/">önceki yazımda</a>, Terminal’den kolay <strong>ssh</strong> yapma yöntemini anlatmıştım. 
+Şimdi, ssh yardımıyla nasıl tünel yaparız buna bakalım.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2008/12/26/itunes-friendfeed-twitter-twitterrific-ve-shell/">iTunes, FriendFeed, Twitter, Twitterrific ve Shell</a></h3>
+            <time pubdate datetime="2008-12-26T13:44:00+02:00" title="26 Aralık 2008, Cuma 13:44">
+                26 Aralık 2008, Cuma 13:44
+            </time>
+            <p>Süper bir başlık oldu değil mi? Bir süredir büyük bir keyifle iTunes’daki
+radyoları dinliyorum. Benim gibi 80’ler aşığı iseniz harika kanallar mevcut.
+Biran aklıma: “Keşke dinlediğim şarkıların adını Twitter’a post edebilsem?”
+diye bir fikir geldi!</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2008/11/20/macos-x-ve-coklu-rar-hazirlama/">Mac OS X ve Çoklu Rar Hazırlama</a></h3>
+            <time pubdate datetime="2008-11-20T21:56:00+02:00" title="20 Kasım 2008, Perşembe 21:56">
+                20 Kasım 2008, Perşembe 21:56
+            </time>
+            <p>Windows kullanırken vazgeçilemez tool’larımdan biri de <a href="http://rarlab.com">WinRar</a>’dı. Genelde
+herkes gibi bende (!) gün içinde sık sık rar açan biriyim. Biraz google
+aramasından sonra Mac OS için open source tonla rar açan program buldum.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2008/11/18/macos-x-ve-ls-komutu/">Mac OS X ve ls komutu</a></h3>
+            <time pubdate datetime="2008-11-18T16:16:00+02:00" title="18 Kasım 2008, Salı 16:16">
+                18 Kasım 2008, Salı 16:16
+            </time>
+            <p>Finder pek çok açıdan faydalı ve iş gören bir uygulama/özelliktir.
+Pek çok dosya, sistem icabı <strong>hidden</strong> yani gizli/görünmez durumdadır.</p>
+        </li>
+        <li>
+            <h3><a href="/blog/tr/2008/11/17/ds-store-sorunsali/">.DS_Store sorunsalı</a></h3>
+            <time pubdate datetime="2008-11-17T16:05:00+02:00" title="17 Kasım 2008, Pazartesi 16:05">
+                17 Kasım 2008, Pazartesi 16:05
+            </time>
+            <p>Windows’dan Mac OS’a geçince yaşadığım en büyük farklardan biri de sevgili
+Finder’ın sürekli olarak <code>.DS_Store</code> adlı dosyalar üreterek fazladan file
+kalabalığı yaratmasıydı.</p>
+        </li>
+    </ul>
+</div>
+<hr/>
+
+                    
+                    <ul id="prev-next-articles" class="list-inline">
+                        <li class="list-inline-item li-left">
+                            <a href="/blog/tr/2009/06/07/practical-web-design-haziran-2009-189/">&laquo; Practical Web Design Haziran 2009 / 189</a>
+                            <time pubdate datetime="2009-06-07T19:05:00+03:00" title="07 Haziran 2009, Pazar">07 Haziran 2009, Pazar</time>
+                        </li>
+                        <li class="list-inline-item pull-sm-right m-r-0 text-md-right li-right">
+                            <a href="/blog/tr/2009/07/28/dergiler/">Dergiler &raquo;</a>
+                            <time pubdate datetime="2009-07-28T11:18:00+03:00" title="28 Temmuz 2009, Salı">28 Temmuz 2009, Salı</time>
+                        </li>
+                    </ul>
+                </section>
+
+                    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'ugurozyilmazel';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>
+        Lütfen, <a href="http://disqus.com/?ref_noscript">Disqus</a> tarafından sağlanan yorumları görmek için JavaScript&rsquo;i aktive edin.
+    </noscript>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 col-md-offset-1">
+
+                <nav id="footer-nav">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a title="C64 Scener Database" href="http://csdb.dk/scener/?id=8379">CSDB</a></li>
+                        <li class="list-inline-item"><a title="Zombie Boys" href="http://zombieboys.net">Zombie Boys</a></li>
+                        <li class="list-inline-item"><a title="Bronx" href="http://bronxwhq.org">Bronx</a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="/feed-tr.xml"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-rss fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0 m-l-2"><a title="GitHub" href="https://github.com/vigo"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-github fa-stack-1x fa-inverse"></i></span></a></li>
+                        <li class="list-inline-item pull-md-right m-r-0"><a title="Twitter" href="https://twitter.com/vigobronx"><span class="fa-stack fa-1x"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /footer -->
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        
+        
+        
+        <script src="/public/js/application.js"></script>
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-6463685-2', 'auto');
+          ga('send', 'pageview');
+        </script>
+        
+    </body>
+</html>
