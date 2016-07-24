@@ -28,7 +28,7 @@ talks = item.last
     <div class="col-md-3">
         <h3><%= year %></h3>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-9">
         <ul class="list-unstyled list-talks">
         <% talks.each do |talk| %>
         <li>
@@ -37,7 +37,8 @@ talks = item.last
                 <%= I18n.l talk.custom_date, :format => config.date_format_long[:tr] %>
             </time>
             <p><strong><%= talk.event.name %></strong> etkinliğindeki sunumum.</p>
-            <%= link_to fa_icon('home', nil, 1), talk.event.url, title: talk.event.name %>
+            <% if talk.event.url %><%= link_to fa_icon('home', nil, 1), talk.event.url, title: talk.event.name %><% end %>
+            
             <% talk.attachments.each do |attachment| %>
             <%
             attachment_type = attachment[0]

@@ -100,7 +100,6 @@
   title: "Yazılımcı Kimdir?"
   event:
     name: "2.Programlama Günleri, Karabük Üniversitesi"
-    url: http://bilisimkarabuk.com/programlamagunleri/
   attachments:
     slide: https://speakerdeck.com/vigo/yazilimci-kimdir
     video: https://www.youtube.com/watch?v=ooe-qtHerKE
@@ -110,7 +109,6 @@
   title: "Vagrant 101"
   event:
     name: "Aslanoba Labs, Tech Session"
-    url: "http://labs.aslanobagroup.com"
   attachments:
     slide: https://speakerdeck.com/vigo/vagrant-101
 
@@ -119,7 +117,6 @@
   title: "TDD"
   event:
     name: "Aslanoba Labs, Tech Session"
-    url: "http://labs.aslanobagroup.com"
   attachments:
     slide: https://speakerdeck.com/vigo/tdd-test-driven-development
 
@@ -145,7 +142,6 @@
   title: "Django 101"
   event:
     name: "3.Programlama Günleri, Karabük Üniversitesi"
-    url: http://bilisimkarabuk.com/programlamagunleri/
   attachments:
     slide: https://speakerdeck.com/vigo/django
 
