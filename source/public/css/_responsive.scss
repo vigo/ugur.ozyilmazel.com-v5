@@ -1,0 +1,61 @@
+@media (max-width: 767px) {
+  #page-top-nav {
+    background-color: #ddd;
+    margin: 0;
+    li {
+      float: none;
+      display: block;
+      margin: 1rem 0;
+    }
+  }
+  
+  #footer {
+    #footer-nav {
+      li {
+        display: block;
+        margin: 1rem 0 0 0 !important;
+      }
+    }
+  }
+  
+  body.blog #article,
+  body.blog #list-posts,
+  body.sayfa #article,
+  body.page #article,
+  {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 544px) {
+  body.index #article {
+    font-size: 1rem;
+    line-height: 1.8rem;
+  }
+  body.index #article > p:first-of-type {
+    font-size: 1.1rem;
+    line-height: 2rem;
+  }
+}
+
+@media (min-width: 1200px){
+  #page-top-nav {
+    li { margin-right: 2rem; }
+  }
+}
+
+//@media (min-width: 768px) and (max-width: 992px){
+//  body { background: yellow; }
+//}
+
+//@media (min-width: 34em) {
+//}
+//
+//@media (min-width: 48em)  {
+//}
+//
+//@media (min-width: 62em) {
+//}
+//
+//@media (min-width: 75em) {
+//}

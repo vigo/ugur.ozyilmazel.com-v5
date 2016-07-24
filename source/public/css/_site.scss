@@ -99,7 +99,7 @@ code {
   font-family: $heading-font;
   margin: 4rem 0 1rem 0;
   li {
-    margin-right: 2rem;
+    margin-right: 0rem;
     &.active > a {
       border-bottom: 2px solid $title-link-color;
     }
@@ -130,3 +130,7 @@ code {
 .twitter-tweet {
   margin: 0 auto $common-mb auto !important;
 }
+
+//#search_keyword {
+//  width: 100%;
+//}

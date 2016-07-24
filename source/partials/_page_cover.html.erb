@@ -3,7 +3,7 @@
 cover_image = locals[:cover] || site_image('index-covers/C16.jpg')
 cover_layer = locals[:cover_title] ? 'page-cover-layer-transparent' : 'page-cover-layer-solid'
 %>
-<div class="jumbotron jumbotron-fluid page-cover" style="background-image: url(<%= cover_image %>);">
+<div class="jumbotron jumbotron-fluid page-cover hidden-sm-down" style="background-image: url(<%= cover_image %>);">
     <div class="page-cover-layer <%= cover_layer %>">
         <div class="container">
             <div class="text-xs-center">
