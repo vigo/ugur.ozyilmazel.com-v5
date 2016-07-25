@@ -10,10 +10,16 @@
   }
   
   #footer {
+    padding: 1rem 0;
     #footer-nav {
       li {
         display: block;
         margin: 1rem 0 0 0 !important;
+      }
+      li.m-r-0 {
+        display: inline !important;
+        float: left !important;
+        margin-right: 1rem !important;
       }
     }
   }
@@ -22,7 +28,7 @@
   body.blog #list-posts,
   body.sayfa #article,
   body.page #article,
-  {
+  section#article > p:first-of-type {
     margin-top: 2rem;
   }
 }
