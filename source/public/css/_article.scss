@@ -44,14 +44,6 @@
       padding-bottom: .5rem;
     }
     
-    p {
-      small {
-        display: block;
-        color: lighten($heading3-color, 10);
-        line-height: 1rem;
-      }
-    }
-    
     &::before {
         content:" ";
         display:block;

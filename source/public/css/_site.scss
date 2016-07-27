@@ -131,6 +131,21 @@ code {
   margin: 0 auto $common-mb auto !important;
 }
 
-//#search_keyword {
-//  width: 100%;
-//}
+.sayfa_tr_cv,
+.page_en_resume_index {
+  #markdown {
+    ul {
+      list-style: none;
+      padding-left: 2rem;
+      li {
+        border-left: 2px dotted lighten($heading3-color, 10);
+        line-height: 1rem;
+        margin: 1rem 0;
+        padding: 0 0 0 1rem;
+        small {
+          font-family: $code-font;
+        }
+      }
+    }
+  }
+}
