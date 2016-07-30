@@ -9,9 +9,10 @@
         <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
         <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
         
+        
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2016-07-28T16:52:03+03:00" />
+        <meta name="date" content="2016-07-30T18:39:53+03:00" />
         <meta name="description" content="Mac OS X’le tanıştığım günden beri sinir olduğum ve kimsenin çözümünü
 bilemediği bir sorunum var. Aslında bu sorun, Amerikalı olmayan herkesin
 sorunu. Bu sorun yüzünden ne Python’la ne de Ruby’le bile 
@@ -113,7 +114,7 @@ dışında kalan her dilde bu sorun varmış.</p>
 manuel olarak <strong>bom</strong> yani byte order mark eklemek. Bu delilik. Hele hele Mac
 OS’un pek çok harika özelliğini düşünürsek bu kabus gibi bir şey!</p>
 
-<p>FriendFeed’den takip ettiğim developer <a href="http://friendfeed.com/bluesign" title="Deniz Edincik">Deniz &ldquo;Bluesign&rdquo; Edincik</a>, 
+<p>FriendFeed’den takip ettiğim developer <a href="http://friendfeed.com/bluesign" title="Deniz Edincik">Deniz <q>Bluesign</q> Edincik</a>, 
 ilgili bir FriendFeed yorumunda:</p>
 
 <blockquote>
@@ -136,7 +137,7 @@ neydi? dediğimde bu <strong>CFUserTextEncoding</strong> olayını hatırladım 
 eski/orijinal değeri olan <strong>0:0</strong>’a geri döndüm ve herşey düzeldi.</p>
 
 <p>Araştırdım günlerce. Meğerse bu <strong>CFUserTextEncoding</strong> çok ciddi anlamda
-sistemin <strong>core</strong> elementlerindenmiş. <em>XXX:XXX</em> şeklinde verilen iki parametre
+sistemin <strong>core</strong> elementlerindenmiş. <u>XXX:XXX</u> şeklinde verilen iki parametre
 şu anlama geliyormuş;</p>
 
 <p>İlk değer kullanıcının <strong>tercih ettiği encoding</strong>, ikinci değer de 
@@ -158,13 +159,13 @@ hemen bu durumu kontrol ettim. Aynen Mac OS’da olduğu gibi iDisk’te de Tür
 karakterler bozuk çıktı. Bu olay beni gerçekten çok sinir etti. Koskoca Apple
 daha doğru dürüst <code>UTF-8</code>desteğini veremiyor.</p>
 
-<p>İşin komiği, ücretsiz servis veren <a href="http://www.dropbox.com/" title="Dropbox">Dropbox</a>’da (<em>iPhone/iPad app</em>) böyle bir
+<p>İşin komiği, ücretsiz servis veren <a href="http://www.dropbox.com/" title="Dropbox">Dropbox</a>’da (<u>iPhone/iPad app</u>) böyle bir
 sıkıntı yok! Aslanlar gibi <code>Türkçe</code> / <code>UTF-8</code> dosyaları görebiliyorsunuz. Yani
 yıllık <strong>$100</strong>’a yakın para ödediğim servis daha doğru dürüst <code>UTF-8</code> text
 dosyasını dahi gösteremezken ücretsiz servis/uygulama sorunsuz çalışıyor&hellip;</p>
 
 <p>Üşenmedim, bu durumları Apple’ın ilgili sitesine <a href="http://bugreport.apple.com">bug-report</a> yaptım. 
-<strong>18 Aralık 2009</strong>’dan beri (<em>2 yıl neredeyse</em>) bu ticket açık halen&hellip; 
+<strong>18 Aralık 2009</strong>’dan beri (<u>2 yıl neredeyse</u>) bu ticket açık halen&hellip; 
 Muhtemelen Apple, kendi halinde bir Türk yazılımcısının hata raporunu; 
 Türkçe sort vs gibi sorununu kaale almadı? sallamadı&hellip;</p>
 
@@ -188,7 +189,7 @@ Yani <a href="http://ubuntu.com/" title="Ubuntu">Ubuntu</a>’da <a href="http:/
 her türlü sorun bunda&hellip;</p>
 
 <p>Demekki sorun ne python’da ne de nano’da&hellip; Çünkü sistemin (<em>unix</em>) kalbi
-sayılabilecek kütüphanelerden biri olan &ldquo;<strong>readline</strong>&rdquo; apple tarafından
+sayılabilecek kütüphanelerden biri olan <q>**readline**</q> apple tarafından
 derlenirken <code>UTF-8</code> desteği atlanmış&hellip; Yazdığım önceki python derleme yazılarımda
 bundan bahsetmiştim.</p>
 
@@ -203,7 +204,7 @@ sort işini yapamama, shell locale sorunu aynen olduğu gibi duruyordu.</p>
 
 <p>Pek çok şey denedim, Shell’den <code>LOCALE</code>, <code>LC_ALL</code> set edilemiyor. Edilmiş gibi
 görünüyor ama çalışmıyor. Bu locale olayları yüzünden sisteme eklediğim
-fontlarla bile sorunlar yaşadım. (<em>Başka bir blog post olur bundan!</em>)</p>
+fontlarla bile sorunlar yaşadım. (<u>Başka bir blog post olur bundan!</u>)</p>
 
 <p>Quicklook’a gelince, takip ettiğim bir blog’da konu hakkında güzel yorumlar ve
 çözümler yazılmış. Arkadaşların çoğu İskandinav ülkelerinde yaşadıkları için
@@ -233,7 +234,7 @@ Beni nasıl mı etkiliyor?</p>
 <p>Yazılım geliştiricisi olarak, python’la ya da ruby’le ya da 2007’den beri
 kullanmadığım php ile bir proje yaparken, saydığım dillerin hiç birinde
 <code>array/list/tuple/hash</code> vs sort özelliğini kullanamayacağım. Elimde 10 kişinin
-adı soyadı olacak bir listede (<em>ya da array’de</em>) ve ben bunları tek bir
+adı soyadı olacak bir listede (<u>ya da array’de</u>) ve ben bunları tek bir
 hareketle sort edemeyeceğim.</p>
 
 <p>Bu en basit örnek. Olay sırf sort değil. Upper/Lower case için özel yöntemler
@@ -308,7 +309,7 @@ azından remote’da sorunsuz olacağını biliyorum.</p>
 </div>
 <!-- /footer -->
 
-
+        
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>

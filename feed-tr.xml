@@ -5,10 +5,304 @@
   <id>http://ugur.ozyilmazel.com</id>
   <link href="http://ugur.ozyilmazel.com"/>
   <link href="http://ugur.ozyilmazel.com/feed-tr.xml" rel="self"/>
-  <updated>2015-04-13T09:28:00+03:00</updated>
+  <updated>2016-07-30T18:30:00+03:00</updated>
   <author>
     <name>Uğur “vigo” Özyılmazel</name>
   </author>
+  <entry>
+    <title>SOLID Prensibi</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2016/07/30/solid-prensibi/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2016/07/30/solid-prensibi/</id>
+    <published>2016-07-30T18:30:00+03:00</published>
+    <updated>2016-07-30T18:35:58+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;Object Oriented Programming (OOP) yani Nesne Yönelimli Programlama’nın en temel
+prensibi olarak kabul edilir.&lt;/p&gt;
+
+&lt;p&gt;&lt;mark&gt;2015 yılında AslanobaLabs projesi bünyesinde yayınladığım yazımı proje iptal
+edildiği için kendi bloguma taşıdım. Biraz düzeltme ve güncellemeler de
+yaptım.&lt;/mark&gt;&lt;/p&gt;
+
+&lt;p&gt;2000’lerin başında konuşulmaya başlanan, &lt;a href="https://twitter.com/mfeathers"&gt;Michael Feathers&lt;/a&gt; tarafından tanıtılan
+ve &lt;q&gt;İlk Beş Prensip&lt;/q&gt; diye &lt;a href="http://en.wikipedia.org/wiki/Robert_Cecil_Martin"&gt;Robert C. Martin&lt;/a&gt; tarafından adlandırılan 
+Nesne Yönelimli Programlama’nın temel prensibidir &lt;strong&gt;S.O.L.I.D&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;S.O.L.I.D’deki her harf bir prensibe/kurala denk gelir:&lt;/p&gt;
+
+&lt;table&gt;&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="text-align: center"&gt;Harf&lt;/th&gt;
+&lt;th&gt;Açıklaması&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center"&gt;&lt;strong&gt;S&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Single responsibility principle&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center"&gt;&lt;strong&gt;O&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Open/closed principle&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center"&gt;&lt;strong&gt;L&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Liskov substitution principle&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center"&gt;&lt;strong&gt;I&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Interface segregation principle&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align: center"&gt;&lt;strong&gt;D&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Dependency inversion principle&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+
+&lt;p&gt;Bu prensipler, daha iyi program yazmanın yanı sıra, sürdürülebilir uygulama
+geliştirmeye yardımcı olur. &lt;a href="https://twitter.com/sandimetz"&gt;Sandi Metz&lt;/a&gt;’in 2009’da düzenlenen
+&lt;a href="http://confreaks.tv/events/goruco2009"&gt;GoRuCo&lt;/a&gt; konferansında yaptığı &lt;a href="http://confreaks.tv/videos/goruco2009-solid-object-oriented-design"&gt;sunumun&lt;/a&gt; başında;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Uygulamanızı görmedim, ne yaptığınızı bilmiyorum ama kesin olarak bildiğim
+şey şu: uygulamanız değişecek!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Evet, Sandi Metz, bu konuda çok haklıydı. Çünkü gerçekten de yazdığımız
+uygulama, bir noktada mutlaka değişikliklere uğrayacaktı. İster hata düzeltme
+ister yeni özellikler ekleme olsun, uygulamalar bir şekilde hiçbir zaman
+ilk yazıldığı gün gibi kalmayacaktı.&lt;/p&gt;
+
+&lt;p&gt;Sağlam temelleri olan bir uygulama geliştirmek için ilk adımın Test Driven
+Development olduğunu biliyoruz, ama bir noktada ne yazıkki bu yöntem de 
+&lt;a href="http://www.sandimetz.com/blog/2009/03/21/solid-design-principles"&gt;yetersiz kalabiliyor&lt;/a&gt;. &lt;/p&gt;
+
+&lt;p&gt;Uygulama geliştirirken başımızın fazla ağrımaması için, uzmanlar &lt;strong&gt;SOLID&lt;/strong&gt;
+prensipleri ortaya koydular. Şimdi tek tek bu prensiplere göz atalım.&lt;/p&gt;
+
+&lt;h2&gt;[S]: Single responsibility&lt;/h2&gt;
+
+&lt;p&gt;Bir sınıf (&lt;em&gt;class&lt;/em&gt;) sadece tek bir işten sorumlu olmalıdır. Örneğin, bir
+web uygulaması içinde, veritabanı ile bağlantı yapacak olan sınıfın tek işi
+bağlantıyı açması ve kapatması olmalıdır. Sorgu yapmak, tablo silmek
+ya da oluşturmak işlerinden biri &lt;strong&gt;OLMAMALIDIR&lt;/strong&gt;!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://docs.google.com/file/d/0ByOwmqah_nuGNHEtcU5OekdDMkk/edit"&gt;Kaynak&lt;/a&gt;, &lt;a href="http://en.wikipedia.org/wiki/Single_responsibility_principle"&gt;Kaynak&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;[O]: Open/closed&lt;/h2&gt;
+
+&lt;p&gt;Bir sınıf, genişlemeye açık olmalı ama değişime kapalı olmalı. Yani kodu
+değiştirmeden, değişebilmeli. Modüller &lt;code&gt;extend&lt;/code&gt; edilebilmeli ama asla ilgili
+işi yapabilmek adına, hali hazırda bulunan kod tekrardan yazılmamalı, 
+değiştirilmemeli.&lt;/p&gt;
+
+&lt;p&gt;Örneğin, Daire ve Kare çizen bir uygulama olsun. Çizdirme işini yaparken,
+&lt;q&gt;eğer tipi daire ise şöyle çiz, kare ise böyle çiz&lt;/q&gt; şeklinde bir akış 
+kullanırsak, ileride &lt;strong&gt;üçgen&lt;/strong&gt; çizdirmemiz gerektiğinde bu prensibi bozmak
+zorunda kalırız. Kodu değiştirip &lt;q&gt;eğer tipi üçgen ise&lt;/q&gt; koşulunu eklememiz
+gerekir.&lt;/p&gt;
+
+&lt;p&gt;Halbuki, &lt;code&gt;Şekil&lt;/code&gt; adında bir sınıf olsa, &lt;code&gt;Daire&lt;/code&gt; ve &lt;code&gt;Kare&lt;/code&gt; bu sınıftan türese,
+her iki şeklinde kendi &lt;code&gt;çizim&lt;/code&gt; metodu olsa. En sonda da &lt;code&gt;ŞekliÇiz&lt;/code&gt; diye
+ayrı bir sınıf olsa, bu sınıfı oluştururken ilgili şekli parametre olarak
+geçsek ve çizme işlemi için ilgili şeklin &lt;code&gt;çizim&lt;/code&gt; metodunu çağırsak?&lt;/p&gt;
+
+&lt;p&gt;Aşağıdaki örnek bu prensibi ihlal eder. Yarın &lt;code&gt;json&lt;/code&gt; çıktı almak yerine
+&lt;code&gt;pdf&lt;/code&gt; ya da &lt;code&gt;xml&lt;/code&gt; çıktı gerekse kodu değiştirmek gerekecek&amp;hellip;&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ruby kodu&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Rapor&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;dokuman&lt;/span&gt;
+    &lt;span class="n"&gt;dokumani_uret&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;yazdir&lt;/span&gt;
+    &lt;span class="n"&gt;dokuman&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;to_json&lt;/span&gt; &lt;span class="c1"&gt;# json çıktı alır&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Yukarıdaki sınıf sadece &lt;code&gt;json&lt;/code&gt; çıktı almak üzerine planlanmış. &lt;code&gt;pdf&lt;/code&gt; çıktı
+almak gerektiği noktada bu kod’u değiştirmek gerekecek&amp;hellip; Halbuki aşağıdaki 
+kod parçası bu durumu düşünüp kurala uymuş;&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ruby kodu&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Rapor&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;dokuman&lt;/span&gt;
+    &lt;span class="n"&gt;dokumani_uret&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;yazdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;cikti_formati: &lt;/span&gt;&lt;span class="no"&gt;JSONFormatter&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;cikti_formati&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt; &lt;span class="n"&gt;dokuman&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="n"&gt;aylik_rapor&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Rapor&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;
+&lt;span class="n"&gt;aylik_rapor&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;yazdir&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;cikti_formati: &lt;/span&gt;&lt;span class="no"&gt;XMLFormatter&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# xml olarak aldık...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="https://drive.google.com/file/d/0BwhCYaYDn8EgN2M5MTkwM2EtNWFkZC00ZTI3LWFjZTUtNTFhZGZiYmUzODc1/view"&gt;Kaynak&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;[L]: Liskov substitution&lt;/h2&gt;
+
+&lt;p&gt;Alt sınıf (&lt;em&gt;türeyen sınıf - sub class&lt;/em&gt;), üst sınıfın (&lt;em&gt;base class&lt;/em&gt;) yerini
+alabilecek şekilde olmalıdır. Şimdi iki tane sınıfımız olsun. &lt;strong&gt;Dörtgen&lt;/strong&gt; ve &lt;strong&gt;Kare&lt;/strong&gt;.
+Kare, Dörtgen’den türemiş olsun. Dörtgen sınıfının &lt;code&gt;genislik&lt;/code&gt; ve &lt;code&gt;yukseklik&lt;/code&gt;
+adında iki tane &lt;strong&gt;accessor&lt;/strong&gt;’ü (&lt;em&gt;getter-setter&lt;/em&gt;) var, Ruby’den örnekliyoruz:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ruby kodu&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Dortgen&lt;/span&gt;
+  &lt;span class="kp"&gt;attr_accessor&lt;/span&gt; &lt;span class="ss"&gt;:genislik&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:yukseklik&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ve &lt;code&gt;Dortgen&lt;/code&gt;’den türemiş &lt;code&gt;Kare&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ruby kodu&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Kare&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;Dortgen&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;yukseklik&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;yukseklik&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="vi"&gt;@degisken&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;yukseklik&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;genislik&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;genislik&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="vi"&gt;@degisken&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;genislik&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;genislik&lt;/span&gt;
+    &lt;span class="vi"&gt;@degisken&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;yukseklik&lt;/span&gt;
+    &lt;span class="vi"&gt;@degisken&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ruby’de &lt;code&gt;=&lt;/code&gt; ile biten metod &lt;code&gt;setter&lt;/code&gt; anlamına geliyor. Yani &lt;code&gt;yukseklik=&lt;/code&gt; &lt;strong&gt;setter&lt;/strong&gt;,
+&lt;code&gt;yukseklik&lt;/code&gt; ise &lt;strong&gt;getter&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Şimdi her iki şeklinde alanını hesap edelim:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;alan = genislik * yukseklik
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ruby kodu&lt;/span&gt;
+&lt;span class="n"&gt;dortgen&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Dortgen&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;
+&lt;span class="n"&gt;kare&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Kare&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;
+
+&lt;span class="n"&gt;dortgen&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;genislik&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="n"&gt;dortgen&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;yukseklik&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="n"&gt;dortgen&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;genislik&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;dortgen&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;yukseklik&lt;/span&gt; &lt;span class="c1"&gt;# =&amp;gt; 20&lt;/span&gt;
+
+&lt;span class="n"&gt;kare&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;genislik&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;
+&lt;span class="n"&gt;kare&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;yukseklik&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="n"&gt;kare&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;genislik&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;kare&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;yukseklik&lt;/span&gt;       &lt;span class="c1"&gt;# =&amp;gt; 25 ???&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;Kare&lt;/code&gt; sınıfı, Liskov değişimi kuralını ihlal edip, üst sınıftan gelen
+özellikleri modifiye etmiştir.&lt;/p&gt;
+
+&lt;p&gt;Başka bir örnek;&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ruby kodu&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Hayvan&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;yuru&lt;/span&gt;
+     &lt;span class="n"&gt;yurume_islemi&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Kedi&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="no"&gt;Hayvan&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;kos&lt;/span&gt;
+    &lt;span class="n"&gt;kosma_islemi&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Verdiğim örnek Ruby’den ve Ruby’de &lt;strong&gt;interface&lt;/strong&gt; mantığı yok. Yukarıdaki
+kod Liskov değişimi prensibini ihlal ediyor. Neden? &lt;code&gt;Kedi&lt;/code&gt; sınıfı &lt;code&gt;Hayvan&lt;/code&gt;dan
+türedi ve &lt;code&gt;Hayvan&lt;/code&gt; sınıfının &lt;code&gt;kos&lt;/code&gt; diye bir metodu yok&amp;hellip; Bu durumda,
+&lt;code&gt;Hayvan&lt;/code&gt; sınıfını bir &lt;strong&gt;interface&lt;/strong&gt; gibi düşünmeli ve interface’de olan
+metodları &lt;strong&gt;implement&lt;/strong&gt; etmeliyiz. Bu bakımdan &lt;code&gt;Hayvan&lt;/code&gt; sınıfı aşağıdaki
+gibi olmalı:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ruby kodu&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Hayvan&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;yuru&lt;/span&gt;
+    &lt;span class="n"&gt;yurume_islemi&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+  &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;kos&lt;/span&gt;                          &lt;span class="c1"&gt;# koşma özelliği olmasa bile&lt;/span&gt;
+    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="no"&gt;NotImplementedError&lt;/span&gt;      &lt;span class="c1"&gt;# prensibe göre çapraz&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;                              &lt;span class="c1"&gt;# eşitlik olmalı...&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Liskov_substitution_principle"&gt;Kaynak&lt;/a&gt;, &lt;a href="https://drive.google.com/file/d/0BwhCYaYDn8EgNzAzZjA5ZmItNjU3NS00MzQ5LTkwYjMtMDJhNDU5ZTM0MTlh/view"&gt;Kaynak&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;[I] Interface segregation&lt;/h2&gt;
+
+&lt;p&gt;Genel amaca hizmet eden tek bir arayüz yapmak yerine, istemciye uygun farklı 
+farklı arayüzler yapmak daha iyidir. Yani bir sınıf, bir interface’den
+türerken sadece kendi işine yarayacak metodları almalıdır.&lt;/p&gt;
+
+&lt;p&gt;Bu sayede daha uyumlu kod yazma ve &lt;strong&gt;less coupling&lt;/strong&gt; yani başka kütphane/kod’a 
+bağlı kalmama özelliğini arttırmış/sağlamış oluruz.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://drive.google.com/file/d/0BwhCYaYDn8EgOTViYjJhYzMtMzYxMC00MzFjLWJjMzYtOGJiMDc5N2JkYmJi/view"&gt;Kaynak&lt;/a&gt;, &lt;a href="http://en.wikipedia.org/wiki/Interface_segregation_principle"&gt;Kaynak&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;[D] Dependency inversion&lt;/h2&gt;
+
+&lt;p&gt;Bağımlılığın tersine dönmesi. Tek parça monolit/devasa bir sınıf olmak yerine
+kendi işlerini yapan küçük parçalardan oluşan sınıflar haline gelmek. Bağımlılıkları
+minimale indirmek, hatta başka bir değişle &lt;strong&gt;Dependency Injection&lt;/strong&gt; yapmak.&lt;/p&gt;
+
+&lt;p&gt;Özellikle &lt;a href="http://en.wikipedia.org/wiki/Test-driven_development"&gt;TDD&lt;/a&gt; yaparken sık kullandığımız &lt;a href="http://en.wikipedia.org/wiki/Mock_object"&gt;Mock&lt;/a&gt;, &lt;a href="http://en.wikipedia.org/wiki/Method_stub"&gt;Stub&lt;/a&gt;, 
+&lt;a href="http://en.wikipedia.org/wiki/Test_double"&gt;Test Double&lt;/a&gt; gibi kavramlar bu prensip üzerine kuruludur.&lt;/p&gt;
+
+&lt;p&gt;Bir sınıf oluşturuken parametre olarak &lt;code&gt;Hash&lt;/code&gt; / &lt;code&gt;Dictionary&lt;/code&gt; yani &lt;strong&gt;key-value&lt;/strong&gt;
+tutan nesne geçmek ya da ilgili başka bir sınıfı geçmek araya bağımlılık enjekte
+etmek anlamına gelir. Buradaki bağımlılık aslında bize esneklik sağlar.&lt;/p&gt;
+
+&lt;p&gt;Fonksiyonu ya da metodu çağırken sabit parametre yerine kullanılan Hash, hem
+bize parametre sırası zorunluluğundan kurtatır hem de ilgili fonksiyon içinde
+bağımsız hareket edebilme özgürlüğünü sağlar.&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ruby kodu&lt;/span&gt;
+&lt;span class="no"&gt;DEFAULTS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="ss"&gt;a: &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="ss"&gt;b: &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="ss"&gt;c: &lt;/span&gt;&lt;span class="s2"&gt;"c"&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;test_func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{})&lt;/span&gt;
+  &lt;span class="n"&gt;args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;DEFAULTS&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;merge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+
+&lt;span class="n"&gt;test_func&lt;/span&gt;
+&lt;span class="c1"&gt;# =&amp;gt; {:a=&amp;gt;1, :b=&amp;gt;2, :c=&amp;gt;"c"}&lt;/span&gt;
+
+&lt;span class="n"&gt;test_func&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="ss"&gt;a: &lt;/span&gt;&lt;span class="s2"&gt;"ali"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;b: &lt;/span&gt;&lt;span class="s2"&gt;"veli"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;c: &lt;/span&gt;&lt;span class="kp"&gt;nil&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+&lt;span class="c1"&gt;# =&amp;gt; {:a=&amp;gt;"ali", :b=&amp;gt;"veli", :c=&amp;gt;nil}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Test yazarken, henüz nasıl çalışacağına karar vermediğimiz ama tahminen sonucunu
+ne olması gerektiğini bildiğimiz durumlara, bu metodu varmış gibi taklit etmek,
+gerçek kodda kullanmak da tam bir &lt;strong&gt;Dependency Injection&lt;/strong&gt; örneğidir.&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# Ruby, Rspec örnek...&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"./test_file.txt"&lt;/span&gt;
+
+&lt;span class="n"&gt;file_downloader&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;double&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Fetcher"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# Henüz Fetcher sınıfını yazmadık ama &lt;/span&gt;
+
+&lt;span class="n"&gt;file_downloader&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;stud&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:download&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;and_return&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# download metodu olacağını ve bir text dosyası döneceğini biliyoruz!&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Tüm bu prensipler aslında daha kullanışlı, daha rahat yönetilebilen ve
+sürdürülebilir yazılım geliştirmemizi sağlamak amacıyla uzmanların
+ortaya koyduğu kurallardır.&lt;/p&gt;
+
+&lt;p&gt;Başta da belirttiğim gibi, usta &lt;a href="https://twitter.com/sandimetz"&gt;Sandi Metz&lt;/a&gt; bu konuyla ilgili çok
+güzel bir sunum yapmıştı. Bu sunumu da &lt;a href="https://speakerdeck.com/skmetz/solid-object-oriented-design"&gt;linkten&lt;/a&gt; indirebilirsiniz.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>TextMate ve İnteraktif Giriş</title>
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2015/04/13/textmate-ve-interaktif-giris/"/>
@@ -999,7 +1293,7 @@ programcısı arkadaşım &lt;a href="https://twitter.com/amiroff" title="Metin 
 &lt;p&gt;Acaba &lt;strong&gt;PythonCon&lt;/strong&gt; yapsak bu kadar kişi gelirmi?&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;diye sordu&amp;hellip; Ben de &amp;ldquo;&lt;strong&gt;biraz zor&amp;hellip;&lt;/strong&gt;&amp;rdquo; dedim&amp;hellip;&lt;/p&gt;
+&lt;p&gt;diye sordu&amp;hellip; Ben de &lt;q&gt;**biraz zor&amp;hellip;**&lt;/q&gt; dedim&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;JavaScript, pek çok farklı alandaki insana hitap ediyor:&lt;/p&gt;
 
@@ -1025,22 +1319,22 @@ Backbone.js&amp;rsquo;in &lt;strong&gt;core&lt;/strong&gt; yazılımcılarından
 Diğer konuşmacılarsa;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://disqus.org"&gt;Disqus&lt;/a&gt;&amp;rsquo;tan &lt;a href="https://twitter.com/madbyk" title="Burak Yiğit Kaya"&gt;Burak Yiğit Kaya&lt;/a&gt; &amp;ldquo;JS ve REST Uyumlu API İletişimi&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Rocket GmbH&amp;rsquo;dan &lt;a href="https://twitter.com/yuxel" title="Osman Yüksel"&gt;Osman Yüksel&lt;/a&gt; &amp;ldquo;Jasmine ile Behavior Driven Development&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Social Wire&amp;rsquo;dan &lt;a href="https://twitter.com/linkibol" title="Volkan Özçelik"&gt;Volkan Özçelik&lt;/a&gt; &amp;ldquo;JavaScript ile Widget Geliştirmek&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Markafoni&amp;rsquo;den &lt;a href="https://twitter.com/fkadev" title="Fatih Kadir Akın"&gt;Fatih Kadir Akın&lt;/a&gt; &amp;ldquo;Backbone Fundamentals&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Fatih Hayrioğlu &amp;ldquo;CSS3’ün JavaScript’ten Rol Çalması&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Emrah Olgun &amp;ldquo;Yazılım evlerinde Ön Yüz Geliştiricileri Konumlamak&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Armağan Amcalar &amp;ldquo;tartJS ile Büyük Ölçekli Uygulama Geliştirme&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Kadir Pekel &amp;ldquo;Node, Connect ve Meryl ile Web Uygulama Geliştirme&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Burcu Doğan &amp;ldquo;Node Ortamının Mimarisi&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Altan Yılmaz &amp;ldquo;Javascript Mobile Applications&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Fatih Acet &amp;ldquo;JavaScript Debugging Yöntemleri&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Emrah Ayanoğlu &amp;ldquo;Node.js ve Socket.io ile Mutliplayer HTML5 Oyun Geliştirme&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Serdar Akarca &amp;ldquo;Knockout.js ve Sammy.js ile Uygulama Geliştirme&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Emre Evren Yalçın &amp;ldquo;JavaScript Injections&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;Sinan Taga &amp;ldquo;Javascript - Nereden Nereye, Kısa bir tarihçe&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://twitter.com/emirkarsiyakali" title="Emir Karşıyakalı"&gt;Emir Karşıyakalı&lt;/a&gt; &amp;ldquo;Jstanbul.org Açılış Konuşması&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://disqus.org"&gt;Disqus&lt;/a&gt;&amp;rsquo;tan &lt;a href="https://twitter.com/madbyk" title="Burak Yiğit Kaya"&gt;Burak Yiğit Kaya&lt;/a&gt; &lt;q&gt;JS ve REST Uyumlu API İletişimi&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Rocket GmbH&amp;rsquo;dan &lt;a href="https://twitter.com/yuxel" title="Osman Yüksel"&gt;Osman Yüksel&lt;/a&gt; &lt;q&gt;Jasmine ile Behavior Driven Development&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Social Wire&amp;rsquo;dan &lt;a href="https://twitter.com/linkibol" title="Volkan Özçelik"&gt;Volkan Özçelik&lt;/a&gt; &lt;q&gt;JavaScript ile Widget Geliştirmek&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Markafoni&amp;rsquo;den &lt;a href="https://twitter.com/fkadev" title="Fatih Kadir Akın"&gt;Fatih Kadir Akın&lt;/a&gt; &lt;q&gt;Backbone Fundamentals&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Fatih Hayrioğlu &lt;q&gt;CSS3’ün JavaScript’ten Rol Çalması&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Emrah Olgun &lt;q&gt;Yazılım evlerinde Ön Yüz Geliştiricileri Konumlamak&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Armağan Amcalar &lt;q&gt;tartJS ile Büyük Ölçekli Uygulama Geliştirme&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Kadir Pekel &lt;q&gt;Node, Connect ve Meryl ile Web Uygulama Geliştirme&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Burcu Doğan &lt;q&gt;Node Ortamının Mimarisi&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Altan Yılmaz &lt;q&gt;Javascript Mobile Applications&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Fatih Acet &lt;q&gt;JavaScript Debugging Yöntemleri&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Emrah Ayanoğlu &lt;q&gt;Node.js ve Socket.io ile Mutliplayer HTML5 Oyun Geliştirme&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Serdar Akarca &lt;q&gt;Knockout.js ve Sammy.js ile Uygulama Geliştirme&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Emre Evren Yalçın &lt;q&gt;JavaScript Injections&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;Sinan Taga &lt;q&gt;Javascript - Nereden Nereye, Kısa bir tarihçe&lt;/q&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/emirkarsiyakali" title="Emir Karşıyakalı"&gt;Emir Karşıyakalı&lt;/a&gt; &lt;q&gt;Jstanbul.org Açılış Konuşması&lt;/q&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Ülkemizde bu tür etkinlikleri görmek gurur veriyor. Özellikle arkasına
@@ -1196,9 +1490,9 @@ yayıla yayıla izlemek!&lt;/p&gt;
 &lt;p&gt;Etkinliğin ilk günü genelde hep Cuma gününe denk geliyor. Cuma - Cumartesi
 şeklinde organizasyon yapılıyor. İlk gün ferah fezah bir şekilde ilgilimi çeken
 sunumlara katıldım. İlk günden aklımda kalanlar sevgili
-&lt;a href="https://twitter.com/fehmicansaglam"&gt;Fehmi Can Sağlam&lt;/a&gt;&amp;rsquo;ın &amp;ldquo;CoffeeScript JavaScript’e Derlenen 
-Bir Programlama Dili&amp;rdquo; adlı sunumu ve sevgili &lt;a href="https://twitter.com/fkadev"&gt;Fatih K. Akın&lt;/a&gt;&amp;rsquo;ın
-&amp;ldquo;Backbone.js ile Uygulama Geliştirme&amp;rdquo; sunumuydu.&lt;/p&gt;
+&lt;a href="https://twitter.com/fehmicansaglam"&gt;Fehmi Can Sağlam&lt;/a&gt;&amp;rsquo;ın &lt;q&gt;CoffeeScript JavaScript’e Derlenen 
+Bir Programlama Dili&lt;/q&gt; adlı sunumu ve sevgili &lt;a href="https://twitter.com/fkadev"&gt;Fatih K. Akın&lt;/a&gt;&amp;rsquo;ın
+&lt;q&gt;Backbone.js ile Uygulama Geliştirme&lt;/q&gt; sunumuydu.&lt;/p&gt;
 
 &lt;p&gt;İlk günün sonu yaklaştığımda birden içimde bir his belirdi&amp;hellip;&lt;/p&gt;
 
@@ -1257,7 +1551,7 @@ oluyordu&amp;hellip; Bir şekilde bunu bilerek ayarlama yapmam lazımdı&amp;hel
 &lt;p&gt;Başladım, kendimi tanıttım vs derken sanki koşu bantında koşuyormuş gibi nefesimin
 yetmediğini hissettim. Anlatıyorum anlatıyorum ama nefesim yetmiyor&amp;hellip; Bir an
 bulup hüüüüüüüüüüüüüüüüüp diye derince bir nefes almam gerekiyor. Hatta öyle
-oldu ki bir an durup izleyenlere de &amp;ldquo;&lt;strong&gt;Nefesimi yetiştiremiyorum&lt;/strong&gt;&amp;rdquo; dedim.&lt;/p&gt;
+oldu ki bir an durup izleyenlere de &lt;q&gt;**Nefesimi yetiştiremiyorum**&lt;/q&gt; dedim.&lt;/p&gt;
 
 &lt;p&gt;Eşim de salonda ön sıradan hem izliyor hem fotoğraf çekiyor. Moral / destek
 veriyor. Zaten izleyenlerin belkide yarısını tanıyorum. Yani resmen biz-bize
@@ -1267,173 +1561,15 @@ Hatta bir an için kendimi suyun altında nefessiz kalmış gibi hissettim.&lt;/
 &lt;div class="flash-video" title="Video"&gt;&lt;div&gt;&lt;iframe src="http://player.vimeo.com/video/52177751?color=ffffff&amp;amp;title=0&amp;amp;byline=0&amp;amp;portrait=0" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Sunumum bittikten sonra &lt;a href="https://twitter.com/burakdede"&gt;Burak Dede&lt;/a&gt; tarafından yapılan
-&amp;ldquo;Tornado Web Çatısı ile Gerçek Zamanlı Uygulamalar Geliştirme&amp;rdquo; ye katıldım.
+&lt;q&gt;Tornado Web Çatısı ile Gerçek Zamanlı Uygulamalar Geliştirme&lt;/q&gt; ye katıldım.
 Gayet güzel bir sunum oldu. 35 dakikada sürdü sunum. Sorulara zaman bile kaldı.&lt;/p&gt;
 
 &lt;p&gt;Daha sonra &lt;a href="https://www.django-cms.org" title="Django-CMS"&gt;Django-CMS&lt;/a&gt;&amp;rsquo;in developer&amp;rsquo;ı &lt;a href="https://twitter.com/ojiidotch"&gt;Jonas Obrist&lt;/a&gt;
-uzun bir &amp;ldquo;Introduction to Django&amp;rdquo; sunumu sonuna Django Avrupa durumunu ilave etti.
+uzun bir &lt;q&gt;Introduction to Django&lt;/q&gt; sunumu sonuna Django Avrupa durumunu ilave etti.
 Bu sunumdan sonra yemek arası oldu. Yemek dönüşünde ben de eve döndüm.&lt;/p&gt;
 
 &lt;p&gt;Güzel iki gün geçirdim, yeni insanlarla tanıştım. Kendimce çeşitli dersler
 çıkarttım.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>IRB konfigürasyonu ve ufak tefek ayarlar</title>
-    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2012/05/25/irb-konfigurasyonu-ve-ufak-tefek-ayarlar/"/>
-    <id>http://ugur.ozyilmazel.com/blog/tr/2012/05/25/irb-konfigurasyonu-ve-ufak-tefek-ayarlar/</id>
-    <published>2012-05-25T00:06:00+03:00</published>
-    <updated>2016-07-24T16:32:27+03:00</updated>
-    <author>
-      <name>Uğur “vigo” Özyılmazel</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Interactive_Ruby_Shell"&gt;IRB&lt;/a&gt; konfigüre edilebilen bir interaktif konsoldur. Aynı &lt;a href="http://ipython.org/"&gt;IPython&lt;/a&gt; gibi.
-Hem test yapmak, hem de günlük ihtiyaçları kullanmak için en sık başvurduğum
-&lt;strong&gt;tool&lt;/strong&gt;&amp;rsquo;dur. &lt;a href="http://python.org" title="Python"&gt;Python&lt;/a&gt;&amp;rsquo;dan alıştığım &lt;a href="http://docs.python.org/library/pprint.html"&gt;Pretty Print&lt;/a&gt; beni IRB uzmanı
-olmaya yöneltti.
-&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;$HOME/.irbrc&lt;/code&gt; adlı dosya, kullanıcı bazında IRB konfigürasyon dosyasıdır.
-İlk çalışma sırasında ne olacak? Hangi modüller default olarak yüklenmeli? Bu
-ve buna benzer şeyler standart &lt;a href="http://www.ruby-lang.org/" title="Ruby"&gt;Ruby&lt;/a&gt; script&amp;rsquo;i şeklinde yazılır.&lt;/p&gt;
-&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="c1"&gt;# encoding: utf-8&lt;/span&gt;
-
-&lt;span class="c1"&gt;# http://pablotron.org/software/wirble/README&lt;/span&gt;
-&lt;span class="c1"&gt;# required gems:&lt;/span&gt;
-&lt;span class="c1"&gt;# wirble pri awesome_print ruby-duration&lt;/span&gt;
-
-&lt;span class="no"&gt;IRB_START_TIME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Time&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;now&lt;/span&gt;
-
-&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'rubygems'&lt;/span&gt;
-&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s2"&gt;"irb/completion"&lt;/span&gt;
-&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'irb/ext/save-history'&lt;/span&gt;
-
-&lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="ss"&gt;:RUBY_DURATION&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;:exists&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;'ruby-duration'&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-  &lt;span class="ss"&gt;:WIRBLE&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;:exists&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;'wirble'&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-  &lt;span class="ss"&gt;:ORI&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;:exists&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;'ori'&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-  &lt;span class="ss"&gt;:AWESOME_PRINT&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="ss"&gt;:exists&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:file&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;'awesome_print'&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="k"&gt;begin&lt;/span&gt;
-  &lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'ruby-duration'&lt;/span&gt;
-&lt;span class="k"&gt;rescue&lt;/span&gt; &lt;span class="no"&gt;LoadError&lt;/span&gt;
-  &lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RUBY_DURATION&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:exists&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;false&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
-
-&lt;span class="k"&gt;begin&lt;/span&gt;
-  &lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'wirble'&lt;/span&gt;
-&lt;span class="k"&gt;rescue&lt;/span&gt; &lt;span class="no"&gt;LoadError&lt;/span&gt;
-  &lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WIRBLE&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:exists&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;false&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
-
-&lt;span class="k"&gt;begin&lt;/span&gt;
-  &lt;span class="c1"&gt;# ori usage:&lt;/span&gt;
-  &lt;span class="c1"&gt;# "".ri&lt;/span&gt;
-  &lt;span class="c1"&gt;# "".ri :upcase&lt;/span&gt;
-  &lt;span class="c1"&gt;# Array.ri&lt;/span&gt;
-  &lt;span class="c1"&gt;# "".ri :pretty_print&lt;/span&gt;
-  &lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'ori'&lt;/span&gt;
-&lt;span class="k"&gt;rescue&lt;/span&gt; &lt;span class="no"&gt;LoadError&lt;/span&gt;
-  &lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:ORI&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:exists&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;false&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
-
-&lt;span class="k"&gt;begin&lt;/span&gt;
-  &lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'awesome_print'&lt;/span&gt;
-&lt;span class="k"&gt;rescue&lt;/span&gt; &lt;span class="no"&gt;LoadError&lt;/span&gt;
-  &lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:AWESOME_PRINT&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:exists&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;false&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
-&lt;span class="c1"&gt;# ARGV.concat ["--readline", "--prompt-mode", "simple"]&lt;/span&gt;
-&lt;span class="c1"&gt;# ARGV.concat ["--readline", "--noprompt"]&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Colors for prompt&lt;/span&gt;
-&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[0m"&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:BOLD&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[1m"&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:UNDERLINE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[4m"&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:LGRAY&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[0;37m"&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:GRAY&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[0;90m"&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RED&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[31m"&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:GREEN&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[32m"&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:YELLOW&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[33m"&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:BLUE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[34m"&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:MAGENTA&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[35m"&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:CYAN&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[36m"&lt;/span&gt;
-&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WHITE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\e&lt;/span&gt;&lt;span class="s2"&gt;[37m"&lt;/span&gt;
-&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
-
-&lt;span class="c1"&gt;# Colors for array, hash etc...&lt;/span&gt;
-&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
-&lt;span class="no"&gt;Wirble&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;init&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
-  &lt;span class="ss"&gt;:skip_prompt&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="ss"&gt;:skip_history&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="p"&gt;})&lt;/span&gt;
-&lt;span class="no"&gt;Wirble&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;colorize&lt;/span&gt;
-&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
-
-
-&lt;span class="c1"&gt;# IRB configuration&lt;/span&gt;
-&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
-&lt;span class="no"&gt;MY_CUSTOM_PROMPT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WHITE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%03n&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;:&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:YELLOW&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%i&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
-
-&lt;span class="no"&gt;IRB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:SAVE_HISTORY&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10000&lt;/span&gt;
-&lt;span class="no"&gt;IRB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:HISTORY_FILE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'HOME'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;/.irb_history"&lt;/span&gt;
-&lt;span class="no"&gt;IRB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:USE_READLINE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;
-&lt;span class="no"&gt;IRB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:AUTO_INDENT&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;
-&lt;span class="no"&gt;IRB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:PROMPT&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:SIMPLE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="ss"&gt;:PROMPT_I&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;MY_CUSTOM_PROMPT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &amp;gt; "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="ss"&gt;:PROMPT_N&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;MY_CUSTOM_PROMPT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &amp;gt;&amp;gt; "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="ss"&gt;:PROMPT_S&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;MY_CUSTOM_PROMPT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:MAGENTA&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%l&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="ss"&gt;:PROMPT_C&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;MY_CUSTOM_PROMPT&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WHITE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;*&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; "&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-  &lt;span class="ss"&gt;:RETURN&lt;/span&gt;   &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:GREEN&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; %s&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="no"&gt;IRB&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;conf&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:PROMPT_MODE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="ss"&gt;:SIMPLE&lt;/span&gt;
-&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
-
-
-&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
-&lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;each&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;p&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
-  &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;"need '&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RED&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}#{&lt;/span&gt;&lt;span class="nb"&gt;p&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:file&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;' gem"&lt;/span&gt; &lt;span class="k"&gt;unless&lt;/span&gt; &lt;span class="nb"&gt;p&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:exists&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
-
-&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
-&lt;span class="nb"&gt;at_exit&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="no"&gt;EXISTING_GEMS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RUBY_DURATION&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="ss"&gt;:exists&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-    &lt;span class="n"&gt;delta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Duration&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="no"&gt;Time&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;now&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="no"&gt;IRB_START_TIME&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WHITE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%h&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; %~h, &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WHITE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%m&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; %~m, &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:WHITE&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;%s&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="no"&gt;ANSI&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="ss"&gt;:RESET&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; %~s"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;delta&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
-  &lt;span class="k"&gt;end&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="c1"&gt;# ----------------------------------------------------------------------------&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Standart kütüphanede olmayan 4 adet modül kullanıyorum. (&lt;em&gt;gem&lt;/em&gt;) Bunlar:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ruby-duration&lt;/li&gt;
-&lt;li&gt;wirble&lt;/li&gt;
-&lt;li&gt;ori&lt;/li&gt;
-&lt;li&gt;awesome_print&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;ruby-duration&lt;/code&gt; basit bir zaman hesabı işi için kullanılıyor. &lt;code&gt;wirble&lt;/code&gt;
-renklendirme için. &lt;code&gt;ori&lt;/code&gt; ri dökümantasyonuna erişmek için. Konu ile ilgili
-daha önce &lt;a href="/blog/tr/2012/05/02/irb-icin-yardimci-gem-ori/"&gt;yazmıştım&lt;/a&gt;. &lt;code&gt;awesome_print&lt;/code&gt; ise belkide içlerindeki
-en süper gem. &lt;code&gt;Hash&lt;/code&gt; &lt;code&gt;Array&lt;/code&gt; ya da &lt;code&gt;Class&lt;/code&gt; bu objeleri print etmek ve çıktıyı
-anlamak &lt;code&gt;awesome_print&lt;/code&gt; sayesinde çok kolay.&lt;/p&gt;
-
-&lt;p&gt;Modüller dışında, IRB&amp;rsquo;nin prompt&amp;rsquo;unu da değiştirdim. Hem renkli
-hem de daha anlaşılır oldu.&lt;/p&gt;
-
-&lt;p&gt;İlk çalışma anında gereken &lt;code&gt;gem&lt;/code&gt; kontrolü yapılıp uyarı geliyor. Çıkışta da
-geçen süre yazılıyor ekrana. En önemlisi, &lt;a href="/blog/tr/2012/05/24/irb-rbenv-readline-ve-turkce-karakter/"&gt;önceki diğer bir yazımda&lt;/a&gt; anlattığım
-&lt;code&gt;readline&lt;/code&gt; kütüphanesi yardımıyla, &lt;code&gt;INPUTRC&lt;/code&gt; çalışıyor. Bu şu anlama geliyor;
-&lt;code&gt;HISTORY&lt;/code&gt; içinden otomatik tamamlama.&lt;/p&gt;
-
-&lt;p&gt;Ufak bir video hazırladım:&lt;/p&gt;
-
-&lt;div class="flash-video" title="Video"&gt;&lt;div&gt;&lt;iframe src="http://www.screenr.com/embed/7kX8" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;
 </content>
   </entry>
 </feed>
