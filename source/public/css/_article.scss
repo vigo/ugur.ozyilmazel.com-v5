@@ -117,3 +117,31 @@ body.index {
     }
   }
 }
+
+
+#markdown {
+  table {
+    margin-bottom: $common-mb;
+  }
+  thead {
+    font-family: $heading-font;
+    color: $heading1-color;
+    border-bottom: 1px solid $heading1-color;
+  }
+  th, td {
+    padding-right: 1rem;
+  }
+  td {
+    border-bottom: 1px dotted lighten($heading1-color, 30);
+  }
+  tbody {
+    tr:hover{
+      background: #eee;
+    }
+  }
+//  tbody {
+//    tr:first-child {
+//      background: red;
+//    }
+//  }
+}

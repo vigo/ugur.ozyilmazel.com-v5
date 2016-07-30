@@ -5,9 +5,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <% if build? %>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
         <link href="//fonts.googleapis.com/css?family=Merriweather:300,400,700,900|Roboto:400,700,300,900&mp;subset=latin-ext" rel="stylesheet" type='text/css'>
         <link rel="stylesheet" href="//use.fontawesome.com/3e4992419f.css">
+        <% else %>
+        <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/public/css/google-fonts.css">
+        <link rel="stylesheet" href="/public/css/3e4992419f.css">
+        <% end %>
+        
         <%= yield_content :extra_css %>
         <%= stylesheet_link_tag :application %>
         <%= feed_tag :atom, "#{blog(I18n.locale).options.prefix.to_s}/feed-#{I18n.locale}.xml", title: "Atom Feed" %>
@@ -16,10 +23,16 @@
     </head>
     <body class="<%= page_classes %>">
         <%= yield %>
-
+        
+        <% if build? %>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+        <% else %>
+        <script src="/public/js/jquery.min.js"></script>
+        <script src="/public/js/tether.min.js"></script>
+        <script src="/public/js/bootstrap.min.js"></script>
+        <% end %>
         <% if current_page.metadata[:page][:embedded_tweet] %><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><% end %>
         
         <%= yield_content :extra_js %>

@@ -1,0 +1,314 @@
+---
+title: "SOLID Prensibi"
+subtitle: "Nesne Yönelimli Programlama yapı taşı"
+date: 2016-07-30 18:30:00 +0300
+cover: "2016-07-30-solid.jpg"
+og_image: "2016-07-30-solid.jpg"
+tags: solid,ruby
+comments: true
+---
+
+Object Oriented Programming (OOP) yani Nesne Yönelimli Programlama’nın en temel
+prensibi olarak kabul edilir.READ_MORE
+
+==2015 yılında AslanobaLabs projesi bünyesinde yayınladığım yazımı proje iptal
+edildiği için kendi bloguma taşıdım. Biraz düzeltme ve güncellemeler de
+yaptım.==
+
+2000’lerin başında konuşulmaya başlanan, [Michael Feathers][01] tarafından tanıtılan
+ve "İlk Beş Prensip" diye [Robert C. Martin][02] tarafından adlandırılan 
+Nesne Yönelimli Programlama’nın temel prensibidir **S.O.L.I.D**
+
+S.O.L.I.D’deki her harf bir prensibe/kurala denk gelir:
+
+Harf  | Açıklaması
+:----:|-----------
+**S** | Single responsibility principle
+**O** | Open/closed principle 
+**L** | Liskov substitution principle
+**I** | Interface segregation principle
+**D** | Dependency inversion principle
+
+Bu prensipler, daha iyi program yazmanın yanı sıra, sürdürülebilir uygulama
+geliştirmeye yardımcı olur. [Sandi Metz][03]’in 2009’da düzenlenen
+[GoRuCo][04] konferansında yaptığı [sunumun][05] başında;
+
+> Uygulamanızı görmedim, ne yaptığınızı bilmiyorum ama kesin olarak bildiğim
+şey şu: uygulamanız değişecek!
+
+Evet, Sandi Metz, bu konuda çok haklıydı. Çünkü gerçekten de yazdığımız
+uygulama, bir noktada mutlaka değişikliklere uğrayacaktı. İster hata düzeltme
+ister yeni özellikler ekleme olsun, uygulamalar bir şekilde hiçbir zaman
+ilk yazıldığı gün gibi kalmayacaktı.
+
+Sağlam temelleri olan bir uygulama geliştirmek için ilk adımın Test Driven
+Development olduğunu biliyoruz, ama bir noktada ne yazıkki bu yöntem de 
+[yetersiz kalabiliyor][06]. 
+
+Uygulama geliştirirken başımızın fazla ağrımaması için, uzmanlar **SOLID**
+prensipleri ortaya koydular. Şimdi tek tek bu prensiplere göz atalım.
+
+## [S]: Single responsibility
+
+Bir sınıf (*class*) sadece tek bir işten sorumlu olmalıdır. Örneğin, bir
+web uygulaması içinde, veritabanı ile bağlantı yapacak olan sınıfın tek işi
+bağlantıyı açması ve kapatması olmalıdır. Sorgu yapmak, tablo silmek
+ya da oluşturmak işlerinden biri **OLMAMALIDIR**!
+
+[Kaynak][07], [Kaynak][08]
+
+***
+
+## [O]: Open/closed
+
+Bir sınıf, genişlemeye açık olmalı ama değişime kapalı olmalı. Yani kodu
+değiştirmeden, değişebilmeli. Modüller `extend` edilebilmeli ama asla ilgili
+işi yapabilmek adına, hali hazırda bulunan kod tekrardan yazılmamalı, 
+değiştirilmemeli.
+
+Örneğin, Daire ve Kare çizen bir uygulama olsun. Çizdirme işini yaparken,
+"eğer tipi daire ise şöyle çiz, kare ise böyle çiz" şeklinde bir akış 
+kullanırsak, ileride **üçgen** çizdirmemiz gerektiğinde bu prensibi bozmak
+zorunda kalırız. Kodu değiştirip "eğer tipi üçgen ise" koşulunu eklememiz
+gerekir.
+
+Halbuki, `Şekil` adında bir sınıf olsa, `Daire` ve `Kare` bu sınıftan türese,
+her iki şeklinde kendi `çizim` metodu olsa. En sonda da `ŞekliÇiz` diye
+ayrı bir sınıf olsa, bu sınıfı oluştururken ilgili şekli parametre olarak
+geçsek ve çizme işlemi için ilgili şeklin `çizim` metodunu çağırsak?
+
+Aşağıdaki örnek bu prensibi ihlal eder. Yarın `json` çıktı almak yerine
+`pdf` ya da `xml` çıktı gerekse kodu değiştirmek gerekecek...
+
+```ruby
+# Ruby kodu
+class Rapor
+  def dokuman
+    dokumani_uret
+  end
+
+  def yazdir
+    dokuman.to_json # json çıktı alır
+  end
+end
+```
+
+Yukarıdaki sınıf sadece `json` çıktı almak üzerine planlanmış. `pdf` çıktı
+almak gerektiği noktada bu kod’u değiştirmek gerekecek... Halbuki aşağıdaki 
+kod parçası bu durumu düşünüp kurala uymuş;
+
+```ruby
+# Ruby kodu
+class Rapor
+  def dokuman
+    dokumani_uret
+  end
+
+  def yazdir(cikti_formati: JSONFormatter.new)
+    cikti_formati.format dokuman
+  end
+end
+
+aylik_rapor = Rapor.new
+aylik_rapor.yazdir(cikti_formati: XMLFormatter.new) # xml olarak aldık...
+```
+
+
+[Kaynak][09]
+
+***
+
+## [L]: Liskov substitution
+
+Alt sınıf (*türeyen sınıf - sub class*), üst sınıfın (*base class*) yerini
+alabilecek şekilde olmalıdır. Şimdi iki tane sınıfımız olsun. **Dörtgen** ve **Kare**.
+Kare, Dörtgen’den türemiş olsun. Dörtgen sınıfının `genislik` ve `yukseklik`
+adında iki tane **accessor**’ü (*getter-setter*) var, Ruby’den örnekliyoruz:
+
+```ruby
+# Ruby kodu
+class Dortgen
+  attr_accessor :genislik, :yukseklik
+end 
+```
+
+ve `Dortgen`’den türemiş `Kare`:
+
+```ruby
+# Ruby kodu
+class Kare < Dortgen
+  def yukseklik=(yukseklik)
+    @degisken = yukseklik
+  end
+  def genislik=(genislik)
+    @degisken = genislik
+  end
+  def genislik
+    @degisken
+  end
+  def yukseklik
+    @degisken
+  end
+end 
+```
+
+Ruby’de `=` ile biten metod `setter` anlamına geliyor. Yani `yukseklik=` **setter**,
+`yukseklik` ise **getter**.
+
+Şimdi her iki şeklinde alanını hesap edelim:
+
+    alan = genislik * yukseklik
+
+```ruby
+# Ruby kodu
+dortgen = Dortgen.new
+kare = Kare.new
+
+dortgen.genislik = 4
+dortgen.yukseklik = 5
+dortgen.genislik * dortgen.yukseklik # => 20
+
+kare.genislik = 4
+kare.yukseklik = 5
+kare.genislik * kare.yukseklik       # => 25 ???
+```
+
+`Kare` sınıfı, Liskov değişimi kuralını ihlal edip, üst sınıftan gelen
+özellikleri modifiye etmiştir.
+
+Başka bir örnek;
+
+```ruby
+# Ruby kodu
+class Hayvan
+  def yuru
+     yurume_islemi
+  end
+end
+
+class Kedi < Hayvan
+  def kos
+    kosma_islemi
+  end
+end
+```
+
+Verdiğim örnek Ruby’den ve Ruby’de **interface** mantığı yok. Yukarıdaki
+kod Liskov değişimi prensibini ihlal ediyor. Neden? `Kedi` sınıfı `Hayvan`dan
+türedi ve `Hayvan` sınıfının `kos` diye bir metodu yok... Bu durumda,
+`Hayvan` sınıfını bir **interface** gibi düşünmeli ve interface’de olan
+metodları **implement** etmeliyiz. Bu bakımdan `Hayvan` sınıfı aşağıdaki
+gibi olmalı:
+
+```ruby
+# Ruby kodu
+class Hayvan
+  def yuru
+    yurume_islemi
+  end
+  def kos                          # koşma özelliği olmasa bile
+    raise NotImplementedError      # prensibe göre çapraz
+  end                              # eşitlik olmalı...
+end
+```
+
+[Kaynak][solid-l1], [Kaynak][solid-l2]
+
+[solid-l1]: http://en.wikipedia.org/wiki/Liskov_substitution_principle
+[solid-l2]: https://drive.google.com/file/d/0BwhCYaYDn8EgNzAzZjA5ZmItNjU3NS00MzQ5LTkwYjMtMDJhNDU5ZTM0MTlh/view
+
+***
+
+## [I] Interface segregation
+
+Genel amaca hizmet eden tek bir arayüz yapmak yerine, istemciye uygun farklı 
+farklı arayüzler yapmak daha iyidir. Yani bir sınıf, bir interface’den
+türerken sadece kendi işine yarayacak metodları almalıdır.
+
+Bu sayede daha uyumlu kod yazma ve **less coupling** yani başka kütphane/kod’a 
+bağlı kalmama özelliğini arttırmış/sağlamış oluruz.
+
+[Kaynak][solid-i1], [Kaynak][solid-i2]
+
+[solid-i1]: https://drive.google.com/file/d/0BwhCYaYDn8EgOTViYjJhYzMtMzYxMC00MzFjLWJjMzYtOGJiMDc5N2JkYmJi/view
+[solid-i2]: http://en.wikipedia.org/wiki/Interface_segregation_principle
+
+***
+
+## [D] Dependency inversion
+
+Bağımlılığın tersine dönmesi. Tek parça monolit/devasa bir sınıf olmak yerine
+kendi işlerini yapan küçük parçalardan oluşan sınıflar haline gelmek. Bağımlılıkları
+minimale indirmek, hatta başka bir değişle **Dependency Injection** yapmak.
+
+Özellikle [TDD][solid-d1] yaparken sık kullandığımız [Mock][solid-d2], [Stub][solid-d3], 
+[Test Double][solid-d4] gibi kavramlar bu prensip üzerine kuruludur.
+
+Bir sınıf oluşturuken parametre olarak `Hash` / `Dictionary` yani **key-value**
+tutan nesne geçmek ya da ilgili başka bir sınıfı geçmek araya bağımlılık enjekte
+etmek anlamına gelir. Buradaki bağımlılık aslında bize esneklik sağlar.
+
+Fonksiyonu ya da metodu çağırken sabit parametre yerine kullanılan Hash, hem
+bize parametre sırası zorunluluğundan kurtatır hem de ilgili fonksiyon içinde
+bağımsız hareket edebilme özgürlüğünü sağlar.
+
+```ruby
+# Ruby kodu
+DEFAULTS = {
+  a: 1,
+  b: 2,
+  c: "c"
+}
+
+def test_func(args={})
+  args = DEFAULTS.merge(args)
+end
+
+test_func
+# => {:a=>1, :b=>2, :c=>"c"}
+
+test_func({a: "ali", b: "veli", c: nil})
+# => {:a=>"ali", :b=>"veli", :c=>nil}
+```
+
+
+Test yazarken, henüz nasıl çalışacağına karar vermediğimiz ama tahminen sonucunu
+ne olması gerektiğini bildiğimiz durumlara, bu metodu varmış gibi taklit etmek,
+gerçek kodda kullanmak da tam bir **Dependency Injection** örneğidir.
+
+```ruby
+# Ruby, Rspec örnek...
+f = "./test_file.txt"
+
+file_downloader = double("Fetcher")
+# Henüz Fetcher sınıfını yazmadık ama 
+
+file_downloader.stud(:download).and_return(f)
+# download metodu olacağını ve bir text dosyası döneceğini biliyoruz!
+```
+
+[solid-d1]: http://en.wikipedia.org/wiki/Test-driven_development
+[solid-d2]: http://en.wikipedia.org/wiki/Mock_object
+[solid-d3]: http://en.wikipedia.org/wiki/Method_stub
+[solid-d4]: http://en.wikipedia.org/wiki/Test_double
+
+***
+
+Tüm bu prensipler aslında daha kullanışlı, daha rahat yönetilebilen ve
+sürdürülebilir yazılım geliştirmemizi sağlamak amacıyla uzmanların
+ortaya koyduğu kurallardır.
+
+Başta da belirttiğim gibi, usta [Sandi Metz][03] bu konuyla ilgili çok
+güzel bir sunum yapmıştı. Bu sunumu da [linkten][222] indirebilirsiniz.
+
+
+[01]: https://twitter.com/mfeathers
+[02]: http://en.wikipedia.org/wiki/Robert_Cecil_Martin
+[03]: https://twitter.com/sandimetz
+[04]: http://confreaks.tv/events/goruco2009
+[05]: http://confreaks.tv/videos/goruco2009-solid-object-oriented-design
+[06]: http://www.sandimetz.com/blog/2009/03/21/solid-design-principles
+[07]: https://docs.google.com/file/d/0ByOwmqah_nuGNHEtcU5OekdDMkk/edit
+[08]: http://en.wikipedia.org/wiki/Single_responsibility_principle
+[09]: https://drive.google.com/file/d/0BwhCYaYDn8EgN2M5MTkwM2EtNWFkZC00ZTI3LWFjZTUtNTFhZGZiYmUzODc1/view
+[222]: https://speakerdeck.com/skmetz/solid-object-oriented-design
