@@ -2,7 +2,7 @@ require 'stringex'
 require 'time'
 require 'active_support/all'
 
-Tilt::SYMBOL_ARRAY_SORTABLE = false
+# Tilt::SYMBOL_ARRAY_SORTABLE = false
 
 activate :i18n
 Time.zone = 'Europe/Istanbul'
