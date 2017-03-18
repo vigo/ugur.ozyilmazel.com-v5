@@ -5,7 +5,7 @@ en:
   go_to_last_page: Go to last page
   go_to_previous_page: Go to previous page
   go_to_next_page: Go to next page
-  homepage_subtitle: Coder
+  homepage_subtitle: Computer programmer
   tagged_items:
     one: Found “1” post.
     other: Found “%{count}” posts.
