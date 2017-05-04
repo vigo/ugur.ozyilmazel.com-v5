@@ -1,0 +1,55 @@
+---
+layout: workshop_pages_layout
+---
+
+<%
+I18n.locale = locals[:lang]
+
+page_title_prefix = locals[:lang] == :tr ? 'Eğitimler' : 'Workshops'
+current_page.data.title = "#{page_title_prefix} | #{workshop.title}"
+%>
+
+<div id="workshops">
+    <div class="workshop">
+        <h1><%= workshop.title %></h1>
+
+        <% if workshop.definitions %>
+        <table class="definitions">
+            <% workshop.definitions.each do |item| %>
+                <tr>
+                    <td><%= item.first %></td>
+                    <td>
+                        <% if item.last.class == Hashie::Array %>
+                        <%= item.last.map{|el| markdownify_text_only(el)}.join('<br/>') %>
+                        <% else %>
+                        <%= markdownify_text_only(item.last) %>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </table>
+        <% end %>
+
+        <% if workshop.description %>
+        <div class="description"><%= markdown(workshop.description) %></div>
+        <% end %>
+        
+        <p id="request-info-area">
+            <a target="_blank" class="btn btn-primary btn-custom" href="https://goo.gl/forms/5TjjJzuPtZub67d53">
+            Daha detaylı bilgi talebi için tıklayın
+            </a>
+        </p>
+        
+        <div id="client-information">
+            <p>
+                Yapacağınız talepler gizli kalacaktır. Ücret ve benzeri her türlü
+                konuda bilgi almak için lütfen formunu eksiksiz doldurunuz.
+                Size telefonla geri dönüş yapmacağım, ulaşabileceğim bir telefon
+                numarası bırakmayı da lütfen unutmayınız.
+            </p>
+        </div>
+        
+    </div>
+    
+    <%= partial 'partials/mailchimp' %>
+</div>

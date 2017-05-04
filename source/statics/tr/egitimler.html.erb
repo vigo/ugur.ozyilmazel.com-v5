@@ -1,0 +1,70 @@
+---
+title: Eğitimler
+layout: static_pages_layout
+cover: education.jpg
+---
+
+<%
+I18n.locale = locals[:lang]
+workshops = data.workshops_tr.workshop.select(&lambda{|i| i[:status] > 0}).sort_by{|i| i[:title]}
+categories = data.workshops_tr.category.sort_by{|item| item['name']}
+%>
+
+<p>
+    Kurumsal ve bireysel <strong>haftasonu</strong> eğitimleri veriyorum. Konu başlıkları ve
+    detayları bu sayfada bulabilirsiniz.
+</p>
+<p>
+    Eğitim detayları, geniş kapsamlı içerik ve ücret bilgileri için
+    benimle irtibata geçebilir ya da eğitim ile ilgili alandaki
+    <strong>Bilgi Talebi</strong> bağlantısına tıklayabilirsiniz.
+    Lütfen, <em>Adınızı, soyadınızı</em> ve sizinle iletişim kurabileceğim
+    bir <em>telefon numarası</em> da eklemeyi unutmayın :)
+</p>
+
+<div id="workshops">
+    <form id="workshop-category-form">
+        <p>Eğitim kategorilerine hızlı erişmek için aşağıdaki seçme kutusunu kullanabilirsiniz:</p>
+        <select class="form-control" id="workshop-category">
+            <option value="">--- Eğitim kategorileri</option>
+            <%
+            categories.each do |category|
+                worksho_category_count = workshops.select(&lambda{|i| i[:category] == category.id}).count
+                %>
+            <option value="<%= category.name.to_url %>">&ldquo;<%= category.name %>&rdquo; kategorisinde [<%= worksho_category_count %>] eğitim bulunuyor.</option>
+            <% end %>
+        </select>
+    </form>
+    <hr />
+    <% categories.each do |category| %>
+        <h1 id="<%= category.name.to_url %>"><%= category.name %></h1>
+
+        <% workshops.select(&lambda{|i| i[:category] == category.id}).each do |workshop| %>
+        <div class="workshop">
+            <h2><%= workshop.title %></h2>
+            <% if workshop.short_description %>
+            <div class="short_description"><%= markdown(workshop.short_description) %></div>
+            <% end %>
+            
+            <% if workshop.status == 1 %>
+            <a target="_blank" class="btn btn-primary btn-custom" href="<%= workshop.url %>">Daha fazla bilgi</a>    
+            <% end %>
+        </div>
+        <% end %>
+    <% end %>
+    <%= partial 'partials/mailchimp' %>
+</div>
+
+
+
+<% content_for :extra_js do %>
+<script>
+    $(document).ready(function(){
+        $("#workshop-category").on("change", function(){
+            if(this.value.length > 0) {
+                window.location.href = '#' + this.value;
+            }
+        });
+    });
+</script>
+<% end %>

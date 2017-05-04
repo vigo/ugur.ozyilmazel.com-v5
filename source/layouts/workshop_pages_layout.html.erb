@@ -6,9 +6,9 @@
     current_page_hr_date = I18n.l current_page_last_updated_at, format: config.date_format_long[I18n.locale]
 
     current_page_cover = nil
-    if current_page.metadata[:page][:cover]
-        cover_dir = current_page.metadata[:page][:cover_dir] || 'index-covers'
-        current_page_cover = site_image(current_page.metadata[:page][:cover], dirs=cover_dir)
+    if current_page.metadata[:page][:cover] || locals[:workshop].cover
+        cover_dir = current_page.metadata[:page][:cover_dir] || 'covers'
+        current_page_cover = site_image(current_page.metadata[:page][:cover] || locals[:workshop].cover, dirs=cover_dir)
     end
     %>
 
@@ -22,13 +22,12 @@
         cover_title: current_page.metadata[:page][:cover_title] || nil,
         cover_subtitle: current_page.metadata[:page][:cover_subtitle] || nil,
     } %>
-    
-    
+
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-10 col-md-offset-1">
                 <section id="article">
-                    <h3><%= link_to current_page.metadata[:page][:title], current_page %></h3>
+                    <h3><%= link_to 'Eğitimler', '/sayfa/tr/egitimler/' %></h3>
                     <time pubdate datetime="<%= current_page_last_updated_at.xmlschema %>" title="<%= current_page_hr_date %>">
                         <%= current_page_hr_date %>
                     </time>

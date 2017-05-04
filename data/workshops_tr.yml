@@ -1,0 +1,1309 @@
+category:
+  - id : 1
+    name: "Python"
+  - id : 2
+    name: "Django"
+  - id : 3
+    name: "Ruby"
+  - id : 4
+    name: "Unix"
+  - id : 5
+    name: "Git"
+
+workshop:
+
+# Python ----------------------------------------------------------------------
+
+- title: "Python 101"
+  status: 1
+  category: 1
+  cover: "ws-python-101.png"
+  short_description: |
+    Bu eğitimde genel hatlarıyla *Python* programlama dilini öğreniyoruz.
+    Python ile birlikte gelen ==veri tipleri==, ==fonksiyonlar== ve diğer faydalı
+    araçları nasıl kullanabileceğimizi görüyoruz.
+
+  description: |
+    Python programlama diliyle yeni tanışan ya da bilgilerini tazelemek isteyen
+    geliştiriciler için uygun olduğunu düşünüyorum. Genel hatlarıyla derste 
+    işleyeceğimiz konular başlıkları şöyle:
+  
+    * Python hakkında kısa bilgilendirme
+    * Kod yazma formatı, yazım kuralları
+    * Python Syntax’ı (*söz dizimi*)
+    * Ayraçlar / Operatörler
+    * Object nedir? (*nesne*)
+    * Method nedir? Object method nedir?
+    * Değişken ve atama işlemi
+    * Python ile birlikte gelen veri tipleri
+    * Booleans, Numbers, Nones
+    * Sequences: Strings (*karakterseller*), Lists (*listeler*), Tuples (*korumalı listeler*)
+    * Generators (*üreticiler*), Generator Expressions (*üretici ifadeleri*)
+    * Matematik işlemleri
+    * Sets (*özel koleksiyonlardan biri*) ve Dictionaries (*özel veri tiplerinden biri*)
+    * Fonksiyon ve Scope (*kapsam*) kavramı
+    * Lambda ifadeleri, fonksiyon dekoratörleri
+    * Durum kontrolleri ve koşullar
+    * Döngüler, Iterators (*yineleyiciler*), Iterables (*yinelenebilirler*)
+
+  definitions:
+    -
+      - Süre
+      - 4 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Seviye
+      - Yeni başlayanlar için
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+- title: "Python 102"
+  cover: "ws-python-102.png"
+  status: 1
+  category: 1
+  short_description: |
+    **O**bject **O**riented **P**rogramming, havalı adıyla ==OOP==, yani nesneler, 
+    nesnelerin birbirinden türemesi, kısaca Python’un en önemli ve iddali 
+    konularından biri. Bu eğitimde komut satırından uygulama geliştirmeyi 
+    öğreneceğiz.
+
+  description: |
+    Python’un can damarı olan `Class` yani sınıflar, `Objects` yani nesneler ve
+    birlikte gelen diğer nesne tipleri, türetmeler, kendimize özgü nesne
+    üretimi.
+    
+    Bu derste, Python’u Python yapan pek çok özel duruma değiniyoruz. Ders
+    planı içinde, komut satırından çalışan bir **TODO** uygulaması da 
+    geliştireceğiz.
+    
+    Genel olarak işleyeceğimiz konular:
+    
+    * `Class` deklarasyonu
+    * Base Class kavramı, Instance kavramı
+    * Constructor nedir? `self` nedir?
+    * Method, Property, Attribute nedir?
+    * getter/setter ya da accessor nedir?
+    * Object Inspection yani nesneyi analiz etmek
+    * Sınıf içindeki gizli metodlar
+    * Sub Class, Inheritance (*miras*)
+    * Override/Overload, super kavramları
+    * Access Level: Private/Public durumuna Pythonic yaklaşımlar
+    * Meta Class, Abstract Base Class nedir?
+    
+    #### Bonus
+
+    - Pyton paketi hazırlama örneği
+
+  definitions:
+    -
+      - Süre
+      - 4 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Seviye
+      - 
+        - Orta seviye (*Intermediate*)
+        - Önceden en az 101 seviyesinde Python programlama bilmek
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+- title: "Python Uygulaması ve Test"
+  status: 1
+  category: 1
+  cover: "ws-python.png"
+  short_description: |
+    İlk günden beri içinde kendine özgü test mekanizmalarıyla gelen Python’un
+    en temel test yöntemlerinden başlayarak, daha modern ve komplike yöntemleri
+    inceleyeceğiz bu eğitimde.
+  
+  description: |
+    Test ile yürüyen geliştirme ya da Test Driven Development! Python ilk
+    günden itibaren test işini benimsemiş bir programlama dili. Günümüzde
+    pek çok farklı test yöntemi ve kütüphanesi bulunuyor.
+    
+    Biz bu derste, işin temellerine gözatacağız;
+    
+    * Temel TDD prensipleri
+    * Neleri test etmek gerekir?
+    * **Docstring Test** ya da **Doctest** ile test’e merhaba
+    * `unittest` temelleri
+    * Temel `assertion` prensipleri
+    * 3.parti test kütüphanelerine genel bakış
+
+  definitions:
+    -
+      - Süre
+      - 4 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Seviye
+      - 
+        - Giriş’in (101) bir tık üstü :)
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+
+- title: "Python Paketi Hazırlamak"
+  status: 1
+  category: 1
+  cover: "ws-python.png"
+  short_description: |
+    Geliştirdiğiniz herhangi bir python uygulamasını ya da **re-usable** denilen,
+    tekrar tekrar kullanılabilirliği olan bir Django uygulamasını dağıtmak
+    istediğinizde, Python kurallarına uygun bir modül / paket hazırlamanız
+    gerekiyor!
+  
+  description: |
+    Geliştirdiğiniz herhangi bir Python kütüphanesini, ister kendiniz ister
+    başka bir geliştirici, tekrar tekrar en kolay şekilde nasıl kullanır?
+    Ancak bu kütüphane kuralına uygun bir Python paketi olmuşsa...
+    
+    Bu eğitimde;
+    
+    * Standart Python paketi nasıl oluşturulur?
+    * Paket ve bağımlılıkları nasıl düzenlenir?
+    * Dikkat edilmesi gereken kurallar nelerdir?
+    * PyPI’a paket gönderilmesi ve tüm kullanıcılara açılması
+    
+    konuları işleniyor.
+
+  definitions:
+    -
+      - Süre
+      - 4 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Seviye
+      - 
+        - Giriş seviyesi
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+# -----------------------------------------------------------------------------
+
+# Django ----------------------------------------------------------------------
+
+- title: "Django 101"
+  cover: "ws-django.png"
+  status: 1
+  category: 2
+  short_description: |
+    Aklınıza gelen en hızlı web geliştirme yöntemini ya da sürecini düşünün ve
+    hemen **unutun!** Django, Python ile geliştirilmiş belkide en iyi web uygulama
+    geliştirme aracı/çatısı ve pilleri de içinde!
+  
+  description: |
+    Giriş bariyerini sıfıra indiren Django’nun resmi [tutoriyal sitesi](https://docs.djangoproject.com/en/1.11/intro/)
+    aslında Django öğrenmek için müthiş bir kaynak.
+    
+    Ben de bu derste, hızlıca Django projesi yapmayı, gündelik hayatta hep
+    ihtiyacımız olan türde bir uygulamayı nasıl hazırlarız, nasıl sunucuda
+    canlıya alırız (*deployment*) bunları anlatmaya çalışacağım.
+    
+    GitHub’ın [Gist](https://gist.github.com/) uygulamasına benzer minik
+    bir uygulama geliştireceğiz.
+    
+    * `pip`, `Virtualenv`, `Django` paketleri ile başlıyoruz
+    * Django projesi nedir?
+    * Django uygulaması (*application*) nedir?
+    * Django projesi dizin/dosya yapısı düzenlemesi, ve Revizyon kontrolü
+    * Development, Testing, Staging ve Production ortamları
+    * Migration (*temel açıklmama*)
+    * Veritabanı tercihi
+    * Django ORM: Model planlamak ve oluşturmak
+    * Django shell
+    * Model-Template-View mekanizması
+    * Routing (`urls.py`)
+    * Django Admin
+    * Authorization ve Authentication (*temel açıklama*)
+    * Class-based View’ları kullanarak Form işleme, Listeleme, Detay vs...
+    * Django Debug Toolbar ve Django Extensions
+    * 3. parti paketleri projeye entegre etmek: Markdown, Syntax Highlighting gibi.
+    * Uygulamayı Linux (*Ubuntu*) üzerinde koşturmak
+    * Uygulamayı [Heroku](https://www.heroku.com/) üzerinde koşturmak
+    
+  definitions:
+    -
+      - Süre
+      - 8 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Django
+      - 1.11+ (*ya da en son sürüm*)
+    -
+      - Seviye
+      - 
+        - Yeni başlayanlar için (*Django’ya*)
+        - 101 seviyesinde Python bilmek gerekiyor
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+- title: "Django ve Admin Panel - I"
+  cover: "ws-django.png"
+  status: 1
+  category: 2
+  short_description: |
+    Django ile yeni tanışan bir kişinin ilk görüşte aşık olduğu şey hiç şüphesiz
+    Django ile beraber gelen **Admin Site** yani Admin Panel’dir. Django admin
+    ile yapabileceklerimizin sınırı neredeyse yok!
+
+  description: |
+    Web geliştiricilerinin Django’ya aşık olmasını sağlayan bence başlıca
+    şey kendisiyle birlikte gelen **Admin Site** ya da nam-ı diğer Admin Panel’dir.
+    Bu eğitimde, Admin Site’ın temellerini işleyeceğiz;
+
+    * `django.contrib.admin` kütüphanesini tanıyalım
+    * Çok defa kullanmak için kendimize özel **base** `admin.ModelAdmin` hazırlamak
+    * `model.Admin` özelleştirmesi, tüm method / property’lerin detayları
+    * `get_*` methodları
+    * Html template’ların özelleştirilmesi
+    * `ModelForm` kullanımı
+    
+    #### Bonus
+    
+    * Admin site’da kullanmak için `AdminFileWidget` yapacağız!
+
+  definitions:
+    -
+      - Süre
+      - 8 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Django
+      - 1.11+ (*ya da en son sürüm*)
+    -
+      - Seviye
+      - Giriş’in (101) bir tık üstü :)
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+- title: "Django ve Admin Panel - II"
+  cover: "ws-django.png"
+  status: 1
+  category: 2
+  short_description: |
+    Admin Panel’i öyle bir hale getireceğiz ki kimse buna inanmayacak! Dash-board’lar,
+    özel formlar, Inline form setleri ve daha pek çok püf noktası bu derste!
+  
+  description: |
+    Eğer [Django ve Admin Panel - I](/sayfa/tr/egitimler/django-ve-admin-panel-i/) eğitimini aldıysanız bu tam size göre!
+    Bu eğitimde ağırlıklı olarak;
+    
+    * Özelleştirilmiş form’lar, **fake** girdi almak işlemek
+    * `JavaScript` yardımıyla bazı işleri çözmek. `class Media:`
+    * Form’ların görüntülenme şekillerini özelleştirmek
+    * Inline formset’ler
+    * Formset’lerin özelleştirilmesi
+    * Form widget’ları
+    * 3.parti en çok kullanılan ve çok işey yarayan widgetlar’ın entegrasyonu
+    * Dash-board ve benzeri şeylerin yapılması
+    
+    konularını işleyeceğiz.
+
+  definitions:
+    -
+      - Süre
+      - 8 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Django
+      - 1.11+ (*ya da en son sürüm*)
+    -
+      - Seviye
+      - Orta seviye (*Intermediate*)
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+- title: "Django ve Authentication"
+  cover: "ws-django.png"
+  status: 1
+  category: 2
+  short_description: |
+    **Authorization** ile **Authentication** arasındaki fark nedir? Django bize
+    pek çok hazır özellik ile geliyor. Kendi kullanıcı mekanizmamızı
+    üretebildiğimiz gibi kendi özel yetkilendirme mekanizmamızı da yapabiliyoruz.
+  
+  description: |
+    Bu eğitimde işleyeceğimiz konular aşağıdaki gibidir;
+    
+    * Django ile birlikte gelen **Authentication** mekanizmaları neler?
+    * Kendi **Authorization**, yetki mekanizmalarımızı yapalım
+    * Kendi **User** modelimizi oluşturalım ve özelleştirelim
+    * Kendi özel **Yeni kullanıcı oluşturma**, doğrulama mekanizmalarımızı yapalım
+    * Diğer **Authentication Backend**’ler neler?
+
+  definitions:
+    -
+      - Süre
+      - 8 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Django
+      - 1.11+ (*ya da en son sürüm*)
+    -
+      - Seviye
+      - Orta seviye (*Intermediate*)
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+- title: "Django ORM"
+  cover: "ws-django.png"
+  status: 1
+  category: 2
+  short_description: |
+    **O**bject **R**elational **M**appers ya da Mapping. Django’nun güçlü
+    olduğu konulardan biri. Bir satır SQL kodu yazmadan veritabanı içinde
+    her türlü sorgulama işlemini yapmak, veritabanının cinsinden bağımsız
+    olarak çalışabilmek ve herşeyi Python dili ile programatik hale getirmek...
+  
+  description: |
+    ORM, programatik olarak veritabanı ile iletişim kurmamıza yarar.
+    Klasik `SELECT` yönermeleri (*TSQL*) yazmak yerine, saf Python kodu
+    yazarak veritabanı ile ilgili okuma/yazma/silme/düzenleme işlerimizi
+    yapabiliyoruz.
+    
+    Bu eğitimde;
+    
+    - Sorgulama (*Query*)
+    - Filtrelemer
+    - Sıralamalar
+    - İlişkili Model/Tablo arasında sorgu yapmak
+    - `F`, `Q` gibi özel sorgu fonksiyonları
+    - `Annotate`, `Aggregate` işlemleri
+    - Silme, düzeltme, yığın halinde kayıt oluşturma
+  
+  definitions:
+    -
+      - Süre
+      - 8 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Django
+      - 1.11+ (*ya da en son sürüm*)
+    -
+      - Seviye
+      - Orta seviye (*Intermediate*)
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+- title: "Django REST Framework ile API Sunmak"
+  cover: "ws-django.png"
+  status: 1
+  category: 2
+  short_description: |
+    Zaten elimizde yazdığımız bir Django uygulaması var. Ee o halde bunu
+    neden hemen API haline getirmiyoruz? Hazır modellerimiz varken? İşte
+    DRF ya da Django REST Framework bu durumlarda derdimize derman oluyor...
+
+  description: |
+    API sunmak ya da geliştirmek... Django uygulamanızı dış dünyaya açmak
+    gerektiğinde Django REST Framework işinizi inanılmaz derecede kolaylaştırıyor
+    olacak.
+    
+    Bu eğitimde;
+    
+    - REST nedir?
+    - Django REST Framework ne işe yarar?
+    - Serileştirme (*Serialization*) nedir?
+    - Model’leri serileştirmek
+    - Get, Post işlemleri
+    - APIView, ListView, Create, Update, Edit, Delete (CRUD) işleri
+    - Sorgu ve sayfalama (*Pagination*)
+    - Güvenlik ve yetkilendirmeler
+    - Route mantığı
+    - İlişkili model soruları
+    - Özelleştirmeler, doğrulamalar (*Validation*)
+    - Token ile Authentication (*kimlik doğrulama*)
+    - API bağlantı yük ayarları (Throttling)
+  
+  definitions:
+    -
+      - Süre
+      - 8 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Django
+      - 1.11+ (*ya da en son sürüm*)
+    -
+      - Seviye
+      - 
+        - 101 seviyesinde Django bilmek gerekiyor
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+- title: "Django Form’ları"
+  cover: "ws-django.png"
+  status: 1
+  category: 2
+  short_description: |
+    Kullanıcıdan girdi almak, bunu veritabanına kaydetmek ya da değiştirmek...
+    Veritabanındaki tablodan otomatik form üretmek... Bilgi doğrulaması
+    yapmak... İşte Django formları bize bunları ve dahasını sağlıyor...
+  
+  description: |
+    Django ile birlikte gelen en faydalı özelliklerden biri de Form’lar.
+    İstediğimiz gibi form üretip işleyebilir ya da `Model`’i kullanarak
+    otomatik olarak form oluşturabiliriz. Sadece bununla da kalmayıp
+    veri doğrulama işlemleri için de formları kullanabiliriz.
+    
+    Bu eğitimde aşağıdaki konuları işleyeceğiz;
+    
+    * Django Form’ları nedir?
+    * Basit form oluşturmak ve View içinde kullanmak
+    * Veri doğrulama, özel doğrulama (*Custom Validation*) yapmak
+    * Özel doğrulama hataları oluşturmak
+    * Model Form nedir?
+    * Model Form’un `save` metodunu ezmek, özelleştirmek
+    * Formset nedir?
+    * Inline ve Stacked Model Formset’ler, `BaseInlineFormSet` kullanımı
+    * Django Admin Form’unu özelleştirmek
+    * Class-based Formview ve bazı püf noktaları
+    
+    #### Bonus
+    
+    * [Django Crispy Forms](https://github.com/django-crispy-forms/django-crispy-forms/) örnekleri
+    
+  
+  definitions:
+    -
+      - Süre
+      - 8 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Django
+      - 1.11+ (*ya da en son sürüm*)
+    -
+      - Seviye
+      - 
+        - Orta seviye (*Intermediate*)
+        - Önceden en az 101 seviyesinde Python programlama bilmek
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+- title: "Django Class-based Views"
+  cover: "ws-django.png"
+  status: 1
+  category: 2
+  short_description: |
+    Uzun süre direndiğim ama daha sonra da kullanmadığım için çok pişman olduğum,
+    alışkanlık yapan :) pek çok harika özelliği bana sağlayan ve işlerimi 
+    kolaylaştıran **Class-based Views** ile tanışmaya, hızlı Django uygulamaları 
+    geliştirmeye hazır mısınız?
+  
+  description: |
+    Bu eğitimde, klasik View mantığı ile Class-based View mantığı arasındaki
+    farkları görmenin yanı sıra, Örnek bir CRUD uygulaması da geliştireceğiz.
+    İşleyeceğimiz konular;
+    
+    * Class-based View nedir?
+    * Mixin nedir?
+    * Form’lar nasıl kullanılır?
+    * Decorator kullanımı
+    * Django ile birlikte gelen Genel (*Generic*) view’lar: AUTH, BASE, DETAIL, LIST, EDIT
+    * AJAX örnekleri
+    * Veri doğruluğu onaylanması (*Data Validation*)
+    
+    #### Bonus
+    
+    - Blog uygulaması geliştirilmesi
+    - Canlı sunucuya yükleme (*deployment*)
+  
+  definitions:
+    - 
+      - Süre
+      - 4 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Django
+      - 1.11+ (*ya da en son sürüm*)
+    -
+      - Seviye
+      - Orta seviye (*Intermediate*)
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+- title: "Django ile Migration"
+  cover: "ws-django.png"
+  status: 1
+  category: 2
+  short_description: |
+    Django uzun süreçler sonunda çok başarılı bir özelliğe kavuştu. Migration yani
+    veritabanının da aynı kod gibi programatik olarak üretilebilir ve versiyonlanabilir
+    olması.
+    
+    Fakat Django’da bir yere kadar bunu otomatik olarak yapabiliyor. İşte
+    bu eğitimde kendi başımıza migration yazmayı, manuel olarak **squash** yapmayı,
+    Integrity’i korumayı ve benzeri püf noktalarını öğreneceğiz.
+  
+  description: |
+    
+    Django, uzunca bir süre migration işlerini yerleşik olarak desteklemiyor,
+    [3. parti bir kütüphane](https://bitbucket.org/andrewgodwin/south/src)
+    yardımıyla bu iş yapılıyordu. Daha sonra, [versiyon
+    1.7](https://docs.djangoproject.com/en/1.7/topics/migrations/) ile
+    birlikte Django artık migration işini kendi yapar oldu.
+    
+    Eski günlere baktığımda, şimdi durumun çok çok iyi bir noktada olduğunu
+    söyleyebilirim. Peki **migration** tam olarak ne işer yarar? Neden
+    önemlidir? Otomatik olarak üretmek ya da elle yazarak üretmek ? İşte
+    bu eğitimde;
+    
+    * Veritabanının revizyon kontrol altında tutulması: Migration
+    * Veritabanına göre backend kullanımı
+    * İleriye / geriye dönüşler
+    * Canlıdaki veritabanını sıkıntısız olarak nasıl güncel tutarız
+    * Bağımlılıklar, birleştirmeler
+    * PostgreSQL, Integrity ve dahası
+    
+    gibi konuları işleyeceğiz.
+
+  definitions:
+    -
+      - Süre
+      - 4 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Django
+      - 1.11+ (*ya da en son sürüm*)
+    -
+      - Seviye
+      - Orta seviye (*Intermediate*)
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+- title: "Django Formülleri"
+  cover: "ws-django.png"
+  status: 1
+  category: 2
+  short_description: |
+    Hani **Best Practice** dedikleri, pek çok farklı yöntem içinden seçilmiş
+    en faydalı ve pek çok geliştiricinin “doğru” saydığı teknikleri göreceğiz.
+  
+  description: |
+    Bu derste işleyeceğimiz konular;
+    
+    - Django uygulaması dosya/dizin yapısı nasıl olmalı?
+    - Test, Development, Production gibi ortam ayrımları nasıl olmalı?
+    - PEP8 ve Django kurallarını bozmadan Python kodu nasıl geliştirilir?
+    - Yardımcı linting araçları: `autopep8` ve `flake8` entegrasyonu
+    - Kuralına uygun `Model` nasıl yazılmalı?
+    - `settings` püf noktaları
+    - `Query` püf noktaları: `select_related`, `prefetch_related` ve dahası
+    - `Query` püf noktaları: `Manager`’lar, `QuerySet`’ler
+    - Migration püf noktaları
+    - Django projelerinden yeni projeler üretme yöntemleri
+  
+  definitions:
+    -
+      - Süre
+      - 4 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Django
+      - 1.11+ (*ya da en son sürüm*)
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+
+- title: "Django ve Deployment"
+  cover: "ws-django.png"
+  status: 1
+  category: 2
+  short_description: |
+    Yazdığınız uygulama ne kadar iyi olursa olsun canlı sunucu ortamına
+    aktarılmadıkça bir anlam taşımaz. Uygulama kullanıcılar için yapılmışsa,
+    kullacıların da bu uygulamaya rahatça, sorunsuz olarak erişmesi gerekir.
+  
+  description: |  
+    Bu eğitimi, 2010 yılında izlediğim Jacob Kaplan-Moss’un **Django Deployment Workshop**
+    video serisinden esinlenerek hazırladım.
+    
+    * Django uygulamanızı farklı platformlara nasıl **deploy** edersiniz ?
+    * Hangi kütüphaneleri / araçları kullanmanız faydalı olur?
+    * Bir Django uygulamasını sunmak için gereken minimum şartlar?
+    * Orta ölçekli bir Django uygulamasını sunmak için gereken şartlar?
+    * Programlanabilir otomasyon yapmak mümkün mü?
+    
+    gibi konuları işleyeceğiz.
+
+  definitions:
+    -
+      - Süre
+      - 8 saat
+    -
+      - Python
+      - 3.6+
+    -
+      - Django
+      - 1.11+ (*ya da en son sürüm*)
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - Tüm örnek kodlara erişim
+# -----------------------------------------------------------------------------
+
+# GIT -------------------------------------------------------------------------  
+
+- title: "Komut Satırından GIT"
+  cover: "ws-git-101.png"
+  status: 1
+  category: 5
+  short_description: |
+    Linux çekirdeğinin programcısı [Linus Torvalds](https://github.com/torvalds) 
+    ’ın yazılım geliştirme dünyasına armağanı olan revizyon kontrol sistemi
+    `git` ile komut satırını kullanarak tanışmaya hazır mısınız?
+  
+  definitions:
+    - 
+      - Süre
+      - 8 saat
+    -
+      - Seviye
+      - Başlangıç
+    -
+      - Platform
+      - Windows, Linux, macOS
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+  
+  description: |
+    Revizyon kontrol aracı `git`’e yeni başlayanlar için ideal bir eğitim.
+    Herhangi bir grafik arayüzlü araca ihtiyaç duymadan git repository’si
+    içinde at koşturmaya ne dersiniz? :) Konu başlıkları;
+    
+    * DVCS nedir? Revizyon kontrolü nedir?
+    * GIT konfigürasyonu, ayarlar, kısa yollar
+    * Repository nedir? commit nedir?
+    * Durum kontrolü; `git log`
+    * Working area / Staging area kavramları
+    * `.gitignore` ne işe yarar?
+    * Branch nedir? ne işe yarar?
+    * Branch’leri birleştirmek; merge stratejileri: Fast-Forward, no-Fast-Forward, Recursive
+    * Merge conflict nedir? nasıl çözülür?
+    * Branch’leri birleştirmek; `rebase`
+    * Durum komutları; `git diff`
+    * Commit’leri birleştirmek: Interactive Rebase, squash, fixup vs...
+    * Tag, Stash, Cherry-Pick kavramları
+    * `reflog`, `amend`, `reset` işlemleri
+    * Revizyon karşılaştırması
+    * Repo içnde belli bir zamanda dolaşmak
+    * Repo kullanma, source code yönetme tavsiyleri, iş akışı
+    * Uzak repo’lar ile çalışma, takip etmek
+    * Bir takım ile uygulama geliştirirken repo yönetimi
+    * Pull/Merge request, GitHub, GitLab genek bakış.
+
+- title: "Geliştiriciler için GIT"
+  status: 1
+  cover: "ws-git-102.png"
+  category: 5
+  short_description: |
+    Gündelik hayatta bazen çok ihtiyacımız olan, bazen de sık rastlanmayan
+    durumlarda işimize yarayan çeşitli `git` komutları, geliştirme akışı
+    senaryoları çok işimize yarayabilir!
+  
+  description: |
+    Bu eğitim, hali hazırda, gündelik hayatta `git` kullanan geliştiricilere
+    hitap etmektedir. İşlenecek konular;
+    
+    * Merge commit nasıl yapılır?
+    * Interactive Rebase conflict çözümleri
+    * Bundling işlemi
+    * Hook’lar
+    * Detaylı arama ve gezinme işlemleri
+    * Detaylı diff işlemleri
+    * Commit’leri bölme
+    * Bisect ile hata ayıklama
+    * Repo genelinde tüm commit’lere müdahale etmek
+    * GPG ile commit/tag imzalama
+    * Commit annotation, commit mesajı ve `kommit`
+    * Patch
+    * Ekstra hileler ve ipuçları
+  
+  definitions:
+    - 
+      - Süre
+      - 4 saat
+    -
+      - Seviye
+      - Orta seviye (*Intermediate*)
+    -
+      - Platform
+      - Windows, Linux, macOS
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+
+# -----------------------------------------------------------------------------  
+
+# Ruby ------------------------------------------------------------------------
+
+- title: "Ruby 101"
+  cover: "ws-ruby-101.png"
+  status: 1
+  category: 3
+  short_description: |
+    Python ile kardeş, neredeyse aynı yaşta, çok elastik, biraz bumbastik,
+    evin yaramaz çocuğu Ruby dili ile tanışmaya hazır mısınız?
+  
+  description: |
+    Ruby, prensip olarak üretkenlik (*az kod, çok iş*) ve basitliğe odaklı,
+    dinamik ve açık-kaynaklı bir programlama dili. Okuması ve yazması kolay,
+    anlaşılabilir nitelikte! Mottosu ise şu:
+    
+    > Programlama eğlenceli birşeydir!
+    
+    Bu eğlenceli dünyaya girmeye hazır mısınız? İşleyeceğimiz konu başlıkları;
+    
+    * Ruby’nin genel çalışma prensibi
+    * Ruby syntax’ı (*söz dizimi*)
+    * İnteraktif kullanım: `irb` ve REPL kavramı
+    * Değişkenler, ön tanımlı değişkenler, PSEUDE değişkenler
+    * Operatörler, sabitler
+    * Fonksiyonlar, bloklar, Proc ve Lambda kavramları
+    * Koşullar
+    * Ruby veri yapıları: `Object`, `Number`, `String`, `Array`, `Hash`, `Symbol`
+    * Nesne yönelimli Ruby: `Class` ve `Module`
+    * Nesne ile derinlemesine analizler
+    * Enumeratörler, İteratörler
+    * Dosya sistemi (*File System*), IO ve Kernel modülü
+    * Exception Handling (*Hata yakalama*)
+    * Rubygems
+
+  definitions:
+    - 
+      - Süre
+      - 16 saat
+    -
+      - Seviye
+      - Başlangıç
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+        - <code>Time</code> ve <code>Date</code>
+        - Regular Expressions (*düzenli ifadeler*) giriş
+        - Monkey Patching
+        - Meta Programming
+        - Örnek Ruby paketi geliştirmek
+
+- title: "Middleman ile Websitesi yapmak"
+  cover: "ws-middleman-app.png"
+  status: 1
+  category: 3
+  short_description: |
+    Sadece `.html` dosyalarını sunabilen bir sunucunuz var. Yoooo, o bile yok,
+    sadece GitHub’da bir hesabınız var. O halde sizin de özgür bir websiteniz
+    olabilir.
+    
+    Blog sitesinden alış-veriş sitesine kadar çok acaip şeyler yapmaya hazır
+    mısınız? O halde sizi **Middleman** ile tanıştırmak istiyorum!
+  
+  description: |
+    **Static Site Generator**’lar ile yani programatik olarak türetebileceğimiz düz
+    html’lerden oluşan websiteleri yapmak hiç bu kadar kolay olmamıştı.
+    
+    Kişisel web siteleri, blog’ların yanı sıra, alış-veriş sitesine kadar
+    çok farklı konularda websitesi yapmak [Middleman](https://middlemanapp.com) ile mümkün.
+    
+    Bu eğitimde;
+    
+    * Middleman nedir? nasıl kurulur?
+    * `config.rb` ile ayarlar
+    * Middleman ile birlikte gelen kütüphaneler nelerdir?
+    * Html templating: Erb, Haml
+    * External Pipeline ile JavaScript eklentileri
+    * Template helper’lar
+    * Data otomasyonu
+    * I18N lokalizasyon
+    * Yapılan sitenin canlıya alınması (*deployment*)
+    
+    işleyeceğiz.
+    
+    #### Bonus
+    
+    * Kişisel Blog
+    * Alış-veriş sitesi
+  
+  definitions:
+    - 
+      - Süre
+      - 8 saat
+    - 
+      - Middleman
+      - 4.2+
+    -
+      - Seviye
+      - Başlangıç, 101 seviyesinde Ruby bilgisi gerekiyor
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+
+- title: "Sinatra 101"
+  cover: "ws-ruby-sinatra.png"
+  status: 1
+  category: 3
+  short_description: |
+    Ruby ile tanışmamda büyük rolü olan, pek çok framework’e ilham kaynağı
+    olan, author’u ile tanışma şansı yakaladığım, bence Ruby’nin efsane
+    web framework’ü Sinatra’yı A’dan Z’ye öğrenmek ister misiniz?
+  
+  description: |
+    Ruby dünyasının tanınmış isimlerinden [Den Benjamin](http://danbenjamin.com/)
+    Peepcode için yaptığı videoda;
+    
+    > Rack’den fazla, Rails’den az
+    
+    demişti. Bakalım haklı mı? Bu eğitimde işleyeceğimiz konular;
+    
+    * Sinatra’nın DSL yapısı
+    * Handlers, HTTP Methodları
+    * Params, Splat ve Regex kullanımı
+    * Koşullu yakalama
+    * View, ERB template
+    * Statik dosyalar, Layout mantığı
+    * **Sass** ve **Markdown** kullanımı
+    * Filtreler, Helper’lar
+    * `pass`, `halt`, `not_found`, `redirect`, `error` ve benzeri yakalayıcılar
+    * Konfigürasyon: `:test`, `:development`, `:production`
+    * Session yönetimi
+    * Sinatra ve Test
+    * "One file App" mi? yoksa "Structured App" mi?
+    * Deployment: Ubuntu (*Vagrant ortamında*) ve [Heroku](https://heroku.com)
+
+  definitions:
+    - 
+      - Süre
+      - 8 saat
+    - 
+      - Ruby
+      - 2.4+
+    -
+      - Seviye
+      - Başlangıç, 101 seviyesinde Ruby bilgisi gerekiyor
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+
+- title: "Sinatra ve Active Record"
+  cover: "ws-ruby-101.png"
+  status: 1
+  category: 3
+  short_description: |
+    Küçük projeleriniz, ya da hızla prototip olarak deneme yapmak istediğiniz
+    **CRUD** operasyonları gerekiyor. Sunucu ayağa kaldıracak vakit de yoksa
+    ne yapmak gerekiyor ? Ruby on Rails’in (*evet yanlış duymadınız*) can
+    damarı Active Record’u tek başına kullarak Sinatra uygulaması geliştirip
+    deploy ediyoruz!
+  
+  description: |
+    Ruby on Rails ile uğraşanların aşina olduğu, illa RoR olmadan da ayrı olarak
+    kullanabileceğimiz `Active Record` ile **Sinatra Blog** uygulaması geliştireceğiz.
+    
+    İşleyeceğimiz konular;
+    
+    * ORM nedir?
+    * Active Record’a giriş, isimlendirme kuralları ve diğer önemli kurallar
+    * Şema (*Schema*) kuralları
+    * Model yapısı
+    * Migration, veritabanı oluşturma
+    * Doğrulama (*validation*)
+    * Sinatra uygulaması ve Active Record ön hazırlık
+    * Active Record ve Rake task’ler
+    * Fat Model, Skinny Controller kavramı
+    * C.R.U.D
+    * Query yapma temelleri
+    * Tablolar arası ilişkiler
+    
+    #### Bonus
+    
+    [Heroku](https://heroku.com)’ya deploy edebileceğimiz Blog uygulaması geliştiriyoruz!
+
+  definitions:
+    - 
+      - Süre
+      - 8 saat
+    - 
+      - Ruby
+      - 2.4+
+    -
+      - Seviye
+      - Başlangıç, 101 seviyesinde Ruby bilgisi gerekiyor
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+
+- title: "Ruby ve TDD 101"
+  status: 1
+  category: 3
+  short_description: |
+    Ruby ile basit bir script bile geliştirseniz mutlaka **Test’le Yürüyen
+    Geliştirme** (*TDD*) metodolojisini takip etmeniz gerekir. Bu eğitimde,
+    Ruby ile birlikte gelen test kütüphanelerine ek olarak, popüler test
+    suit’lerini inceliyoruz.
+  
+  description: |
+    Geliştireceğimiz minik komut-satırı ruby uygulamasını TDD yani testle
+    yürüyen geliştirme prensipleri çerçevesinde programlayacağız. Bu eğitimde
+    aşağıdaki konuları işleyeceğiz;
+    
+    * Test’e giriş, testin önemi
+    * Ruby ile birlikte gelen test kütüphaneleri
+    * Test türleri neler?
+    * Mock, Stub, Test Doubles kavramları
+    * `Minitest` ve `Rspec` örnekleri
+    
+    #### Bonus
+    
+    Komut satırından [Pocket](https://getpocket.com) yapacağız!
+  
+  definitions:
+    - 
+      - Süre
+      - 8 saat
+    - 
+      - Ruby
+      - 2.4+
+    -
+      - Seviye
+      - Başlangıç, 101 seviyesinde Ruby bilgisi gerekiyor
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+
+- title: "Rack Uygulaması Geliştirmek"
+  cover: "ws-ruby-rack.png"
+  status: 1
+  category: 3
+  short_description: |
+    Ruby web uygulamalarının can damarı olan `Rack` ile neler yapabilirsiniz?
+    Daha önce hiç `Middleware` yazdınız mı? Bu eğitimde kendimize ait
+    minik bir web framework’ü geliştireceğiz.
+  
+  description: |
+    Ruby kullanarak geliştirilmiş web framework’lerinin neredeyse tamamı
+    Rack’i kullanır. Aslında [Ruby on Rails](http://rubyonrails.org/)’den
+    [Sinatra](http://www.sinatrarb.com/)’ya, [Ramaze](http://ramaze.net/)’den
+    [Padrino](http://padrinorb.com/)’ya kadar olan tüm framework’lere kısaca
+    **Rack App** demek yanlış sayılmaz.
+    
+    Rack aslında web sunucusu arayüzü, `request` ve `response` için **HTTP WRAPPER**’dır.
+    
+    Bu eğitimde;
+    
+    * **Rack** nedir? nasıl çalışır?
+    * **Rack Middleware** nedir? nasıl yapılır?
+    * Rack ile birlikte gelen ara katmanlar: `Rack::Protection`, `Rack::Attack` ve diğerleri
+    * Rack için extenstion geliştirmek
+    
+    gibi konuları işleyeceğiz.
+
+    #### Bonus
+    
+    Geliştireceğimiz basit bir Rack uygulamasını [Heroku](https://heroku.com)’ya deploy edeceğiz!
+
+  definitions:
+    - 
+      - Süre
+      - 8 saat
+    - 
+      - Ruby
+      - 2.4+
+    -
+      - Seviye
+      - Başlangıç, 101 seviyesinde Ruby bilgisi gerekiyor
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+
+- title: "Ruby Gem’i Nasıl Hazırlanır?"
+  cover: "ws-ruby.png"
+  status: 1
+  category: 3
+  short_description: |
+    Geliştirdiğiniz bir komut-satırı uygulamasınız, ya da Ruby on Rails için
+    yazdığınız bir eki / paketi, ya da yardımcı kütüphaneyi nasıl dağıtacaksınız?
+    
+    Test Driven Development (*TDD*) metodolojisi kullanarak kuralına uygun 
+    Ruby paketi geliştiriyoruz.
+
+  description: |
+    [Bundler](http://bundler.io/) ile yapacağımız ruby gem’inin **boiler plate**’ini
+    yani içi boş şablonunu hazırlayacağız. Daha sonra [minitest](https://github.com/seattlerb/minitest)
+    ile TDD yani test ile yürüyen geliştirme yaparak işleme devam edeceğiz. Biten gem’i
+    [Rubygems](https://rubygems.org)’e göndereceğiz (*publish*).
+    
+    Bu derste işleyeceğimiz konular;
+    
+    * Bundler
+    * Minitest
+    * Local geliştirme ortamı
+    * SemVer ile gem versionu, yeni **release** çıkmak
+
+  definitions:
+    - 
+      - Süre
+      - 4 saat
+    - 
+      - Ruby
+      - 2.4+
+    -
+      - Seviye
+      - Başlangıç, 101 seviyesinde Ruby bilgisi gerekiyor
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+
+- title: "Makefile değil Rakefile"
+  cover: "ws-ruby.png"
+  status: 1
+  category: 3
+  short_description: |
+    Komut satırından pek çok işinizi otomatize etmek ister misiniz? Kendisini
+    saygıyla andığım, Ruby dünyasının en sevilen isimlerinden sevgili [Jim
+    Weirich](https://github.com/jimweirich)’in bizlere armağanı `rake` ile
+    tanışmaya hazır mısınız?
+  
+  description: |
+    `make` komutu iş otomasyonu yapmamızı sağlar. Özellikle derlemeli dillerde
+    kaynak koddan **build** çıkartmak için bir sıra komutu arka arkaya
+    çalıştırmak gerekir. İşte bu durumda `Makefile` hayat kurtarır. `make`
+    ile çalıştırılacak komutlar / işler `Makefile` dosyasına yazılır.
+    
+    19 Şubat 2014’te aramızdan ayrılan sevgili [Jim Weirich](https://github.com/jimweirich)
+    Ruby programcılarının da aynı mantıkta kolay iş otomasyonu yapabilmesi gerektiğini
+    düşünmüş ve `rake` aracını yazmış. Aslında **ruby-make** ve *Makefile* olmuş **Rakefile**
+    
+    Bu eğitimde, `rake` ile yapılabilecek neredeyse herşeyi göreceğiz;
+    
+    * Kendine özgü DSL’i ile Rakefile’a merhaba
+    * Basit tasklar
+    * Task bağımlılıkları
+    * Parametre alan tasklar
+    * Namespace mantığı
+    * `multitask` özelliği
+    * `rule` özelliği
+    * Rake ile yerleşik gelen tasklar
+    * `File`, `FileList`, `Directory` ile ilgili araçlar
+    * Global Task nedir?
+    * Gerçek hayat rake task örnekleri
+    
+    #### Bonus
+    
+    * Otomatik tamamlama (*bash completion*)
+    * Uzakta (*remote*) task çalıştırmak
+    * Django uygulamalarında (*Python*) Rakefile kullanana deli derler mi?
+
+  definitions:
+    - 
+      - Süre
+      - 8 saat
+    -
+      - Ruby
+      - 2.4+
+    -
+      - Seviye
+      - Başlangıç, 101 seviyesinde Ruby bilgisi gerekiyor
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+# -----------------------------------------------------------------------------
+
+# Unix ------------------------------------------------------------------------
+
+- title: "Bash 101"
+  status: 1
+  cover: "ws-bash-101.png"
+  category: 4
+  short_description: |
+    Çekirdeğe (*kernel’a*) açılan kapıdır ==BASH==. Her Linux/Unix tabanlı
+    işletim sisteminde mutlaka *SHELL* aracı bulunur ve bunların çeşitleri
+    vardır. İşte içlerindeki en çok kullanılan ve bilinen shell ise BASH’dir.
+  
+  description: |
+    Bu eğitimde, **B**ourne **A**gain **SH**ell ya da kısaca BASH’e giriş yapacağız.
+    Gündelik hayatta sık kullandığımız komutlar, dosya sistemi, kullancı/grup
+    yetki sistemi gibi temel konulara değineceğiz. Konularımız;
+
+    * Değişken ve ENVIRONMENT / ENVIRONMENT VARIABLE kavramları
+    * Bütünleşik gelen komutlara genel bakış
+    * Profil, ayarlar, özellikler
+    * Komut çağırmak, yardım almak
+    * Yetki sistemi (*kullancı, grup ve diğerleri*)
+    * Dosyalar, dosyalar hakkında detaylı bilgi almak
+    * Syntax (*söz dizimi*)
+    * Meta karakterler, parantez ifadeleri, tek/çift tırnak kullanımı
+    * Komut formasyonu ve zincirleme işlemleri
+    * File descriptor, IO Redirection (*Yönlendirme*) ve PIPE
+    * STDIN / STDOUT / STDERR kavramları
+    * Veri tipleri, matematiksel ifadeler
+    * Fonksiyon, koşul ve döngüler
+    
+    #### Bonus
+    
+    * Bash completion (**otomatik tamamlama**) anatomisi
+    * Shell-options nedir?
+    * I18N; lokalizasyon
+    
+  definitions:
+    - 
+      - Süre
+      - 6 saat
+    -
+      - Seviye
+      - Başlangıç
+    -
+      - Platform
+      - Linux, macOS
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+
+- title: "Vagrant ile BOX yapmak"
+  cover: "ws-vagrant.png"
+  status: 1
+  category: 4
+  short_description: |
+    Hızlı hızlı birşeyleri test etmek için **Ubuntu**’ya mı ihtiyacınız var?
+    Yoksa başka bir işletim sistemi mi kullanıyorsunuz? Geliştirme takımınız
+    için production ortamının bir kopyasına mı ihtiyacınız var?
+  
+  descripton: |
+    Bu eğitimde kendi isteğimize göre özelleştirdiğimiz `vagrant box`’ı üretmeyi
+    öğreneceğiz. VirtualBox için, güncel Ubuntu disk-imajını kullanarak yepyeni
+    bir box yapacağız. İşleyeceğimiz konular;
+    
+    * VirtualBox konfigürasyonu
+    * Ubuntu kurulumu
+    * VirtualBox driver’larının kurulumu
+    * Vagrant için gerekli kullanıcı provision’ingi
+    * Network ayarları
+    * Box’ın kurulumu ve güncellenmesi
+    * Vagrant Host/Guest hileleri
+    
+    #### Bonus
+    
+    Nginx web sunucusu kurulumu ve Box’a entegrasyon
+  
+  definitions:
+    - 
+      - Süre
+      - 8 saat
+    -
+      - Seviye
+      - Başlangıç
+    -
+      - Platform
+      - macOS
+    -
+      - Ekstra
+      -
+        - Eğitim için özel hazırlanmış pdf kitap
+        - Eğitim esnasında yapılan kayıt videosu
+
+# -----------------------------------------------------------------------------
