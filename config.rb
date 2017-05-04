@@ -4,6 +4,7 @@ require 'active_support/all'
 
 # Tilt::SYMBOL_ARRAY_SORTABLE = false
 
+activate :livereload
 activate :i18n
 Time.zone = 'Europe/Istanbul'
 helpers ActiveSupport::NumberHelper
@@ -79,16 +80,39 @@ page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
 
-['hakkimda', 'sunumlar', 'kitaplar', 'iletisim', 'cv'].each do |page|
-  proxy "/sayfa/tr/#{page}/index.html", "/statics/tr/#{page}.html",
-    locals: { lang: :tr },
-    ignore: true
+def build_proxy_pages_for_menu_items(language)
+  page_sayfa = {
+    'en': "page",
+    'tr': "sayfa",
+  }
+  menu_items = data.send("top_menu_#{language}")
+  menu_items.links.each do |link|
+    page_key = link.url.split("/").last
+    if page_key and !page_key.include?(language)
+      proxy_from   = "/statics/#{language}/#{page_key}.html"
+      proxy_to = "/#{page_sayfa[language.to_sym]}/#{language}/#{page_key}/index.html"
+      proxy proxy_to,
+            proxy_from,
+            locals: { lang: language.to_sym },
+            ignore: true
+    end
+  end
 end
 
-['about', 'contact', 'resume', 'demoscene'].each do |page|
-  proxy "/page/en/#{page}/index.html", "/statics/en/#{page}.html",
-  locals: { lang: :en },
-  ignore: true
+build_proxy_pages_for_menu_items "tr"
+build_proxy_pages_for_menu_items "en"
+
+data.workshops_tr.workshop.each do |workshop|
+  proxy_to = "/sayfa/tr/egitimler/#{workshop.title.to_url}/index.html"
+  proxy_from = "/templates/workshop.html"
+  workshop.url = "#{File.dirname(proxy_to)}/"
+  local_vars = {
+    workshop: workshop,
+    lang: :tr,
+  }
+  proxy proxy_to, proxy_from,
+        locals: local_vars,
+        ignore: true
 end
 
 configure :build do

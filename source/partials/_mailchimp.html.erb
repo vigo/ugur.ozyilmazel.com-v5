@@ -1,0 +1,45 @@
+<div id="bulletin-subscription">
+    <form id="mailchimp-form" name="mailchimp-form" action="//ozyilmazel.us6.list-manage.com/subscribe/post?u=97dc390c1ceba026d06a28735&amp;id=3af40fc236" method="post" target="_blank" novalidate>
+        <h4>Bülten</h4>
+        <p>
+            Düzenli olarak (<em>haftalık planlıyorum</em>) verdiğim eğitim konuları ve bilgi 
+            sahibi olduğum geliştirme platformları ile ilgili olarak;
+        </p>
+        <ul>
+            <li>Yeni eklenen ya da çıkan eğitimlerimi</li>
+            <li>Yeni blog postlarımı</li>
+            <li>Önemli olduğunu düşündüğüm haberleri</li>
+        </ul>
+        <p>
+            içeren <strong>e-posta bülteni</strong> yayınlayacağım. Bültenime üye olabilirsiniz. Üyeleri 
+            çeşitli sürprizler de bekliyor olacak!
+        </p>
+        <div class="row">
+            <div class="col-md-10">
+                <input class="form-control" placeholder="Lütfen e-posta adresinizi girin" type="email" name="EMAIL" id="mce-EMAIL">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary btn-custom">Üye ol</button>
+            </div>
+        </div>
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_97dc390c1ceba026d06a28735_3af40fc236" tabindex="-1" value=""></div>
+    </form>
+</div>
+
+<% content_for :extra_js do %>
+<script>
+    $(document).ready(function(){
+        $("#mailchimp-form").submit(function(ev){
+            if($("#mce-EMAIL").val().length > 0){
+                return;
+            }
+            else {
+                window.alert('Lütfen e-posta girin!');
+                $("#mce-EMAIL").focus();
+                ev.preventDefault();
+            }
+        });
+    });
+</script>
+<% end %>
+

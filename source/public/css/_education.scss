@@ -1,0 +1,75 @@
+div#workshops {
+  margin-top: 4rem;
+  
+  h1 {
+    border-bottom: 4px solid $heading1-color;
+    margin-bottom: $common-mb * 1.5;
+  }
+  
+  a.btn::after { content: ""; }
+  
+  .btn-custom {
+    background-color: $heading1-color;
+    border-radius: 0;
+    &:hover {
+      background-color: lighten($heading1-color, 5);
+    }
+  }
+  
+  .workshop {
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px dotted #ddd;
+    
+    ul,ol {
+      margin-bottom: 2rem;
+    }
+    
+    h1, h2, h3, h4 {
+      margin-bottom: $common-mb;
+    }
+    
+    .short_description {
+      font-size: 1.4em;
+      line-height: 1.6em;
+    }
+    
+    .description {
+      p:first-child {
+        font-size: 1.2em;
+        line-height: 1.6em;
+      }
+    }
+  }
+  
+  #workshop-category-form {
+    select {
+      height: 3em;
+      border-radius: 0px;
+    }
+  }
+  
+  table.definitions {
+    width: 100%;
+    margin-bottom: 3rem;
+    th, td { 
+      padding: 8px 2em 8px 0em;
+      vertical-align: top;
+    }
+    td:first-child {
+      color: $heading1-color;
+      font-weight: bold;
+      width: 20%;
+    }
+  }
+}
+
+#mailchimp-form {
+  input {
+    border-radius: 0;
+  }
+}
+
+#request-info-area {
+  padding: 2rem 0;
+}

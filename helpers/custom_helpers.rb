@@ -21,7 +21,7 @@ module CustomHelpers
   end
 
   def markdown(input)
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new, config[:markdown])
     markdown.render(input)
   end
   
