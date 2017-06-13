@@ -124,7 +124,7 @@ workshop:
   category: 1
   cover: "ws-python.png"
   short_description: |
-    İlk günden beri içinde kendine özgü test mekanizmalarıyla gelen Python’un
+    ==İlk günden beri== içinde kendine özgü test mekanizmalarıyla gelen Python’un
     en temel test yöntemlerinden başlayarak, daha modern ve komplike yöntemleri
     inceleyeceğiz bu eğitimde.
   
@@ -166,7 +166,7 @@ workshop:
   cover: "ws-python.png"
   short_description: |
     Geliştirdiğiniz herhangi bir python uygulamasını ya da **re-usable** denilen,
-    tekrar tekrar kullanılabilirliği olan bir Django uygulamasını dağıtmak
+    ==tekrar tekrar== kullanılabilirliği olan bir Django uygulamasını dağıtmak
     istediğinizde, Python kurallarına uygun bir modül / paket hazırlamanız
     gerekiyor!
   
@@ -210,7 +210,7 @@ workshop:
   status: 1
   category: 2
   short_description: |
-    Aklınıza gelen en hızlı web geliştirme yöntemini ya da sürecini düşünün ve
+    Aklınıza gelen ==en hızlı web geliştirme== yöntemini ya da sürecini düşünün ve
     hemen **unutun!** Django, Python ile geliştirilmiş belkide en iyi web uygulama
     geliştirme aracı/çatısı ve pilleri de içinde!
   
@@ -273,7 +273,7 @@ workshop:
   short_description: |
     Django ile yeni tanışan bir kişinin ilk görüşte aşık olduğu şey hiç şüphesiz
     Django ile beraber gelen **Admin Site** yani Admin Panel’dir. Django admin
-    ile yapabileceklerimizin sınırı neredeyse yok!
+    ile yapabileceklerimizin ==sınırı== neredeyse yok!
 
   description: |
     Web geliştiricilerinin Django’ya aşık olmasını sağlayan bence başlıca
@@ -317,7 +317,7 @@ workshop:
   category: 2
   short_description: |
     Admin Panel’i öyle bir hale getireceğiz ki kimse buna inanmayacak! Dash-board’lar,
-    özel formlar, Inline form setleri ve daha pek çok püf noktası bu derste!
+    özel formlar, Inline form setleri ve daha ==pek çok püf noktası== bu derste!
   
   description: |
     Eğer [Django ve Admin Panel - I](/sayfa/tr/egitimler/django-ve-admin-panel-i/) eğitimini aldıysanız bu tam size göre!
@@ -359,7 +359,7 @@ workshop:
   status: 1
   category: 2
   short_description: |
-    **Authorization** ile **Authentication** arasındaki fark nedir? Django bize
+    ==Authorization ile Authentication== arasındaki **fark** nedir? Django bize
     pek çok hazır özellik ile geliyor. Kendi kullanıcı mekanizmamızı
     üretebildiğimiz gibi kendi özel yetkilendirme mekanizmamızı da yapabiliyoruz.
   
@@ -398,7 +398,7 @@ workshop:
   category: 2
   short_description: |
     **O**bject **R**elational **M**appers ya da Mapping. Django’nun güçlü
-    olduğu konulardan biri. Bir satır SQL kodu yazmadan veritabanı içinde
+    olduğu konulardan biri. ==Bir satır SQL kodu== yazmadan veritabanı içinde
     her türlü sorgulama işlemini yapmak, veritabanının cinsinden bağımsız
     olarak çalışabilmek ve herşeyi Python dili ile programatik hale getirmek...
   
@@ -444,8 +444,8 @@ workshop:
   category: 2
   short_description: |
     Zaten elimizde yazdığımız bir Django uygulaması var. Ee o halde bunu
-    neden hemen API haline getirmiyoruz? Hazır modellerimiz varken? İşte
-    DRF ya da Django REST Framework bu durumlarda derdimize derman oluyor...
+    neden hemen **API** haline getirmiyoruz? Hazır modellerimiz varken? İşte
+    DRF ya da ==Django REST Framework== bu durumlarda derdimize derman oluyor...
 
   description: |
     API sunmak ya da geliştirmek... Django uygulamanızı dış dünyaya açmak
@@ -495,7 +495,7 @@ workshop:
   category: 2
   short_description: |
     Kullanıcıdan girdi almak, bunu veritabanına kaydetmek ya da değiştirmek...
-    Veritabanındaki tablodan otomatik form üretmek... Bilgi doğrulaması
+    Veritabanındaki tablodan ==otomatik form== üretmek... Bilgi doğrulaması
     yapmak... İşte Django formları bize bunları ve dahasını sağlıyor...
   
   description: |
@@ -551,7 +551,7 @@ workshop:
   short_description: |
     Uzun süre direndiğim ama daha sonra da kullanmadığım için çok pişman olduğum,
     alışkanlık yapan :) pek çok harika özelliği bana sağlayan ve işlerimi 
-    kolaylaştıran **Class-based Views** ile tanışmaya, hızlı Django uygulamaları 
+    kolaylaştıran ==Class-based Views== ile tanışmaya, hızlı Django uygulamaları 
     geliştirmeye hazır mısınız?
   
   description: |
@@ -603,7 +603,7 @@ workshop:
     
     Fakat Django’da bir yere kadar bunu otomatik olarak yapabiliyor. İşte
     bu eğitimde kendi başımıza migration yazmayı, manuel olarak **squash** yapmayı,
-    **Integrity**’i korumayı ve benzeri püf noktalarını öğreneceğiz.
+    ==Integrity==’i korumayı ve benzeri püf noktalarını öğreneceğiz.
   
   description: |
     
@@ -652,8 +652,8 @@ workshop:
   status: 1
   category: 2
   short_description: |
-    Hani **Best Practice** dedikleri, pek çok farklı yöntem içinden seçilmiş
-    en faydalı ve pek çok geliştiricinin “doğru” saydığı teknikleri göreceğiz.
+    Hani ==Best Practice== dedikleri, pek çok farklı yöntem içinden seçilmiş
+    en faydalı ve pek çok geliştiricinin “**doğru**” saydığı teknikleri göreceğiz.
   
   description: |
     Bu derste işleyeceğimiz konular;
@@ -691,8 +691,8 @@ workshop:
   status: 1
   category: 2
   short_description: |
-    Yazdığınız uygulama ne kadar iyi olursa olsun canlı sunucu ortamına
-    aktarılmadıkça bir anlam taşımaz. Uygulama kullanıcılar için yapılmışsa,
+    Yazdığınız uygulama ne kadar iyi olursa olsun ==canlı sunucu ortamına==
+    aktarılmadıkça **bir anlam taşımaz**. Uygulama kullanıcılar için yapılmışsa,
     kullacıların da bu uygulamaya rahatça, sorunsuz olarak erişmesi gerekir.
   
   description: |  
@@ -732,7 +732,7 @@ workshop:
   status: 1
   category: 5
   short_description: |
-    Linux çekirdeğinin programcısı [Linus Torvalds](https://github.com/torvalds) 
+    ==Linux çekirdeği==nin programcısı [Linus Torvalds](https://github.com/torvalds) 
     ’ın yazılım geliştirme dünyasına armağanı olan revizyon kontrol sistemi
     `git` ile komut satırını kullanarak tanışmaya hazır mısınız?
   
@@ -783,7 +783,7 @@ workshop:
   cover: "ws-git-102.png"
   category: 5
   short_description: |
-    Gündelik hayatta bazen çok ihtiyacımız olan, bazen de sık rastlanmayan
+    ==Gündelik== hayatta bazen çok ihtiyacımız olan, bazen de sık rastlanmayan
     durumlarda işimize yarayan çeşitli `git` komutları, geliştirme akışı
     senaryoları çok işimize yarayabilir!
   
@@ -935,8 +935,8 @@ workshop:
   category: 3
   short_description: |
     Ruby ile tanışmamda büyük rolü olan, pek çok framework’e ilham kaynağı
-    olan, author’u ile tanışma şansı yakaladığım, bence Ruby’nin efsane
-    web framework’ü Sinatra’yı A’dan Z’ye öğrenmek ister misiniz?
+    olan, author’u ile tanışma şansı yakaladığım, bence Ruby’nin ==efsane
+    web framework==’ü **Sinatra**’yı A’dan Z’ye öğrenmek ister misiniz?
   
   description: |
     Ruby dünyasının tanınmış isimlerinden [Den Benjamin](http://danbenjamin.com/)
@@ -983,9 +983,9 @@ workshop:
   category: 3
   short_description: |
     Küçük projeleriniz, ya da hızla prototip olarak deneme yapmak istediğiniz
-    **CRUD** operasyonları gerekiyor. Sunucu ayağa kaldıracak vakit de yoksa
+    ==CRUD operasyonları== gerekiyor. Sunucu ayağa kaldıracak vakit de yoksa
     ne yapmak gerekiyor ? Ruby on Rails’in (*evet yanlış duymadınız*) can
-    damarı Active Record’u tek başına kullarak Sinatra uygulaması geliştirip
+    damarı **Active Record**’u tek başına kullarak ==Sinatra uygulaması== geliştirip
     deploy ediyoruz!
   
   description: |
@@ -1031,8 +1031,8 @@ workshop:
   status: 1
   category: 3
   short_description: |
-    Ruby ile basit bir script bile geliştirseniz mutlaka **Test’le Yürüyen
-    Geliştirme** (*TDD*) metodolojisini takip etmeniz gerekir. Bu eğitimde,
+    Ruby ile basit bir script bile geliştirseniz mutlaka ==Test’le Yürüyen
+    Geliştirme== (**TDD**) metodolojisini takip etmeniz gerekir. Bu eğitimde,
     Ruby ile birlikte gelen test kütüphanelerine ek olarak, popüler test
     suit’lerini inceliyoruz.
   
@@ -1120,9 +1120,9 @@ workshop:
   category: 3
   short_description: |
     Geliştirdiğiniz bir komut-satırı uygulamasınız, ya da Ruby on Rails için
-    yazdığınız bir eki / paketi, ya da yardımcı kütüphaneyi nasıl dağıtacaksınız?
+    yazdığınız bir eki / paketi, ya da yardımcı kütüphaneyi ==nasıl dağıtacaksınız?==
     
-    Test Driven Development (*TDD*) metodolojisi kullanarak kuralına uygun 
+    Test Driven Development (**TDD**) metodolojisi kullanarak kuralına uygun 
     Ruby paketi geliştiriyoruz.
 
   description: |
@@ -1159,7 +1159,7 @@ workshop:
   status: 1
   category: 3
   short_description: |
-    Komut satırından pek çok işinizi otomatize etmek ister misiniz? Kendisini
+    Komut satırından pek çok işinizi ==otomatize== etmek ister misiniz? Kendisini
     saygıyla andığım, Ruby dünyasının en sevilen isimlerinden sevgili [Jim
     Weirich](https://github.com/jimweirich)’in bizlere armağanı `rake` ile
     tanışmaya hazır mısınız?
@@ -1218,7 +1218,7 @@ workshop:
   cover: "ws-bash-101.png"
   category: 4
   short_description: |
-    Çekirdeğe (*kernel’a*) açılan kapıdır ==BASH==. Her Linux/Unix tabanlı
+    ==Çekirdeğe (*kernel’a*) açılan kapıdır== **BASH**. Her Linux/Unix tabanlı
     işletim sisteminde mutlaka *SHELL* aracı bulunur ve bunların çeşitleri
     vardır. İşte içlerindeki en çok kullanılan ve bilinen shell ise BASH’dir.
   
@@ -1270,7 +1270,7 @@ workshop:
   short_description: |
     Hızlı hızlı birşeyleri test etmek için **Ubuntu**’ya mı ihtiyacınız var?
     Yoksa başka bir işletim sistemi mi kullanıyorsunuz? Geliştirme takımınız
-    için production ortamının bir kopyasına mı ihtiyacınız var?
+    için ==production ortamının bir kopyası==na mı ihtiyacınız var?
   
   descripton: |
     Bu eğitimde kendi isteğimize göre özelleştirdiğimiz `vagrant box`’ı üretmeyi
