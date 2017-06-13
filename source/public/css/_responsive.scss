@@ -42,6 +42,22 @@
     font-size: 1.1rem;
     line-height: 2rem;
   }
+  
+  body.sayfa_tr_egitimler {
+    .workshop {
+      h2 {
+        font-size: 1.4rem;
+      }
+      p {
+        font-size: 1.1rem;
+        line-height: 2rem;
+//        background: red;
+      }
+      .btn-custom {
+        display: block;
+      }
+    }
+  }
 }
 
 @media (min-width: 1200px){

@@ -160,7 +160,6 @@ workshop:
         - Eğitim esnasında yapılan kayıt videosu
         - Tüm örnek kodlara erişim
 
-
 - title: "Python Paketi Hazırlamak"
   status: 1
   category: 1
@@ -231,7 +230,7 @@ workshop:
     * Django uygulaması (*application*) nedir?
     * Django projesi dizin/dosya yapısı düzenlemesi, ve Revizyon kontrolü
     * Development, Testing, Staging ve Production ortamları
-    * Migration (*temel açıklmama*)
+    * Migration (*temel açıklama*)
     * Veritabanı tercihi
     * Django ORM: Model planlamak ve oluşturmak
     * Django shell
@@ -556,8 +555,8 @@ workshop:
     geliştirmeye hazır mısınız?
   
   description: |
-    Bu eğitimde, klasik View mantığı ile Class-based View mantığı arasındaki
-    farkları görmenin yanı sıra, Örnek bir CRUD uygulaması da geliştireceğiz.
+    Bu eğitimde, *klasik View* mantığı ile *Class-based View* mantığı arasındaki
+    farkları görmenin yanı sıra, örnek bir CRUD uygulaması da geliştireceğiz.
     İşleyeceğimiz konular;
     
     * Class-based View nedir?
@@ -604,7 +603,7 @@ workshop:
     
     Fakat Django’da bir yere kadar bunu otomatik olarak yapabiliyor. İşte
     bu eğitimde kendi başımıza migration yazmayı, manuel olarak **squash** yapmayı,
-    Integrity’i korumayı ve benzeri püf noktalarını öğreneceğiz.
+    **Integrity**’i korumayı ve benzeri püf noktalarını öğreneceğiz.
   
   description: |
     
@@ -667,7 +666,7 @@ workshop:
     - `settings` püf noktaları
     - `Query` püf noktaları: `select_related`, `prefetch_related` ve dahası
     - `Query` püf noktaları: `Manager`’lar, `QuerySet`’ler
-    - Migration püf noktaları
+    - `Migration` püf noktaları
     - Django projelerinden yeni projeler üretme yöntemleri
   
   definitions:
