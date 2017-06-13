@@ -109,6 +109,7 @@ data.workshops_tr.workshop.each do |workshop|
   local_vars = {
     workshop: workshop,
     lang: :tr,
+    meta_description: "Eğitimler: #{workshop.title}",
   }
   proxy proxy_to, proxy_from,
         locals: local_vars,

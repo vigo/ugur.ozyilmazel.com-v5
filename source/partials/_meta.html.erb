@@ -26,6 +26,8 @@ end
 meta_author = config[:meta_author_name]
 meta_date = Time.now.xmlschema
 meta_copyright = "(c) 2006 / #{Time.now.year} - #{meta_author}"
+
+og_description = locals[:meta_description] if locals[:meta_description]
 %>
 <meta name="date" content="<%= meta_date %>" />
         <meta name="description" content="<%= og_description %>" />
