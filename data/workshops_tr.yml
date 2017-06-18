@@ -9,6 +9,8 @@ category:
     name: "Unix"
   - id : 5
     name: "Git"
+  - id : 6
+    name: "Programlama"
 
 workshop:
 
@@ -1272,7 +1274,7 @@ workshop:
     Yoksa başka bir işletim sistemi mi kullanıyorsunuz? Geliştirme takımınız
     için ==production ortamının bir kopyası==na mı ihtiyacınız var?
   
-  descripton: |
+  description: |
     Bu eğitimde kendi isteğimize göre özelleştirdiğimiz `vagrant box`’ı üretmeyi
     öğreneceğiz. VirtualBox için, güncel Ubuntu disk-imajını kullanarak yepyeni
     bir box yapacağız. İşleyeceğimiz konular;
@@ -1304,5 +1306,41 @@ workshop:
       -
         - Eğitim için özel hazırlanmış pdf kitap
         - Eğitim esnasında yapılan kayıt videosu
+
+# Programlama -----------------------------------------------------------------
+
+- title: "Temel Programlama - 101"
+  cover: "ws-generic.jpg"
+  status: 1
+  category: 6
+  short_description: |
+    Bilgisayar programlamaya yeni başlayan hatta başlamayı planlayanlar için
+    hazırlanmış, programlamanın mantığını anlatan eğitim!
+
+  description: |
+    Bilgisayar nasıl programlanır? Yazılım geliştirmenin temelinde neler yatıyor?
+    Neredeyse bilgisayara hiç ihtiyacınız olmadan katılabileceğiniz, tamamen
+    kavramlar üzerine kurulu bir müfredat.
+    
+    Bu eğitimde aşağıdaki soruların cevaplarını arayacağız;
+    
+    * Bilgisayar Programı Nedir?
+    * Programlama Nedir?
+    * Programlama Dili Nedir?
+    * Syntax Nedir?
+    * Yazılan kod nasıl çalışır?
+    * Derlenen ve Yorumlanan Diller kavramı
+    * Hafıza ve adresleme kavramları nedir?
+    * Değişken, sabit, bit, byte ve Veri Tipleri ne demek?
+    * Fonksiyon nedir?
+    * Algoritma nedir?
+  
+  definitions:
+    - 
+      - Süre
+      - 4 saat
+    - 
+      - Seviye
+      - Hiç programlama bilmeyenler için
 
 # -----------------------------------------------------------------------------
