@@ -729,22 +729,22 @@ workshop:
 
 # GIT -------------------------------------------------------------------------  
 
-- title: "Komut Satırından GIT 101"
+- title: "Gelişmiş GIT 102"
   cover: "ws-git-101.png"
   status: 1
   category: 5
   short_description: |
-    ==Linux çekirdeği==nin programcısı [Linus Torvalds](https://github.com/torvalds) 
-    ’ın yazılım geliştirme dünyasına armağanı olan revizyon kontrol sistemi
-    `git` ile komut satırını kullanarak tanışmaya hazır mısınız?
-  
+    ==Gündelik== hayatta bazen çok ihtiyacımız olan, bazen de sık rastlanmayan
+    durumlarda işimize yarayan çeşitli `git` komutları, geliştirme akışı
+    senaryoları çok işimize yarayabilir!
+
   definitions:
     - 
       - Süre
       - 2 gün (12 saat)
     -
       - Seviye
-      - Başlangıç
+      - Orta seviye (*Intermediate*)
     -
       - Platform
       - Windows, Linux, macOS
@@ -755,57 +755,62 @@ workshop:
         - Eğitim esnasında yapılan kayıt videosu
   
   description: |
-    Revizyon kontrol aracı `git`’e yeni başlayanlar için ideal bir eğitim.
-    Herhangi bir grafik arayüzlü araca ihtiyaç duymadan git repository’si
-    içinde at koşturmaya ne dersiniz? :) Konu başlıkları;
-    
-    * DVCS nedir? Revizyon kontrolü nedir?
-    * GIT konfigürasyonu, ayarlar, kısa yollar
-    * Repository nedir? commit nedir?
-    * Durum kontrolü; `git log`
-    * Working area / Staging area kavramları
-    * `.gitignore` ne işe yarar?
-    * Branch nedir? ne işe yarar?
-    * Branch’leri birleştirmek; merge stratejileri: Fast-Forward, no-Fast-Forward, Recursive
-    * Merge conflict nedir? nasıl çözülür?
-    * Branch’leri birleştirmek; `rebase`
-    * Durum komutları; `git diff`
-    * Commit’leri birleştirmek: Interactive Rebase, squash, fixup vs...
-    * Tag, Stash, Cherry-Pick kavramları
-    * `reflog`, `amend`, `reset` işlemleri
-    * Revizyon karşılaştırması
-    * Repo içnde belli bir zamanda dolaşmak
-    * Repo kullanma, source code yönetme tavsiyleri, iş akışı
-    * Uzak repo’lar ile çalışma, takip etmek
-    * Bir takım ile uygulama geliştirirken repo yönetimi
-    * Pull/Merge request, GitHub, GitLab genek bakış.
+    Bu eğitim, hali hazırda, gündelik hayatta `git` kullanan geliştiricilere
+    hitap etmektedir. İşlenecek konular;
 
-- title: "Geliştiriciler için GIT"
+    * Derinlemesine Git konfigürasyonu dosyası
+    * Dosyaları sıkıştırmak
+    * Merge Commit nasıl ve neden yapılır?
+    * Bundle işlemi nedir?
+    * Interactive Rebase conflict çözümleri nelerdir?
+    * Git Hook’lar nelerdir?
+    * Komut satırından revizyon gezmek
+    * Repo ve revizyonlar içinde arama yapmak
+    * Detaylı `diff` işlemleri
+    * Commit’i bölmek, birleştirmek
+    * Commit’lerin sırasını değiştirmek
+    * Bisect ile hata ayıklamak
+    * Repo genelinde tüm commit’lere müdahale etmek
+    * GPG ile commit/tag imzalama
+    * Commit annotation, commit mesajı ve `kommit`
+    * Patch yöntemleri
+    * Reflog, garbage collection, geriye dönebilmek
+    * Konfigürasyon hileleri
+    * Upstream mantığı nedir ?
+    * Best Practice’ler
+
+- title: "Herkes için GIT"
   status: 1
   cover: "ws-git-102.png"
   category: 5
   short_description: |
-    ==Gündelik== hayatta bazen çok ihtiyacımız olan, bazen de sık rastlanmayan
-    durumlarda işimize yarayan çeşitli `git` komutları, geliştirme akışı
-    senaryoları çok işimize yarayabilir!
-  
+    Daha önce hiç `git` kullanmadınız? Ya da yeni başladınız. Peki tam olarak
+    neler yapabileceğinizi biliyor musunuz? Komut satırından `git` kullanmak
+    düşündüğünüzden daha kolay!
+
   description: |
-    Bu eğitim, hali hazırda, gündelik hayatta `git` kullanan geliştiricilere
-    hitap etmektedir. İşlenecek konular;
+    Bu eğitim, `git` kullanmaya yeni başlayanlar ya da daha önce hayatında hiç
+    revizyon kontrol sistemi kullanmamış geliştiricilere hitap etmektedir.
+    İşlenecek konular;
     
-    * Merge commit nasıl yapılır?
-    * Interactive Rebase conflict çözümleri
-    * Bundling işlemi
-    * Hook’lar
-    * Detaylı arama ve gezinme işlemleri
-    * Detaylı diff işlemleri
-    * Commit’leri bölme
-    * Bisect ile hata ayıklama
-    * Repo genelinde tüm commit’lere müdahale etmek
-    * GPG ile commit/tag imzalama
-    * Commit annotation, commit mesajı ve `kommit`
-    * Patch
-    * Ekstra hileler ve ipuçları
+    * Git kurulumu nasıl yapılır
+    * Konfigürasyon
+    * Repository kavramı
+    * Commit kavramı
+    * Dosyalarla çalışmak; adını değiştirmek, silmek, takip dışına almak
+    * `.gitignore` nedir? öncelik sırası nedir?
+    * Branch kavramı
+    * Merge kavramı
+    * Branch’leri **rebase** ederek birleştirmek nedir?
+    * Çakışma (*Conflict*) nedir? Nasıl çözülür?
+    * Stash ve Tag kavramları
+    * Undo, Reset, Amend ve Revert nedir?
+    * Reflog
+    * İnteraktif ekleme, yama yapma ve rebase etmek
+    * Commit’leri cımbızla çekmek; Cherry-Picking
+    * Remote kavramı, `git pull`, `git push` ve `git fetch`
+    * Git ile çalışma yöntemleri
+    * Git platformlarına bakış; GitHub, GitLab ve BitBucket
   
   definitions:
     - 
@@ -813,7 +818,7 @@ workshop:
       - 1 gün (6 saat)
     -
       - Seviye
-      - Orta seviye (*Intermediate*)
+      - Başlangıç (101)
     -
       - Platform
       - Windows, Linux, macOS
