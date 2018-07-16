@@ -15,7 +15,7 @@ $(document).ready(function(){
                 
                         html.push('<div class="col-md-3">');
                             html.push('<div class="book-cover">');
-                                html.push('<img class="img-fluid" src="https://www.gitbook.com' + book.cover.large + '" alt="' + book.title + '">');
+                                html.push('<img class="img-fluid" src="https://legacy.gitbook.com' + book.cover.large + '" alt="' + book.title + '">');
                             html.push('</div>');
                         html.push('</div>');
                         html.push('<div class="col-md-9">');

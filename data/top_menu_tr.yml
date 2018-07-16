@@ -15,14 +15,14 @@ links:
     text: Sunumlar
     url: /sayfa/tr/sunumlar/
     title: Sunumlar
-  - 
-    text: Kitaplar
-    url: /sayfa/tr/kitaplar/
-    title: Kitaplar
-  - 
-    text: Eğitimler
-    url: /sayfa/tr/egitimler/
-    title: Eğitimler
+  # -
+  #   text: Kitaplar
+  #   url: /sayfa/tr/kitaplar/
+  #   title: Kitaplar
+  # -
+  #   text: Eğitimler
+  #   url: /sayfa/tr/egitimler/
+  #   title: Eğitimler
   -
     text: CV
     url: /sayfa/tr/cv/
