@@ -15,10 +15,10 @@ links:
     text: Sunumlar
     url: /sayfa/tr/sunumlar/
     title: Sunumlar
-  # -
-  #   text: Kitaplar
-  #   url: /sayfa/tr/kitaplar/
-  #   title: Kitaplar
+  -
+    text: Kitaplar
+    url: /sayfa/tr/kitaplar/
+    title: Kitaplar
   # -
   #   text: Eğitimler
   #   url: /sayfa/tr/egitimler/
