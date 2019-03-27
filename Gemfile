@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.4.0'
+ruby '2.5.0'
 
+gem 'rake', '~> 12.3', '>= 12.3.2'
 gem 'middleman', '>= 4.0.0'
 gem 'middleman-blog', '~> 4.0', '>= 4.0.1'
 gem 'middleman-syntax', '~> 2.1'
