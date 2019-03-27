@@ -39,20 +39,22 @@ talks = item.last
             <p><strong><%= talk.event.name %></strong> etkinliğindeki sunumum.</p>
             <% if talk.event.url %><%= link_to fa_icon('home', nil, 1), talk.event.url, title: talk.event.name %><% end %>
             
-            <% talk.attachments.each do |attachment| %>
-            <%
-            attachment_type = attachment[0]
-            attachment_url = attachment[1]
-            case attachment_type
-            when 'slide'
-                attachment_icon = 'desktop'
-            when 'code', 'example'
-                attachment_icon = 'code'
-            when 'video'
-                attachment_icon = 'video-camera'
-            end
-            %>
-            <%= link_to fa_icon(attachment_icon, nil, 1), attachment_url, title: attachment_type.titlecase %>
+            <% if talk.attachments %>
+                <% talk.attachments.each do |attachment| %>
+                <%
+                attachment_type = attachment[0]
+                attachment_url = attachment[1]
+                case attachment_type
+                when 'slide'
+                    attachment_icon = 'desktop'
+                when 'code', 'example'
+                    attachment_icon = 'code'
+                when 'video'
+                    attachment_icon = 'video-camera'
+                end
+                %>
+                <%= link_to fa_icon(attachment_icon, nil, 1), attachment_url, title: attachment_type.titlecase %>
+                <% end %>
             <% end %>
         </li>
         <% end %>
