@@ -49,16 +49,16 @@
                     } %>
                     
                     <ul id="prev-next-articles" class="list-inline">
-                        <% if current_page.previous_article %>
+                        <% if current_page.article_previous %>
                         <li class="list-inline-item li-left">
-                            <%= link_to '&laquo; ' + current_page.previous_article.title, current_page.previous_article %>
-                            <time pubdate datetime="<%= current_page.previous_article.date.xmlschema %>" title="<%= I18n.l current_page.previous_article.date, :format => config[:date_format_short][I18n.locale] %>"><%= I18n.l current_page.previous_article.date, :format => config[:date_format_short][I18n.locale] %></time>
+                            <%= link_to '&laquo; ' + current_page.article_previous.title, current_page.article_previous %>
+                            <time pubdate datetime="<%= current_page.article_previous.date.xmlschema %>" title="<%= I18n.l current_page.article_previous.date, :format => config[:date_format_short][I18n.locale] %>"><%= I18n.l current_page.article_previous.date, :format => config[:date_format_short][I18n.locale] %></time>
                         </li>
                         <% end %>
-                        <% if current_page.next_article %>
+                        <% if current_page.article_next %>
                         <li class="list-inline-item pull-sm-right m-r-0 text-md-right li-right">
-                            <%= link_to current_page.next_article.title + ' &raquo;', current_page.next_article %>
-                            <time pubdate datetime="<%= current_page.next_article.date.xmlschema %>" title="<%= I18n.l current_page.next_article.date, :format => config[:date_format_short][I18n.locale] %>"><%= I18n.l current_page.next_article.date, :format => config[:date_format_short][I18n.locale] %></time>
+                            <%= link_to current_page.article_next.title + ' &raquo;', current_page.article_next %>
+                            <time pubdate datetime="<%= current_page.article_next.date.xmlschema %>" title="<%= I18n.l current_page.article_next.date, :format => config[:date_format_short][I18n.locale] %>"><%= I18n.l current_page.article_next.date, :format => config[:date_format_short][I18n.locale] %></time>
                         </li>
                         <% end %>
                     </ul>
