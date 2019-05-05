@@ -169,3 +169,9 @@
     url: http://summit.devnot.com
   attachments:
     slide: https://speakerdeck.com/vigo/bir-django-projesi
+
+- date: 2019-04-26 19:30
+  title: "Kodla Etkinliği Açılış"
+  event:
+    name: "Kodla 2019"
+    url: http://kodla.co
