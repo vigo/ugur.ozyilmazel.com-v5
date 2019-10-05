@@ -175,3 +175,12 @@
   event:
     name: "Kodla 2019"
     url: http://kodla.co
+
+- date: 2019-10-05 13:30
+  title: "Makefile değil, Rakefile"
+  event:
+    name: "Ruby Türkiye Buluşması Meetup #5"
+    url: https://www.meetup.com/Ruby-Turkiye/
+  attachments:
+    slide: https://l.vigo.io/makefile-degil-rakefile
+    video: https://l.vigo.io/makefile-degil-rakefile-video
