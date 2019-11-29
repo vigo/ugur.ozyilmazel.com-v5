@@ -149,3 +149,11 @@ code {
     }
   }
 }
+
+span#email-jibber {
+  &:hover {
+    color: white;
+    background: black;
+  }
+  font-weight: bold;
+}

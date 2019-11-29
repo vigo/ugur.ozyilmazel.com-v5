@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.5.0'
+ruby '2.6.5'
 
 gem 'rake', '~> 12.3', '>= 12.3.2'
 gem 'middleman', '>= 4.0.0'

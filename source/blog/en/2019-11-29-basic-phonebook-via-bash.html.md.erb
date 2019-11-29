@@ -1,0 +1,46 @@
+---
+title: "Basic phonebook via BASH"
+# subtitle: ""
+date: 2019-11-29 21:37:00 +0300
+# cover: "cover.jpg"
+# cover_title: ""
+# cover_subtitle: ""
+# cover_dir: ""
+# og_image: ""
+# og_image_dir: ""
+# tags: tag1,tag2
+comments: true
+---
+
+I’d like to write about the super cool `bash` technique I learned from a
+training video of 2011. READ_MORE
+
+Yes, you can implement super basic phonebook application via shell script.
+Create a file called: `phonebook`
+
+```bash
+# phonebook
+
+#!/usr/bin/env bash
+
+# name phone-number
+# name phone-number
+# name phone-number
+# name phone-number
+
+grep -i $* <<EOF
+vigo  0123-456-78-99
+jack  0123-456-78-99
+max   0123-456-78-99
+turbo 0123-456-78-99
+EOF
+```
+
+then make it executable: `chmod +x phonebook`. Now make query!
+
+```bash
+$ ./phonebook vigo
+vigo 0123-456-78-99
+```
+
+Thanks to **Carl Albing** for **Great Bash** course at [Safaribooks](https://learning.oreilly.com/videos/great-bash/9781449307769)
