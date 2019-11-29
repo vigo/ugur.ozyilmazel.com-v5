@@ -5,10 +5,49 @@
   <id>http://ugur.ozyilmazel.com</id>
   <link href="http://ugur.ozyilmazel.com"/>
   <link href="http://ugur.ozyilmazel.com/feed-en.xml" rel="self"/>
-  <updated>2016-07-24T15:07:00+03:00</updated>
+  <updated>2019-11-29T21:37:00+03:00</updated>
   <author>
     <name>Uğur “vigo” Özyılmazel</name>
   </author>
+  <entry>
+    <title>Basic phonebook via BASH</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/en/2019/11/29/basic-phonebook-via-bash/"/>
+    <id>http://ugur.ozyilmazel.com/blog/en/2019/11/29/basic-phonebook-via-bash/</id>
+    <published>2019-11-29T21:37:00+03:00</published>
+    <updated>2019-11-29T22:02:03+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;I’d like to write about the super cool &lt;code&gt;bash&lt;/code&gt; technique I learned from a
+training video of 2011. &lt;/p&gt;
+
+&lt;p&gt;Yes, you can implement super basic phonebook application via shell script.
+Create a file called: &lt;code&gt;phonebook&lt;/code&gt;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="c"&gt;# phonebook&lt;/span&gt;
+
+&lt;span class="c"&gt;#!/usr/bin/env bash&lt;/span&gt;
+
+&lt;span class="c"&gt;# name phone-number&lt;/span&gt;
+&lt;span class="c"&gt;# name phone-number&lt;/span&gt;
+&lt;span class="c"&gt;# name phone-number&lt;/span&gt;
+&lt;span class="c"&gt;# name phone-number&lt;/span&gt;
+
+grep -i &lt;span class="nv"&gt;$*&lt;/span&gt; &lt;span class="sh"&gt;&amp;lt;&amp;lt;EOF
+vigo  0123-456-78-99
+jack  0123-456-78-99
+max   0123-456-78-99
+turbo 0123-456-78-99
+EOF
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;then make it executable: &lt;code&gt;chmod +x phonebook&lt;/code&gt;. Now make query!&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;./phonebook vigo
+vigo 0123-456-78-99
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thanks to &lt;strong&gt;Carl Albing&lt;/strong&gt; for &lt;strong&gt;Great Bash&lt;/strong&gt; course at &lt;a href="https://learning.oreilly.com/videos/great-bash/9781449307769"&gt;Safaribooks&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Hello world</title>
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/en/2016/07/24/hello-world/"/>
