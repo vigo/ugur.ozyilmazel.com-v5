@@ -23,7 +23,7 @@ links:
   #   text: Eğitimler
   #   url: /sayfa/tr/egitimler/
   #   title: Eğitimler
-  -
-    text: CV
-    url: /sayfa/tr/cv/
-    title: CV
+  # -
+  #   text: CV
+  #   url: /sayfa/tr/cv/
+  #   title: CV
