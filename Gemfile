@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.6.5'
 
-gem 'rake', '~> 12.3', '>= 12.3.2'
+gem 'rake', '~> 12.3'
 gem 'middleman', '>= 4.0.0'
 gem 'middleman-blog', '~> 4.0', '>= 4.0.1'
 gem 'middleman-syntax', '~> 2.1'
