@@ -11,6 +11,6 @@ gem 'builder', '~> 3.2', '>= 3.2.2'
 
 gem 'stringex', '~> 2.6'
 gem 'redcarpet', '~> 3.3', '>= 3.3.4'
-gem 'sanitize', '~> 4.0', '>= 4.0.1'
+gem 'sanitize'
 
 gem 'fastimage', '~> 2.0'
