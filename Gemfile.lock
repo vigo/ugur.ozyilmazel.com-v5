@@ -105,7 +105,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     rexml (3.2.4)
     rouge (1.11.1)
     sanitize (5.2.1)
@@ -136,7 +136,7 @@ DEPENDENCIES
   middleman-livereload (~> 3.4.3)
   middleman-syntax (~> 2.1)
   rake (~> 12.3, >= 12.3.2)
-  redcarpet (~> 3.3, >= 3.3.4)
+  redcarpet (~> 3.5)
   sanitize
   stringex (~> 2.6)
 

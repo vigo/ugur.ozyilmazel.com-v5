@@ -10,7 +10,7 @@ gem 'middleman-livereload', '~> 3.4.3'
 gem 'builder', '~> 3.2', '>= 3.2.2'
 
 gem 'stringex', '~> 2.6'
-gem 'redcarpet', '~> 3.3', '>= 3.3.4'
+gem 'redcarpet', '~> 3.5'
 gem 'sanitize'
 
 gem 'fastimage', '~> 2.0'
