@@ -7,10 +7,10 @@ links:
     text: Blog
     url: /blog/tr/
     title: Blog
-  - 
-    text: Hakkımda
-    url: /sayfa/tr/hakkimda/
-    title: Hakkımda
+  # -
+  #   text: Hakkımda
+  #   url: /sayfa/tr/hakkimda/
+  #   title: Hakkımda
   - 
     text: Sunumlar
     url: /sayfa/tr/sunumlar/
