@@ -5,16 +5,70 @@
   <id>http://ugur.ozyilmazel.com</id>
   <link href="http://ugur.ozyilmazel.com"/>
   <link href="http://ugur.ozyilmazel.com/feed-tr.xml" rel="self"/>
-  <updated>2016-07-30T18:30:00+03:00</updated>
+  <updated>2021-05-27T16:13:00+03:00</updated>
   <author>
     <name>Uğur “vigo” Özyılmazel</name>
   </author>
+  <entry>
+    <title>İstediğiniz Yerden Go Kodunu Çalıştırabilirsiniz</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2021/05/27/istediginiz-yerden-go-kodunu-calistirabilirsiniz/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2021/05/27/istediginiz-yerden-go-kodunu-calistirabilirsiniz/</id>
+    <published>2021-05-27T16:13:00+03:00</published>
+    <updated>2021-05-27T17:29:57+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;Dikkatimi çekti, pek çok kişi bu özelliğin ya farkında değil ya da bilmiyor.
+Ben de yakın zamanda tam olarak öğrenip konuyu anladım ve çok mutlu oldum.&lt;/p&gt;
+
+&lt;p&gt;Yeni bir projeye başlayacağım zaman ilk iş;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;go env GOPATH&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;/src/github.com/vigo"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;yapmak olurdu ve ilgili repoyu bu dizin altında açardım. Ne zaman ki golang’e
+modül desteği geldi, bu sayede artık kodun bulunduğu yerin pek bir önemi
+kalmadı.&lt;/p&gt;
+
+&lt;p&gt;İçinde &lt;code&gt;go.mod&lt;/code&gt; olan her proje sıkıntısız olarak herhangi bir yerden
+çalışabiliyor.&lt;/p&gt;
+
+&lt;p&gt;Yeni bir projeye başlayacağım zaman artık;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/Development/Golang
+&lt;span class="gp"&gt;$ &lt;/span&gt;mkdir my-project
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd &lt;/span&gt;my-project/
+&lt;span class="gp"&gt;$ &lt;/span&gt;go mod init github.com/vigo/my-project
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;şeklinde başıyorum. Hatta daha da fantazi yapalım;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /tmp/
+&lt;span class="gp"&gt;$ &lt;/span&gt;mkdir my-project &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$_&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;go mod init foo/bar/my-project
+go: creating new go.mod: module foo/bar/my-project
+&lt;span class="gp"&gt;$ &lt;/span&gt;touch main.go
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ve;&lt;/p&gt;
+&lt;pre class="highlight go"&gt;&lt;code&gt;&lt;span class="k"&gt;package&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="x"&gt;
+
+&lt;/span&gt;&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="s"&gt;"fmt"&lt;/span&gt;&lt;span class="x"&gt;
+
+&lt;/span&gt;&lt;span class="k"&gt;func&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="x"&gt;
+    &lt;/span&gt;&lt;span class="n"&gt;fmt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Println&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Hello World"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="x"&gt;
+&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="x"&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;şimdi;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;go run .
+Hello World
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
   <entry>
     <title>SOLID Prensibi</title>
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2016/07/30/solid-prensibi/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2016/07/30/solid-prensibi/</id>
     <published>2016-07-30T18:30:00+03:00</published>
-    <updated>2020-05-05T13:44:53+03:00</updated>
+    <updated>2021-05-27T17:34:49+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -308,7 +362,7 @@ güzel bir sunum yapmıştı. Bu sunumu da &lt;a href="https://speakerdeck.com/s
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2015/04/13/textmate-ve-interaktif-giris/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2015/04/13/textmate-ve-interaktif-giris/</id>
     <published>2015-04-13T09:28:00+03:00</published>
-    <updated>2020-05-05T13:44:53+03:00</updated>
+    <updated>2021-05-27T17:34:50+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -364,7 +418,7 @@ kadar çalışır bilemiyorum. En azından şimdilik işimizi görüyor!&lt;/p&g
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2014/11/25/yeniden-merhaba/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2014/11/25/yeniden-merhaba/</id>
     <published>2014-11-25T22:20:00+02:00</published>
-    <updated>2020-05-05T13:44:53+03:00</updated>
+    <updated>2021-05-27T17:34:53+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -397,7 +451,7 @@ bulabilirsiniz.&lt;/p&gt;
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2014/11/14/textmate-1-ve-yosemite/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2014/11/14/textmate-1-ve-yosemite/</id>
     <published>2014-11-14T13:29:00+02:00</published>
-    <updated>2020-05-05T13:44:53+03:00</updated>
+    <updated>2021-05-27T17:34:56+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -462,7 +516,7 @@ yazmayı unutmayın! Şunu başa ekleyeceğiz:&lt;/p&gt;
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2014/09/23/rubygem-hazirliyoruz/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2014/09/23/rubygem-hazirliyoruz/</id>
     <published>2014-09-23T12:45:00+03:00</published>
-    <updated>2020-05-05T13:44:53+03:00</updated>
+    <updated>2021-05-27T17:35:00+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -897,7 +951,7 @@ yapabilirsiniz.&lt;/p&gt;
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2013/10/24/textmate-1-ve-mavericks/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2013/10/24/textmate-1-ve-mavericks/</id>
     <published>2013-10-24T14:00:00+03:00</published>
-    <updated>2020-05-05T13:44:53+03:00</updated>
+    <updated>2021-05-27T17:35:02+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -934,7 +988,7 @@ gerekiyor. Eğer başta da belirttiğim gibi &lt;strong&gt;upgrade&lt;/strong&gt
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2013/02/20/bash-completion-anotomisi/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2013/02/20/bash-completion-anotomisi/</id>
     <published>2013-02-20T23:37:00+02:00</published>
-    <updated>2020-05-05T13:44:53+03:00</updated>
+    <updated>2021-05-27T17:35:05+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -1193,7 +1247,7 @@ ve detaylı bilgi için &lt;a href="http://www.gnu.org/software/bash/manual/html
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/</id>
     <published>2013-02-04T12:15:00+02:00</published>
-    <updated>2020-05-05T13:44:53+03:00</updated>
+    <updated>2021-05-27T17:35:10+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -1273,7 +1327,7 @@ birşeyleri sildiğim zaman &lt;strong&gt;anında&lt;/strong&gt; farkedeceğim.&
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2012/10/28/js-istanbul-2012/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2012/10/28/js-istanbul-2012/</id>
     <published>2012-10-28T12:25:00+02:00</published>
-    <updated>2020-05-05T13:44:53+03:00</updated>
+    <updated>2021-05-27T17:35:12+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -1386,7 +1440,7 @@ değil. Katıldığım ilk günden çok memnun ayrıldım. Hem girdiğim sunular
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2012/10/26/python-fonksiyonu-nasil-yazilmali/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2012/10/26/python-fonksiyonu-nasil-yazilmali/</id>
     <published>2012-10-26T00:03:00+03:00</published>
-    <updated>2020-05-05T13:44:53+03:00</updated>
+    <updated>2021-05-27T17:35:15+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -1457,113 +1511,6 @@ gövdesi. Örnek şaşırtmasın, tek satır olmak zorunda değil 8)&lt;/p&gt;
 
 &lt;p&gt;Gerçekten çok ilgimi çeken bir yaklaşım oldu. Paylaşmak istedim. Umarım
 sizlerin de işine yarar faydalı olur&amp;hellip;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Özgür Web Günleri 2012</title>
-    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2012/10/25/ozgur-web-gunleri-2012/"/>
-    <id>http://ugur.ozyilmazel.com/blog/tr/2012/10/25/ozgur-web-gunleri-2012/</id>
-    <published>2012-10-25T15:50:00+03:00</published>
-    <updated>2020-05-05T13:44:53+03:00</updated>
-    <author>
-      <name>Uğur “vigo” Özyılmazel</name>
-    </author>
-    <content type="html">&lt;p&gt;Geçtiğimiz hafta düzenlenen (&lt;em&gt;19-20 Ekim&lt;/em&gt;) &lt;a href="http://www.ozgurwebgunleri.org.tr/2012/" title="Özgür Web Günleri, 2012"&gt;Özgür Web Günleri 2012&lt;/a&gt;&amp;rsquo;de
-hayatımın ilk sunumunu yaptım! Evet, ilk sunum. Aslında daha önceleri 
-&lt;a href="http://en.wikipedia.org/wiki/Demoscene" title="Demoscene"&gt;Demoscene&lt;/a&gt; partilerinde pek çok kez sunum, açık oturum, panel vs
-gibi şeylere katılmış / yapmıştım ama&amp;hellip;
-&lt;/p&gt;
-
-&lt;p&gt;İzleyici olarak katıldığım etkinliklerde genelde sunumları acımasızca eleştiren
-biriyim. Beni yakından tanıyanlar iyi bilir. Özellikle sunuma özensiz hazırlanmışsa
-çıldırırım izlerken.&lt;/p&gt;
-
-&lt;p&gt;Gördüm ki, seyirci koltuğundan atıp-tutmak çok kolay ve rahatmış. Stressiz,
-yayıla yayıla izlemek!&lt;/p&gt;
-
-&lt;p&gt;Etkinliğin ilk günü genelde hep Cuma gününe denk geliyor. Cuma - Cumartesi
-şeklinde organizasyon yapılıyor. İlk gün ferah fezah bir şekilde ilgilimi çeken
-sunumlara katıldım. İlk günden aklımda kalanlar sevgili
-&lt;a href="https://twitter.com/fehmicansaglam"&gt;Fehmi Can Sağlam&lt;/a&gt;&amp;rsquo;ın &lt;q&gt;CoffeeScript JavaScript’e Derlenen 
-Bir Programlama Dili&lt;/q&gt; adlı sunumu ve sevgili &lt;a href="https://twitter.com/fkadev"&gt;Fatih K. Akın&lt;/a&gt;&amp;rsquo;ın
-&lt;q&gt;Backbone.js ile Uygulama Geliştirme&lt;/q&gt; sunumuydu.&lt;/p&gt;
-
-&lt;p&gt;İlk günün sonu yaklaştığımda birden içimde bir his belirdi&amp;hellip;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Evet, yarın sabah saat 10:00&amp;rsquo;da senin sunum var &lt;strong&gt;vigooooooooo!&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;İşte o andan itibaren heyecan başladı&amp;hellip; Yaklaşık &lt;strong&gt;1 ay&lt;/strong&gt; boyunca üzerinde
-çalışmış ve hazırlık yapmıştım sunumla ilgili olarak. Güzel bir konu seçtiğimi
-düşünüyorum:&lt;/p&gt;
-
-&lt;h3&gt;Python ve Django&amp;rsquo;da Test ile Yürüyen Geliştirme&lt;/h3&gt;
-
-&lt;p&gt;Pek çok uygulama geliştiricisi test yazarak geliştirme yapmıyor. Nereden mi
-biliyorum? Ben de uzun yıllardan beri bu işle uğraşmama rağmen ancak son
-bir yıldır konu üzerine ağırlık verebildim. Sonrasında da, en ufak bir iş
-yapacağım zaman hemen önce test&amp;rsquo;ini yazmakla başlıyorum işe.&lt;/p&gt;
-
-&lt;p&gt;İlk garipliğimi akşam yaptım. Hani sabah saat &lt;strong&gt;10&lt;/strong&gt;&amp;rsquo;da sunumum var ya,
-bunu &lt;a href="http://twitter.com/ugurozyilmazel" title="Uğur Özyılmazel Twitter #2"&gt;Twitter&lt;/a&gt; üzerinden takip edenlere hatırlatma
-amacıyla bildireceğim ya&amp;hellip; &lt;a href="https://twitter.com/ugurozyilmazel/status/259351810274390016"&gt;Tweet&amp;rsquo;i post ediyorum&lt;/a&gt;:&lt;/p&gt;
-
-&lt;hr&gt;
-
-&lt;blockquote class="twitter-tweet" data-lang="tr"&gt;
-    &lt;p lang="tr" dir="ltr"&gt;yarın sabah 10:30’da özgür web günlerinde “python ve django’da testle yürüyen geliştirme” sunumum var. beklerim efenin!&lt;/p&gt;
-    &amp;mdash; Uğur Özyılmazel (@ugurozyilmazel) &lt;a href="https://twitter.com/ugurozyilmazel/status/259351810274390016"&gt;19 Ekim 2012&lt;/a&gt;
-&lt;/blockquote&gt;
-
-&lt;hr&gt;
-
-&lt;p&gt;Dikkat ettiyseniz &lt;strong&gt;10:30&lt;/strong&gt; yazmışım&amp;hellip; Nasıl yani??? İnsan kendi sunucağı
-bir olayın saatini nasıl &lt;strong&gt;yanlış&lt;/strong&gt; yazar? Bilemiyorum&amp;hellip; İşin daha da acısı
-bunu ne zaman farkettim biliyormusunuz? Aslında ben değil, eşim farketti&amp;hellip;
-Sunumu yapacağım salonda saat &lt;strong&gt;09:55&lt;/strong&gt;&amp;rsquo;de &lt;a href="http://twitter.com/yesimfo"&gt;eşim&lt;/a&gt; dediki:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Sen saat&amp;rsquo;i yanlış duyurmuşsun? 10:30 yazmışsın?&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Yani sunuma 5 dakika kala saatini yanlış duyurduğumu farkettim. O esnada
-salonda bir kişi vardı&amp;hellip; İşte bu psikoloji içinde saatin 10:00 olmasını
-beklemeye başladım&amp;hellip; Birden kapı açıldı ve içeri 5-10 kişi girdi. Meğer
-etkinliğin servis otobüsü kampüse yeni ulaşmış&amp;hellip; Beş dakika daha bekleyip
-sunuma başladım&amp;hellip;&lt;/p&gt;
-
-&lt;div class="full zoomable"&gt;&lt;img src="http://f.cl.ly/items/0d2z1A0z1w2W2T0H0F2c/ezelimle-sunum.jpg" alt="Kızım Ezel ile birlikte fotoğrafım"&gt;&lt;p&gt; Desteklemeye gelenler arasında canım kızım Ezel de vardı&amp;hellip; 
-&lt;/p&gt;&lt;/div&gt;
-
-&lt;p&gt;İşte o andan itibaren sanki biri geldi, beynimi / bildiklerimi söktü aldı&amp;hellip;
-Karşımda bilgisayar, sağ yanımda iPad. iPad&amp;rsquo;e slide sırasını yazdım ve
-küçük notlar aldım. Sol yanıma da telefonu koydum, kronometresini çalıştırdım.
-&lt;strong&gt;45 dakika&lt;/strong&gt;ya sığdırmalıydım sunumu&amp;hellip; Daha önce test ettiğimde tam &lt;strong&gt;60 dakika&lt;/strong&gt;
-oluyordu&amp;hellip; Bir şekilde bunu bilerek ayarlama yapmam lazımdı&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;Başladım, kendimi tanıttım vs derken sanki koşu bantında koşuyormuş gibi nefesimin
-yetmediğini hissettim. Anlatıyorum anlatıyorum ama nefesim yetmiyor&amp;hellip; Bir an
-bulup hüüüüüüüüüüüüüüüüüp diye derince bir nefes almam gerekiyor. Hatta öyle
-oldu ki bir an durup izleyenlere de &lt;q&gt;**Nefesimi yetiştiremiyorum**&lt;/q&gt; dedim.&lt;/p&gt;
-
-&lt;p&gt;Eşim de salonda ön sıradan hem izliyor hem fotoğraf çekiyor. Moral / destek
-veriyor. Zaten izleyenlerin belkide yarısını tanıyorum. Yani resmen biz-bize
-bir durum var&amp;hellip; Bunca olumlu şeye rağmen inanılmaz bir panik yaşamaya başladım.
-Hatta bir an için kendimi suyun altında nefessiz kalmış gibi hissettim.&lt;/p&gt;
-
-&lt;div class="flash-video" title="Video"&gt;&lt;div&gt;&lt;iframe src="http://player.vimeo.com/video/52177751?color=ffffff&amp;amp;title=0&amp;amp;byline=0&amp;amp;portrait=0" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Sunumum bittikten sonra &lt;a href="https://twitter.com/burakdede"&gt;Burak Dede&lt;/a&gt; tarafından yapılan
-&lt;q&gt;Tornado Web Çatısı ile Gerçek Zamanlı Uygulamalar Geliştirme&lt;/q&gt; ye katıldım.
-Gayet güzel bir sunum oldu. 35 dakikada sürdü sunum. Sorulara zaman bile kaldı.&lt;/p&gt;
-
-&lt;p&gt;Daha sonra &lt;a href="https://www.django-cms.org" title="Django-CMS"&gt;Django-CMS&lt;/a&gt;&amp;rsquo;in developer&amp;rsquo;ı &lt;a href="https://twitter.com/ojiidotch"&gt;Jonas Obrist&lt;/a&gt;
-uzun bir &lt;q&gt;Introduction to Django&lt;/q&gt; sunumu sonuna Django Avrupa durumunu ilave etti.
-Bu sunumdan sonra yemek arası oldu. Yemek dönüşünde ben de eve döndüm.&lt;/p&gt;
-
-&lt;p&gt;Güzel iki gün geçirdim, yeni insanlarla tanıştım. Kendimce çeşitli dersler
-çıkarttım.&lt;/p&gt;
 </content>
   </entry>
 </feed>
