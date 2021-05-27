@@ -3,8 +3,9 @@ title: "Terzi ve Söküğü"
 date: 2006-10-20 20:30
 cover: 2006-bronx.png
 og_image: 2006-bronx.png
-comments: true
+comments: false
 ---
+
 Uzuuunca bir süredir kendi sitemi hazırlamayı düşünüyordum. Her zaman bir iş,
 bir yoğunluk, açıkcası bir bahane çıktı! Derler ya,
 READ_MORE

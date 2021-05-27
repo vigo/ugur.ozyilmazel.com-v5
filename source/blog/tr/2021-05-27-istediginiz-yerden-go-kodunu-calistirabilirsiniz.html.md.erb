@@ -1,0 +1,63 @@
+---
+title: "İstediğiniz Yerden Go Kodunu Çalıştırabilirsiniz"
+subtitle: "go mod init"
+date: 2021-05-27 16:13:00 +0300
+tags: golang
+cover: "ws-golang.png"
+comments: false
+---
+
+Dikkatimi çekti, pek çok kişi bu özelliğin ya farkında değil ya da bilmiyor.
+Ben de yakın zamanda tam olarak öğrenip konuyu anladım ve çok mutlu oldum.READ_MORE
+
+Yeni bir projeye başlayacağım zaman ilk iş;
+
+```bash
+$ cd "$(go env GOPATH)/src/github.com/vigo"
+```
+
+yapmak olurdu ve ilgili repoyu bu dizin altında açardım. Ne zaman ki golang’e
+modül desteği geldi, bu sayede artık kodun bulunduğu yerin pek bir önemi
+kalmadı.
+
+İçinde `go.mod` olan her proje sıkıntısız olarak herhangi bir yerden
+çalışabiliyor.
+
+Yeni bir projeye başlayacağım zaman artık;
+
+```bash
+$ cd ~/Development/Golang
+$ mkdir my-project
+$ cd my-project/
+$ go mod init github.com/vigo/my-project
+```
+
+şeklinde başıyorum. Hatta daha da fantazi yapalım;
+
+```bash
+$ cd /tmp/
+$ mkdir my-project && cd $_
+$ go mod init foo/bar/my-project
+go: creating new go.mod: module foo/bar/my-project
+$ touch main.go
+```
+
+ve;
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello World")
+}
+```
+
+şimdi;
+
+```bash
+$ go run .
+Hello World
+```
+
