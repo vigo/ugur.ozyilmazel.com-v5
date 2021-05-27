@@ -64,6 +64,12 @@ code {
   border-bottom: 1px solid #ddd;
 } 
 
+span.sgazer {
+  color: #99b;
+}
+span.repo-desc {
+  font-weight: 400;
+}
 
 #list-posts {
   time { color: $time-color; }

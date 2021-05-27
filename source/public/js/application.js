@@ -36,7 +36,7 @@ $(document).ready(function(){
                         var t = moment(repo.pushed_at);
                         html.push('<li>');
                         html.push('<h4><a href="' + repo.html_url + '">' + repo.full_name + '</a> <time pubdate datetime="' + repo.pushed_at + '">' + t.fromNow() + '</time></h4>');
-                        html.push('<p>' + repo.description + '</p>');
+                        html.push('<p><span class="sgazer">[ ★ ' + String(repo.stargazers_count).padStart(3, '0') + ' ]</span> <span class="repo-desc">' + repo.description + '</span></p>');
                         html.push('</li>');
                     }
                 });
