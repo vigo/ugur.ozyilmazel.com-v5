@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2021/05/27/istediginiz-yerden-go-kodunu-calistirabilirsiniz/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2021/05/27/istediginiz-yerden-go-kodunu-calistirabilirsiniz/</id>
     <published>2021-05-27T18:35:00+03:00</published>
-    <updated>2021-05-27T18:40:44+03:00</updated>
+    <updated>2021-05-27T18:42:25+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -52,7 +52,7 @@ go: creating new go.mod: module foo/bar/my-project
 &lt;/span&gt;&lt;span class="k"&gt;go&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="m"&gt;1.16&lt;/span&gt;&lt;span class="x"&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;sonrasında &lt;code&gt;touch main.go&lt;/code&gt; ile dosyayı oluşturalım ve için aşağıdaki gibi
+&lt;p&gt;sonrasında &lt;code&gt;touch main.go&lt;/code&gt; ile dosyayı oluşturalım ve içini aşağıdaki gibi
 dolduralım;&lt;/p&gt;
 &lt;pre class="highlight go"&gt;&lt;code&gt;&lt;span class="k"&gt;package&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="x"&gt;
 
