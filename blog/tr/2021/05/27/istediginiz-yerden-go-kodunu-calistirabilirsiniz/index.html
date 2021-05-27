@@ -12,7 +12,7 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-05-27T18:28:48+03:00" />
+        <meta name="date" content="2021-05-27T18:41:14+03:00" />
         <meta name="description" content="Dikkatimi çekti, pek çok kişi bu özelliğin ya farkında değil ya da bilmiyor.
 Ben de yakın zamanda tam olarak öğrenip konuyu anladım ve çok mutlu oldum." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
@@ -83,8 +83,8 @@ Ben de yakın zamanda tam olarak öğrenip konuyu anladım ve çok mutlu oldum."
                     <h1><a href="/blog/tr/2021/05/27/istediginiz-yerden-go-kodunu-calistirabilirsiniz/">İstediğiniz Yerden Go Kodunu Çalıştırabilirsiniz</a></h1>
                     <h4>go mod init</h4>
 
-                    <time pubdate datetime="2021-05-27T16:13:00+03:00" title="27 Mayıs 2021, Perşembe 16:13">
-                        27 Mayıs 2021, Perşembe 16:13
+                    <time pubdate datetime="2021-05-27T18:35:00+03:00" title="27 Mayıs 2021, Perşembe 18:35">
+                        27 Mayıs 2021, Perşembe 18:35
                     </time>
 
                     <header>
@@ -118,10 +118,16 @@ kalmadı.</p>
 <span class="gp">$ </span>mkdir my-project <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$_</span>
 <span class="gp">$ </span>go mod init foo/bar/my-project
 go: creating new go.mod: module foo/bar/my-project
-<span class="gp">$ </span>touch main.go
 </code></pre>
 
-<p>ve;</p>
+<p>hemen bakalım <code>go.mod</code> dosyasına;</p>
+<pre class="highlight go"><code><span class="n">module</span><span class="x"> </span><span class="n">foo</span><span class="o">/</span><span class="n">bar</span><span class="o">/</span><span class="n">my</span><span class="o">-</span><span class="n">project</span><span class="x">
+
+</span><span class="k">go</span><span class="x"> </span><span class="m">1.16</span><span class="x">
+</span></code></pre>
+
+<p>sonrasında <code>touch main.go</code> ile dosyayı oluşturalım ve için aşağıdaki gibi
+dolduralım;</p>
 <pre class="highlight go"><code><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
 
 </span><span class="k">import</span><span class="x"> </span><span class="s">"fmt"</span><span class="x">
@@ -131,10 +137,16 @@ go: creating new go.mod: module foo/bar/my-project
 </span><span class="p">}</span><span class="x">
 </span></code></pre>
 
-<p>şimdi;</p>
+<p>şimdi çalıştıralım:</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>go run .
 Hello World
 </code></pre>
+
+<p>Evet, proje <code>/tmp/</code> dizini altında bir yerde bile kolaylıkla çalıştı. Tabii ki
+paket ismi olarak <code>foo/bar/my-project</code> yapmak iyi bir fikir değil, sadece
+bunun bile olabileceğini göstermek istedim.</p>
+
+<p>Siz yeni projelerinizde mutlaka <code>repo/user/paket</code> formatından şaşmayın!</p>
 
                     </div>
                     
