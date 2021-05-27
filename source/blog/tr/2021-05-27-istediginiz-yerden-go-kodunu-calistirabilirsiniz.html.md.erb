@@ -1,7 +1,7 @@
 ---
 title: "İstediğiniz Yerden Go Kodunu Çalıştırabilirsiniz"
 subtitle: "go mod init"
-date: 2021-05-27 16:13:00 +0300
+date: 2021-05-27 18:35:00 +0300
 tags: golang
 cover: "ws-golang.png"
 comments: false
@@ -39,10 +39,18 @@ $ cd /tmp/
 $ mkdir my-project && cd $_
 $ go mod init foo/bar/my-project
 go: creating new go.mod: module foo/bar/my-project
-$ touch main.go
 ```
 
-ve;
+hemen bakalım `go.mod` dosyasına;
+
+```go
+module foo/bar/my-project
+
+go 1.16
+```
+
+sonrasında `touch main.go` ile dosyayı oluşturalım ve içini aşağıdaki gibi
+dolduralım;
 
 ```go
 package main
@@ -54,10 +62,15 @@ func main() {
 }
 ```
 
-şimdi;
+şimdi çalıştıralım:
 
 ```bash
 $ go run .
 Hello World
 ```
 
+Evet, proje `/tmp/` dizini altında bir yerde bile kolaylıkla çalıştı. Tabii ki
+paket ismi olarak `foo/bar/my-project` yapmak iyi bir fikir değil, sadece
+bunun bile olabileceğini göstermek istedim.
+
+Siz yeni projelerinizde mutlaka `repo/user/paket` formatından şaşmayın!
