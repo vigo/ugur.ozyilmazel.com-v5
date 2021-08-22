@@ -1,0 +1,488 @@
+---
+title: "Django Model İpuçları"
+date: 2021-08-22 09:43:00 +0300
+cover: "ws-django.png"
+cover_title: "from django.db import models"
+cover_subtitle: "Django 3.2 versiyonu"
+tags: django
+comments: false
+---
+
+Yaklaşık 2008’den beri Django geliştiriyorum. Pek çok proje yaptım. Model
+tanımlamaları ile ilgili bazı edindiğim, okuduğum makalelerden öğrendiğim
+şeyleri yazmak istedim.READ_MORE
+
+## Ana Kural
+
+Mutlaka ama mutlaka değişken ve sınıf adlarını **İngilizce** olarak kullanın.
+Yarın projenizi açık-kaynak yaptığınızda ya da ekibinize Türkçe bilmeyen
+biri katıldığında kodu kolay anlamalı.
+
+---
+
+### Model Yazma Kuralları
+
+Django bildiğiniz gibi muhteşem bir dokümantasyona sahip. Bizim için her ince
+detay yazılmış, örnekler verilmiş. Lütfen kod yazma işine başlamadan
+önce [bu sayfaya][02] gidin ve okuyun.
+
+Doküman derki, bir model içindeki method/attribute sıralaması aşağıdaki gibi
+olmalıdır:
+
+1. Tüm field tanımları
+1. Custom manager attribute’ları
+1. `class Meta`
+1. `def __str__()`
+1. `def save()`
+1. `def get_absolute_url()`
+1. Kendi özel yazdığınız method, property ne varsa...
+
+```python
+def get_group_creator_sentinel():
+    payload = dict(
+        email='deleted@xxx.com',
+        first_name='Sentinel',
+        last_name='User',
+    )
+    return get_user_model().objects.get_or_create(**payload, defaults=payload)[0]
+
+class Group(models.Model):
+    """
+    User.objects.filter(group__name=...)
+    Permission.objects.filter(group__name=...)
+    """
+
+    name = models.CharField(
+        max_length=150, 
+        unique=True, 
+        verbose_name=_('name'),
+    )
+    creator = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.SET(get_group_creator_sentinel),
+        related_name='creator_groups',
+        related_query_name='group',
+        verbose_name=_('creator'),
+    )
+    permissions = models.ManyToManyField(
+        to=Permission,
+        related_name='permissions_groups',
+        related_query_name='group',
+        verbose_name=_('permissions'),
+        blank=True,
+    )
+    objects = GroupManager()
+
+    class Meta:
+        app_label = 'core'
+        verbose_name = _('group')
+        verbose_name_plural = _('groups')
+
+    def __str__(self):
+        return self.name
+
+    def natural_key(self):
+        return (self.name,)
+
+```
+
+---
+
+### Doğru Model Adı
+
+Model denen şey tek bir kaydı temsil eder. Bu bakımdan ismi tekil olmalıdır.
+Eğer bu model ara tablo değilse, yani **ManyToMany through** tablosu değilse
+mutlaka tekil olmalıdır.
+
+İngilizce bazı kelimelerin tekil ve çoğul durumları farklıdır. Örneğin
+**People** kelimesi çoğuldur ve bunun tekili **Person**’dır.
+
+Bu doğrultuda;
+
+- `Post`
+- `Article`
+- `User`
+- `Person`
+
+şeklinde olmalıdır. Ama haber modeli diye bir model olacaksa o `News` olur.
+
+---
+
+### Mümkünse Database Tablo adını Kendiniz Belirleyin
+
+Modelin `class Meta:` kısmında `db_table` kullanarak tablo isimlerini Django
+yerine siz belirleyebilirsiniz. Bu sayede daha kısa tablo adları olur ve
+siz daha hakim olursunuz database’e.
+
+```python
+class Customer(models.Model):
+    :
+    class Meta:
+        app_label = 'core'
+        db_table = 'customer'
+        verbose_name = _('customer')
+        verbose_name_plural = _('customers')
+    :
+    :
+```
+
+---
+
+### Mutlaka Modelin `created_at` ve `updated_at` Field’ları olsun
+
+Genelde benim `base.py` diye bir dosyam ve onun içinde tüm modellerde ortak
+olarak kullanmayı düşündüğüm alanları kapsayan bir `abstract` model olur:
+
+```python
+class MyBaseModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('created at'))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_('updated at'))
+
+    class Meta:
+        abstract = True
+
+```
+
+Duruma göre `deleted_at`, `is_active` gibi alanlar da olabilir. İlgili
+modellerimi bundan türetirim.
+
+---
+
+### İlişki Belirtmek
+
+`Article` diye bir modeliniz var, `Article` içinde `User` modeline `ForeignKey`
+tanımlayacaksınız. Dolayısıyla `User` modelini içeri `import` etmeniz gerekiyor.
+**Circular import** durumuna düşmemek adına ben genelde tek bir `app` altına
+tüm modelleri toplarım.
+
+`User` modelini de kendi oluşturduğum [Custom User][01] modelini kullanırım.
+Bu sayede hiçbir zaman dışarıdan modeli import etmem. Peki nasıl tanımlarım?
+
+Normalde `user = models.ForeignKey(User, ...)` şeklinde `User`’ı import etmek
+yerine, `to='User'` ile **shorthand reference** kullanıyorum, yani;
+
+```python
+from django.conf import settings
+
+class Article(models.Model):
+    user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        :
+        :
+    )
+```
+
+şeklinde. `to='String'` de olur;
+
+```python
+class City(models.Model):
+    country = models.ForeignKey(
+        to='Country',
+        on_delete=models.CASCADE,
+        related_name='cities',
+        related_query_name='city',
+        verbose_name=_('country'),
+    )
+
+```
+
+bu sayede model import işleriyle uğraşmam. Ne zamana kadar? Eğer model başka
+bir app içindeyse mecburen import ederim.
+
+---
+
+### İlişkili Model `related_name` ve `related_query_name`
+
+Mutlaka ilişkili yani `ForeignKey` ya da `ManyToMany` field’lara `related_name`
+ve `related_query_name` tanımı yapın. `related_name` o modeldeyken tersten üst
+modele erişim sağlar.
+
+Yani, elimde `Country` instance’ı varsa, ben `country.cities.filter()` şeklinde
+sorgu yapabilirim. Aksi halde Django’nun otomatik eklediği `model_set` üzerinden
+gitmem gerekir.
+
+Aynı şekilde, `Country.objects.filter(city__name='xxx')` şeklinde `related_query_name`
+kullanarak sorgu yapabilirim.
+
+Keza `related_name` değeri de çoğul olarak verilmelidir. Yani `ForeignKey` ilişkisi
+aslında **One to Many** yani bir `Country`’nin birden fazla şehri olabilir 
+mantığında olduğu için, o `Country`’nin `cities` yani şehirleri vardır.
+
+---
+
+### `ForeignKey` için `unique=True` Kullanmayın
+
+Çünkü bu iş için `OneToOneField` var.
+
+---
+
+### Gerektiğinde `NullBooleanField` Kullanın
+
+`models.BooleanField(null=True)` yerine `models.NullBooleanField()` kullanın.
+
+---
+
+### `ObjectDoesNotExist` Yerine `Model.DoesNotExist` Kullanın
+
+Kayıt yoksa `django.core.exceptions`’da `ObjectDoesNotExist` exception’ı
+yakalamak yerine modelin `Model.DoesNotExist` exception’ını yakalamak daha
+iyi bir yöntem. Bazı özel durumlar dışında `Model.DoesNotExist` kullanın.
+
+```python
+:
+:
+try:
+    creator = user_model.objects.get(email=email)
+except user_model.DoesNotExist as exc:
+    raise CommandError('email (%s) does not exists' % email) from exc
+:
+:
+```
+
+---
+
+### `choices` Kullanımı
+
+Model için `choices` kullanmanız gerektiğinde ya aşağıdaki gibi ya da
+yeni gelen [Enumeration types][04]’ı kullanabilirsiniz. Açıkcası ben henüz
+Enumeration types kullanmadım, eski yöntem kolayıma geliyor.
+
+```python
+from django.utils.translation import gettext_lazy as _
+from django.db import models
+
+class Post(models.Model):
+    STATUS_OFFLINE = 0
+    STATUS_ONLINE = 1
+    STATUS_DELETED = 2
+    STATUS_DRAFT = 3
+    STATUS_CHOICES = (
+        (STATUS_OFFLINE, _('offline')),
+        (STATUS_ONLINE, _('online')),
+        (STATUS_DELETED, _('deleted')),
+        (STATUS_DRAFT, _('draft')),
+    )
+
+    status = models.IntegerField(
+        choices=STATUS_CHOICES,
+        default=STATUS_ONLINE,
+        verbose_name=_('status'),
+    )
+    :
+    :
+```
+
+Daha detaylı bilgi için [tıklayabilirsiniz][03].
+
+---
+
+### Alan Adındaki Fuzuli Model İsmi
+
+Eğer `User` diye bir model varsa, `user_status = models.IntegerField(...)`
+diye bir field yerine, `status = models.IntegerField(...)` şeklinde field’ı
+tanımlamak daha mantıklıdır. Boşuna tekrar yapmamak lazım.
+
+---
+
+### `models.py` Yerine `models/` Paketi
+
+Model dosyası uzar gider, içinde hareket etmek zorlaşır. Bu bakımdan ben
+help modelleri `models` paketi içinde tanımlarım:
+
+```bash
+models/
+    __init__.py
+    user.py
+    post.py
+    comment.py
+```
+
+ve `__init__.py` içinde de;
+
+```python
+from .user import User
+from .post import Post
+:
+:
+```
+
+Model dosyası içinde de nelerin importable olduğunu yazarım:
+
+```python
+from django.db import models
+
+__all__ = ['City']
+
+class City(models.Model):
+    :
+    :
+```
+
+---
+
+### Güvenli `save()`
+
+```python
+class Foo(models.Model):
+    def save(self, *args, **kwargs):
+        if self.pk:
+            kwargs['force_update'] = True
+            kwargs['force_insert'] = False
+        else:
+            kwargs['force_insert'] = True
+            kwargs['force_update'] = False
+    super().save(*args, **kwargs)
+```
+
+---
+
+### Index Eklemek
+
+Sorgu yapmayı düşündüğünüz field’ları mutlaka index’leyin ama şunu da unutmayın
+ne kadar index o kadar büyük database. Eğer mümkünse index için `condition` da
+tanımlayın. Aşağıdaki örneği **DjangoCon** sunumlarından birinde görmüştüm.
+
+```python
+class Order(models.Model):
+    :
+    class Meta:
+        indexes = [
+            Index(
+                name='unshipped_orders',
+                fields=['pk'],
+                condition=Q(is_shipped=False),
+            )
+        ]
+
+```
+
+1. `null` değeri olan query’ler hızlanır
+1. Sadece gönderilmemiş (*unshipped*) olanlar index’lenir
+
+Keza database katmanında da validasyon için;
+
+```python
+class MonthlyBudget(models.Model):
+    :
+    :
+    class Meta:
+        constraints = [
+            CheckConstraint(
+                check=Q(month__in=range(1, 13)),
+                name='check_valid_month',
+            )
+        ]
+```
+
+1. Ay değeri 1-12 (*inclusive*) olur ve **13** olamaz, bu da database
+katmanında bir kontrol/validasyon sağlar
+1. Özellikle `bulk_update()` işleri için çok işe yarar.
+
+---
+
+
+## `ManyToMany` için Kendi Tablonuzu Kullanın
+
+Eğer `ManyToMany` field kullanıyorsanız, Django otomatik olarak gizli bir
+tablo oluşturur. Örneğin;
+
+```python
+class Customer(models.Model):
+    :
+    :
+    users = models.ManyToManyField(
+        to=settings.AUTH_USER_MODEL,
+        related_name='customers',
+        related_query_name='customer',
+        blank=True,
+        verbose_name=_('users'),
+    )
+    :
+    :    
+```
+
+gibi bir model varsa, Django yeni bir tablo yapar, buna **Associative Table**
+denir ve orada sadece `Customer ID` ve `User ID` tutar... Sizin bu tabloda
+başka hiçbir kontrolünüz yoktur. Ne migration seviyesinde ne de sorgu
+seviyesinde kontrol hep Django’da olur.
+
+Peki ek bir field daha gerekse ne olacak? Yani `Customer ID`, `User ID` ve
+`Is Admin?` tutmanız gerekse ne olacak? İşte bu durumlar için `through`
+ve `through_fields` ile ara tabloyu kendimiz oluşturabiliriz.
+
+```python
+class Customer(models.Model):
+    name = models.CharField(max_length=100, verbose_name=_('name'))
+    users = models.ManyToManyField(
+        to=settings.AUTH_USER_MODEL,
+        through='CustomerMembership',
+        through_fields=('customer', 'user'),
+        related_name='customers',
+        related_query_name='customer',
+        blank=True,
+        verbose_name=_('users'),
+    )
+    :
+    :
+
+class CustomerMembership(models.Model):
+    customer = models.ForeignKey(
+        to='Customer',
+        on_delete=models.CASCADE,
+    )
+    user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    is_admin = models.BooleanField(
+        default=False,
+        verbose_name=_('customer admin status'),
+    )
+    :
+    :
+```
+
+Ara tablo `CustomerMembership` modelinde tanımlandı. Kontrol tamamen bizde.
+Hatta bu modelin `save()`’ine istersek ek bir şeyler bile takabiliriz. Neticede
+bu artık bir model...
+
+Keza Django Admin’de de çok güzel bir şekilde kullanabiliriz:
+
+```python
+class CustomerInlineAdmin(models.TabularInlineAdmin):
+    model = Customer.users.through  # <- bu kısım!
+    extra = 0
+    autocomplete_fields = ['customer', 'user']
+    :
+    :
+
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ['__str__']
+    autocomplete_fields = ['users']
+    ordering = ['name']
+    inlines = [CustomerInlineAdmin]
+    :
+```
+
+Özetle, üşenmeyin, `ManyToManyField` durumunda `through` kullanın :)
+
+---
+
+Son olarak, modeli planlarken yapacağınız sorguları da hayal edin. Örneğin
+sürekli tarih ile ilgili bir sorgu yapacaksınız. Yılı 2020 olan kayıtları
+getir ya da sürekli yıla göre rapor alıyorsunuz.
+
+Modelin `created_at` alanında sürekli `date lookup` yapmak yerine, belkide
+modele bir `year` field’ı eklemek ve bunu `IntegerField` yapmak ve index
+koymak sorgularınızı aşırı derecede hızlandırabilir. Database içinde
+tarih hesapları yapmak yerine sadece sayı sorgusu yapmak çok daha hızlı
+ve az maliyetlidir.
+
+Belki ay, gün için bile ek bir `IntegerField` eklenebilir. Yani ne sorgulayacağınızı
+mutlaka planlayın...
+
+[01]: https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#specifying-a-custom-user-model
+[02]: https://docs.djangoproject.com/en/3.2/internals/contributing/writing-code/coding-style/#model-style
+[03]: https://docs.djangoproject.com/en/3.2/ref/models/fields/#choices
+[04]: https://docs.djangoproject.com/en/3.2/ref/models/fields/#enumeration-types

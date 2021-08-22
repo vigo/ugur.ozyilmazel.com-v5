@@ -43,7 +43,7 @@ task :post, [:title, :language, :publish_date] do |t, args|
   output << '# og_image: ""'
   output << '# og_image_dir: ""'
   output << '# tags: tag1,tag2'
-  output << 'comments: true'
+  output << 'comments: false'
   output << '---'
   save_file = "source/blog/#{args[:language]}/#{now.strftime('%Y-%m-%d')}-#{args[:title].to_url}.html.md.erb"
   File.open(save_file, "w") do |f|
