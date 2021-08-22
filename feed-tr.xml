@@ -5,10 +5,469 @@
   <id>http://ugur.ozyilmazel.com</id>
   <link href="http://ugur.ozyilmazel.com"/>
   <link href="http://ugur.ozyilmazel.com/feed-tr.xml" rel="self"/>
-  <updated>2021-05-27T18:35:00+03:00</updated>
+  <updated>2021-08-22T09:43:00+03:00</updated>
   <author>
     <name>Uğur “vigo” Özyılmazel</name>
   </author>
+  <entry>
+    <title>Django Model İpuçları</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2021/08/22/django-model-ipuclari/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2021/08/22/django-model-ipuclari/</id>
+    <published>2021-08-22T09:43:00+03:00</published>
+    <updated>2021-08-22T11:15:59+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;Yaklaşık 2008’den beri Django geliştiriyorum. Pek çok proje yaptım. Model
+tanımlamaları ile ilgili bazı edindiğim, okuduğum makalelerden öğrendiğim
+şeyleri yazmak istedim.&lt;/p&gt;
+
+&lt;h2&gt;Ana Kural&lt;/h2&gt;
+
+&lt;p&gt;Mutlaka ama mutlaka değişken ve sınıf adlarını &lt;strong&gt;İngilizce&lt;/strong&gt; olarak kullanın.
+Yarın projenizi açık-kaynak yaptığınızda ya da ekibinize Türkçe bilmeyen
+biri katıldığında kodu kolay anlamalı.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;Model Yazma Kuralları&lt;/h3&gt;
+
+&lt;p&gt;Django bildiğiniz gibi muhteşem bir dokümantasyona sahip. Bizim için her ince
+detay yazılmış, örnekler verilmiş. Lütfen kod yazma işine başlamadan
+önce &lt;a href="https://docs.djangoproject.com/en/3.2/internals/contributing/writing-code/coding-style/#model-style"&gt;bu sayfaya&lt;/a&gt; gidin ve okuyun.&lt;/p&gt;
+
+&lt;p&gt;Doküman derki, bir model içindeki method/attribute sıralaması aşağıdaki gibi
+olmalıdır:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Tüm field tanımları&lt;/li&gt;
+&lt;li&gt;Custom manager attribute’ları&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;class Meta&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;def __str__()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;def save()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;def get_absolute_url()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Kendi özel yazdığınız method, property ne varsa&amp;hellip;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_group_creator_sentinel&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;email&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'deleted@xxx.com'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;first_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'Sentinel'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;last_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'User'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;get_user_model&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_or_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;defaults&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Group&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="s"&gt;"""
+    User.objects.filter(group__name=...)
+    Permission.objects.filter(group__name=...)
+    """&lt;/span&gt;
+
+    &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;150&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+        &lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+        &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'name'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;creator&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ForeignKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AUTH_USER_MODEL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;on_delete&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SET&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;get_group_creator_sentinel&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="n"&gt;related_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'creator_groups'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;related_query_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'group'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'creator'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;permissions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ManyToManyField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Permission&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;related_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'permissions_groups'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;related_query_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'group'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'permissions'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="n"&gt;blank&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;objects&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GroupManager&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;app_label&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'core'&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'group'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name_plural&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'groups'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__str__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;natural_key&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;Doğru Model Adı&lt;/h3&gt;
+
+&lt;p&gt;Model denen şey tek bir kaydı temsil eder. Bu bakımdan ismi tekil olmalıdır.
+Eğer bu model ara tablo değilse, yani &lt;strong&gt;ManyToMany through&lt;/strong&gt; tablosu değilse
+mutlaka tekil olmalıdır.&lt;/p&gt;
+
+&lt;p&gt;İngilizce bazı kelimelerin tekil ve çoğul durumları farklıdır. Örneğin
+&lt;strong&gt;People&lt;/strong&gt; kelimesi çoğuldur ve bunun tekili &lt;strong&gt;Person&lt;/strong&gt;’dır.&lt;/p&gt;
+
+&lt;p&gt;Bu doğrultuda;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Post&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Article&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;User&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Person&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;şeklinde olmalıdır. Ama haber modeli diye bir model olacaksa o &lt;code&gt;News&lt;/code&gt; olur.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;Mümkünse Database Tablo adını Kendiniz Belileyin&lt;/h3&gt;
+
+&lt;p&gt;Modelin &lt;code&gt;class Meta:&lt;/code&gt; kısmında &lt;code&gt;db_table&lt;/code&gt; kullanarak tablo isimlerini Django
+yerine siz belirleyebilirsiniz. Bu sayede daha kısa tablo adları olur ve
+siz daha hakim olursunuz database’e.&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Customer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;app_label&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'core'&lt;/span&gt;
+        &lt;span class="n"&gt;db_table&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'customer'&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'customer'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name_plural&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'customers'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;Mutlaka Modelin &lt;code&gt;created_at&lt;/code&gt; ve &lt;code&gt;updated_at&lt;/code&gt; Field’ları olsun&lt;/h3&gt;
+
+&lt;p&gt;Genelde benim &lt;code&gt;base.py&lt;/code&gt; diye bir dosyam ve onun içinde tüm modellerde ortak
+olarak kullanmayı düşündüğüm alanları kapsayan bir &lt;code&gt;abstract&lt;/code&gt; model olur:&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MyBaseModel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;created_at&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTimeField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;auto_now_add&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'created at'&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;updated_at&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateTimeField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;auto_now&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'updated at'&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;abstract&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Duruma göre &lt;code&gt;deleted_at&lt;/code&gt;, &lt;code&gt;is_active&lt;/code&gt; gibi alanlar da olabilir. İlgili
+modellerimi bundan türetirim.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;İlişki Belirtmek&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;Article&lt;/code&gt; diye bir modeliniz var, &lt;code&gt;Article&lt;/code&gt; içinde &lt;code&gt;User&lt;/code&gt; modeline &lt;code&gt;ForeignKey&lt;/code&gt;
+tanımlayacaksınız. Dolayısıyla &lt;code&gt;User&lt;/code&gt; modelini içeri &lt;code&gt;import&lt;/code&gt; etmeniz gerekiyor.
+&lt;strong&gt;Circular import&lt;/strong&gt; durumuna düşmemek adına ben genelde tek bir &lt;code&gt;app&lt;/code&gt; altına
+tüm modelleri toplarım.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;User&lt;/code&gt; modelini de kendi oluşturduğum &lt;a href="https://docs.djangoproject.com/en/3.2/topics/auth/customizing/#specifying-a-custom-user-model"&gt;Custom User&lt;/a&gt; modelini kullanırım.
+Bu sayede hiçbir zaman dışarıdan modeli import etmem. Peki nasıl tanımlarım?&lt;/p&gt;
+
+&lt;p&gt;Normalde &lt;code&gt;user = models.ForeignKey(User, ...)&lt;/code&gt; şeklinde &lt;code&gt;User&lt;/code&gt;’ı import etmek
+yerine, &lt;code&gt;to=&amp;#39;User&amp;#39;&lt;/code&gt; ile &lt;strong&gt;shorthand reference&lt;/strong&gt; kullanıyorum, yani;&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.conf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Article&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ForeignKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AUTH_USER_MODEL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;on_delete&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CASCADE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;şeklinde. &lt;code&gt;to=&amp;#39;String&amp;#39;&lt;/code&gt; de olur;&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;City&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;country&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ForeignKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'Country'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;on_delete&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CASCADE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;related_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'cities'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;related_query_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'city'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'country'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;bu sayede model import işleriyle uğraşmam. Ne zamana kadar? Eğer model başka
+bir app içindeyse mecburen import ederim.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;İlişkili Model &lt;code&gt;related_name&lt;/code&gt; ve &lt;code&gt;related_query_name&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Mutlaka ilişkili yani &lt;code&gt;ForeignKey&lt;/code&gt; ya da &lt;code&gt;ManyToMany&lt;/code&gt; field’lara &lt;code&gt;related_name&lt;/code&gt;
+ve &lt;code&gt;related_query_name&lt;/code&gt; tanımı yapın. &lt;code&gt;related_name&lt;/code&gt; o modeldeyken tersten üst
+modele erişim sağlar.&lt;/p&gt;
+
+&lt;p&gt;Yani, elimde &lt;code&gt;Country&lt;/code&gt; instance’ı varsa, ben &lt;code&gt;country.cities.filter()&lt;/code&gt; şeklinde
+sorgu yapabilirim. Aksi halde Django’nun otomatik eklediği &lt;code&gt;model_set&lt;/code&gt; üzerinden
+gitmem gerekir.&lt;/p&gt;
+
+&lt;p&gt;Aynı şekilde, &lt;code&gt;Country.objects.filter(city__name=&amp;#39;xxx&amp;#39;)&lt;/code&gt; şeklinde &lt;code&gt;related_query_name&lt;/code&gt;
+kullanarak sorgu yapabilirim.&lt;/p&gt;
+
+&lt;p&gt;Keza &lt;code&gt;related_name&lt;/code&gt; değeri de çoğul olarak verilmelidir. Yani &lt;code&gt;ForeignKey&lt;/code&gt; ilişkisi
+aslında &lt;strong&gt;One to Many&lt;/strong&gt; yani bir &lt;code&gt;Country&lt;/code&gt;’nin birden fazla şehri olabilir 
+mantığında olduğu için, o &lt;code&gt;Country&lt;/code&gt;’nin &lt;code&gt;cities&lt;/code&gt; yani şehirleri vardır.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;&lt;code&gt;ForeignKey&lt;/code&gt; için &lt;code&gt;unique=True&lt;/code&gt; Kullanmayın&lt;/h3&gt;
+
+&lt;p&gt;Çünkü bu iş için &lt;code&gt;OneToOneField&lt;/code&gt; var.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;Gerektiğinde &lt;code&gt;NullBooleanField&lt;/code&gt; Kullanın&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;models.BooleanField(null=True)&lt;/code&gt; yerine &lt;code&gt;models.NullBooleanField()&lt;/code&gt; kullanın.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;&lt;code&gt;ObjectDoesNotExist&lt;/code&gt; Yerine &lt;code&gt;Model.DoesNotExist&lt;/code&gt; Kullanın&lt;/h3&gt;
+
+&lt;p&gt;Kayıt yoksa &lt;code&gt;django.core.exceptions&lt;/code&gt;’da &lt;code&gt;ObjectDoesNotExist&lt;/code&gt; exception’ı
+yakalamak yerine modelin &lt;code&gt;Model.DoesNotExist&lt;/code&gt; exception’ını yakalamak daha
+iyi bir yöntem. Bazı özel durumlar dışında &lt;code&gt;Model.DoesNotExist&lt;/code&gt; kullanın.&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;creator&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;user_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;email&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;email&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="n"&gt;user_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DoesNotExist&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;exc&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="n"&gt;CommandError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'email (&lt;/span&gt;&lt;span class="si"&gt;%&lt;/span&gt;&lt;span class="s"&gt;s) does not exists'&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;email&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;exc&lt;/span&gt;
+&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;&lt;code&gt;choices&lt;/code&gt; Kullanımı&lt;/h3&gt;
+
+&lt;p&gt;Model için &lt;code&gt;choices&lt;/code&gt; kullanmanız gerektiğinde ya aşağıdaki gibi ya da
+yeni gelen &lt;a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#enumeration-types"&gt;Enumeration types&lt;/a&gt;’ı kullanabilirsiniz. Açıkcası ben henüz
+Enumeration types kullanmadım, eski yöntem kolayıma geliyor.&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.utils.translation&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ugettext_lazy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.db&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;STATUS_OFFLINE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="n"&gt;STATUS_ONLINE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="n"&gt;STATUS_DELETED&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="n"&gt;STATUS_DRAFT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+    &lt;span class="n"&gt;STATUS_CHOICES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;STATUS_OFFLINE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'offline'&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;STATUS_ONLINE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'online'&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;STATUS_DELETED&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'deleted'&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;STATUS_DRAFT&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'draft'&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;status&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;IntegerField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;choices&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;STATUS_CHOICES&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;STATUS_ONLINE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'status'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Daha detaylı bilgi için &lt;a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#choices"&gt;tıklayabilirsiniz&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;Alan Adındaki Fuzuli Model İsmi&lt;/h3&gt;
+
+&lt;p&gt;Eğer &lt;code&gt;User&lt;/code&gt; diye bir model varsa, &lt;code&gt;user_status = models.IntegerField(...)&lt;/code&gt;
+diye bir field yerine, &lt;code&gt;status = models.IntegerField(...)&lt;/code&gt; şeklinde field’ı
+tanımlamak daha mantıklıdır. Boşuna tekrar yapmamak lazım.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;&lt;code&gt;models.py&lt;/code&gt; Yerine &lt;code&gt;models/&lt;/code&gt; Paketi&lt;/h3&gt;
+
+&lt;p&gt;Model dosyası uzar gider, içinde hareket etmek zorlaşır. Bu bakımdan ben
+help modelleri &lt;code&gt;models&lt;/code&gt; paketi içinde tanımlarım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;models/
+    __init__.py
+    user.py
+    post.py
+    comment.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ve &lt;code&gt;__init__.py&lt;/code&gt; içinde de;&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;.user&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;User&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;.post&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Post&lt;/span&gt;
+&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Model dosyası içinde de nelerin importable olduğunu yazarım:&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.db&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;
+
+&lt;span class="n"&gt;__all__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'City'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;City&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;Güvenli &lt;code&gt;save()&lt;/code&gt;&lt;/h3&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Foo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pk&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'force_update'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+            &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'force_insert'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'force_insert'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+            &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'force_update'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
+    &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;Index Eklemek&lt;/h3&gt;
+
+&lt;p&gt;Sorgu yapmayı düşündüğünüz field’ları mutlaka index’leyin ama şunu da unutmayın
+ne kadar index o kadar büyük database. Eğer mümkünse index için &lt;code&gt;condition&lt;/code&gt; da
+tanımlayın. Aşağıdaki örneği &lt;strong&gt;DjangoCon&lt;/strong&gt; sunumlarından birinde görmüştüm.&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Order&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;indexes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+            &lt;span class="n"&gt;Index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+                &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'unshipped_orders'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                &lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'pk'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                &lt;span class="n"&gt;condition&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Q&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;is_shipped&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;null&lt;/code&gt; değeri olan query’ler hızlanır&lt;/li&gt;
+&lt;li&gt;Sadece gönderilmemiş (&lt;em&gt;unshipped&lt;/em&gt;) olanlar index’lenir&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Keza database katmanında da validasyon için;&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;MonthlyBudget&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Meta&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;constraints&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+            &lt;span class="n"&gt;CheckConstraint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+                &lt;span class="n"&gt;check&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Q&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;month__in&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+                &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'check_valid_month'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Ay değeri 1-12 (&lt;em&gt;inclusive&lt;/em&gt;) olur ve &lt;strong&gt;13&lt;/strong&gt; olamaz, bu da database
+katmanında bir kontrol/validasyon sağlar&lt;/li&gt;
+&lt;li&gt;Özellikle &lt;code&gt;bulk_update()&lt;/code&gt; işleri için çok işe yarar.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;&lt;code&gt;ManyToMany&lt;/code&gt; için Kendi Tablonuzu Kullanın&lt;/h2&gt;
+
+&lt;p&gt;Eğer &lt;code&gt;ManyToMany&lt;/code&gt; field kullanıyorsanız, Django otomatik olarak gizli bir
+tablo oluşturur. Örneğin;&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Customer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;users&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ManyToManyField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AUTH_USER_MODEL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;related_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'customers'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;related_query_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'customer'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;blank&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'users'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;    
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;gibi bir model varsa, Django yeni bir tablo yapar, buna &lt;strong&gt;Associative Table&lt;/strong&gt;
+denir ve orada sadece &lt;code&gt;Customer ID&lt;/code&gt; ve &lt;code&gt;User ID&lt;/code&gt; tutar&amp;hellip; Sizin bu tabloda
+başka hiçbir kontrolünüz yoktur. Ne migration seviyesinde ne de sorgu
+seviyesinde kontrol hep Django’da olur.&lt;/p&gt;
+
+&lt;p&gt;Peki ek bir field daha gerekse ne olacak? Yani &lt;code&gt;Customer ID&lt;/code&gt;, &lt;code&gt;User ID&lt;/code&gt; ve
+&lt;code&gt;Is Admin?&lt;/code&gt; tutmanız gerekse ne olacak? İşte bu durumlar için &lt;code&gt;through&lt;/code&gt;
+ve &lt;code&gt;through_fields&lt;/code&gt; ile ara tabloyu kendimiz oluşturabiliriz.&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Customer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CharField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;max_length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'name'&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+    &lt;span class="n"&gt;users&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ManyToManyField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AUTH_USER_MODEL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;through&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'CustomerMembership'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;through_fields&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'customer'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'user'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+        &lt;span class="n"&gt;related_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'customers'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;related_query_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'customer'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;blank&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'users'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CustomerMembership&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;customer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ForeignKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'Customer'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;on_delete&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CASCADE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ForeignKey&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;AUTH_USER_MODEL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;on_delete&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CASCADE&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;is_admin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;BooleanField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'customer admin status'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ara tablo &lt;code&gt;CustomerMembership&lt;/code&gt; modelinde tanımlandı. Kontrol tamamen bizde.
+Hatta bu modelin &lt;code&gt;save()&lt;/code&gt;’ine istersek ek bir şeyler bile takabiliriz. Neticede
+bu artık bir model&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Keza Django Admin’de de çok güzel bir şekilde kullanabiliriz:&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CustomerInlineAdmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TabularInlineAdmin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Customer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;users&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;through&lt;/span&gt;  &lt;span class="c"&gt;# &amp;lt;- bu kısım!&lt;/span&gt;
+    &lt;span class="n"&gt;extra&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="n"&gt;autocomplete_fields&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'customer'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'user'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;CustomerAdmin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ModelAdmin&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;list_display&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'__str__'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;autocomplete_fields&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'users'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;ordering&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'name'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;inlines&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;CustomerInlineAdmin&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Özetle, üşenmeyin, &lt;code&gt;ManyToManyField&lt;/code&gt; durumunda &lt;code&gt;through&lt;/code&gt; kullanın :)&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Son olarak, modeli planlarken yapacağınız sorguları da hayal edin. Örneğin
+sürekli tarih ile ilgili bir sorgu yapacaksınız. Yılı 2020 olan kayıtları
+getir ya da sürekli yıla göre rapor alıyorsunuz.&lt;/p&gt;
+
+&lt;p&gt;Modelin &lt;code&gt;created_at&lt;/code&gt; alanında sürekli &lt;code&gt;date lookup&lt;/code&gt; yapmak yerine, belkide
+modele bir &lt;code&gt;year&lt;/code&gt; field’ı eklemek ve bunu &lt;code&gt;IntegerField&lt;/code&gt; yapmak ve index
+koymak sorgularınızı aşırı derecede hızlandırabilir. Database içinde
+tarih hesapları yapmak yerine sadece sayı sorgusu yapmak çok daha hızlı
+ve az maliyetlidir.&lt;/p&gt;
+
+&lt;p&gt;Belki ay, gün için bile ek bir &lt;code&gt;IntegerField&lt;/code&gt; eklenebilir. Yani ne sorgulayacağınızı
+mutlaka planlayın&amp;hellip;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>İstediğiniz Yerden Go Kodunu Çalıştırabilirsiniz</title>
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2021/05/27/istediginiz-yerden-go-kodunu-calistirabilirsiniz/"/>
@@ -1445,84 +1904,6 @@ değil. Katıldığım ilk günden çok memnun ayrıldım. Hem girdiğim sunular
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Python fonksiyonu nasıl yazılmalı?</title>
-    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2012/10/26/python-fonksiyonu-nasil-yazilmali/"/>
-    <id>http://ugur.ozyilmazel.com/blog/tr/2012/10/26/python-fonksiyonu-nasil-yazilmali/</id>
-    <published>2012-10-26T00:03:00+03:00</published>
-    <updated>2021-05-27T17:35:15+03:00</updated>
-    <author>
-      <name>Uğur “vigo” Özyılmazel</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;a href="http://coursera.org" title="Coursera"&gt;Coursera&lt;/a&gt;&amp;rsquo;dan aldığım &lt;a href="https://class.coursera.org/programming1-2012-001/class/index"&gt;Learn to Program: The Fundamentals&lt;/a&gt; dersinde
-bugüne kadar görmediğim bir şeyi sizlerle paylaşmak istiyorum.
-&lt;/p&gt;
-
-&lt;p&gt;Sevgili hocalarım &lt;strong&gt;Jennifer Campbell&lt;/strong&gt; ve &lt;strong&gt;Paul Gries&lt;/strong&gt; ufkumu genişlettiler&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="http://www.utoronto.ca" title="University of Toronto"&gt;Toronto Üniversitesi&lt;/a&gt; tarafından hazırlanan ders, Python 101 yani
-Python&amp;rsquo;a giriş ve temel öğeleri kapsıyor. Geçenlerde Python fonksiyonun
-anatomisi vardı derste.&lt;/p&gt;
-&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;area&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;                                        &lt;span class="c"&gt;# Header&lt;/span&gt;
-    &lt;span class="s"&gt;''' (number, number) -&amp;gt; number                             # Type Contract
-
-    Return the area of a triange with dimensions base          # Description
-    and height.
-
-    &amp;gt;&amp;gt;&amp;gt; area(10, 5)                                            # Examples
-    25.0
-    &amp;gt;&amp;gt;&amp;gt; area(2.5, 3)
-    3.75
-    '''&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;base&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;                                   &lt;span class="c"&gt;# Body&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Şimdi teker teker bakalım.&lt;/p&gt;
-
-&lt;h3&gt;def area(base, height):&lt;/h3&gt;
-
-&lt;p&gt;Bu kısım yani ilk satır, fonksiyonun &lt;strong&gt;Header&lt;/strong&gt;&amp;rsquo;ı yani başı.
-&lt;strong&gt;def&lt;/strong&gt; define anlamında. &lt;strong&gt;area&lt;/strong&gt; fonsiyonun adı. &lt;strong&gt;base&lt;/strong&gt; ve &lt;strong&gt;height&lt;/strong&gt; da
-fonksiyonun aldığı parametreler / argümanlar.&lt;/p&gt;
-
-&lt;h3&gt;(number, number) -&amp;gt; number&lt;/h3&gt;
-
-&lt;p&gt;Bu kısım, &lt;strong&gt;Docstring&lt;/strong&gt; dediğimiz yerin ilk satırı; &lt;strong&gt;Type Contract&lt;/strong&gt; olarak
-adlandırılıyor. Bu bölümde, fonksiyona geçilecek parametreler, adeti, türleri
-ve sonunda fonksiyonun geri döndüğü şey ve tipi belirtiliyor.&lt;/p&gt;
-
-&lt;p&gt;Bu örnekte fonksiyona 2 adet &lt;strong&gt;sayı&lt;/strong&gt; geçiyoruz. Python&amp;rsquo;da &lt;strong&gt;number&lt;/strong&gt; diye
-bir tip yok bildiğiniz gibi. (&lt;em&gt;int, float, long, complex tipleri var&lt;/em&gt;)
-Fakat tip olarak &lt;strong&gt;number&lt;/strong&gt; geçmek ve dönmek şu manaya geliyor;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Fonksiyon&amp;rsquo;a &lt;code&gt;int&lt;/code&gt; ya da &lt;code&gt;float&lt;/code&gt;
-geçebiliriz, sonuç da bize &lt;code&gt;int&lt;/code&gt; ya da &lt;code&gt;float&lt;/code&gt; dönebilir.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Yuvarlak olarak bu iki farklı sayı tipi için kısaca &lt;strong&gt;number&lt;/strong&gt; demişler.&lt;/p&gt;
-
-&lt;h3&gt;Return the area of a triange&amp;hellip;&lt;/h3&gt;
-
-&lt;p&gt;Örnekteki 4 ve 5.satırlar &lt;strong&gt;Description&lt;/strong&gt; satırları. Yani fonksiyonun ne
-yapacağını bize anlatan açıklama alanı&amp;hellip;&lt;/p&gt;
-
-&lt;h3&gt;&amp;gt;&amp;gt;&amp;gt; area(10, 5)&lt;/h3&gt;
-
-&lt;p&gt;7 - 10.satırlar &lt;strong&gt;Examples&lt;/strong&gt; olarak geçiyor. Yani fonksiyonun kullanım
-örneği&amp;hellip; Hatta &lt;strong&gt;Docstring Test&lt;/strong&gt; için de kullanılacak bir alan. Bize
-söylediği şu; &lt;strong&gt;area(10, 5)&lt;/strong&gt; bize sonuç olarak &lt;strong&gt;25.0&lt;/strong&gt; dönmeli.&lt;/p&gt;
-
-&lt;h3&gt;return base * height / 2&lt;/h3&gt;
-
-&lt;p&gt;Bu kısım da fonksiyonun esas işi yaptığı alan yani &lt;strong&gt;Body&lt;/strong&gt; yani fonksiyonun
-gövdesi. Örnek şaşırtmasın, tek satır olmak zorunda değil 8)&lt;/p&gt;
-
-&lt;p&gt;Gerçekten çok ilgimi çeken bir yaklaşım oldu. Paylaşmak istedim. Umarım
-sizlerin de işine yarar faydalı olur&amp;hellip;&lt;/p&gt;
 </content>
   </entry>
 </feed>
