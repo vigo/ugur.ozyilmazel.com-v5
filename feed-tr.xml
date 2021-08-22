@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2021/08/22/django-model-ipuclari/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2021/08/22/django-model-ipuclari/</id>
     <published>2021-08-22T09:43:00+03:00</published>
-    <updated>2021-08-22T11:15:59+03:00</updated>
+    <updated>2021-08-22T11:23:30+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -120,7 +120,7 @@ mutlaka tekil olmalıdır.&lt;/p&gt;
 
 &lt;hr&gt;
 
-&lt;h3&gt;Mümkünse Database Tablo adını Kendiniz Belileyin&lt;/h3&gt;
+&lt;h3&gt;Mümkünse Database Tablo adını Kendiniz Belirleyin&lt;/h3&gt;
 
 &lt;p&gt;Modelin &lt;code&gt;class Meta:&lt;/code&gt; kısmında &lt;code&gt;db_table&lt;/code&gt; kullanarak tablo isimlerini Django
 yerine siz belirleyebilirsiniz. Bu sayede daha kısa tablo adları olur ve
