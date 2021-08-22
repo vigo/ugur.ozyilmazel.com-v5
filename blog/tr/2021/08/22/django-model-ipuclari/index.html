@@ -12,7 +12,7 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-08-22T11:27:04+03:00" />
+        <meta name="date" content="2021-08-22T11:31:15+03:00" />
         <meta name="description" content="Yaklaşık 2008’den beri Django geliştiriyorum. Pek çok proje yaptım. Model
 tanımlamaları ile ilgili bazı edindiğim, okuduğum makalelerden öğrendiğim
 şeyleri yazmak istedim." />
@@ -325,7 +325,7 @@ iyi bir yöntem. Bazı özel durumlar dışında <code>Model.DoesNotExist</code>
 <p>Model için <code>choices</code> kullanmanız gerektiğinde ya aşağıdaki gibi ya da
 yeni gelen <a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#enumeration-types">Enumeration types</a>’ı kullanabilirsiniz. Açıkcası ben henüz
 Enumeration types kullanmadım, eski yöntem kolayıma geliyor.</p>
-<pre class="highlight python"><code><span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="kn">import</span> <span class="n">ugettext_lazy</span> <span class="k">as</span> <span class="n">_</span>
+<pre class="highlight python"><code><span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="kn">import</span> <span class="n">gettext_lazy</span> <span class="k">as</span> <span class="n">_</span>
 <span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
 <span class="k">class</span> <span class="nc">Post</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
