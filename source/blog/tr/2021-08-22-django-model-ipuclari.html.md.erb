@@ -18,8 +18,6 @@ Mutlaka ama mutlaka değişken ve sınıf adlarını **İngilizce** olarak kulla
 Yarın projenizi açık-kaynak yaptığınızda ya da ekibinize Türkçe bilmeyen
 biri katıldığında kodu kolay anlamalı.
 
----
-
 ### Model Yazma Kuralları
 
 Django bildiğiniz gibi muhteşem bir dokümantasyona sahip. Bizim için her ince
@@ -86,8 +84,6 @@ class Group(models.Model):
 
 ```
 
----
-
 ### Doğru Model Adı
 
 Model denen şey tek bir kaydı temsil eder. Bu bakımdan ismi tekil olmalıdır.
@@ -105,8 +101,6 @@ Bu doğrultuda;
 - `Person`
 
 şeklinde olmalıdır. Ama haber modeli diye bir model olacaksa o `News` olur.
-
----
 
 ### Mümkünse Database Tablo adını Kendiniz Belirleyin
 
@@ -126,8 +120,6 @@ class Customer(models.Model):
     :
 ```
 
----
-
 ### Mutlaka Modelin `created_at` ve `updated_at` Field’ları olsun
 
 Genelde benim `base.py` diye bir dosyam ve onun içinde tüm modellerde ortak
@@ -145,8 +137,6 @@ class MyBaseModel(models.Model):
 
 Duruma göre `deleted_at`, `is_active` gibi alanlar da olabilir. İlgili
 modellerimi bundan türetirim.
-
----
 
 ### İlişki Belirtmek
 
@@ -190,8 +180,6 @@ class City(models.Model):
 bu sayede model import işleriyle uğraşmam. Ne zamana kadar? Eğer model başka
 bir app içindeyse mecburen import ederim.
 
----
-
 ### İlişkili Model `related_name` ve `related_query_name`
 
 Mutlaka ilişkili yani `ForeignKey` ya da `ManyToMany` field’lara `related_name`
@@ -209,19 +197,13 @@ Keza `related_name` değeri de çoğul olarak verilmelidir. Yani `ForeignKey` il
 aslında **One to Many** yani bir `Country`’nin birden fazla şehri olabilir 
 mantığında olduğu için, o `Country`’nin `cities` yani şehirleri vardır.
 
----
-
 ### `ForeignKey` için `unique=True` Kullanmayın
 
 Çünkü bu iş için `OneToOneField` var.
 
----
-
 ### Gerektiğinde `NullBooleanField` Kullanın
 
 `models.BooleanField(null=True)` yerine `models.NullBooleanField()` kullanın.
-
----
 
 ### `ObjectDoesNotExist` Yerine `Model.DoesNotExist` Kullanın
 
@@ -239,8 +221,6 @@ except user_model.DoesNotExist as exc:
 :
 :
 ```
-
----
 
 ### `choices` Kullanımı
 
@@ -275,15 +255,11 @@ class Post(models.Model):
 
 Daha detaylı bilgi için [tıklayabilirsiniz][03].
 
----
-
 ### Alan Adındaki Fuzuli Model İsmi
 
 Eğer `User` diye bir model varsa, `user_status = models.IntegerField(...)`
 diye bir field yerine, `status = models.IntegerField(...)` şeklinde field’ı
 tanımlamak daha mantıklıdır. Boşuna tekrar yapmamak lazım.
-
----
 
 ### `models.py` Yerine `models/` Paketi
 
@@ -319,8 +295,6 @@ class City(models.Model):
     :
 ```
 
----
-
 ### Güvenli `save()`
 
 ```python
@@ -334,8 +308,6 @@ class Foo(models.Model):
             kwargs['force_update'] = False
     super().save(*args, **kwargs)
 ```
-
----
 
 ### Index Eklemek
 
@@ -378,9 +350,6 @@ class MonthlyBudget(models.Model):
 1. Ay değeri 1-12 (*inclusive*) olur ve **13** olamaz, bu da database
 katmanında bir kontrol/validasyon sağlar
 1. Özellikle `bulk_update()` işleri için çok işe yarar.
-
----
-
 
 ## `ManyToMany` için Kendi Tablonuzu Kullanın
 

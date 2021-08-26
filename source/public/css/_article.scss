@@ -36,11 +36,13 @@
   
   #markdown {
     h2, h3 {
+      margin-top: 3rem;
       margin-bottom: 1rem;
+      line-height: 2.4rem;
     }
 
     h3 {
-      border-bottom: 2px solid $heading3-color;
+      border-bottom: 3px solid $heading3-color;
       padding-bottom: .5rem;
     }
     
