@@ -12,7 +12,7 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-08-22T11:31:15+03:00" />
+        <meta name="date" content="2021-08-26T12:13:26+03:00" />
         <meta name="description" content="Yaklaşık 2008’den beri Django geliştiriyorum. Pek çok proje yaptım. Model
 tanımlamaları ile ilgili bazı edindiğim, okuduğum makalelerden öğrendiğim
 şeyleri yazmak istedim." />
@@ -104,8 +104,6 @@ tanımlamaları ile ilgili bazı edindiğim, okuduğum makalelerden öğrendiği
 Yarın projenizi açık-kaynak yaptığınızda ya da ekibinize Türkçe bilmeyen
 biri katıldığında kodu kolay anlamalı.</p>
 
-<hr>
-
 <h3>Model Yazma Kuralları</h3>
 
 <p>Django bildiğiniz gibi muhteşem bir dokümantasyona sahip. Bizim için her ince
@@ -172,8 +170,6 @@ olmalıdır:</p>
 
 </code></pre>
 
-<hr>
-
 <h3>Doğru Model Adı</h3>
 
 <p>Model denen şey tek bir kaydı temsil eder. Bu bakımdan ismi tekil olmalıdır.
@@ -194,8 +190,6 @@ mutlaka tekil olmalıdır.</p>
 
 <p>şeklinde olmalıdır. Ama haber modeli diye bir model olacaksa o <code>News</code> olur.</p>
 
-<hr>
-
 <h3>Mümkünse Database Tablo adını Kendiniz Belirleyin</h3>
 
 <p>Modelin <code>class Meta:</code> kısmında <code>db_table</code> kullanarak tablo isimlerini Django
@@ -212,8 +206,6 @@ siz daha hakim olursunuz database’e.</p>
     <span class="p">:</span>
 </code></pre>
 
-<hr>
-
 <h3>Mutlaka Modelin <code>created_at</code> ve <code>updated_at</code> Field’ları olsun</h3>
 
 <p>Genelde benim <code>base.py</code> diye bir dosyam ve onun içinde tüm modellerde ortak
@@ -229,8 +221,6 @@ olarak kullanmayı düşündüğüm alanları kapsayan bir <code>abstract</code>
 
 <p>Duruma göre <code>deleted_at</code>, <code>is_active</code> gibi alanlar da olabilir. İlgili
 modellerimi bundan türetirim.</p>
-
-<hr>
 
 <h3>İlişki Belirtmek</h3>
 
@@ -270,8 +260,6 @@ yerine, <code>to=&#39;User&#39;</code> ile <strong>shorthand reference</strong> 
 <p>bu sayede model import işleriyle uğraşmam. Ne zamana kadar? Eğer model başka
 bir app içindeyse mecburen import ederim.</p>
 
-<hr>
-
 <h3>İlişkili Model <code>related_name</code> ve <code>related_query_name</code></h3>
 
 <p>Mutlaka ilişkili yani <code>ForeignKey</code> ya da <code>ManyToMany</code> field’lara <code>related_name</code>
@@ -289,19 +277,13 @@ kullanarak sorgu yapabilirim.</p>
 aslında <strong>One to Many</strong> yani bir <code>Country</code>’nin birden fazla şehri olabilir 
 mantığında olduğu için, o <code>Country</code>’nin <code>cities</code> yani şehirleri vardır.</p>
 
-<hr>
-
 <h3><code>ForeignKey</code> için <code>unique=True</code> Kullanmayın</h3>
 
 <p>Çünkü bu iş için <code>OneToOneField</code> var.</p>
 
-<hr>
-
 <h3>Gerektiğinde <code>NullBooleanField</code> Kullanın</h3>
 
 <p><code>models.BooleanField(null=True)</code> yerine <code>models.NullBooleanField()</code> kullanın.</p>
-
-<hr>
 
 <h3><code>ObjectDoesNotExist</code> Yerine <code>Model.DoesNotExist</code> Kullanın</h3>
 
@@ -317,8 +299,6 @@ iyi bir yöntem. Bazı özel durumlar dışında <code>Model.DoesNotExist</code>
 <span class="p">:</span>
 <span class="p">:</span>
 </code></pre>
-
-<hr>
 
 <h3><code>choices</code> Kullanımı</h3>
 
@@ -351,15 +331,11 @@ Enumeration types kullanmadım, eski yöntem kolayıma geliyor.</p>
 
 <p>Daha detaylı bilgi için <a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#choices">tıklayabilirsiniz</a>.</p>
 
-<hr>
-
 <h3>Alan Adındaki Fuzuli Model İsmi</h3>
 
 <p>Eğer <code>User</code> diye bir model varsa, <code>user_status = models.IntegerField(...)</code>
 diye bir field yerine, <code>status = models.IntegerField(...)</code> şeklinde field’ı
 tanımlamak daha mantıklıdır. Boşuna tekrar yapmamak lazım.</p>
-
-<hr>
 
 <h3><code>models.py</code> Yerine <code>models/</code> Paketi</h3>
 
@@ -389,8 +365,6 @@ help modelleri <code>models</code> paketi içinde tanımlarım:</p>
     <span class="p">:</span>
 </code></pre>
 
-<hr>
-
 <h3>Güvenli <code>save()</code></h3>
 <pre class="highlight python"><code><span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -402,8 +376,6 @@ help modelleri <code>models</code> paketi içinde tanımlarım:</p>
             <span class="n">kwargs</span><span class="p">[</span><span class="s">'force_update'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre>
-
-<hr>
 
 <h3>Index Eklemek</h3>
 
@@ -446,8 +418,6 @@ tanımlayın. Aşağıdaki örneği <strong>DjangoCon</strong> sunumlarından bi
 katmanında bir kontrol/validasyon sağlar</li>
 <li>Özellikle <code>bulk_update()</code> işleri için çok işe yarar.</li>
 </ol>
-
-<hr>
 
 <h2><code>ManyToMany</code> için Kendi Tablonuzu Kullanın</h2>
 

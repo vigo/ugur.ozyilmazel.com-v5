@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2021/08/22/django-model-ipuclari/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2021/08/22/django-model-ipuclari/</id>
     <published>2021-08-22T09:43:00+03:00</published>
-    <updated>2021-08-22T11:30:50+03:00</updated>
+    <updated>2021-08-26T12:10:40+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -27,8 +27,6 @@ tanımlamaları ile ilgili bazı edindiğim, okuduğum makalelerden öğrendiği
 &lt;p&gt;Mutlaka ama mutlaka değişken ve sınıf adlarını &lt;strong&gt;İngilizce&lt;/strong&gt; olarak kullanın.
 Yarın projenizi açık-kaynak yaptığınızda ya da ekibinize Türkçe bilmeyen
 biri katıldığında kodu kolay anlamalı.&lt;/p&gt;
-
-&lt;hr&gt;
 
 &lt;h3&gt;Model Yazma Kuralları&lt;/h3&gt;
 
@@ -96,8 +94,6 @@ olmalıdır:&lt;/p&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;hr&gt;
-
 &lt;h3&gt;Doğru Model Adı&lt;/h3&gt;
 
 &lt;p&gt;Model denen şey tek bir kaydı temsil eder. Bu bakımdan ismi tekil olmalıdır.
@@ -118,8 +114,6 @@ mutlaka tekil olmalıdır.&lt;/p&gt;
 
 &lt;p&gt;şeklinde olmalıdır. Ama haber modeli diye bir model olacaksa o &lt;code&gt;News&lt;/code&gt; olur.&lt;/p&gt;
 
-&lt;hr&gt;
-
 &lt;h3&gt;Mümkünse Database Tablo adını Kendiniz Belirleyin&lt;/h3&gt;
 
 &lt;p&gt;Modelin &lt;code&gt;class Meta:&lt;/code&gt; kısmında &lt;code&gt;db_table&lt;/code&gt; kullanarak tablo isimlerini Django
@@ -136,8 +130,6 @@ siz daha hakim olursunuz database’e.&lt;/p&gt;
     &lt;span class="p"&gt;:&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;hr&gt;
-
 &lt;h3&gt;Mutlaka Modelin &lt;code&gt;created_at&lt;/code&gt; ve &lt;code&gt;updated_at&lt;/code&gt; Field’ları olsun&lt;/h3&gt;
 
 &lt;p&gt;Genelde benim &lt;code&gt;base.py&lt;/code&gt; diye bir dosyam ve onun içinde tüm modellerde ortak
@@ -153,8 +145,6 @@ olarak kullanmayı düşündüğüm alanları kapsayan bir &lt;code&gt;abstract&
 
 &lt;p&gt;Duruma göre &lt;code&gt;deleted_at&lt;/code&gt;, &lt;code&gt;is_active&lt;/code&gt; gibi alanlar da olabilir. İlgili
 modellerimi bundan türetirim.&lt;/p&gt;
-
-&lt;hr&gt;
 
 &lt;h3&gt;İlişki Belirtmek&lt;/h3&gt;
 
@@ -194,8 +184,6 @@ yerine, &lt;code&gt;to=&amp;#39;User&amp;#39;&lt;/code&gt; ile &lt;strong&gt;sho
 &lt;p&gt;bu sayede model import işleriyle uğraşmam. Ne zamana kadar? Eğer model başka
 bir app içindeyse mecburen import ederim.&lt;/p&gt;
 
-&lt;hr&gt;
-
 &lt;h3&gt;İlişkili Model &lt;code&gt;related_name&lt;/code&gt; ve &lt;code&gt;related_query_name&lt;/code&gt;&lt;/h3&gt;
 
 &lt;p&gt;Mutlaka ilişkili yani &lt;code&gt;ForeignKey&lt;/code&gt; ya da &lt;code&gt;ManyToMany&lt;/code&gt; field’lara &lt;code&gt;related_name&lt;/code&gt;
@@ -213,19 +201,13 @@ kullanarak sorgu yapabilirim.&lt;/p&gt;
 aslında &lt;strong&gt;One to Many&lt;/strong&gt; yani bir &lt;code&gt;Country&lt;/code&gt;’nin birden fazla şehri olabilir 
 mantığında olduğu için, o &lt;code&gt;Country&lt;/code&gt;’nin &lt;code&gt;cities&lt;/code&gt; yani şehirleri vardır.&lt;/p&gt;
 
-&lt;hr&gt;
-
 &lt;h3&gt;&lt;code&gt;ForeignKey&lt;/code&gt; için &lt;code&gt;unique=True&lt;/code&gt; Kullanmayın&lt;/h3&gt;
 
 &lt;p&gt;Çünkü bu iş için &lt;code&gt;OneToOneField&lt;/code&gt; var.&lt;/p&gt;
 
-&lt;hr&gt;
-
 &lt;h3&gt;Gerektiğinde &lt;code&gt;NullBooleanField&lt;/code&gt; Kullanın&lt;/h3&gt;
 
 &lt;p&gt;&lt;code&gt;models.BooleanField(null=True)&lt;/code&gt; yerine &lt;code&gt;models.NullBooleanField()&lt;/code&gt; kullanın.&lt;/p&gt;
-
-&lt;hr&gt;
 
 &lt;h3&gt;&lt;code&gt;ObjectDoesNotExist&lt;/code&gt; Yerine &lt;code&gt;Model.DoesNotExist&lt;/code&gt; Kullanın&lt;/h3&gt;
 
@@ -241,8 +223,6 @@ iyi bir yöntem. Bazı özel durumlar dışında &lt;code&gt;Model.DoesNotExist&
 &lt;span class="p"&gt;:&lt;/span&gt;
 &lt;span class="p"&gt;:&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr&gt;
 
 &lt;h3&gt;&lt;code&gt;choices&lt;/code&gt; Kullanımı&lt;/h3&gt;
 
@@ -275,15 +255,11 @@ Enumeration types kullanmadım, eski yöntem kolayıma geliyor.&lt;/p&gt;
 
 &lt;p&gt;Daha detaylı bilgi için &lt;a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#choices"&gt;tıklayabilirsiniz&lt;/a&gt;.&lt;/p&gt;
 
-&lt;hr&gt;
-
 &lt;h3&gt;Alan Adındaki Fuzuli Model İsmi&lt;/h3&gt;
 
 &lt;p&gt;Eğer &lt;code&gt;User&lt;/code&gt; diye bir model varsa, &lt;code&gt;user_status = models.IntegerField(...)&lt;/code&gt;
 diye bir field yerine, &lt;code&gt;status = models.IntegerField(...)&lt;/code&gt; şeklinde field’ı
 tanımlamak daha mantıklıdır. Boşuna tekrar yapmamak lazım.&lt;/p&gt;
-
-&lt;hr&gt;
 
 &lt;h3&gt;&lt;code&gt;models.py&lt;/code&gt; Yerine &lt;code&gt;models/&lt;/code&gt; Paketi&lt;/h3&gt;
 
@@ -313,8 +289,6 @@ help modelleri &lt;code&gt;models&lt;/code&gt; paketi içinde tanımlarım:&lt;/
     &lt;span class="p"&gt;:&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;hr&gt;
-
 &lt;h3&gt;Güvenli &lt;code&gt;save()&lt;/code&gt;&lt;/h3&gt;
 &lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Foo&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -326,8 +300,6 @@ help modelleri &lt;code&gt;models&lt;/code&gt; paketi içinde tanımlarım:&lt;/
             &lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'force_update'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;False&lt;/span&gt;
     &lt;span class="nb"&gt;super&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;save&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr&gt;
 
 &lt;h3&gt;Index Eklemek&lt;/h3&gt;
 
@@ -370,8 +342,6 @@ tanımlayın. Aşağıdaki örneği &lt;strong&gt;DjangoCon&lt;/strong&gt; sunum
 katmanında bir kontrol/validasyon sağlar&lt;/li&gt;
 &lt;li&gt;Özellikle &lt;code&gt;bulk_update()&lt;/code&gt; işleri için çok işe yarar.&lt;/li&gt;
 &lt;/ol&gt;
-
-&lt;hr&gt;
 
 &lt;h2&gt;&lt;code&gt;ManyToMany&lt;/code&gt; için Kendi Tablonuzu Kullanın&lt;/h2&gt;
 
