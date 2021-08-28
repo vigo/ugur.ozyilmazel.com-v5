@@ -462,7 +462,7 @@ daha fazlası var. Umarım sizin de işinize yarar.&lt;/p&gt;
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2021/08/22/django-model-ipuclari/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2021/08/22/django-model-ipuclari/</id>
     <published>2021-08-22T09:43:00+03:00</published>
-    <updated>2021-08-28T14:45:09+03:00</updated>
+    <updated>2021-08-28T14:46:58+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -635,7 +635,7 @@ yerine, &lt;code&gt;to=&amp;#39;User&amp;#39;&lt;/code&gt; ile &lt;strong&gt;sho
 
 &lt;p&gt;Sevgili &lt;a href="https://www.linkedin.com/in/muhammet-bahad%C4%B1r-kacar-698019187/"&gt;Muhammet Bahadır Kacar&lt;/a&gt;
 beni ikaz etti. Ben gözden kaçırmışım. Eğer &lt;code&gt;application.Model&lt;/code&gt; şeklinde
-&lt;strong&gt;string&lt;/strong&gt; olarak verilirse başka bir app’de de bu yöntemle &lt;strong&gt;lazy/short-hand
+&lt;strong&gt;string&lt;/strong&gt; olarak verilirse başka bir app’den de bu yöntemle &lt;strong&gt;lazy/short-hand
 ref&lt;/strong&gt; olarak &lt;a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#foreignkey"&gt;import&lt;/a&gt; edilebiliyor.&lt;/p&gt;
 &lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Permissions&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;groups&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ManyToManyField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
