@@ -177,8 +177,34 @@ class City(models.Model):
 
 ```
 
-bu sayede model import işleriyle uğraşmam. Ne zamana kadar? Eğer model başka
-bir app içindeyse mecburen import ederim.
+bu sayede model import işleriyle uğraşmam. 
+
+**28 Ağustos 2021**
+
+Sevgili [Muhammet Bahadır Kacar](https://www.linkedin.com/in/muhammet-bahad%C4%B1r-kacar-698019187/)
+beni ikaz etti. Ben gözden kaçırmışım. Eğer `application.Model` şeklinde
+**string** olarak verilirse başka bir app’den de bu yöntemle **lazy/short-hand
+ref** olarak [import](https://docs.djangoproject.com/en/3.2/ref/models/fields/#foreignkey) edilebiliyor.
+
+```python
+class Permissions(models.Model):
+    groups = models.ManyToManyField(
+        to='Group',
+        related_name='user_set',
+        related_query_name='user',
+        blank=True,
+        verbose_name=_('groups'),
+    )
+    user_permissions = models.ManyToManyField(
+        to='auth.Permission', # <- buradaki gibi...
+        related_name='user_set',
+        related_query_name='user',
+        blank=True,
+        verbose_name=_('user permissions'),
+    )
+    :
+    :
+```
 
 ### İlişkili Model `related_name` ve `related_query_name`
 
