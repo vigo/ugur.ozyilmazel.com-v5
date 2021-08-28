@@ -5,10 +5,458 @@
   <id>http://ugur.ozyilmazel.com</id>
   <link href="http://ugur.ozyilmazel.com"/>
   <link href="http://ugur.ozyilmazel.com/feed-tr.xml" rel="self"/>
-  <updated>2021-08-22T09:43:00+03:00</updated>
+  <updated>2021-08-28T11:38:00+03:00</updated>
   <author>
     <name>Uğur “vigo” Özyılmazel</name>
   </author>
+  <entry>
+    <title>JSON İşleme Aracı: jq</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2021/08/28/json-isleme-araci-jq/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2021/08/28/json-isleme-araci-jq/</id>
+    <published>2021-08-28T11:38:00+03:00</published>
+    <updated>2021-08-28T13:20:33+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;code&gt;JSON&lt;/code&gt; dosya formatı artık hayatımızın vazgeçilmezi. Gündelik hayatta hep
+onunla işimiz oluyor. Peki bir araç olsa, istediğimiz gibi filtreleme
+yapsak, hem de hiç kod yazmasak?&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Sizi harika bir araçla tanıştırmak istiyorum: &lt;code&gt;jq&lt;/code&gt;. &lt;code&gt;jq&lt;/code&gt; süper hızlı çalışan
+hafif siklet bir komut satırı aracı. Tüm platformlarda var. macOS kullanıcıları
+hemen:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;brew install jq
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ile kurabilir. Elle kurmak için &lt;a href="https://stedolan.github.io/jq/"&gt;sitesinden&lt;/a&gt; indirip kurulum yapabilirsiniz.
+Eğer kurulum yapmak istemezseniz, &lt;a href="https://jqplay.org/"&gt;web tarayıcısı&lt;/a&gt; üzerinden de kullanabilirsiniz.
+&lt;a href="https://stedolan.github.io/jq/manual/"&gt;Dokümantasyonu&lt;/a&gt; ve nasıl kullanılacağına dair bir &lt;a href="https://stedolan.github.io/jq/tutorial/"&gt;tuturial&lt;/a&gt;’i de bulunuyor.&lt;/p&gt;
+
+&lt;p&gt;Hemen ufak ufak girişelim.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"x": 1, "y": 2}'&lt;/span&gt; | jq
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"x"&lt;/span&gt;: 1,
+  &lt;span class="s2"&gt;"y"&lt;/span&gt;: 2
+&lt;span class="o"&gt;}&lt;/span&gt;
+
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"x": 1, "y": 2}'&lt;/span&gt; | jq .x
+1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Elimizde &lt;code&gt;{key: value}&lt;/code&gt; şeklinde bulunan nesnelerde &lt;code&gt;.key&lt;/code&gt; mantığıyla veriye
+ulaşabiliyoruz. Eğer iç-içe yani &lt;strong&gt;nested&lt;/strong&gt; key’ler varsa; &lt;code&gt;.key.key.key&lt;/code&gt; şeklinde
+zincirleme ilerleyebiliyoruz. Bu durum &lt;strong&gt;Object Identifier-Index&lt;/strong&gt; olarak geçer:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"x": {"a": "bu a değeri"}}'&lt;/span&gt; | jq .x.a
+&lt;span class="s2"&gt;"bu a değeri"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Eğer &lt;strong&gt;key var mı?&lt;/strong&gt; diye bakmak istersek &lt;strong&gt;Optional Object Identifier-Index&lt;/strong&gt;
+kullanırız:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"foo": 1, "bar": 2}'&lt;/span&gt; | jq &lt;span class="s1"&gt;'.baz?'&lt;/span&gt;
+null
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Yani &lt;code&gt;.key?&lt;/code&gt; şeklinde kullanılır. Eğer key yoksa sonuç &lt;code&gt;null&lt;/code&gt; döner. Genelde
+elimizde hep bir liste yani &lt;strong&gt;Array&lt;/strong&gt; ve içinde de objeler olur:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[{"id": 1}, {"id": 2}]'&lt;/span&gt; | jq .
+&lt;span class="o"&gt;[&lt;/span&gt;
+  &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"id"&lt;/span&gt;: 1
+  &lt;span class="o"&gt;}&lt;/span&gt;,
+  &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"id"&lt;/span&gt;: 2
+  &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Eğer &lt;strong&gt;flat-map&lt;/strong&gt; yapmak istersek, yani aradan virgülü atmak;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[{"id": 1}, {"id": 2}]'&lt;/span&gt; | jq .[]
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"id"&lt;/span&gt;: 1
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"id"&lt;/span&gt;: 2
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sadede &lt;code&gt;id&lt;/code&gt;’lerin değerlerini alalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[{"id": 1}, {"id": 2}]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'.[] | .id'&lt;/span&gt;
+1
+2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Yani &lt;code&gt;jq &amp;#39;.[] | .id&amp;#39;&lt;/code&gt; şeklinde. Elimizde aşağıdaki gibi bir &lt;code&gt;json&lt;/code&gt; olsun:&lt;/p&gt;
+&lt;pre class="highlight json"&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="nt"&gt;"user"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"name"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"vigo"&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="nt"&gt;"items"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;İçinden sadece &lt;code&gt;.user&lt;/code&gt;’ı alalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"user": {"id": 1, "name": "vigo"}, "items": [1,2,3]}'&lt;/span&gt; | jq &lt;span class="s1"&gt;'.user'&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"id"&lt;/span&gt;: 1,
+  &lt;span class="s2"&gt;"name"&lt;/span&gt;: &lt;span class="s2"&gt;"vigo"&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Aynı nesneden kopya bir liste:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"x": 1}'&lt;/span&gt; | jq &lt;span class="s1"&gt;'[. , . , .]'&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;
+  &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"x"&lt;/span&gt;: 1
+  &lt;span class="o"&gt;}&lt;/span&gt;,
+  &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"x"&lt;/span&gt;: 1
+  &lt;span class="o"&gt;}&lt;/span&gt;,
+  &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"x"&lt;/span&gt;: 1
+  &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;İşin sırrı &lt;code&gt;jq &amp;#39;[. , . , .]&amp;#39;&lt;/code&gt; bu kısında. &lt;code&gt;.&lt;/code&gt; elemanın kendisi oluyor. Elimizde
+kullanıcıların listesi var mesela:&lt;/p&gt;
+&lt;pre class="highlight json"&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"name"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"vigo"&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"name"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"lego"&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"name"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"figo"&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sadece &lt;code&gt;.name&lt;/code&gt;’leri alalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[{"id": 1, "name": "vigo"}, {"id": 2, "name": "lego"}, {"id": 3, "name": "figo"}]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'.[] | .name'&lt;/span&gt;
+&lt;span class="s2"&gt;"vigo"&lt;/span&gt;
+&lt;span class="s2"&gt;"lego"&lt;/span&gt;
+&lt;span class="s2"&gt;"figo"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Map Özelliği&lt;/h3&gt;
+
+&lt;p&gt;Tüm programlama dillerinde bulunan, &lt;strong&gt;iterable&lt;/strong&gt; yani bir koleksiyonun içinde
+tüm elemanları bir fonksiyondan geçirme işlemi. Elimizde sayılardan oluşan
+bir liste var ver biz koleksiyon içindeki her sayıya bir ekleyeceğiz:&lt;/p&gt;
+&lt;pre class="highlight json"&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[1,2,3,4,5]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'map(. + 1)'&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;
+  2,
+  3,
+  4,
+  5,
+  6
+&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;map(. + 1)&lt;/code&gt; -&amp;gt; &lt;code&gt;.&lt;/code&gt; elemanın kendisi, sonrasında &lt;code&gt;+&lt;/code&gt; operatör, &lt;code&gt;1&lt;/code&gt; de ekleyeceğimiz
+değer. &lt;code&gt;.&lt;/code&gt; &lt;strong&gt;Identity&lt;/strong&gt; anlamındadır. Çarpma versiyonu:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[1,2,3,4,5]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'map(. * 2)'&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;
+  2,
+  4,
+  6,
+  8,
+  10
+&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Eğer çıktıların daha kısa ve kompakt olmasını isterseniz &lt;code&gt;-c&lt;/code&gt; parametresini
+kullanabiliriniz:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[1,2,3,4,5]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'map(. * 2)'&lt;/span&gt; -c
+&lt;span class="o"&gt;[&lt;/span&gt;2,4,6,8,10]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şimdi elimizdeki aynı listeden bir transformasyon yapalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[1,2,3,4,5]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'map({"x": .})'&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;
+  &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"x"&lt;/span&gt;: 1
+  &lt;span class="o"&gt;}&lt;/span&gt;,
+  &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"x"&lt;/span&gt;: 2
+  &lt;span class="o"&gt;}&lt;/span&gt;,
+  &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"x"&lt;/span&gt;: 3
+  &lt;span class="o"&gt;}&lt;/span&gt;,
+  &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"x"&lt;/span&gt;: 4
+  &lt;span class="o"&gt;}&lt;/span&gt;,
+  &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"x"&lt;/span&gt;: 5
+  &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Fonksiyonlar&lt;/h3&gt;
+
+&lt;p&gt;En sık kullandığım &lt;code&gt;length&lt;/code&gt; fonksiyonu:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[1,2,3,4,5]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'length'&lt;/span&gt;
+5
+
+&lt;span class="gp"&gt;$ &lt;/span&gt;jq length /path/to/file.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Elementin indeksini bulalım. &lt;code&gt;[1,2,3,4,5]&lt;/code&gt; listesinde &lt;code&gt;2&lt;/code&gt;’nin indeksi &lt;code&gt;1&lt;/code&gt;’dir
+yani 0. element: &lt;code&gt;1&lt;/code&gt;, 1.element de &lt;code&gt;2&lt;/code&gt;’dir ya, bunu &lt;code&gt;jq&lt;/code&gt; ile gelen &lt;code&gt;indices&lt;/code&gt;
+fonksiyonunu kullanarak bulalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[1,2,3,4,5]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'indices(2)'&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;
+  1
+&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[1,2,3,4,5]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'indices(2) | .[]'&lt;/span&gt;
+1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;String içinde pipe yaparak çıktıyı flat-map yaptık. &lt;code&gt;jq &amp;#39;komut | .[]&amp;#39;&lt;/code&gt; şeklinde.
+Bir kısım fonksiyon örneği verelim:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[2, 4, 6, 8]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'contains([2])'&lt;/span&gt;  &lt;span class="c"&gt;# true&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[2, 4, 6, 8]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'reverse'&lt;/span&gt; -c     &lt;span class="c"&gt;# [8,6,4,2]&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[2, 4, 6, 8]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'min'&lt;/span&gt;            &lt;span class="c"&gt;# 2&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[2, 4, 6, 8]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'max'&lt;/span&gt;            &lt;span class="c"&gt;# 8&lt;/span&gt;
+
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'"hello"'&lt;/span&gt; | jq &lt;span class="s1"&gt;'split("")'&lt;/span&gt; -c       &lt;span class="c"&gt;# ["h","e","l","l","o"]&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'"hello"'&lt;/span&gt; | jq &lt;span class="s1"&gt;'test("he*")'&lt;/span&gt; -c     &lt;span class="c"&gt;# true&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'"hello"'&lt;/span&gt; | jq &lt;span class="s1"&gt;'test("he*!")'&lt;/span&gt; -c    &lt;span class="c"&gt;# false&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'"hello"'&lt;/span&gt; | jq &lt;span class="s1"&gt;'contains("a")'&lt;/span&gt; -c   &lt;span class="c"&gt;# false&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'"hello"'&lt;/span&gt; | jq &lt;span class="s1"&gt;'startswith("h")'&lt;/span&gt; -c &lt;span class="c"&gt;# true&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'"hello"'&lt;/span&gt; | jq &lt;span class="s1"&gt;'endswith("o")'&lt;/span&gt; -c   &lt;span class="c"&gt;# true&lt;/span&gt;
+
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[{"user": {"id": 1, "name": "vigo"}}, {"user": {"id": 2, "name": "ezel"}}]'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    | jq &lt;span class="s1"&gt;'.[0] | keys'&lt;/span&gt; -c      &lt;span class="c"&gt;# ["user"]&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[{"user": {"id": 1, "name": "vigo"}}, {"user": {"id": 2, "name": "ezel"}}]'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    | jq &lt;span class="s1"&gt;'.[0].user | keys'&lt;/span&gt; -c &lt;span class="c"&gt;# ["id","name"]&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"id": 1, "name": "vigo"}'&lt;/span&gt; | jq &lt;span class="s1"&gt;'has("id")'&lt;/span&gt; &lt;span class="c"&gt;# true&lt;/span&gt;
+
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"id": 1, "name": "vigo"}'&lt;/span&gt; | jq &lt;span class="s1"&gt;'flatten'&lt;/span&gt; -c &lt;span class="c"&gt;# [1,"vigo"]&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[{"user": {"id": 1, "name": "vigo"}}, {"user": {"id": 2, "name": "ezel"}}]'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    | jq &lt;span class="s1"&gt;'.[0].user | flatten'&lt;/span&gt; -c &lt;span class="c"&gt;# [1,"vigo"]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;to_entries&lt;/code&gt; ile;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"id": 1, "name": "vigo"}'&lt;/span&gt; | jq &lt;span class="s1"&gt;'to_entries'&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;
+  &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"key"&lt;/span&gt;: &lt;span class="s2"&gt;"id"&lt;/span&gt;,
+    &lt;span class="s2"&gt;"value"&lt;/span&gt;: 1
+  &lt;span class="o"&gt;}&lt;/span&gt;,
+  &lt;span class="o"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"key"&lt;/span&gt;: &lt;span class="s2"&gt;"name"&lt;/span&gt;,
+    &lt;span class="s2"&gt;"value"&lt;/span&gt;: &lt;span class="s2"&gt;"vigo"&lt;/span&gt;
+  &lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şeklinde çıktı alırız. Diğer sevdiğim bir fonksiyon da &lt;code&gt;select&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="c"&gt;# id’si 1 olanı alalım, select(.id == 1)&lt;/span&gt;
+&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[{"id": 1, "name": "vigo"}, {"id": 2, "name": "ezel"}]'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    | jq &lt;span class="s1"&gt;'.[] | select(.id == 1)'&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"id"&lt;/span&gt;: 1,
+  &lt;span class="s2"&gt;"name"&lt;/span&gt;: &lt;span class="s2"&gt;"vigo"&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Yaşı &lt;code&gt;10&lt;/code&gt;’dan küçükleri filtreleyelim:&lt;/p&gt;
+&lt;pre class="highlight json"&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"name"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"vigo"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"age"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;46&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"id"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"name"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"ezel"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"age"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ve;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[{"id": 1, "name": "vigo", "age": 46}, {"id": 2, "name": "ezel", "age": 7}]'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    | jq &lt;span class="s1"&gt;'.[] | select(.age &amp;lt; 10) | .name'&lt;/span&gt; &lt;span class="c"&gt;# "ezel"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;İşin püf noktası &lt;code&gt;&amp;#39;.[] | select(.age &amp;lt; 10) | .name&amp;#39;&lt;/code&gt; kısmında. &lt;code&gt;.[]&lt;/code&gt; ile liste
+işlemi yapacağımızı, tek tek elemanı alacağımızı belirtip elemanı &lt;code&gt;|&lt;/code&gt; ile
+&lt;code&gt;select&lt;/code&gt; fonksiyonuna &lt;code&gt;pipe&lt;/code&gt; ediyoruz. Fonksiyondan dönenin sadece &lt;code&gt;.name&lt;/code&gt;’ini
+alıyoruz.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;jq&lt;/code&gt; içinde bir kısım fonksiyonlarla geliyor. Detaylara
+&lt;a href="https://stedolan.github.io/jq/manual/#Builtinoperatorsandfunctions"&gt;buradan&lt;/a&gt; bakabilirsiniz.&lt;/p&gt;
+
+&lt;h3&gt;Parantez, Array ve Obje Üreticileri&lt;/h3&gt;
+
+&lt;p&gt;Parantez ile aynı matematik işlemlerindeki gibi öncelik ve gruplama işlerini
+yapabiliriz:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'1'&lt;/span&gt; | jq &lt;span class="s1"&gt;'(. + 2) * 5'&lt;/span&gt;
+15
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;.&lt;/code&gt; identity idi, yani &lt;code&gt;1&lt;/code&gt;’in kendisi. &lt;code&gt;(1 + 2) * 5 -&amp;gt; 3 * 5 -&amp;gt; 15&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;[]&lt;/code&gt; ile &lt;strong&gt;Array Construction&lt;/strong&gt; yani liste üretebiliriz:&lt;/p&gt;
+&lt;pre class="highlight json"&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="nt"&gt;"user"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"vigo"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="nt"&gt;"badges"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="s2"&gt;"python"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="s2"&gt;"ruby"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="s2"&gt;"golang"&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şimdi bir çıktı üretelim ve tipi liste olsun:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"user": "vigo", "badges": ["python", "ruby", "golang"]}'&lt;/span&gt; | jq &lt;span class="s1"&gt;'[.user, .badges]'&lt;/span&gt;
+&lt;span class="o"&gt;[&lt;/span&gt;
+  &lt;span class="s2"&gt;"vigo"&lt;/span&gt;,
+  &lt;span class="o"&gt;[&lt;/span&gt;
+    &lt;span class="s2"&gt;"python"&lt;/span&gt;,
+    &lt;span class="s2"&gt;"ruby"&lt;/span&gt;,
+    &lt;span class="s2"&gt;"golang"&lt;/span&gt;
+  &lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Şimdi &lt;code&gt;{}&lt;/code&gt; ile &lt;strong&gt;Object Construction&lt;/strong&gt; yapalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"user": "vigo", "badges": ["python", "ruby", "golang"]}'&lt;/span&gt; | jq &lt;span class="s1"&gt;'{user, stack: .badges}'&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"user"&lt;/span&gt;: &lt;span class="s2"&gt;"vigo"&lt;/span&gt;,
+  &lt;span class="s2"&gt;"stack"&lt;/span&gt;: &lt;span class="o"&gt;[&lt;/span&gt;
+    &lt;span class="s2"&gt;"python"&lt;/span&gt;,
+    &lt;span class="s2"&gt;"ruby"&lt;/span&gt;,
+    &lt;span class="s2"&gt;"golang"&lt;/span&gt;
+  &lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Aynı veriden &lt;strong&gt;multiple-dict&lt;/strong&gt; üretelim:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"user": "vigo", "badges": ["python", "ruby", "golang"]}'&lt;/span&gt; | jq &lt;span class="s1"&gt;'{user, stack: .badges[]}'&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"user"&lt;/span&gt;: &lt;span class="s2"&gt;"vigo"&lt;/span&gt;,
+  &lt;span class="s2"&gt;"stack"&lt;/span&gt;: &lt;span class="s2"&gt;"python"&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"user"&lt;/span&gt;: &lt;span class="s2"&gt;"vigo"&lt;/span&gt;,
+  &lt;span class="s2"&gt;"stack"&lt;/span&gt;: &lt;span class="s2"&gt;"ruby"&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"user"&lt;/span&gt;: &lt;span class="s2"&gt;"vigo"&lt;/span&gt;,
+  &lt;span class="s2"&gt;"stack"&lt;/span&gt;: &lt;span class="s2"&gt;"golang"&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Durum Kontrolleri&lt;/h3&gt;
+
+&lt;p&gt;Elimizde şöyle bir veri var:&lt;/p&gt;
+&lt;pre class="highlight json"&gt;&lt;code&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"name"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"vigo"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"is_admin"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"name"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"lego"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="nt"&gt;"is_admin"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Admin ve standart kullanıcıları görelim:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[{"name": "vigo", "is_admin": true}, {"name": "lego", "is_admin": false}]'&lt;/span&gt; | jq &lt;span class="s1"&gt;'.[] | if .is_admin == true then (.name + " is admin")  else (.name + " is standard user")  end'&lt;/span&gt;
+&lt;span class="s2"&gt;"vigo is admin"&lt;/span&gt;
+&lt;span class="s2"&gt;"lego is standard user"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Eldeki veriyi &lt;code&gt;csv&lt;/code&gt; formatına çevirebiliriz:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[{"id": 1, "name": "vigo", "age": 46}, {"id": 2, "name": "ezel", "age": 7}]'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    | jq -r &lt;span class="s1"&gt;'(map(keys) | add | unique) as $cols | map(. as $row | $cols | map($row[.])) as $rows | $cols, $rows[] | @csv'&lt;/span&gt;
+&lt;span class="s2"&gt;"age"&lt;/span&gt;,&lt;span class="s2"&gt;"id"&lt;/span&gt;,&lt;span class="s2"&gt;"name"&lt;/span&gt;
+46,1,&lt;span class="s2"&gt;"vigo"&lt;/span&gt;
+7,2,&lt;span class="s2"&gt;"ezel"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Keza veriyi &lt;code&gt;xpath&lt;/code&gt; gibi görüntüleyebiliriz:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'[{"id": 1, "name": "vigo", "age": 46}, {"id": 2, "name": "ezel", "age": 7}]'&lt;/span&gt; | jq -r &lt;span class="s1"&gt;'path(..) | map(tostring) | join("/")'&lt;/span&gt;
+
+0
+0/id
+0/name
+0/age
+1
+1/id
+1/name
+1/age
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Konfigürasyon Dosyası&lt;/h3&gt;
+
+&lt;p&gt;Eğer isterseniz kendiniz özelleştirilmiş fonksiyonlar yapıp kullanabilirsiniz.
+Bunun için &lt;code&gt;~/.jq&lt;/code&gt; dosyası oluşturmanız yeterli. Şimdi &lt;code&gt;schema&lt;/code&gt; diye
+bir fonksiyon oluşturup &lt;code&gt;~/.jq&lt;/code&gt; dosyasına ekleyelim:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'def schema: path(..) | map(tostring) | join("/");'&lt;/span&gt; &amp;gt;&amp;gt; ~/.jq
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;şimdi kullanalım:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;'{"data": {"users": [{"id": 1, "name": "vigo"},{"id": 2, "name": "ezel"}]}}'&lt;/span&gt; &lt;span class="se"&gt;\&lt;/span&gt;
+    | jq &lt;span class="s1"&gt;'schema'&lt;/span&gt;
+
+&lt;span class="s2"&gt;""&lt;/span&gt;
+&lt;span class="s2"&gt;"data"&lt;/span&gt;
+&lt;span class="s2"&gt;"data/users"&lt;/span&gt;
+&lt;span class="s2"&gt;"data/users/0"&lt;/span&gt;
+&lt;span class="s2"&gt;"data/users/0/id"&lt;/span&gt;
+&lt;span class="s2"&gt;"data/users/0/name"&lt;/span&gt;
+&lt;span class="s2"&gt;"data/users/1"&lt;/span&gt;
+&lt;span class="s2"&gt;"data/users/1/id"&lt;/span&gt;
+&lt;span class="s2"&gt;"data/users/1/name"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;jq&lt;/code&gt; bir komut satırı araca olduğu için tüm dosya &lt;code&gt;pipe&lt;/code&gt; işlemleri de geçerli oluyor.
+Kimi zaman &lt;code&gt;pretty-print&lt;/code&gt; yani çıktının güzel ve renkli görünmesi için, ya da dosyadan
+okuyup başka bir yere paslamak için de kullanılır.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;cat /path/to/file.json | jq
+&lt;span class="gp"&gt;$ &lt;/span&gt;cat /path/to/file.json | jq &amp;gt; /path/to/output.json
+&lt;span class="gp"&gt;$ &lt;/span&gt;curl -sL &lt;span class="s1"&gt;'https://api.github.com/repos/vigo/statoo/commits?per_page=1'&lt;/span&gt; | jq
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ya da;&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;curl -sL &lt;span class="s1"&gt;'https://api.github.com/repos/vigo/statoo/commits?per_page=1'&lt;/span&gt; | jq &lt;span class="s1"&gt;'.[] | .commit.author'&lt;/span&gt;
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"name"&lt;/span&gt;: &lt;span class="s2"&gt;"Uğur Özyılmazel"&lt;/span&gt;,
+  &lt;span class="s2"&gt;"email"&lt;/span&gt;: &lt;span class="s2"&gt;"ugurozyilmazel@gmail.com"&lt;/span&gt;,
+  &lt;span class="s2"&gt;"date"&lt;/span&gt;: &lt;span class="s2"&gt;"2021-08-27T10:14:12Z"&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dediğim gibi, &lt;code&gt;jq&lt;/code&gt; benim gündelik hayatımda çok sık kullandığım bir araç. Ben
+sadece bildiğim ve sık kullandığım konuları yazdım. Burada yazdıklarımdan çok
+daha fazlası var. Umarım sizin de işinize yarar.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Django Model İpuçları</title>
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2021/08/22/django-model-ipuclari/"/>
@@ -1761,119 +2209,6 @@ set ediyorum:&lt;/p&gt;
 
 &lt;p&gt;Böylece &lt;code&gt;pyc&lt;/code&gt; dosyaları otomatik olarak oluşmayacak. Ben de yanlışlıkla
 birşeyleri sildiğim zaman &lt;strong&gt;anında&lt;/strong&gt; farkedeceğim.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS İstanbul 2012</title>
-    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2012/10/28/js-istanbul-2012/"/>
-    <id>http://ugur.ozyilmazel.com/blog/tr/2012/10/28/js-istanbul-2012/</id>
-    <published>2012-10-28T12:25:00+02:00</published>
-    <updated>2021-05-27T17:35:12+03:00</updated>
-    <author>
-      <name>Uğur “vigo” Özyılmazel</name>
-    </author>
-    <content type="html">&lt;p&gt;Yaklaşık &lt;strong&gt;3 ay&lt;/strong&gt;&amp;rsquo;lık bir gecikme ardından &lt;a href="http://jstanbul.org/2012/" title="JS İstanbul 2012"&gt;JS İstanbul 2012&lt;/a&gt; ile ilgili
-yazımı yazmaya fırsat bulabildim!
-&lt;/p&gt;
-
-&lt;p&gt;28 - 29 Temmuz 2012&amp;rsquo;de Bahçeşehir Üniversitesi, Beşiktaş kampüsünde
-düzenlenen etkinliğe katılım tahminlerin üzerinde oldu. Cumartesi - Pazar
-günlerine gelen etkinliğin sadece ilk gününe katılabildim.&lt;/p&gt;
-
-&lt;p&gt;Sabah saat 10:30&amp;rsquo;daki açılış konuşmasının yapıldığı salon tıklım tıklım
-doluydu. Tahminimce 200+ kişi vardı. Hatta o esnada yanımda oturan python
-programcısı arkadaşım &lt;a href="https://twitter.com/amiroff" title="Metin Amiroff"&gt;Metin Amiroff&lt;/a&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Acaba &lt;strong&gt;PythonCon&lt;/strong&gt; yapsak bu kadar kişi gelirmi?&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;diye sordu&amp;hellip; Ben de &lt;q&gt;**biraz zor&amp;hellip;**&lt;/q&gt; dedim&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;JavaScript, pek çok farklı alandaki insana hitap ediyor:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Grafik tasarımcısı&lt;/li&gt;
-&lt;li&gt;Backend programcı (&lt;em&gt;php, python, ruby, java, dotnet vs&amp;hellip;&lt;/em&gt;)&lt;/li&gt;
-&lt;li&gt;Frontend (&lt;em&gt;html, css, js&lt;/em&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Yani işi &lt;strong&gt;WEB&lt;/strong&gt; olan herkesin yolu bir şekilde JavaScript&amp;rsquo;le kesişmek zorunda!&lt;/p&gt;
-
-&lt;h3&gt;Konuşmacılar&lt;/h3&gt;
-
-&lt;p&gt;Yaklaşık 17 kişi vardı. İşin güzel yanı, hiç bir sunum / konuşma diğeriyle
-çakışmıyordu. Bu bakımdan etkinliğin iki güne yayılması izleyici açısından
-çok iyi birşey&amp;hellip; Genelde zaman ve mekan kısıtlamaları yüzünden, şahsen ben,
-tercih yapmak zorunda kalmaktan nefret ediyorum. İlgimi çeken iki konuya da
-girmek istiyorum ama birini seçiyorum. &lt;strong&gt;İşte bu etkinlikte böyle bir durum
-olmadı!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Etkinliğin önemli konuklarından biri, taaa Amerika&amp;rsquo;dan gelen,
-Backbone.js&amp;rsquo;in &lt;strong&gt;core&lt;/strong&gt; yazılımcılarından &lt;a href="https://twitter.com/tbranyen" title="Tim Branyen"&gt;Tim Branyen&lt;/a&gt;&amp;rsquo;di.
-Diğer konuşmacılarsa;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://disqus.org"&gt;Disqus&lt;/a&gt;&amp;rsquo;tan &lt;a href="https://twitter.com/madbyk" title="Burak Yiğit Kaya"&gt;Burak Yiğit Kaya&lt;/a&gt; &lt;q&gt;JS ve REST Uyumlu API İletişimi&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Rocket GmbH&amp;rsquo;dan &lt;a href="https://twitter.com/yuxel" title="Osman Yüksel"&gt;Osman Yüksel&lt;/a&gt; &lt;q&gt;Jasmine ile Behavior Driven Development&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Social Wire&amp;rsquo;dan &lt;a href="https://twitter.com/linkibol" title="Volkan Özçelik"&gt;Volkan Özçelik&lt;/a&gt; &lt;q&gt;JavaScript ile Widget Geliştirmek&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Markafoni&amp;rsquo;den &lt;a href="https://twitter.com/fkadev" title="Fatih Kadir Akın"&gt;Fatih Kadir Akın&lt;/a&gt; &lt;q&gt;Backbone Fundamentals&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Fatih Hayrioğlu &lt;q&gt;CSS3’ün JavaScript’ten Rol Çalması&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Emrah Olgun &lt;q&gt;Yazılım evlerinde Ön Yüz Geliştiricileri Konumlamak&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Armağan Amcalar &lt;q&gt;tartJS ile Büyük Ölçekli Uygulama Geliştirme&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Kadir Pekel &lt;q&gt;Node, Connect ve Meryl ile Web Uygulama Geliştirme&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Burcu Doğan &lt;q&gt;Node Ortamının Mimarisi&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Altan Yılmaz &lt;q&gt;Javascript Mobile Applications&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Fatih Acet &lt;q&gt;JavaScript Debugging Yöntemleri&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Emrah Ayanoğlu &lt;q&gt;Node.js ve Socket.io ile Mutliplayer HTML5 Oyun Geliştirme&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Serdar Akarca &lt;q&gt;Knockout.js ve Sammy.js ile Uygulama Geliştirme&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Emre Evren Yalçın &lt;q&gt;JavaScript Injections&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;Sinan Taga &lt;q&gt;Javascript - Nereden Nereye, Kısa bir tarihçe&lt;/q&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://twitter.com/emirkarsiyakali" title="Emir Karşıyakalı"&gt;Emir Karşıyakalı&lt;/a&gt; &lt;q&gt;Jstanbul.org Açılış Konuşması&lt;/q&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Ülkemizde bu tür etkinlikleri görmek gurur veriyor. Özellikle arkasına
-büyük kurumları almadan büyük işlere girişmek herkesin yapabileceği birşey
-değil. Katıldığım ilk günden çok memnun ayrıldım. Hem girdiğim sunular hem de
-öğle arasında arkadaşlarla yaptığımız muhabbetler çok zevkliydi.&lt;/p&gt;
-
-&lt;p&gt;JS İstanbul 2013&amp;rsquo;ü iple çekiyorum!&lt;/p&gt;
-
-&lt;h3&gt;Fotoğraflar&lt;/h3&gt;
-
-&lt;div class="photo-gallery"&gt;
-&lt;div class="row"&gt;
-&lt;div class="col-lg-6 col-xl-4"&gt;
-&lt;img src="/public/images/posts/jstanbul-2012/1123.jpg" alt="Açılış"&gt;
-&lt;p&gt;Açılış&lt;p&gt;
-&lt;/div&gt;
-
-&lt;div class="col-lg-6 col-xl-4"&gt;
-&lt;img src="/public/images/posts/jstanbul-2012/1125.jpg" alt="Ziyaretçiler"&gt;
-&lt;p&gt;Ziyaretçiler&lt;p&gt;
-&lt;/div&gt;
-
-&lt;div class="col-lg-6 col-xl-4"&gt;
-&lt;img src="/public/images/posts/jstanbul-2012/1133.jpg" alt="Ziyaretçiler"&gt;
-&lt;p&gt;Ziyaretçiler&lt;p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;/div&gt;
-&lt;div class="row"&gt;
-&lt;div class="col-lg-6 col-xl-4"&gt;
-&lt;img src="/public/images/posts/jstanbul-2012/1135.jpg" alt="@fkadev sunumda"&gt;
-&lt;p&gt;@fkadev sunumda&lt;p&gt;
-&lt;/div&gt;
-&lt;div class="col-lg-6 col-xl-4"&gt;
-&lt;img src="/public/images/posts/jstanbul-2012/1138.jpg" alt="@tbranyen sunumda"&gt;
-&lt;p&gt;@tbranyen sunumda&lt;p&gt;
-&lt;/div&gt;
-&lt;div class="col-lg-6 col-xl-4"&gt;
-&lt;img src="/public/images/posts/jstanbul-2012/1129.jpg" alt="@grkn, @vigobronx, @ahmetalpbalkan, @erenturkay, ???, @tunix"&gt;
-&lt;p&gt;@grkn, @vigobronx, @ahmetalpbalkan, @erenturkay, ???, @tunix&lt;p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
