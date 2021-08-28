@@ -12,7 +12,7 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-08-28T13:21:14+03:00" />
+        <meta name="date" content="2021-08-28T14:45:41+03:00" />
         <meta name="description" content="Yaklaşık 2008’den beri Django geliştiriyorum. Pek çok proje yaptım. Model
 tanımlamaları ile ilgili bazı edindiğim, okuduğum makalelerden öğrendiğim
 şeyleri yazmak istedim." />
@@ -257,8 +257,32 @@ yerine, <code>to=&#39;User&#39;</code> ile <strong>shorthand reference</strong> 
 
 </code></pre>
 
-<p>bu sayede model import işleriyle uğraşmam. Ne zamana kadar? Eğer model başka
-bir app içindeyse mecburen import ederim.</p>
+<p>bu sayede model import işleriyle uğraşmam. </p>
+
+<p><strong>28 Ağustos 2021</strong></p>
+
+<p>Sevgili <a href="https://www.linkedin.com/in/muhammet-bahad%C4%B1r-kacar-698019187/">Muhammet Bahadır Kacar</a>
+beni ikaz etti. Ben gözden kaçırmışım. Eğer <code>application.Model</code> şeklinde
+<strong>string</strong> olarak verilirse başka bir app’de de bu yöntemle <strong>lazy/short-hand
+ref</strong> olarak <a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#foreignkey">import</a> edilebiliyor.</p>
+<pre class="highlight python"><code><span class="k">class</span> <span class="nc">Permissions</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span>
+        <span class="n">to</span><span class="o">=</span><span class="s">'Group'</span><span class="p">,</span>
+        <span class="n">related_name</span><span class="o">=</span><span class="s">'user_set'</span><span class="p">,</span>
+        <span class="n">related_query_name</span><span class="o">=</span><span class="s">'user'</span><span class="p">,</span>
+        <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">verbose_name</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">'groups'</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="n">user_permissions</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span>
+        <span class="n">to</span><span class="o">=</span><span class="s">'auth.Permission'</span><span class="p">,</span> <span class="c"># &lt;- buradaki gibi...</span>
+        <span class="n">related_name</span><span class="o">=</span><span class="s">'user_set'</span><span class="p">,</span>
+        <span class="n">related_query_name</span><span class="o">=</span><span class="s">'user'</span><span class="p">,</span>
+        <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">verbose_name</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">'user permissions'</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="p">:</span>
+    <span class="p">:</span>
+</code></pre>
 
 <h3>İlişkili Model <code>related_name</code> ve <code>related_query_name</code></h3>
 

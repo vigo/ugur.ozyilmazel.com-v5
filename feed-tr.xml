@@ -462,7 +462,7 @@ daha fazlası var. Umarım sizin de işinize yarar.&lt;/p&gt;
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2021/08/22/django-model-ipuclari/"/>
     <id>http://ugur.ozyilmazel.com/blog/tr/2021/08/22/django-model-ipuclari/</id>
     <published>2021-08-22T09:43:00+03:00</published>
-    <updated>2021-08-26T12:10:40+03:00</updated>
+    <updated>2021-08-28T14:45:09+03:00</updated>
     <author>
       <name>Uğur “vigo” Özyılmazel</name>
     </author>
@@ -629,8 +629,32 @@ yerine, &lt;code&gt;to=&amp;#39;User&amp;#39;&lt;/code&gt; ile &lt;strong&gt;sho
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;bu sayede model import işleriyle uğraşmam. Ne zamana kadar? Eğer model başka
-bir app içindeyse mecburen import ederim.&lt;/p&gt;
+&lt;p&gt;bu sayede model import işleriyle uğraşmam. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;28 Ağustos 2021&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Sevgili &lt;a href="https://www.linkedin.com/in/muhammet-bahad%C4%B1r-kacar-698019187/"&gt;Muhammet Bahadır Kacar&lt;/a&gt;
+beni ikaz etti. Ben gözden kaçırmışım. Eğer &lt;code&gt;application.Model&lt;/code&gt; şeklinde
+&lt;strong&gt;string&lt;/strong&gt; olarak verilirse başka bir app’de de bu yöntemle &lt;strong&gt;lazy/short-hand
+ref&lt;/strong&gt; olarak &lt;a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#foreignkey"&gt;import&lt;/a&gt; edilebiliyor.&lt;/p&gt;
+&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Permissions&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Model&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;groups&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ManyToManyField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'Group'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;related_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'user_set'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;related_query_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'user'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;blank&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'groups'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;user_permissions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;models&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ManyToManyField&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;to&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'auth.Permission'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="c"&gt;# &amp;lt;- buradaki gibi...&lt;/span&gt;
+        &lt;span class="n"&gt;related_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'user_set'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;related_query_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'user'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;blank&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;verbose_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;_&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'user permissions'&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3&gt;İlişkili Model &lt;code&gt;related_name&lt;/code&gt; ve &lt;code&gt;related_query_name&lt;/code&gt;&lt;/h3&gt;
 
