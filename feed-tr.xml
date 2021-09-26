@@ -5,10 +5,115 @@
   <id>http://ugur.ozyilmazel.com</id>
   <link href="http://ugur.ozyilmazel.com"/>
   <link href="http://ugur.ozyilmazel.com/feed-tr.xml" rel="self"/>
-  <updated>2021-08-28T11:38:00+03:00</updated>
+  <updated>2021-09-26T13:45:00+03:00</updated>
   <author>
     <name>Uğur “vigo” Özyılmazel</name>
   </author>
+  <entry>
+    <title>Olmazsa Olmaz Golang Kütüphaneleri</title>
+    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2021/09/26/olmazsa-olmaz-golang-kutuphaneleri/"/>
+    <id>http://ugur.ozyilmazel.com/blog/tr/2021/09/26/olmazsa-olmaz-golang-kutuphaneleri/</id>
+    <published>2021-09-26T13:45:00+03:00</published>
+    <updated>2021-09-26T13:51:58+03:00</updated>
+    <author>
+      <name>Uğur “vigo” Özyılmazel</name>
+    </author>
+    <content type="html">&lt;p&gt;İster komut satırı aracı, ister kütüphane ya da servis geliştirirken bazı 3.parti
+kütüphaneler / yardımcılar, hayatımızı kolaylaştırır. Bu yazımda sizlere sık
+kullandığım paketlerden bahsedeceğim.&lt;/p&gt;
+
+&lt;h3&gt;github.com/fatih/color&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/fatih/color"&gt;https://github.com/fatih/color&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;İçimizden biri, rock star’ımız sevgili Fatih Arslan tarafından geliştirilen ve
+daha sonra da pek çok kişi tarafından katkı sağlanan &lt;code&gt;color&lt;/code&gt; paketi. Kullanımı
+çok kolay. Komut satırı uygulamalarınızı renklendirmek istiyorsanız bu paketi
+mutlaka kullanmalısınız.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;go get github.com/fatih/color
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;github.com/pkg/errors&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/pkg/errors"&gt;https://github.com/pkg/errors&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Error’leri yönetmek, error’lere ilave mesaj eklemek, bir error’ü wrap/unwrap
+etmek gibi pek çok işi bizim adımıza yapan olmazsa olmaz kütüphanelerden biri de
+&lt;code&gt;errors&lt;/code&gt; paketi.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;go get github.com/pkg/errors
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;github.com/alexeyco/simpletable&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/alexeyco/simpletable"&gt;https://github.com/alexeyco/simpletable&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Ruby’de çok sevdiğim &lt;a href="https://github.com/tj/terminal-table"&gt;terminal-table&lt;/a&gt;’ın
+golang versiyonu. Terminal’de aynı html table’ları gibi tabular gösterim
+yapmanızı sağlıyor.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;go get -u github.com/alexeyco/simpletable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;github.com/urfave/cli&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/urfave/cli"&gt;https://github.com/urfave/cli&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Sevgili &lt;a href="https://github.com/cenkalti/"&gt;Cenk Altı&lt;/a&gt; sayesinde haberdar olduğum
+harika bir &lt;code&gt;cli&lt;/code&gt; geliştirme aracı. Pek çok işi o kadar kolay hale getiriyor ve
+kolaylaştırıyor ki&amp;hellip; Daha önce başka araçları deneyip hatta hiç araç
+kullanmadan uğraşıp yaptığım şeyleri inanılmaz derecede kolay ve hızlı bir
+şekilde yapmamı sağlıyor &lt;code&gt;urfave/cli&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;code&gt;&lt;span class="gp"&gt;$ &lt;/span&gt;go get github.com/urfave/cli/v2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;github.com/codingconcepts/env&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/codingconcepts/env"&gt;https://github.com/codingconcepts/env&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Uygulamanız içinde environment variable’ları yönetmenizi sağlayan güzel bir
+kütüphane &lt;code&gt;env&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="highlight go"&gt;&lt;code&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="k"&gt;go&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;codingconcepts&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="x"&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;air&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/cosmtrek/air"&gt;https://github.com/cosmtrek/air&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Özellikle servis/server gibi işlerinizde, geliştirme yaparken &lt;strong&gt;hot reload&lt;/strong&gt;
+yapmak isterseniz, yani herhangi bir &lt;code&gt;.go&lt;/code&gt; dosyasını kaydettiğinizde,
+uygulamanın otomatik olarak tekrar derlenip çalışması için &lt;code&gt;air&lt;/code&gt;, yani sizin
+uygulamayı elle durdurup tekrar çalıştırma işi yapmamanız için harika bir
+çözüm!&lt;/p&gt;
+
+&lt;h3&gt;github.com/gofrs/uuid&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/gofrs/uuid"&gt;https://github.com/gofrs/uuid&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;UUID&lt;/code&gt; gereken yerlerde işinize yarayacak güzel bir kütüphane. Versiyon 5’e
+kadar destekliyor.&lt;/p&gt;
+
+&lt;h3&gt;github.com/stretchr/testify&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/stretchr/testify"&gt;https://github.com/stretchr/testify&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Yine ruby’den kalma alışkanlıklarım beni bu kütüphaneyi bulmamı ve kullanmamı
+sağladı. Test yazarken &lt;q&gt;keşke ruby’deki minitest gibi bir kütüphane olsa,
+assertion işlerini basitçe halledebilsem&lt;/q&gt; demiştim ve bir google aramasından
+sonra &lt;code&gt;testify&lt;/code&gt; ile tanışıp bir daha da bırakamadım.&lt;/p&gt;
+
+&lt;p&gt;Sadece assertion değil mocking ve benzeri diğer yardımcılarla beraber geliyor!&lt;/p&gt;
+&lt;pre class="highlight go"&gt;&lt;code&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="k"&gt;go&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="x"&gt; &lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;stretchr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;testify&lt;/span&gt;&lt;span class="x"&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;Günlük işlerde sıklıkla kullandığım kütüphanelerin bazılarını tanıtmaya
+çalıştım. Bunların dışında da kullandığımız paketler hatta framework’ler,
+network client’ları, veritabanı client’ları, websocket, tcp sunucu
+framework’leri gibi daha geniş yardımcılar da bulunmakta.&lt;/p&gt;
+
+&lt;p&gt;Daha fazla araç ve bilgi için &lt;a href="https://github.com/avelino/awesome-go"&gt;https://github.com/avelino/awesome-go&lt;/a&gt; adresine bakabilirsiniz!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>JSON İşleme Aracı: jq</title>
     <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2021/08/28/json-isleme-araci-jq/"/>
@@ -2153,86 +2258,6 @@ fonksiyonunu &lt;code&gt;$HOME/bundler_complete.sh&lt;/code&gt; şeklinde kaydet
 
 &lt;p&gt;yapmanız gerekiyor. &lt;a href="http://www.gnu.org/software/bash/manual/html_node/Programmable-Completion.html#Programmable-Completion" title="Bash Completion"&gt;Bash Completion&lt;/a&gt; konusuyla ilgili daha fazla
 ve detaylı bilgi için &lt;a href="http://www.gnu.org/software/bash/manual/html_node/Programmable-Completion.html#Programmable-Completion" title="Bash Completion"&gt;link&lt;/a&gt;’e tıklayabilirsiniz.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Derlenmiş Python Dosyaları Bazen Sizi Yanıltabilir</title>
-    <link rel="alternate" href="http://ugur.ozyilmazel.com/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/"/>
-    <id>http://ugur.ozyilmazel.com/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/</id>
-    <published>2013-02-04T12:15:00+02:00</published>
-    <updated>2021-05-27T17:35:10+03:00</updated>
-    <author>
-      <name>Uğur “vigo” Özyılmazel</name>
-    </author>
-    <content type="html">&lt;p&gt;Suç kesinlikle Python’da değil! Yanlış anlaşılma olmasın! Geçtiğimiz günlerde 
-yaşadığım iki dikkatsizliğin bana ciddi vakit kaybettirmesi bu blog postunu 
-yazmama sebeb oldu.
-&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://www.djangoproject.com/" title="Django Project"&gt;Django&lt;/a&gt; framework kullanarak bir uygulama geliştiriyoruz. Yaklaşık 6
-aydır üzerinde çalışıyoruz. Django, gereken yerlerde ilgili python dosyalarını
-derliyor. Yani; &lt;code&gt;admin.py&lt;/code&gt; adında bir dosya varsa, development sunucusunu
-çalıştırdıktan sonra &lt;code&gt;admin.pyc&lt;/code&gt; dosyasının oluştuğunu görürüz.&lt;/p&gt;
-
-&lt;p&gt;Derlenen python hem hız hem de hafıza yönetimi açısından işleri kolay ve çabuk
-hale getiriyor. Buraya kadar hiç bir sıkıntı yok. Sıkıntı, uzun saatler
-çalışıp dikkati kaybettiğiniz anda başlıyor.&lt;/p&gt;
-
-&lt;p&gt;Hiç farkında olmadan ilgili app’in altındaki &lt;code&gt;admin.py&lt;/code&gt; dosyasını silmişim.
-&lt;code&gt;admin.pyc&lt;/code&gt; dosyası ise halen oradaymış. Ben farkında bile değilim. Admin
-panel’e rahat rahat giriyorum, çıkıyorum hiçbir sıkıntı yok. Ne zaman kadar?
-&lt;code&gt;ModelAdmin&lt;/code&gt; e yeni özellik ekleyene kadar&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;İşin kötüsü, django programcıları bilirler, &lt;code&gt;admin.py&lt;/code&gt; de de çok fazla şey vardı.
-&lt;strong&gt;Custom&lt;/strong&gt; pek çok şey&amp;hellip; Hepsi uçmuş gitmiş&amp;hellip; Ne yapacağız? Silme öyle bir
-silme ki, versiyon kontrol’den de çıkartmışım nasıl yaptıysam? Yani &lt;code&gt;git rm&lt;/code&gt;
-ile silmiş ve bu silme işinden sonra yazmışım tüm kodu gibi&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;Hemen google’ladım, &lt;code&gt;.pyc&lt;/code&gt; dosyasından nasıl &lt;code&gt;.py&lt;/code&gt; üretebilirim diye. Hemen
-&lt;a href="https://github.com/gstarnberger/uncompyle"&gt;uncompyle&lt;/a&gt;’ı buldum. Kullanımı çok kolay&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;uncompyler.py DOSYA.pyc &amp;gt; DOSYA_KURTAR.py
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;şeklinde dosyayı kurtardım.&lt;/p&gt;
-
-&lt;p&gt;Bu da yetmedi, evde çalışmak için projeyi clone’ladım. Gereken kurulumları
-yaptım. Çalıştırdım&amp;hellip; BOOOOM! Hata mesajı! Hata ne? neredeyse uygulamanın
-&lt;strong&gt;ana&lt;/strong&gt; kütüphanelerinden biri olan dosyayı &lt;code&gt;import&lt;/code&gt; edemiyor&amp;hellip; Klasik
-&lt;code&gt;PATH&lt;/code&gt; sorunu ama böyle birşey olması mümkün değil&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;Saatlerce uğraşıp yine görüyorum ki, &lt;code&gt;libs/&lt;/code&gt; altında bulunması gereken
-&lt;code&gt;__init__.py&lt;/code&gt; dosyası uçmuş&amp;hellip; Diğer makinelerde düzgün çalışıyor çünkü
-derlenmiş hali bu sorunu kurtarıyor. Yani dosya varken python derlemiş,
-dosya uçmuş ama sorun yok. &lt;code&gt;.pyc&lt;/code&gt; her şeyi çözüyor.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;git blame&lt;/code&gt; ile bakıyorum, yine ben, neredeyse 1 ay önce silmişim dosyayı.
-Python’da &lt;code&gt;__init__.py&lt;/code&gt; çok önemlidir. Herhangi bir dizin içinde bu dosya
-varsa; o dizinin paket/modül gibi kullanılabileceğini anlatır.&lt;/p&gt;
-
-&lt;p&gt;Yani;&lt;/p&gt;
-&lt;pre class="highlight python"&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;my_project.libs.functions&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;test_function&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;dersem; bu &lt;code&gt;my_project/libs/functions.py&lt;/code&gt; dosyasından &lt;code&gt;test_function&lt;/code&gt; adlı
-fonksiyonu import et anlamına gelir. (&lt;em&gt;Kabaca verdim bu örneği&lt;/em&gt;) Bu örneğin
-sağlıklı çalışması için &lt;code&gt;my_project&lt;/code&gt; dizini altında &lt;code&gt;__init__.py&lt;/code&gt; olması
-&lt;strong&gt;zorunludur&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Yaşadığım iki sorun da aslında ilk ve büyük hata tabiki bende. Daha dikkatli
-olsam bunlar başıma gelmeyecekti. Şunu gördüm ki, ben bile, bile derken en az
-15 yıldır yazılım geliştiriyorum, çok basit hataları yapabiliyorum.&lt;/p&gt;
-
-&lt;p&gt;Önemli olan bu hatalardan ders çıkarıp tekrar bu kuyuya düşmemek.&lt;/p&gt;
-
-&lt;p&gt;Bunun içinde, yaptığım ilk iş Python’un &lt;code&gt;pyc&lt;/code&gt; ya da &lt;code&gt;pyo&lt;/code&gt; dosyası oluşturma
-işini kapattım. Proje bazlı. &lt;a href="http://http//www.virtualenv.org/"&gt;virtualenv&lt;/a&gt; ve &lt;a href="http://www.doughellmann.com/projects/virtualenvwrapper/"&gt;virtualenvwrapper&lt;/a&gt;
-kullanıyorum. Çalıştığım projeye geçerken ufak bir hook ile şu değişkeni
-set ediyorum:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;export PYTHONDONTWRITEBYTECODE="1"
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Böylece &lt;code&gt;pyc&lt;/code&gt; dosyaları otomatik olarak oluşmayacak. Ben de yanlışlıkla
-birşeyleri sildiğim zaman &lt;strong&gt;anında&lt;/strong&gt; farkedeceğim.&lt;/p&gt;
 </content>
   </entry>
 </feed>
