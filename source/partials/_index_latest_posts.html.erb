@@ -12,6 +12,13 @@ html_id = locals[:html_id] ? ' id="' + locals[:html_id] +'"' : ""
                     <%= I18n.l article.date, :format => config.date_format_long[locale] %>
                 </time>
             </h4>
+            <% if article.tags %>
+            <p>
+                <% article.tags.each do |tag| %>
+                    <span class="label label-default label-custom"><%= link_to tag, tag_path(tag, I18n.locale) %></span>
+                <% end %>
+            </p>
+            <% end %>
             <% if index < 3 && has_summary?(article) %>
             <summary><%= print_summary article %></summary>
             <% end %>

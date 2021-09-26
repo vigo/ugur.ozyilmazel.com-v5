@@ -86,6 +86,7 @@ $custom-card-color: darken($title-link-color, 10);
   padding: .2rem .8rem;
   a {
     color: $custom-label-link-color;
+    &:after { content: "" !important; }
     &:hover {
       color: darken($custom-label-link-color, 10);
     }

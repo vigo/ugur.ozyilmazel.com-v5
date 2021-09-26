@@ -5,7 +5,7 @@ tr:
   go_to_last_page: Son sayfaya git
   go_to_previous_page: Önceki sayfaya git
   go_to_next_page: Sonraki sayfaya git
-  homepage_subtitle: Yazılım geliştirici
+  homepage_subtitle: Bilgisayar Programcısı
   tagged_items: Etiketli “%{count}” kayıt bulunuyor.
   related_articles:
     one: İlişkili Makale
