@@ -1,0 +1,121 @@
+---
+title: "Olmazsa Olmaz Golang Kütüphaneleri"
+date: 2021-09-26 13:45:00 +0300
+cover: "ws-golang.png"
+tags: golang
+comments: false
+---
+
+İster komut satırı aracı, ister kütüphane ya da servis geliştirirken bazı 3.parti
+kütüphaneler / yardımcılar, hayatımızı kolaylaştırır. Bu yazımda sizlere sık
+kullandığım paketlerden bahsedeceğim.READ_MORE
+
+### github.com/fatih/color
+
+https://github.com/fatih/color
+
+İçimizden biri, rock star’ımız sevgili Fatih Arslan tarafından geliştirilen ve
+daha sonra da pek çok kişi tarafından katkı sağlanan `color` paketi. Kullanımı
+çok kolay. Komut satırı uygulamalarınızı renklendirmek istiyorsanız bu paketi
+mutlaka kullanmalısınız.
+
+```bash
+$ go get github.com/fatih/color
+```
+
+
+### github.com/pkg/errors
+
+https://github.com/pkg/errors
+
+Error’leri yönetmek, error’lere ilave mesaj eklemek, bir error’ü wrap/unwrap
+etmek gibi pek çok işi bizim adımıza yapan olmazsa olmaz kütüphanelerden biri de
+`errors` paketi.
+
+```bash
+$ go get github.com/pkg/errors
+```
+
+
+### github.com/alexeyco/simpletable
+
+https://github.com/alexeyco/simpletable
+
+Ruby’de çok sevdiğim [terminal-table](https://github.com/tj/terminal-table)’ın
+golang versiyonu. Terminal’de aynı html table’ları gibi tabular gösterim
+yapmanızı sağlıyor.
+
+```bash
+$ go get -u github.com/alexeyco/simpletable
+```
+
+
+### github.com/urfave/cli
+
+https://github.com/urfave/cli
+
+Sevgili [Cenk Altı](https://github.com/cenkalti/) sayesinde haberdar olduğum
+harika bir `cli` geliştirme aracı. Pek çok işi o kadar kolay hale getiriyor ve
+kolaylaştırıyor ki... Daha önce başka araçları deneyip hatta hiç araç
+kullanmadan uğraşıp yaptığım şeyleri inanılmaz derecede kolay ve hızlı bir
+şekilde yapmamı sağlıyor `urfave/cli`.
+
+```bash
+$ go get github.com/urfave/cli/v2
+```
+
+
+### github.com/codingconcepts/env
+
+https://github.com/codingconcepts/env
+
+Uygulamanız içinde environment variable’ları yönetmenizi sağlayan güzel bir
+kütüphane `env`.
+
+```go
+$ go get -u github.com/codingconcepts/env
+```
+
+
+### air
+
+https://github.com/cosmtrek/air
+
+Özellikle servis/server gibi işlerinizde, geliştirme yaparken **hot reload**
+yapmak isterseniz, yani herhangi bir `.go` dosyasını kaydettiğinizde,
+uygulamanın otomatik olarak tekrar derlenip çalışması için `air`, yani sizin
+uygulamayı elle durdurup tekrar çalıştırma işi yapmamanız için harika bir
+çözüm!
+
+
+### github.com/gofrs/uuid
+
+https://github.com/gofrs/uuid
+
+`UUID` gereken yerlerde işinize yarayacak güzel bir kütüphane. Versiyon 5’e
+kadar destekliyor.
+
+
+### github.com/stretchr/testify
+
+https://github.com/stretchr/testify
+
+Yine ruby’den kalma alışkanlıklarım beni bu kütüphaneyi bulmamı ve kullanmamı
+sağladı. Test yazarken "keşke ruby’deki minitest gibi bir kütüphane olsa,
+assertion işlerini basitçe halledebilsem" demiştim ve bir google aramasından
+sonra `testify` ile tanışıp bir daha da bırakamadım.
+
+Sadece assertion değil mocking ve benzeri diğer yardımcılarla beraber geliyor!
+
+```go
+$ go get github.com/stretchr/testify
+```
+
+---
+
+Günlük işlerde sıklıkla kullandığım kütüphanelerin bazılarını tanıtmaya
+çalıştım. Bunların dışında da kullandığımız paketler hatta framework’ler,
+network client’ları, veritabanı client’ları, websocket, tcp sunucu
+framework’leri gibi daha geniş yardımcılar da bulunmakta.
+
+Daha fazla araç ve bilgi için https://github.com/avelino/awesome-go adresine bakabilirsiniz!
