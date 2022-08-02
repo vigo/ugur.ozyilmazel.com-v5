@@ -12,11 +12,11 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:44+03:00" />
         <meta name="description" content="Object Oriented Programming (OOP) yani Nesne Yönelimli Programlama’nın en temel
 prensibi olarak kabul edilir." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2016/07/30/solid-prensibi/" />
         <meta property="og:title" content="SOLID Prensibi" />
         <meta property="og:site_name" content="vigo" />
@@ -186,7 +186,7 @@ geçsek ve çizme işlemi için ilgili şeklin <code>çizim</code> metodunu ça�
 
 <p>Aşağıdaki örnek bu prensibi ihlal eder. Yarın <code>json</code> çıktı almak yerine
 <code>pdf</code> ya da <code>xml</code> çıktı gerekse kodu değiştirmek gerekecek&hellip;</p>
-<pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
 <span class="k">class</span> <span class="nc">Rapor</span>
   <span class="k">def</span> <span class="nf">dokuman</span>
     <span class="n">dokumani_uret</span>
@@ -196,12 +196,11 @@ geçsek ve çizme işlemi için ilgili şeklin <code>çizim</code> metodunu ça�
     <span class="n">dokuman</span><span class="p">.</span><span class="nf">to_json</span> <span class="c1"># json çıktı alır</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-
+</code></pre></div>
 <p>Yukarıdaki sınıf sadece <code>json</code> çıktı almak üzerine planlanmış. <code>pdf</code> çıktı
 almak gerektiği noktada bu kod’u değiştirmek gerekecek&hellip; Halbuki aşağıdaki 
 kod parçası bu durumu düşünüp kurala uymuş;</p>
-<pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
 <span class="k">class</span> <span class="nc">Rapor</span>
   <span class="k">def</span> <span class="nf">dokuman</span>
     <span class="n">dokumani_uret</span>
@@ -214,8 +213,7 @@ kod parçası bu durumu düşünüp kurala uymuş;</p>
 
 <span class="n">aylik_rapor</span> <span class="o">=</span> <span class="no">Rapor</span><span class="p">.</span><span class="nf">new</span>
 <span class="n">aylik_rapor</span><span class="p">.</span><span class="nf">yazdir</span><span class="p">(</span><span class="ss">cikti_formati: </span><span class="no">XMLFormatter</span><span class="p">.</span><span class="nf">new</span><span class="p">)</span> <span class="c1"># xml olarak aldık...</span>
-</code></pre>
-
+</code></pre></div>
 <p><a href="https://drive.google.com/file/d/0BwhCYaYDn8EgN2M5MTkwM2EtNWFkZC00ZTI3LWFjZTUtNTFhZGZiYmUzODc1/view">Kaynak</a></p>
 
 <hr>
@@ -226,14 +224,13 @@ kod parçası bu durumu düşünüp kurala uymuş;</p>
 alabilecek şekilde olmalıdır. Şimdi iki tane sınıfımız olsun. <strong>Dörtgen</strong> ve <strong>Kare</strong>.
 Kare, Dörtgen’den türemiş olsun. Dörtgen sınıfının <code>genislik</code> ve <code>yukseklik</code>
 adında iki tane <strong>accessor</strong>’ü (<em>getter-setter</em>) var, Ruby’den örnekliyoruz:</p>
-<pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
 <span class="k">class</span> <span class="nc">Dortgen</span>
-  <span class="kp">attr_accessor</span> <span class="ss">:genislik</span><span class="p">,</span> <span class="ss">:yukseklik</span>
+  <span class="nb">attr_accessor</span> <span class="ss">:genislik</span><span class="p">,</span> <span class="ss">:yukseklik</span>
 <span class="k">end</span> 
-</code></pre>
-
+</code></pre></div>
 <p>ve <code>Dortgen</code>’den türemiş <code>Kare</code>:</p>
-<pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
 <span class="k">class</span> <span class="nc">Kare</span> <span class="o">&lt;</span> <span class="no">Dortgen</span>
   <span class="k">def</span> <span class="nf">yukseklik</span><span class="o">=</span><span class="p">(</span><span class="n">yukseklik</span><span class="p">)</span>
     <span class="vi">@degisken</span> <span class="o">=</span> <span class="n">yukseklik</span>
@@ -248,15 +245,13 @@ adında iki tane <strong>accessor</strong>’ü (<em>getter-setter</em>) var, Ru
     <span class="vi">@degisken</span>
   <span class="k">end</span>
 <span class="k">end</span> 
-</code></pre>
-
+</code></pre></div>
 <p>Ruby’de <code>=</code> ile biten metod <code>setter</code> anlamına geliyor. Yani <code>yukseklik=</code> <strong>setter</strong>,
 <code>yukseklik</code> ise <strong>getter</strong>.</p>
 
 <p>Şimdi her iki şeklinde alanını hesap edelim:</p>
-<pre class="highlight plaintext"><code>alan = genislik * yukseklik
-</code></pre>
-<pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
+<div class="highlight"><pre class="highlight plaintext"><code>alan = genislik * yukseklik
+</code></pre></div><div class="highlight"><pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
 <span class="n">dortgen</span> <span class="o">=</span> <span class="no">Dortgen</span><span class="p">.</span><span class="nf">new</span>
 <span class="n">kare</span> <span class="o">=</span> <span class="no">Kare</span><span class="p">.</span><span class="nf">new</span>
 
@@ -267,13 +262,12 @@ adında iki tane <strong>accessor</strong>’ü (<em>getter-setter</em>) var, Ru
 <span class="n">kare</span><span class="p">.</span><span class="nf">genislik</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">kare</span><span class="p">.</span><span class="nf">yukseklik</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">kare</span><span class="p">.</span><span class="nf">genislik</span> <span class="o">*</span> <span class="n">kare</span><span class="p">.</span><span class="nf">yukseklik</span>       <span class="c1"># =&gt; 25 ???</span>
-</code></pre>
-
+</code></pre></div>
 <p><code>Kare</code> sınıfı, Liskov değişimi kuralını ihlal edip, üst sınıftan gelen
 özellikleri modifiye etmiştir.</p>
 
 <p>Başka bir örnek;</p>
-<pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
 <span class="k">class</span> <span class="nc">Hayvan</span>
   <span class="k">def</span> <span class="nf">yuru</span>
      <span class="n">yurume_islemi</span>
@@ -285,15 +279,14 @@ adında iki tane <strong>accessor</strong>’ü (<em>getter-setter</em>) var, Ru
     <span class="n">kosma_islemi</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-
+</code></pre></div>
 <p>Verdiğim örnek Ruby’den ve Ruby’de <strong>interface</strong> mantığı yok. Yukarıdaki
 kod Liskov değişimi prensibini ihlal ediyor. Neden? <code>Kedi</code> sınıfı <code>Hayvan</code>dan
 türedi ve <code>Hayvan</code> sınıfının <code>kos</code> diye bir metodu yok&hellip; Bu durumda,
 <code>Hayvan</code> sınıfını bir <strong>interface</strong> gibi düşünmeli ve interface’de olan
 metodları <strong>implement</strong> etmeliyiz. Bu bakımdan <code>Hayvan</code> sınıfı aşağıdaki
 gibi olmalı:</p>
-<pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
 <span class="k">class</span> <span class="nc">Hayvan</span>
   <span class="k">def</span> <span class="nf">yuru</span>
     <span class="n">yurume_islemi</span>
@@ -302,8 +295,7 @@ gibi olmalı:</p>
     <span class="k">raise</span> <span class="no">NotImplementedError</span>      <span class="c1"># prensibe göre çapraz</span>
   <span class="k">end</span>                              <span class="c1"># eşitlik olmalı...</span>
 <span class="k">end</span>
-</code></pre>
-
+</code></pre></div>
 <p><a href="http://en.wikipedia.org/wiki/Liskov_substitution_principle">Kaynak</a>, <a href="https://drive.google.com/file/d/0BwhCYaYDn8EgNzAzZjA5ZmItNjU3NS00MzQ5LTkwYjMtMDJhNDU5ZTM0MTlh/view">Kaynak</a></p>
 
 <hr>
@@ -337,7 +329,7 @@ etmek anlamına gelir. Buradaki bağımlılık aslında bize esneklik sağlar.</
 <p>Fonksiyonu ya da metodu çağırken sabit parametre yerine kullanılan Hash, hem
 bize parametre sırası zorunluluğundan kurtatır hem de ilgili fonksiyon içinde
 bağımsız hareket edebilme özgürlüğünü sağlar.</p>
-<pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># Ruby kodu</span>
 <span class="no">DEFAULTS</span> <span class="o">=</span> <span class="p">{</span>
   <span class="ss">a: </span><span class="mi">1</span><span class="p">,</span>
   <span class="ss">b: </span><span class="mi">2</span><span class="p">,</span>
@@ -353,12 +345,11 @@ bağımsız hareket edebilme özgürlüğünü sağlar.</p>
 
 <span class="n">test_func</span><span class="p">({</span><span class="ss">a: </span><span class="s2">"ali"</span><span class="p">,</span> <span class="ss">b: </span><span class="s2">"veli"</span><span class="p">,</span> <span class="ss">c: </span><span class="kp">nil</span><span class="p">})</span>
 <span class="c1"># =&gt; {:a=&gt;"ali", :b=&gt;"veli", :c=&gt;nil}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Test yazarken, henüz nasıl çalışacağına karar vermediğimiz ama tahminen sonucunu
 ne olması gerektiğini bildiğimiz durumlara, bu metodu varmış gibi taklit etmek,
 gerçek kodda kullanmak da tam bir <strong>Dependency Injection</strong> örneğidir.</p>
-<pre class="highlight ruby"><code><span class="c1"># Ruby, Rspec örnek...</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># Ruby, Rspec örnek...</span>
 <span class="n">f</span> <span class="o">=</span> <span class="s2">"./test_file.txt"</span>
 
 <span class="n">file_downloader</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="s2">"Fetcher"</span><span class="p">)</span>
@@ -366,8 +357,7 @@ gerçek kodda kullanmak da tam bir <strong>Dependency Injection</strong> örneğ
 
 <span class="n">file_downloader</span><span class="p">.</span><span class="nf">stud</span><span class="p">(</span><span class="ss">:download</span><span class="p">).</span><span class="nf">and_return</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="c1"># download metodu olacağını ve bir text dosyası döneceğini biliyoruz!</span>
-</code></pre>
-
+</code></pre></div>
 <hr>
 
 <p>Tüm bu prensipler aslında daha kullanışlı, daha rahat yönetilebilen ve
@@ -383,8 +373,8 @@ güzel bir sunum yapmıştı. Bu sunumu da <a href="https://speakerdeck.com/skme
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “5” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2013/02/20/bash-completion-anotomisi/">Bash Completion Anotomisi</a></h3>

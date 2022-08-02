@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:44+03:00" />
         <meta name="description" content="Windows kullanırken vazgeçilemez tool’larımdan biri de WinRar’dı. Genelde
 herkes gibi bende (!) gün içinde sık sık rar açan biriyim. Biraz google
 aramasından sonra Mac OS için open source tonla rar açan program buldum." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2008/11/20/macos-x-ve-coklu-rar-hazirlama/" />
         <meta property="og:title" content="Mac OS X ve Çoklu Rar Hazırlama" />
         <meta property="og:site_name" content="vigo" />
@@ -116,72 +116,63 @@ aynı AmigA günlerinde olduğu gibi shell’den yapıcaz işleri&hellip; Öncel
 açalım, <code>~/Downloads/rar/</code> altındaki dosyaların hepsini <code>rar380</code> altına atıp
 sembolik bir link’le <code>/usr/local/bin</code> altına <code>rar</code> adında bir link dosyası
 oluşturalım.</p>
-<pre class="highlight shell"><code>sudo mkdir -p /usr/local/bin/rar380
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /usr/local/bin/rar380
 <span class="nb">cd </span>Downloads/
-sudo cp -R rar/<span class="k">*</span> /usr/local/bin/rar380
+<span class="nb">sudo cp</span> <span class="nt">-R</span> rar/<span class="k">*</span> /usr/local/bin/rar380
 <span class="nb">cd</span> /usr/local/bin/
-sudo ln -s rar380/rar rar
-sudo ln -s rar380/unrar unrar
-</code></pre>
-
+<span class="nb">sudo ln</span> <span class="nt">-s</span> rar380/rar rar
+<span class="nb">sudo ln</span> <span class="nt">-s</span> rar380/unrar unrar
+</code></pre></div>
 <p>Böylece Terminal’den <code>rar</code> ve <code>unrar</code> komutunu çalışır hale getirdim. <strong>rar</strong> ile
 dosyaları sıkıştırma (<em>rar’lama</em>), <strong>unrar</strong> ile de rar’lanmış dosyaları açma
 (<em>unrar/extract</em>) işlemleri yapılır. Eğer sizde bu folder <code>/usr/local/bin</code> yoksa;</p>
-<pre class="highlight shell"><code>sudo mkdir -p /usr/local/bin
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /usr/local/bin
+</code></pre></div>
 <p>yaparak önce bu dizini açın. (<em>Ben XCode kullandığım için belki kurulum
 sırasında bu folder oluşmuş yada ben bişileri compile ederken yapmışımdır
 hatırlamıyorum</em>)</p>
 
 <p>Ufak bir hatırlatma: Her seferinde <code>sudo</code> yazmak istemiyorsanız;</p>
-<pre class="highlight shell"><code>sudo -i
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo</span> <span class="nt">-i</span>
+</code></pre></div>
 <p>Yaparak <code>sudo</code> moduna geçebilirsiniz fakat buna elinizi alıştırmayın.
 Yanlışlıkla istenmeyen dosyaları silebilir ya da hasar verebilirsiniz. Evet,
 rar çalışabiliyorsa (<em>denemek için Terminal’de rar yazıp enter yapın,
 karşınıza yardım bilgilileri çıkar</em>) hemen çoklu rar paketi yapmaya başlayalım.</p>
 
 <p>Hiç sıkıştırma yapmadan, sadece parçalara bölmek için:</p>
-<pre class="highlight shell"><code>rar a -m0 -ep -v_KAC_MEGABYTE_M <span class="s2">"NEREYE_KAYIT"</span> <span class="s2">"KAYNAK_DOSYA"</span>  
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>rar a <span class="nt">-m0</span> <span class="nt">-ep</span> <span class="nt">-v_KAC_MEGABYTE_M</span> <span class="s2">"NEREYE_KAYIT"</span> <span class="s2">"KAYNAK_DOSYA"</span>  
+</code></pre></div>
 <p>sıkıştırmak istediğim dosya, <code>~/Desktop</code>’ımda duran: <code>deneme_dosya.iso</code>
 (<em>300 Megabytes</em>) bunu <strong>50 Megabyte</strong>’lık parçalara böleceğim:</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> ~/Desktop
-rar a -m0 -ep -v50M <span class="s2">"deneme_parcalar"</span> <span class="s2">"deneme_dosya.iso"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> ~/Desktop
+rar a <span class="nt">-m0</span> <span class="nt">-ep</span> <span class="nt">-v50M</span> <span class="s2">"deneme_parcalar"</span> <span class="s2">"deneme_dosya.iso"</span>
+</code></pre></div>
 <p>Bu <q>new style</q> rar isimlendirmesiyle;</p>
-<pre class="highlight plaintext"><code>deneme_parcalar.part01
+<div class="highlight"><pre class="highlight plaintext"><code>deneme_parcalar.part01
 deneme_parcalar.part02
-</code></pre>
-
+</code></pre></div>
 <p>gibi çıkış verir. Eğer <q>old style</q> yapmak istersiniz yani;</p>
-<pre class="highlight plaintext"><code>deneme_parcalar.r00
+<div class="highlight"><pre class="highlight plaintext"><code>deneme_parcalar.r00
 deneme_parcalar.r01
 deneme_parcalar.rar
-</code></pre>
-
+</code></pre></div>
 <p>gibi;</p>
-<pre class="highlight shell"><code>rar a -m0 -ep -v50M -vn <span class="s2">"deneme_parcalar"</span> <span class="s2">"deneme_dosya.iso"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>rar a <span class="nt">-m0</span> <span class="nt">-ep</span> <span class="nt">-v50M</span> <span class="nt">-vn</span> <span class="s2">"deneme_parcalar"</span> <span class="s2">"deneme_dosya.iso"</span>
+</code></pre></div>
 <h3>Update: Kasım 2014</h3>
 
 <p><a href="http://mxcl.github.com/homebrew/" title="The missing package manager for OS X">Homebrew</a> üzerinden <strong>unrar</strong> kurmak çok kolay!:</p>
-<pre class="highlight shell"><code>brew install unrar
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>brew <span class="nb">install </span>unrar
+</code></pre></div>
                     </div>
                     
                     <hr/>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “5” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2009/08/09/finderda-dev-gibi-ikonlar/">Finder’da dev gibi ikonlar</a></h3>

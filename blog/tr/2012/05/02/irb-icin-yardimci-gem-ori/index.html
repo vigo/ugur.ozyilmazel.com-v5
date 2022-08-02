@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:56+03:00" />
+        <meta name="date" content="2022-08-02T17:17:45+03:00" />
         <meta name="description" content="Peepcode screencast’lerinden Play by play: Aaron Patterson’ı
 izlerken daldan dala atladım ve IRB ile ilgili çok işe yarar bir gem
 buldum: ORI" />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2012/05/02/irb-icin-yardimci-gem-ori/" />
         <meta property="og:title" content="IRB için yardımcı gem: ORI" />
         <meta property="og:site_name" content="vigo" />
@@ -106,45 +106,38 @@ buldum: <strong>ORI</strong>
 <p>İnteraktif konsollar sayesinde, başka bir araca ihtiyaç duymadan, istediğimiz
 gibi yazılım denemeleri yapabiliriz. Pek çok dilde bu özellik var.
 (<em>Php, Python, Ruby gibi&hellip;</em>)</p>
-<pre class="highlight shell"><code>php -a
-</code></pre>
-<pre class="highlight shell"><code>pip install ipython <span class="c"># eğer ipython yoksa kurmak için... sudo gerektirebilir</span>
+<div class="highlight"><pre class="highlight shell"><code>php <span class="nt">-a</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell"><code>pip <span class="nb">install </span>ipython <span class="c"># eğer ipython yoksa kurmak için... sudo gerektirebilir</span>
 ipython
-</code></pre>
-<pre class="highlight shell"><code>irb
-</code></pre>
-
+</code></pre></div><div class="highlight"><pre class="highlight shell"><code>irb
+</code></pre></div>
 <p><a href="http://ipython.org/">iPython</a>’da çok kullandığım <code>help()</code> özelliğini irb’de aradım fakat
 bulamadım. Dediğim gibi, screencast’i izlerken 6.dakikada durup daldan dala
 google’da zıplamaya başladım. Ve tam o sırada <strong>ORI</strong>’ye denk geldim.</p>
-<pre class="highlight python"><code><span class="n">help</span><span class="p">()</span>
+<div class="highlight"><pre class="highlight python"><code><span class="n">help</span><span class="p">()</span>
 <span class="n">help</span><span class="p">(</span><span class="s">"print"</span><span class="p">)</span>
 <span class="n">help</span><span class="p">(</span><span class="s">"string"</span><span class="p">)</span>
-</code></pre>
-
+</code></pre></div>
 <p>Pek çok şeyin olduğu gibi IRB’nin de <code>.irbrc</code> dosyası var. Genelde *nix
 ortamında pekçok programın konfigürasyon dosyası benzer şekillerde olur. Bu
 dosyaya bir-iki ekleme yaparak işlerimi kolay hale getireceğiz.</p>
 
 <p>Önce ilgili <code>gem</code>’i kuralım. (<u>Eğer <strong>rvm</strong> ya da <strong>rbenv</strong> kullanıyorsanız
 istediğiniz ruby versiyonuna geçip gem’i öyle kurun.</u>)</p>
-<pre class="highlight shell"><code>gem install ori <span class="c"># gerekiyorsa başına sudo ekleyin...</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>gem <span class="nb">install </span>ori <span class="c"># gerekiyorsa başına sudo ekleyin...</span>
+</code></pre></div>
 <p>Eğer yoksa, <code>$HOME/.irbrc</code> dosyasını oluşturmamız lazım.</p>
-<pre class="highlight shell"><code>touch <span class="nv">$HOME</span>/.irbrc
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">touch</span> <span class="nv">$HOME</span>/.irbrc
+</code></pre></div>
 <p>Daha sonra kullandığınız text-editörü ile dosyayı açın:</p>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rubygems'</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rubygems'</span>
 <span class="nb">require</span> <span class="s2">"irb/completion"</span>
 <span class="nb">require</span> <span class="s1">'irb/ext/save-history'</span>
 <span class="nb">require</span> <span class="s1">'ori'</span>
 
 <span class="no">IRB</span><span class="p">.</span><span class="nf">conf</span><span class="p">[</span><span class="ss">:SAVE_HISTORY</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="no">IRB</span><span class="p">.</span><span class="nf">conf</span><span class="p">[</span><span class="ss">:HISTORY_FILE</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="no">ENV</span><span class="p">[</span><span class="s1">'HOME'</span><span class="p">]</span><span class="si">}</span><span class="s2">/.irb_history"</span>
-</code></pre>
-
+</code></pre></div>
 <p>Son iki satırda irb&#39;ye diyoruz ki;</p>
 
 <ul>
@@ -154,7 +147,7 @@ olsun.</li>
 </ul>
 
 <p>Bu işlemlerden sonra; hemen <code>irb</code> yazıp çalıştırın ve;</p>
-<pre class="highlight ruby"><code><span class="s2">""</span><span class="p">.</span><span class="nf">ri</span>                                  <span class="c1"># String ile ilgili help</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="s2">""</span><span class="p">.</span><span class="nf">ri</span>                                  <span class="c1"># String ile ilgili help</span>
 <span class="s2">""</span><span class="p">.</span><span class="nf">ri</span> <span class="ss">:upcase</span>                          <span class="c1"># String’in upcase metodu ile ilgili help</span>
 <span class="no">Array</span><span class="p">.</span><span class="nf">ri</span>                               <span class="c1"># Array ile ilgili help</span>
 <span class="s2">""</span><span class="p">.</span><span class="nf">ri</span> <span class="ss">:pretty_print</span>                    <span class="c1"># String’in pretty_print metodu ile ilgili help</span>
@@ -177,23 +170,20 @@ olsun.</li>
                                        <span class="c1"># Receiver’ı Object olan String metodları</span>
 
 <span class="no">String</span><span class="p">.</span><span class="nf">ri</span> <span class="sr">//</span><span class="p">,</span> <span class="ss">:fullre</span> <span class="o">=&gt;</span> <span class="sr">/\(Object\)::/</span><span class="p">,</span> <span class="ss">:access</span> <span class="o">=&gt;</span> <span class="s2">"::"</span><span class="p">,</span> <span class="ss">:visibility</span> <span class="o">=&gt;</span> <span class="ss">:private</span>
-</code></pre>
-
+</code></pre></div>
 <p>Nasıl? benim çok işime yaradı. Umarım sizin de işinize yarar. Konu ile ilgili
 harika bir <a href="http://www.screencast-o-matic.com/watch/cXVVYuXpH">video</a> var, örnekler vs. izlemenizi tavsiye ederim.
 Projenin <a href="https://github.com/dadooda/ori">github</a> sayfasını da ziyaret edebilirsiniz.</p>
 
 <p>Son olarak <code>~/.irbrc</code> dosyasına bir ek yapalım. Önce <code>wirble</code> gem’ini kuralım:</p>
-<pre class="highlight shell"><code>gem install wirble <span class="c"># gerekiyorsa başına sudo ekleyin...</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>gem <span class="nb">install </span>wirble <span class="c"># gerekiyorsa başına sudo ekleyin...</span>
+</code></pre></div>
 <p>Daha sonra; <code>~/.irbrc</code> dosyasını text-editörde açın ve en alt satıra;</p>
-<pre class="highlight ruby"><code><span class="no">Wirble</span><span class="p">.</span><span class="nf">init</span><span class="p">({</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="no">Wirble</span><span class="p">.</span><span class="nf">init</span><span class="p">({</span>
   <span class="ss">:skip_prompt</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
 <span class="p">})</span>
 <span class="no">Wirble</span><span class="p">.</span><span class="nf">colorize</span>
-</code></pre>
-
+</code></pre></div>
 <p>Artık renkli bir irb’ye sahip olacaksınız!</p>
 
 <h3>Update: 25 Kasım 2014, Salı, 22:23</h3>
@@ -206,8 +196,8 @@ Projenin <a href="https://github.com/dadooda/ori">github</a> sayfasını da ziya
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “7” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2016/07/30/solid-prensibi/">SOLID Prensibi</a></h3>

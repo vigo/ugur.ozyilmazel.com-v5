@@ -12,13 +12,13 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:44+03:00" />
         <meta name="description" content="Süper bir başlık oldu değil mi? Bir süredir büyük bir keyifle iTunes’daki
 radyoları dinliyorum. Benim gibi 80’ler aşığı iseniz harika kanallar mevcut.
 Biran aklıma: “Keşke dinlediğim şarkıların adını Twitter’a post edebilsem?”
 diye bir fikir geldi!" />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2008/12/26/itunes-friendfeed-twitter-twitterrific-ve-shell/" />
         <meta property="og:title" content="iTunes, FriendFeed, Twitter, Twitterrific ve Shell" />
         <meta property="og:site_name" content="vigo" />
@@ -113,9 +113,8 @@ Hatta TextMate ve Firefox için minik bir uygulama bile yapmıştım.</p>
 <p>Biraz aradıktan sonra Twitter için kullandığım <a href="http://iconfactory.com/software/twitterrific">Twitterrific</a>’in de
 AppleScript desteklediğini gördüm. Biraz uğraşmadan sonra Terminal’den,
 Twitterrific’e mesaj göndermeyi başardım:</p>
-<pre class="highlight shell"><code>osascript -e <span class="s1">'tell app "Twitterrific" to post update "karnım acıktı"'</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>osascript <span class="nt">-e</span> <span class="s1">'tell app "Twitterrific" to post update "karnım acıktı"'</span>
+</code></pre></div>
 <p>Hemen aklıma şu soru geldi</p>
 
 <blockquote>
@@ -142,46 +141,40 @@ basıp, <strong>Applications</strong> içinden Twitterrific’i seçtim.</p>
 <p>Gördüm ki pek çok özellik var Twitterrific için. Aynı şekilde iTunes’a baktım,
 süper! Tamam dedim bu iş olur. İlk testim şu şekilde oldu, çalan müziğin adı
 vesaire alıp Twitterrific’e yollamak </p>
-<pre class="highlight shell"><code>osascript -e <span class="s1">'tell application "iTunes" to name of current track as string'</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>osascript <span class="nt">-e</span> <span class="s1">'tell application "iTunes" to name of current track as string'</span>
+</code></pre></div>
 <div class="card card-custom"><img src="http://3.bp.blogspot.com/_9jz1qeFrzkQ/STvbYHZpFtI/AAAAAAAAAxk/eLAtSwNiCV8/s1600/tutSF02.png" alt="Ekran görüntüsü, AppleScript Editor’den Twitterrific kısmı"></div>
 
 <p>Dediğim anda bana çalan parçanın adı döndü. Bir şekilde bu gelen text’i shell
 değişkenine atayıp, daha sonra bunu Twitterrific’e göndermem bana yetecekti!</p>
-<pre class="highlight shell"><code>osascript -e <span class="s1">'tell app "Twitterrific" to post update "deneme"'</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>osascript <span class="nt">-e</span> <span class="s1">'tell app "Twitterrific" to post update "deneme"'</span>
+</code></pre></div>
 <p>Bu işlem, Twitterrific uygulamasının mesaj gönderme alanına bir text yollamamı
 ve entera basmamı sağladı. Yani aslında post update metodu buna benzer bişi
 yapmıştı. Twiterrific uygulaması AppleScripti destekliyordu ve bana imkan
 sağlamıştı. Şimdi iTunesda çalan şarkı adını alıp post edelim:</p>
-<pre class="highlight shell"><code><span class="nv">songname</span><span class="o">=</span><span class="sb">`</span>osascript -e <span class="s1">'tell application "iTunes" to name of current track as string'</span><span class="sb">`</span>
-osascript -e <span class="s2">"tell app </span><span class="se">\"</span><span class="s2">Twitterrific</span><span class="se">\"</span><span class="s2"> to post update </span><span class="se">\"</span><span class="nv">$songname</span><span class="se">\"</span><span class="s2">"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">songname</span><span class="o">=</span><span class="sb">`</span>osascript <span class="nt">-e</span> <span class="s1">'tell application "iTunes" to name of current track as string'</span><span class="sb">`</span>
+osascript <span class="nt">-e</span> <span class="s2">"tell app </span><span class="se">\"</span><span class="s2">Twitterrific</span><span class="se">\"</span><span class="s2"> to post update </span><span class="se">\"</span><span class="nv">$songname</span><span class="se">\"</span><span class="s2">"</span>
+</code></pre></div>
 <p>Şimdi bu işlemi yaparken, Twitterrifi’ce iyi bakın, yaptığı şey, sizin mesaj
 yazma alanını doldurmak. Neticede biz, Twiterrific’i kullanarak mini bir
 otomasyon yaptık. Peki, işin biraz daha b*kunu çıkarıp, bu çalan şarkı hangi
 albüme ait ona bakalım;</p>
-<pre class="highlight shell"><code><span class="nv">album</span><span class="o">=</span><span class="sb">`</span>osascript -e <span class="s1">'tell application "iTunes" to album of current track as string'</span><span class="sb">`</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">album</span><span class="o">=</span><span class="sb">`</span>osascript <span class="nt">-e</span> <span class="s1">'tell application "iTunes" to album of current track as string'</span><span class="sb">`</span>
 <span class="nb">echo</span> <span class="nv">$album</span>
-</code></pre>
-
+</code></pre></div>
 <p>Çalan parçanın ait olduğu albümün adı geldi&hellip; Şimdi hem album adını hem de
 çalan parçanın adını post edelim;</p>
-<pre class="highlight shell"><code><span class="nv">songname</span><span class="o">=</span><span class="sb">`</span>osascript -e <span class="s1">'tell application "iTunes" to name of current track as string'</span><span class="sb">`</span>
-<span class="nv">album</span><span class="o">=</span><span class="sb">`</span>osascript -e <span class="s1">'tell application "iTunes" to album of current track as string'</span><span class="sb">`</span>
-osascript -e <span class="s2">"tell app </span><span class="se">\"</span><span class="s2">Twitterrific</span><span class="se">\"</span><span class="s2"> to post update </span><span class="se">\"</span><span class="nv">$album</span><span class="s2"> - </span><span class="nv">$songname</span><span class="se">\"</span><span class="s2">"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">songname</span><span class="o">=</span><span class="sb">`</span>osascript <span class="nt">-e</span> <span class="s1">'tell application "iTunes" to name of current track as string'</span><span class="sb">`</span>
+<span class="nv">album</span><span class="o">=</span><span class="sb">`</span>osascript <span class="nt">-e</span> <span class="s1">'tell application "iTunes" to album of current track as string'</span><span class="sb">`</span>
+osascript <span class="nt">-e</span> <span class="s2">"tell app </span><span class="se">\"</span><span class="s2">Twitterrific</span><span class="se">\"</span><span class="s2"> to post update </span><span class="se">\"</span><span class="nv">$album</span><span class="s2"> - </span><span class="nv">$songname</span><span class="se">\"</span><span class="s2">"</span>
+</code></pre></div>
 <p>Şimdi bu 3 satırı çok basit bir şekilde, tek harekette çalıştıralım. Bunun
 için bir <strong>Executable</strong> bir <strong>bash</strong> dosyası hazırlayacağız;</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> ~/Desktop
-touch sendToTwiterrefic.sh
-nano -w sendToTwiterrefic.sh
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> ~/Desktop
+<span class="nb">touch </span>sendToTwiterrefic.sh
+nano <span class="nt">-w</span> sendToTwiterrefic.sh
+</code></pre></div>
 <p>Açılan editöre yukarıdaki üç satırı paste edin. <strong>nano</strong> ekranında aşağıdaki 
 görüntü olacak; kaydedip çıkmak için <kbd>⌃</kbd> (kntrl) + <kbd>x</kbd> yapıp 
 <kbd>y</kbd> tuşuna basın.</p>
@@ -189,19 +182,17 @@ görüntü olacak; kaydedip çıkmak için <kbd>⌃</kbd> (kntrl) + <kbd>x</kbd>
 <div class="card card-custom"><img src="http://1.bp.blogspot.com/_9jz1qeFrzkQ/SVSzYwuH_kI/AAAAAAAAA5g/Qgbo-RU0i_k/s1600/Picture+1.png" alt="Ekran görüntüsü, Terminal"></div>
 
 <p>daha sonra bu script’i çalıştırabilmek için <strong>execute</strong> yetkisi vereceğiz;</p>
-<pre class="highlight shell"><code>chmod a+x sendToTwiterrefic.sh
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">chmod </span>a+x sendToTwiterrefic.sh
 ./sendToTwiterrefic.sh
-</code></pre>
-
+</code></pre></div>
 <p>Tamam şimdilik ilk aşamayı geçtik. Peki biz bu minik script ile sürekli
 Twiterrific’e mahkum olmak zorundayız. Acaba aynı şekilde, direk Twitter
 sunucusuna bunu post etsek? yani Twiterrific olmasada çalışsa?</p>
 
 <p>Hemen Twitter’ın API dokümantasyonuna bakıyoruz, görüyoruz ki <strong>curl</strong> komutu 
 ile istediğimiz gibi <strong>post</strong> yapabiliriz; Nasıl mı? Terminal ekranında;</p>
-<pre class="highlight shell"><code>curl -u <span class="s2">"twitter_kullanıcı_adınız:twitter_kullanıcı_şifreniz"</span> -d <span class="nv">status</span><span class="o">=</span><span class="s2">"deneme"</span> http://twitter.com/statuses/update.json
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-u</span> <span class="s2">"twitter_kullanıcı_adınız:twitter_kullanıcı_şifreniz"</span> <span class="nt">-d</span> <span class="nv">status</span><span class="o">=</span><span class="s2">"deneme"</span> http://twitter.com/statuses/update.json
+</code></pre></div>
 <h2>Update : Kasım 2014</h2>
 
 <p>Ne yazıkki artık bu şekilde işlemiyor sistem&hellip; <strong>oAuth</strong> kullanmak gerekiyor&hellip;</p>
@@ -215,9 +206,8 @@ adını bu metodla post edelim?</p>
 
 <p>Hemen demin hazırladığımız script’i nano’da açıp, son satırın yerine aşağıdaki
 satırı koyalım, save edip çıkalım</p>
-<pre class="highlight shell"><code>curl -u <span class="s2">"twitter_kullanıcı_adınız:twitter_kullanıcı_şifreniz"</span> -d <span class="nv">status</span><span class="o">=</span><span class="s2">"</span><span class="nv">$album</span><span class="s2"> - </span><span class="nv">$songname</span><span class="s2">"</span> http://twitter.com/statuses/update.json
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-u</span> <span class="s2">"twitter_kullanıcı_adınız:twitter_kullanıcı_şifreniz"</span> <span class="nt">-d</span> <span class="nv">status</span><span class="o">=</span><span class="s2">"</span><span class="nv">$album</span><span class="s2"> - </span><span class="nv">$songname</span><span class="s2">"</span> http://twitter.com/statuses/update.json
+</code></pre></div>
 <p>Artık Twiterrific’e ihtiyacınız olmadan Terminal ekranından, Twitter’a mesaj
 geçebiliyorsunuz! Madem öyle, haydi şimdi de bunu <a href="http://friendfeed.com/">FriendFeed</a>e adapte
 edelim? Yine denemek için kendinize bir hesap açın.</p>
@@ -232,9 +222,8 @@ Aşağda kırmızı okun işaret ettiği yerde yazan şey <strong>api key</stron
 Twitter ile ilgili olan satırı <strong>comment out</strong> (<em># ile</em>) edelim ve aşağıdaki
 satırı ekleyelim. Tabi <strong>kullanıcı_adı</strong> yerine kendi kullanıcı adınızı ve
 <strong>şifre</strong> yerine de kendi remote keyinizi yazmayı unutmayın;</p>
-<pre class="highlight shell"><code>curl -u <span class="s2">"kullanıcı_adı:şifre"</span> -d <span class="s2">"title=</span><span class="nv">$album</span><span class="s2"> - </span><span class="nv">$songname</span><span class="s2">"</span> http://friendfeed.com/api/share
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-u</span> <span class="s2">"kullanıcı_adı:şifre"</span> <span class="nt">-d</span> <span class="s2">"title=</span><span class="nv">$album</span><span class="s2"> - </span><span class="nv">$songname</span><span class="s2">"</span> http://friendfeed.com/api/share
+</code></pre></div>
 <p>nano ekranında gördünen aşağıdaki gibi olmalı. Kaydedip çıkın;</p>
 
 <div class="card card-custom"><img src="http://1.bp.blogspot.com/_9jz1qeFrzkQ/SVS8nahxKwI/AAAAAAAAA5w/U37dmR1COeI/s1600/Picture+3.png" alt="Ekran görüntüsü, Terminal, Nano editör"></div>
@@ -245,33 +234,30 @@ daha güzel bir görüntü sağlamak için bir iki text ekleyebiliriz yani;</p>
 <div class="card card-custom"><img src="http://3.bp.blogspot.com/_9jz1qeFrzkQ/SVS9Te4btAI/AAAAAAAAA54/vPJIangOBe4/s1600/Picture+4.png" alt="Ekran görüntüsü, FriendFeed"></div>
 
 <p>gibi yapmak için sadece <strong>title</strong> kısmını aşağıdaki gibi değiştirebilirsiniz;</p>
-<pre class="highlight plaintext"><code>"title=♫ Dinliyorum : $album - $songname"
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>"title=♫ Dinliyorum : $album - $songname"
+</code></pre></div>
 <p>Umarım anlatmayı becerebilmişimdir. Eğer radyo dinlerken aynı şeyleri yapmak
 isterseniz, albüm adı yerine stream title’ı almanız gerekecek.
 İşte size birkaç ipucu;</p>
-<pre class="highlight shell"><code><span class="c"># itunes variables</span>
-<span class="nv">track</span><span class="o">=</span><span class="sb">`</span>osascript -e <span class="s1">'tell application "iTunes" to name of current track as string'</span><span class="sb">`</span>;
-<span class="nv">playlist</span><span class="o">=</span><span class="sb">`</span>osascript -e <span class="s1">'tell application "iTunes" to name of current playlist as string'</span><span class="sb">`</span>;
-<span class="nv">stream_title</span><span class="o">=</span><span class="sb">`</span>osascript -e <span class="s1">'tell application "iTunes" to current stream title as string'</span><span class="sb">`</span>;
-<span class="nv">album</span><span class="o">=</span><span class="sb">`</span>osascript -e <span class="s1">'tell application "iTunes" to album of current track as string'</span><span class="sb">`</span>;
-<span class="nv">artist</span><span class="o">=</span><span class="sb">`</span>osascript -e <span class="s1">'tell application "iTunes" to artist of current track as string'</span><span class="sb">`</span>;
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="c"># itunes variables</span>
+<span class="nv">track</span><span class="o">=</span><span class="sb">`</span>osascript <span class="nt">-e</span> <span class="s1">'tell application "iTunes" to name of current track as string'</span><span class="sb">`</span><span class="p">;</span>
+<span class="nv">playlist</span><span class="o">=</span><span class="sb">`</span>osascript <span class="nt">-e</span> <span class="s1">'tell application "iTunes" to name of current playlist as string'</span><span class="sb">`</span><span class="p">;</span>
+<span class="nv">stream_title</span><span class="o">=</span><span class="sb">`</span>osascript <span class="nt">-e</span> <span class="s1">'tell application "iTunes" to current stream title as string'</span><span class="sb">`</span><span class="p">;</span>
+<span class="nv">album</span><span class="o">=</span><span class="sb">`</span>osascript <span class="nt">-e</span> <span class="s1">'tell application "iTunes" to album of current track as string'</span><span class="sb">`</span><span class="p">;</span>
+<span class="nv">artist</span><span class="o">=</span><span class="sb">`</span>osascript <span class="nt">-e</span> <span class="s1">'tell application "iTunes" to artist of current track as string'</span><span class="sb">`</span><span class="p">;</span>
+</code></pre></div>
 <p>Bu değişkenleri <code>echo</code> ile test edebilirsiniz. iTunes çalışırken Terminal’de
 <code>echo</code> ile değişken adını yazarak deneyin;</p>
-<pre class="highlight shell"><code><span class="nb">echo</span> <span class="nv">$track</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">echo</span> <span class="nv">$track</span>
 <span class="nb">echo</span> <span class="nv">$playlist</span>
 <span class="nb">echo</span> <span class="nv">$stream_title</span>
 <span class="nb">echo</span> <span class="nv">$album</span>
 <span class="nb">echo</span> <span class="nv">$artist</span>
-</code></pre>
-
+</code></pre></div>
 <p>gibi&hellip; Yaptıklarımızın tümünü AppleScript ile yapıp, tek başına çalışan bir
 Application hissi de verebiliriz. Yapmamız gereken AppleScript Editor’ü açmak
 daha sonra;</p>
-<pre class="highlight applescript"><code><span class="k">try</span><span class="w">
+<div class="highlight"><pre class="highlight applescript"><code><span class="k">try</span><span class="w">
     </span><span class="k">set</span><span class="w"> </span><span class="nv">friendfeed_user</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s2">"kullanıcı_adınız"</span><span class="w"> </span><span class="k">as </span><span class="nc">string</span><span class="w">
     </span><span class="k">set</span><span class="w"> </span><span class="nv">friendfeed_password</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s2">"remote_keyiniz"</span><span class="w"> </span><span class="k">as </span><span class="nc">string</span><span class="w">
     </span><span class="k">try</span><span class="w">
@@ -287,8 +273,7 @@ daha sonra;</p>
     </span><span class="nb">on</span><span class="w"> </span><span class="k">error</span><span class="w"> </span><span class="nv">err</span><span class="w">
         </span><span class="nb">display dialog</span><span class="w"> </span><span class="nv">err</span><span class="w">
 </span><span class="k">end</span><span class="w"> </span><span class="k">try</span><span class="w">
-</span></code></pre>
-
+</span></code></pre></div>
 <p>Hemen <code>run</code> edin ve görün! Bunu sanki bir Mac OS Application’ı gibi tek
 hareketle run etmek için; önce normal bir <strong>save</strong> edin, sonra tekrar
 <strong>save as</strong> diyip aşağıdaki gibi seçenekleri ayarlayın.</p>
@@ -297,9 +282,8 @@ hareketle run etmek için; önce normal bir <strong>save</strong> edin, sonra te
 
 <p>Eğer işlemin yapılıp yapılmadığı ile ilgili bir <strong>debug</strong> bir işaret
 isterseniz, <code>do shell script</code> satırının altına;</p>
-<pre class="highlight plaintext"><code>say "Posted to Friend Feed!"
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>say "Posted to Friend Feed!"
+</code></pre></div>
 <p>Satırını ekleyin bakalım ne olacak?</p>
 
 <div class="card card-custom"><img src="http://4.bp.blogspot.com/_9jz1qeFrzkQ/SVTDQmifabI/AAAAAAAAA6I/R3uNQLcb6os/s1600/Picture+5.png" alt="Ekran görüntüsü, FriendFeed’den son durum"></div>
@@ -318,8 +302,8 @@ bir hata ya da sizin eklemek istediğiniz birşey olursa da bana bildirin!</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “4” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2009/07/26/bash-completion-olayi/">Bash Completion olayı!</a></h3>

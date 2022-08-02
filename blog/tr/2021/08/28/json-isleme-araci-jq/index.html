@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:45+03:00" />
         <meta name="description" content="JSON dosya formatı artık hayatımızın vazgeçilmezi. Gündelik hayatta hep
 onunla işimiz oluyor. Peki bir araç olsa, istediğimiz gibi filtreleme
 yapsak, hem de hiç kod yazmasak?" />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2021/08/28/json-isleme-araci-jq/" />
         <meta property="og:title" content="JSON İşleme Aracı: jq" />
         <meta property="og:site_name" content="vigo" />
@@ -105,40 +105,36 @@ yapsak, hem de hiç kod yazmasak?</p>
 <p>Sizi harika bir araçla tanıştırmak istiyorum: <code>jq</code>. <code>jq</code> süper hızlı çalışan
 hafif siklet bir komut satırı aracı. Tüm platformlarda var. macOS kullanıcıları
 hemen:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>brew install jq
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>brew <span class="nb">install </span>jq
+</code></pre></div>
 <p>ile kurabilir. Elle kurmak için <a href="https://stedolan.github.io/jq/">sitesinden</a> indirip kurulum yapabilirsiniz.
 Eğer kurulum yapmak istemezseniz, <a href="https://jqplay.org/">web tarayıcısı</a> üzerinden de kullanabilirsiniz.
 <a href="https://stedolan.github.io/jq/manual/">Dokümantasyonu</a> ve nasıl kullanılacağına dair bir <a href="https://stedolan.github.io/jq/tutorial/">tuturial</a>’i de bulunuyor.</p>
 
 <p>Hemen ufak ufak girişelim.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"x": 1, "y": 2}'</span> | jq
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"x": 1, "y": 2}'</span> | jq
 <span class="o">{</span>
   <span class="s2">"x"</span>: 1,
   <span class="s2">"y"</span>: 2
 <span class="o">}</span>
 
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"x": 1, "y": 2}'</span> | jq .x
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"x": 1, "y": 2}'</span> | jq .x
 1
-</code></pre>
-
+</code></pre></div>
 <p>Elimizde <code>{key: value}</code> şeklinde bulunan nesnelerde <code>.key</code> mantığıyla veriye
 ulaşabiliyoruz. Eğer iç-içe yani <strong>nested</strong> key’ler varsa; <code>.key.key.key</code> şeklinde
 zincirleme ilerleyebiliyoruz. Bu durum <strong>Object Identifier-Index</strong> olarak geçer:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"x": {"a": "bu a değeri"}}'</span> | jq .x.a
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"x": {"a": "bu a değeri"}}'</span> | jq .x.a
 <span class="s2">"bu a değeri"</span>
-</code></pre>
-
+</code></pre></div>
 <p>Eğer <strong>key var mı?</strong> diye bakmak istersek <strong>Optional Object Identifier-Index</strong>
 kullanırız:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"foo": 1, "bar": 2}'</span> | jq <span class="s1">'.baz?'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"foo": 1, "bar": 2}'</span> | jq <span class="s1">'.baz?'</span>
 null
-</code></pre>
-
+</code></pre></div>
 <p>Yani <code>.key?</code> şeklinde kullanılır. Eğer key yoksa sonuç <code>null</code> döner. Genelde
 elimizde hep bir liste yani <strong>Array</strong> ve içinde de objeler olur:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1}, {"id": 2}]'</span> | jq .
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1}, {"id": 2}]'</span> | jq <span class="nb">.</span>
 <span class="o">[</span>
   <span class="o">{</span>
     <span class="s2">"id"</span>: 1
@@ -147,48 +143,43 @@ elimizde hep bir liste yani <strong>Array</strong> ve içinde de objeler olur:</
     <span class="s2">"id"</span>: 2
   <span class="o">}</span>
 <span class="o">]</span>
-</code></pre>
-
+</code></pre></div>
 <p>Eğer <strong>flat-map</strong> yapmak istersek, yani aradan virgülü atmak;</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1}, {"id": 2}]'</span> | jq .[]
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1}, {"id": 2}]'</span> | jq .[]
 <span class="o">{</span>
   <span class="s2">"id"</span>: 1
 <span class="o">}</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 2
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Sadede <code>id</code>’lerin değerlerini alalım:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1}, {"id": 2}]'</span> | jq <span class="s1">'.[] | .id'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1}, {"id": 2}]'</span> | jq <span class="s1">'.[] | .id'</span>
 1
 2
-</code></pre>
-
+</code></pre></div>
 <p>Yani <code>jq &#39;.[] | .id&#39;</code> şeklinde. Elimizde aşağıdaki gibi bir <code>json</code> olsun:</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vigo"</span><span class="w">
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vigo"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="mi">3</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
+</span></code></pre></div>
 <p>İçinden sadece <code>.user</code>’ı alalım:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"user": {"id": 1, "name": "vigo"}, "items": [1,2,3]}'</span> | jq <span class="s1">'.user'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"user": {"id": 1, "name": "vigo"}, "items": [1,2,3]}'</span> | jq <span class="s1">'.user'</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 1,
   <span class="s2">"name"</span>: <span class="s2">"vigo"</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Aynı nesneden kopya bir liste:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"x": 1}'</span> | jq <span class="s1">'[. , . , .]'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"x": 1}'</span> | jq <span class="s1">'[. , . , .]'</span>
 <span class="o">[</span>
   <span class="o">{</span>
     <span class="s2">"x"</span>: 1
@@ -200,47 +191,43 @@ elimizde hep bir liste yani <strong>Array</strong> ve içinde de objeler olur:</
     <span class="s2">"x"</span>: 1
   <span class="o">}</span>
 <span class="o">]</span>
-</code></pre>
-
+</code></pre></div>
 <p>İşin sırrı <code>jq &#39;[. , . , .]&#39;</code> bu kısında. <code>.</code> elemanın kendisi oluyor. Elimizde
 kullanıcıların listesi var mesela:</p>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vigo"</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vigo"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lego"</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lego"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"figo"</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"figo"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
-
+</span></code></pre></div>
 <p>Sadece <code>.name</code>’leri alalım:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1, "name": "vigo"}, {"id": 2, "name": "lego"}, {"id": 3, "name": "figo"}]'</span> | jq <span class="s1">'.[] | .name'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1, "name": "vigo"}, {"id": 2, "name": "lego"}, {"id": 3, "name": "figo"}]'</span> | jq <span class="s1">'.[] | .name'</span>
 <span class="s2">"vigo"</span>
 <span class="s2">"lego"</span>
 <span class="s2">"figo"</span>
-</code></pre>
-
+</code></pre></div>
 <h3>Map Özelliği</h3>
 
 <p>Tüm programlama dillerinde bulunan, <strong>iterable</strong> yani bir koleksiyonun içinde
 tüm elemanları bir fonksiyondan geçirme işlemi. Elimizde sayılardan oluşan
 bir liste var ver biz koleksiyon içindeki her sayıya bir ekleyeceğiz:</p>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json"><code><span class="p">[</span><span class="w">
     </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="mi">3</span><span class="p">,</span><span class="w">
     </span><span class="mi">4</span><span class="p">,</span><span class="w">
     </span><span class="mi">5</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'map(. + 1)'</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'map(. + 1)'</span>
 <span class="o">[</span>
   2,
   3,
@@ -248,11 +235,10 @@ bir liste var ver biz koleksiyon içindeki her sayıya bir ekleyeceğiz:</p>
   5,
   6
 <span class="o">]</span>
-</code></pre>
-
+</code></pre></div>
 <p><code>map(. + 1)</code> -&gt; <code>.</code> elemanın kendisi, sonrasında <code>+</code> operatör, <code>1</code> de ekleyeceğimiz
 değer. <code>.</code> <strong>Identity</strong> anlamındadır. Çarpma versiyonu:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'map(. * 2)'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'map(. * 2)'</span>
 <span class="o">[</span>
   2,
   4,
@@ -260,16 +246,14 @@ değer. <code>.</code> <strong>Identity</strong> anlamındadır. Çarpma versiyo
   8,
   10
 <span class="o">]</span>
-</code></pre>
-
+</code></pre></div>
 <p>Eğer çıktıların daha kısa ve kompakt olmasını isterseniz <code>-c</code> parametresini
 kullanabiliriniz:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'map(. * 2)'</span> -c
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'map(. * 2)'</span> <span class="nt">-c</span>
 <span class="o">[</span>2,4,6,8,10]
-</code></pre>
-
+</code></pre></div>
 <p>Şimdi elimizdeki aynı listeden bir transformasyon yapalım:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'map({"x": .})'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'map({"x": .})'</span>
 <span class="o">[</span>
   <span class="o">{</span>
     <span class="s2">"x"</span>: 1
@@ -287,56 +271,52 @@ kullanabiliriniz:</p>
     <span class="s2">"x"</span>: 5
   <span class="o">}</span>
 <span class="o">]</span>
-</code></pre>
-
+</code></pre></div>
 <h3>Fonksiyonlar</h3>
 
 <p>En sık kullandığım <code>length</code> fonksiyonu:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'length'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'length'</span>
 5
 
-<span class="gp">$ </span>jq length /path/to/file.json
-</code></pre>
-
+<span class="nv">$ </span>jq length /path/to/file.json
+</code></pre></div>
 <p>Elementin indeksini bulalım. <code>[1,2,3,4,5]</code> listesinde <code>2</code>’nin indeksi <code>1</code>’dir
 yani 0. element: <code>1</code>, 1.element de <code>2</code>’dir ya, bunu <code>jq</code> ile gelen <code>indices</code>
 fonksiyonunu kullanarak bulalım:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'indices(2)'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'indices(2)'</span>
 <span class="o">[</span>
   1
 <span class="o">]</span>
 
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'indices(2) | .[]'</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[1,2,3,4,5]'</span> | jq <span class="s1">'indices(2) | .[]'</span>
 1
-</code></pre>
-
+</code></pre></div>
 <p>String içinde pipe yaparak çıktıyı flat-map yaptık. <code>jq &#39;komut | .[]&#39;</code> şeklinde.
 Bir kısım fonksiyon örneği verelim:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[2, 4, 6, 8]'</span> | jq <span class="s1">'contains([2])'</span>  <span class="c"># true</span>
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[2, 4, 6, 8]'</span> | jq <span class="s1">'reverse'</span> -c     <span class="c"># [8,6,4,2]</span>
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[2, 4, 6, 8]'</span> | jq <span class="s1">'min'</span>            <span class="c"># 2</span>
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[2, 4, 6, 8]'</span> | jq <span class="s1">'max'</span>            <span class="c"># 8</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[2, 4, 6, 8]'</span> | jq <span class="s1">'contains([2])'</span>  <span class="c"># true</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[2, 4, 6, 8]'</span> | jq <span class="s1">'reverse'</span> <span class="nt">-c</span>     <span class="c"># [8,6,4,2]</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[2, 4, 6, 8]'</span> | jq <span class="s1">'min'</span>            <span class="c"># 2</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[2, 4, 6, 8]'</span> | jq <span class="s1">'max'</span>            <span class="c"># 8</span>
 
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'"hello"'</span> | jq <span class="s1">'split("")'</span> -c       <span class="c"># ["h","e","l","l","o"]</span>
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'"hello"'</span> | jq <span class="s1">'test("he*")'</span> -c     <span class="c"># true</span>
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'"hello"'</span> | jq <span class="s1">'test("he*!")'</span> -c    <span class="c"># false</span>
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'"hello"'</span> | jq <span class="s1">'contains("a")'</span> -c   <span class="c"># false</span>
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'"hello"'</span> | jq <span class="s1">'startswith("h")'</span> -c <span class="c"># true</span>
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'"hello"'</span> | jq <span class="s1">'endswith("o")'</span> -c   <span class="c"># true</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'"hello"'</span> | jq <span class="s1">'split("")'</span> <span class="nt">-c</span>       <span class="c"># ["h","e","l","l","o"]</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'"hello"'</span> | jq <span class="s1">'test("he*")'</span> <span class="nt">-c</span>     <span class="c"># true</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'"hello"'</span> | jq <span class="s1">'test("he*!")'</span> <span class="nt">-c</span>    <span class="c"># false</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'"hello"'</span> | jq <span class="s1">'contains("a")'</span> <span class="nt">-c</span>   <span class="c"># false</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'"hello"'</span> | jq <span class="s1">'startswith("h")'</span> <span class="nt">-c</span> <span class="c"># true</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'"hello"'</span> | jq <span class="s1">'endswith("o")'</span> <span class="nt">-c</span>   <span class="c"># true</span>
 
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[{"user": {"id": 1, "name": "vigo"}}, {"user": {"id": 2, "name": "ezel"}}]'</span> <span class="se">\</span>
-    | jq <span class="s1">'.[0] | keys'</span> -c      <span class="c"># ["user"]</span>
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[{"user": {"id": 1, "name": "vigo"}}, {"user": {"id": 2, "name": "ezel"}}]'</span> <span class="se">\</span>
-    | jq <span class="s1">'.[0].user | keys'</span> -c <span class="c"># ["id","name"]</span>
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"id": 1, "name": "vigo"}'</span> | jq <span class="s1">'has("id")'</span> <span class="c"># true</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[{"user": {"id": 1, "name": "vigo"}}, {"user": {"id": 2, "name": "ezel"}}]'</span> <span class="se">\</span>
+    | jq <span class="s1">'.[0] | keys'</span> <span class="nt">-c</span>      <span class="c"># ["user"]</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[{"user": {"id": 1, "name": "vigo"}}, {"user": {"id": 2, "name": "ezel"}}]'</span> <span class="se">\</span>
+    | jq <span class="s1">'.[0].user | keys'</span> <span class="nt">-c</span> <span class="c"># ["id","name"]</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"id": 1, "name": "vigo"}'</span> | jq <span class="s1">'has("id")'</span> <span class="c"># true</span>
 
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"id": 1, "name": "vigo"}'</span> | jq <span class="s1">'flatten'</span> -c <span class="c"># [1,"vigo"]</span>
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[{"user": {"id": 1, "name": "vigo"}}, {"user": {"id": 2, "name": "ezel"}}]'</span> <span class="se">\</span>
-    | jq <span class="s1">'.[0].user | flatten'</span> -c <span class="c"># [1,"vigo"]</span>
-</code></pre>
-
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"id": 1, "name": "vigo"}'</span> | jq <span class="s1">'flatten'</span> <span class="nt">-c</span> <span class="c"># [1,"vigo"]</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[{"user": {"id": 1, "name": "vigo"}}, {"user": {"id": 2, "name": "ezel"}}]'</span> <span class="se">\</span>
+    | jq <span class="s1">'.[0].user | flatten'</span> <span class="nt">-c</span> <span class="c"># [1,"vigo"]</span>
+</code></pre></div>
 <p><code>to_entries</code> ile;</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"id": 1, "name": "vigo"}'</span> | jq <span class="s1">'to_entries'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"id": 1, "name": "vigo"}'</span> | jq <span class="s1">'to_entries'</span>
 <span class="o">[</span>
   <span class="o">{</span>
     <span class="s2">"key"</span>: <span class="s2">"id"</span>,
@@ -347,38 +327,34 @@ Bir kısım fonksiyon örneği verelim:</p>
     <span class="s2">"value"</span>: <span class="s2">"vigo"</span>
   <span class="o">}</span>
 <span class="o">]</span>
-</code></pre>
-
+</code></pre></div>
 <p>Şeklinde çıktı alırız. Diğer sevdiğim bir fonksiyon da <code>select</code>:</p>
-<pre class="highlight shell"><code><span class="c"># id’si 1 olanı alalım, select(.id == 1)</span>
-<span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1, "name": "vigo"}, {"id": 2, "name": "ezel"}]'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="c"># id’si 1 olanı alalım, select(.id == 1)</span>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1, "name": "vigo"}, {"id": 2, "name": "ezel"}]'</span> <span class="se">\</span>
     | jq <span class="s1">'.[] | select(.id == 1)'</span>
 <span class="o">{</span>
   <span class="s2">"id"</span>: 1,
   <span class="s2">"name"</span>: <span class="s2">"vigo"</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Yaşı <code>10</code>’dan küçükleri filtreleyelim:</p>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vigo"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vigo"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ezel"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ezel"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
-
+</span></code></pre></div>
 <p>ve;</p>
-<pre class="highlight shell"><code><span class="nb">echo</span> <span class="s1">'[{"id": 1, "name": "vigo", "age": 46}, {"id": 2, "name": "ezel", "age": 7}]'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">echo</span> <span class="s1">'[{"id": 1, "name": "vigo", "age": 46}, {"id": 2, "name": "ezel", "age": 7}]'</span> <span class="se">\</span>
     | jq <span class="s1">'.[] | select(.age &lt; 10) | .name'</span> <span class="c"># "ezel"</span>
-</code></pre>
-
+</code></pre></div>
 <p>İşin püf noktası <code>&#39;.[] | select(.age &lt; 10) | .name&#39;</code> kısmında. <code>.[]</code> ile liste
 işlemi yapacağımızı, tek tek elemanı alacağımızı belirtip elemanı <code>|</code> ile
 <code>select</code> fonksiyonuna <code>pipe</code> ediyoruz. Fonksiyondan dönenin sadece <code>.name</code>’ini
@@ -391,25 +367,23 @@ alıyoruz.</p>
 
 <p>Parantez ile aynı matematik işlemlerindeki gibi öncelik ve gruplama işlerini
 yapabiliriz:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'1'</span> | jq <span class="s1">'(. + 2) * 5'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'1'</span> | jq <span class="s1">'(. + 2) * 5'</span>
 15
-</code></pre>
-
+</code></pre></div>
 <p><code>.</code> identity idi, yani <code>1</code>’in kendisi. <code>(1 + 2) * 5 -&gt; 3 * 5 -&gt; 15</code>.</p>
 
 <p><code>[]</code> ile <strong>Array Construction</strong> yani liste üretebiliriz:</p>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vigo"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"badges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vigo"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"badges"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="s2">"python"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"ruby"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"golang"</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-
+</span></code></pre></div>
 <p>Şimdi bir çıktı üretelim ve tipi liste olsun:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"user": "vigo", "badges": ["python", "ruby", "golang"]}'</span> | jq <span class="s1">'[.user, .badges]'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"user": "vigo", "badges": ["python", "ruby", "golang"]}'</span> | jq <span class="s1">'[.user, .badges]'</span>
 <span class="o">[</span>
   <span class="s2">"vigo"</span>,
   <span class="o">[</span>
@@ -418,10 +392,9 @@ yapabiliriz:</p>
     <span class="s2">"golang"</span>
   <span class="o">]</span>
 <span class="o">]</span>
-</code></pre>
-
+</code></pre></div>
 <p>Şimdi <code>{}</code> ile <strong>Object Construction</strong> yapalım:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"user": "vigo", "badges": ["python", "ruby", "golang"]}'</span> | jq <span class="s1">'{user, stack: .badges}'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"user": "vigo", "badges": ["python", "ruby", "golang"]}'</span> | jq <span class="s1">'{user, stack: .badges}'</span>
 <span class="o">{</span>
   <span class="s2">"user"</span>: <span class="s2">"vigo"</span>,
   <span class="s2">"stack"</span>: <span class="o">[</span>
@@ -430,10 +403,9 @@ yapabiliriz:</p>
     <span class="s2">"golang"</span>
   <span class="o">]</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Aynı veriden <strong>multiple-dict</strong> üretelim:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"user": "vigo", "badges": ["python", "ruby", "golang"]}'</span> | jq <span class="s1">'{user, stack: .badges[]}'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"user": "vigo", "badges": ["python", "ruby", "golang"]}'</span> | jq <span class="s1">'{user, stack: .badges[]}'</span>
 <span class="o">{</span>
   <span class="s2">"user"</span>: <span class="s2">"vigo"</span>,
   <span class="s2">"stack"</span>: <span class="s2">"python"</span>
@@ -446,39 +418,35 @@ yapabiliriz:</p>
   <span class="s2">"user"</span>: <span class="s2">"vigo"</span>,
   <span class="s2">"stack"</span>: <span class="s2">"golang"</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <h3>Durum Kontrolleri</h3>
 
 <p>Elimizde şöyle bir veri var:</p>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
+<div class="highlight"><pre class="highlight json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vigo"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"is_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vigo"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lego"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"is_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lego"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"is_admin"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre>
-
+</span></code></pre></div>
 <p>Admin ve standart kullanıcıları görelim:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[{"name": "vigo", "is_admin": true}, {"name": "lego", "is_admin": false}]'</span> | jq <span class="s1">'.[] | if .is_admin == true then (.name + " is admin")  else (.name + " is standard user")  end'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[{"name": "vigo", "is_admin": true}, {"name": "lego", "is_admin": false}]'</span> | jq <span class="s1">'.[] | if .is_admin == true then (.name + " is admin")  else (.name + " is standard user")  end'</span>
 <span class="s2">"vigo is admin"</span>
 <span class="s2">"lego is standard user"</span>
-</code></pre>
-
+</code></pre></div>
 <p>Eldeki veriyi <code>csv</code> formatına çevirebiliriz:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1, "name": "vigo", "age": 46}, {"id": 2, "name": "ezel", "age": 7}]'</span> <span class="se">\</span>
-    | jq -r <span class="s1">'(map(keys) | add | unique) as $cols | map(. as $row | $cols | map($row[.])) as $rows | $cols, $rows[] | @csv'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1, "name": "vigo", "age": 46}, {"id": 2, "name": "ezel", "age": 7}]'</span> <span class="se">\</span>
+    | jq <span class="nt">-r</span> <span class="s1">'(map(keys) | add | unique) as $cols | map(. as $row | $cols | map($row[.])) as $rows | $cols, $rows[] | @csv'</span>
 <span class="s2">"age"</span>,<span class="s2">"id"</span>,<span class="s2">"name"</span>
 46,1,<span class="s2">"vigo"</span>
 7,2,<span class="s2">"ezel"</span>
-</code></pre>
-
+</code></pre></div>
 <p>Keza veriyi <code>xpath</code> gibi görüntüleyebiliriz:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1, "name": "vigo", "age": 46}, {"id": 2, "name": "ezel", "age": 7}]'</span> | jq -r <span class="s1">'path(..) | map(tostring) | join("/")'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'[{"id": 1, "name": "vigo", "age": 46}, {"id": 2, "name": "ezel", "age": 7}]'</span> | jq <span class="nt">-r</span> <span class="s1">'path(..) | map(tostring) | join("/")'</span>
 
 0
 0/id
@@ -488,18 +456,16 @@ yapabiliriz:</p>
 1/id
 1/name
 1/age
-</code></pre>
-
+</code></pre></div>
 <h3>Konfigürasyon Dosyası</h3>
 
 <p>Eğer isterseniz kendiniz özelleştirilmiş fonksiyonlar yapıp kullanabilirsiniz.
 Bunun için <code>~/.jq</code> dosyası oluşturmanız yeterli. Şimdi <code>schema</code> diye
 bir fonksiyon oluşturup <code>~/.jq</code> dosyasına ekleyelim:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'def schema: path(..) | map(tostring) | join("/");'</span> &gt;&gt; ~/.jq
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'def schema: path(..) | map(tostring) | join("/");'</span> <span class="o">&gt;&gt;</span> ~/.jq
+</code></pre></div>
 <p>şimdi kullanalım:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nb">echo</span> <span class="s1">'{"data": {"users": [{"id": 1, "name": "vigo"},{"id": 2, "name": "ezel"}]}}'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'{"data": {"users": [{"id": 1, "name": "vigo"},{"id": 2, "name": "ezel"}]}}'</span> <span class="se">\</span>
     | jq <span class="s1">'schema'</span>
 
 <span class="s2">""</span>
@@ -511,25 +477,22 @@ bir fonksiyon oluşturup <code>~/.jq</code> dosyasına ekleyelim:</p>
 <span class="s2">"data/users/1"</span>
 <span class="s2">"data/users/1/id"</span>
 <span class="s2">"data/users/1/name"</span>
-</code></pre>
-
+</code></pre></div>
 <p><code>jq</code> bir komut satırı araca olduğu için tüm dosya <code>pipe</code> işlemleri de geçerli oluyor.
 Kimi zaman <code>pretty-print</code> yani çıktının güzel ve renkli görünmesi için, ya da dosyadan
 okuyup başka bir yere paslamak için de kullanılır.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>cat /path/to/file.json | jq
-<span class="gp">$ </span>cat /path/to/file.json | jq &gt; /path/to/output.json
-<span class="gp">$ </span>curl -sL <span class="s1">'https://api.github.com/repos/vigo/statoo/commits?per_page=1'</span> | jq
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">cat</span> /path/to/file.json | jq
+<span class="nv">$ </span><span class="nb">cat</span> /path/to/file.json | jq <span class="o">&gt;</span> /path/to/output.json
+<span class="nv">$ </span>curl <span class="nt">-sL</span> <span class="s1">'https://api.github.com/repos/vigo/statoo/commits?per_page=1'</span> | jq
+</code></pre></div>
 <p>ya da;</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>curl -sL <span class="s1">'https://api.github.com/repos/vigo/statoo/commits?per_page=1'</span> | jq <span class="s1">'.[] | .commit.author'</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>curl <span class="nt">-sL</span> <span class="s1">'https://api.github.com/repos/vigo/statoo/commits?per_page=1'</span> | jq <span class="s1">'.[] | .commit.author'</span>
 <span class="o">{</span>
   <span class="s2">"name"</span>: <span class="s2">"Uğur Özyılmazel"</span>,
   <span class="s2">"email"</span>: <span class="s2">"ugurozyilmazel@gmail.com"</span>,
   <span class="s2">"date"</span>: <span class="s2">"2021-08-27T10:14:12Z"</span>
 <span class="o">}</span>
-</code></pre>
-
+</code></pre></div>
 <p>Dediğim gibi, <code>jq</code> benim gündelik hayatımda çok sık kullandığım bir araç. Ben
 sadece bildiğim ve sık kullandığım konuları yazdım. Burada yazdıklarımdan çok
 daha fazlası var. Umarım sizin de işinize yarar.</p>
@@ -540,8 +503,8 @@ daha fazlası var. Umarım sizin de işinize yarar.</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “2” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2013/02/20/bash-completion-anotomisi/">Bash Completion Anotomisi</a></h3>

@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:45+03:00" />
         <meta name="description" content="Windows’dan Mac OS’a geçince yaşadığım en büyük farklardan biri de sevgili
 Finder’ın sürekli olarak .DS_Store adlı dosyalar üreterek fazladan file
 kalabalığı yaratmasıydı." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2008/11/17/ds-store-sorunsali/" />
         <meta property="og:title" content=".DS_Store sorunsalı" />
         <meta property="og:site_name" content="vigo" />
@@ -108,26 +108,22 @@ oluyor bu <code>.DS_Store</code>’lar.</p>
 
 <p>Bunu çözmek için terminali açıp ufak bir-iki hareket yapmamız yeterli.
 Önce çalıştığınız foldera gidin:</p>
-<pre class="highlight shell"><code><span class="nb">cd </span>ÇALIŞTIĞINIZ_FOLDER
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd </span>ÇALIŞTIĞINIZ_FOLDER
+</code></pre></div>
 <p>Daha sonra bir kontrol yapın bakalım <code>.DS_Store</code> varmı?</p>
-<pre class="highlight shell"><code>find . -name <span class="s1">'\.DS_Store'</span> -print
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>find <span class="nb">.</span> <span class="nt">-name</span> <span class="s1">'\.DS_Store'</span> <span class="nt">-print</span>
+</code></pre></div>
 <p>Eğer varsa, bunları tek hareketle silmek için:</p>
-<pre class="highlight shell"><code>find . -name <span class="s1">'\.DS_Store'</span> -print -delete
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>find <span class="nb">.</span> <span class="nt">-name</span> <span class="s1">'\.DS_Store'</span> <span class="nt">-print</span> <span class="nt">-delete</span>
+</code></pre></div>
 <p>find komutuna geçilen ilk parametre arama işlemini nerede yapacağımızı
 söylüyor. Dikkat ettiyseniz ilk başta ilgili yere gidin dedim. Böylece path
 olarak <code>.</code> (<em>nokta</em>) vermek yeterli oldu. Nokta; bulunduğumuz yer yani
 <strong>Current</strong> path anlamındadır.</p>
 
 <p>Eğer bakmak istediğimiz yer <code>~/Desktop/HedeHodo</code> altında olsaydı:</p>
-<pre class="highlight shell"><code>find ~/Desktop/HedeHodo -name <span class="s1">'\.DS_Store'</span> -print
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>find ~/Desktop/HedeHodo <span class="nt">-name</span> <span class="s1">'\.DS_Store'</span> <span class="nt">-print</span>
+</code></pre></div>
 <p>şeklini de kullanabilirdik. <code>-name</code> argümanına dosya ismini geçiyoruz. Nokta 
 işaretini escape ediyoruz <code>.</code> yerine <code>\.</code> yazıyoruz.
 (<em>Tabi tırnak içinde geçiyoruz adı</em>)</p>
@@ -149,17 +145,16 @@ alt ve soru işareti</p>
 
 <p>Eğer login olduğunuz kullanıcının silme yetkisi yoksa <strong>sudo</strong> ile işlemi 
 yapmanız lazım. Yani:</p>
-<pre class="highlight shell"><code>sudo find . -name <span class="s1">'\.DS_Store'</span> -print -delete
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo </span>find <span class="nb">.</span> <span class="nt">-name</span> <span class="s1">'\.DS_Store'</span> <span class="nt">-print</span> <span class="nt">-delete</span>
+</code></pre></div>
                     </div>
                     
                     <hr/>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “4” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2009/07/26/bash-completion-olayi/">Bash Completion olayı!</a></h3>

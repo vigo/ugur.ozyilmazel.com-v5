@@ -12,11 +12,11 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:54+03:00" />
+        <meta name="date" content="2022-08-02T17:17:43+03:00" />
         <meta name="description" content="Daha önceki yazımda, Terminal’den kolay ssh yapma yöntemini anlatmıştım. 
 Şimdi, ssh yardımıyla nasıl tünel yaparız buna bakalım." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2010/02/17/ssh-uzerinden-tunel-yapmak/" />
         <meta property="og:title" content="SSH üzerinden tünel yapmak!" />
         <meta property="og:site_name" content="vigo" />
@@ -116,39 +116,34 @@ ports paketi!</p>
 <p>Daha önce de anlattığım gibi, <code>$HOME</code> dizininizde duran; kullanıcı adınız 
 eğer <code>vigo</code> ise, <code>/Users/vigo/</code> yada <code>~</code> işareti ile ifade edilen yer; 
 <code>.ssh/config</code> dosyanıza, o uzaklardaki makine bilgilerini girdiniz:</p>
-<pre class="highlight plaintext"><code>Host UZAKLARDA # bu ad ile erişeceğiz  
+<div class="highlight"><pre class="highlight plaintext"><code>Host UZAKLARDA # bu ad ile erişeceğiz  
 User vigo # uzak makinedeki kullanıcı adınız  
 Port 22 # SSH portu genelde 22dir  
 HostName 1.2.3.4 # uzak makinenin IP adresi
-</code></pre>
-
+</code></pre></div>
 <p>Aynı şekide, daha önce yazdığım yazıdaki gibi, <strong>ssh-key</strong> olayını da halletmiş 
 olduğunuzu düşünüyorum. Yani uzaktaki makineye ssh yapmak için (<em>Yukarıdaki 
 confige göre</em>)</p>
-<pre class="highlight shell"><code>ssh UZAKLARDA
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>ssh UZAKLARDA
+</code></pre></div>
 <p>denemiz yeterli olmalı&hellip; Eğer bu aşamaya kadar sorun yoksa, hemen 
 <a href="http://macports.org" title="Macports">MacPorts</a>’dan <strong>tsock</strong>’sı kuralım:</p>
-<pre class="highlight shell"><code>sudo port install tsocks
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo </span>port <span class="nb">install </span>tsocks
+</code></pre></div>
 <p>Kurulum bitince asıl hayati mevzu başlıyor, hemen ilgili konfigürasyonu yapmak 
 lazım, aksi halde <code>tsocks</code> çalışmıyor; hemen <code>/opt/local/etc/</code> altında duran 
 <code>tsocks.conf.sample</code>’dan bir kopya alalım ve düzenleyelim:</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> /opt/local/etc/
-sudo cp tsocks.conf.sample tsocks.conf
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> /opt/local/etc/
+<span class="nb">sudo cp </span>tsocks.conf.sample tsocks.conf
+</code></pre></div>
 <p>Şimdi hangi text editör’ü kullanıyorsanız, o editör’le <code>tsocks.conf</code> 
 dosyasını açın ve aşağıdaki gibi yapın:</p>
-<pre class="highlight plaintext"><code>local = 127.0.0.1/255.255.255.255  
+<div class="highlight"><pre class="highlight plaintext"><code>local = 127.0.0.1/255.255.255.255  
 server = 127.0.0.1  
 server_port = 1234  
 server_type = 5  
 tordns_enable = false
-</code></pre>
-
+</code></pre></div>
 <p>Şimdi burada dikkat edilecek husular şunlar;</p>
 
 <ol>
@@ -157,29 +152,25 @@ tordns_enable = false
 </ol>
 
 <p>Bu bilgiler ışığında hemen uzaktaki makineye bağlanıyoruz:</p>
-<pre class="highlight shell"><code>ssh -N UZAKLARDA -D 1234
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>ssh <span class="nt">-N</span> UZAKLARDA <span class="nt">-D</span> 1234
+</code></pre></div>
 <p><strong>UZAKLARDA</strong>: hani demin config’de belirtmiştik, <strong>-D 1234</strong> ise <code>tsocks</code>’daki 
 server_port&hellip; Şimdi başka bir TAB açıp (<kbd>⌘</kbd> + <kbd>T</kbd>) deneme yapalım:</p>
-<pre class="highlight shell"><code>curl --connect-timeout 3 http://www.whatismyip.org/
-tsocks curl --connect-timeout 3 http://www.whatismyip.org/
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">--connect-timeout</span> 3 http://www.whatismyip.org/
+tsocks curl <span class="nt">--connect-timeout</span> 3 http://www.whatismyip.org/
+</code></pre></div>
 <p>İlk komut, sistemin default bağlantısı ile çalışıp, sizin gerçek IP’nizi 
 çözdü, ikincisi ise, <strong>ssh</strong> üzerinden tünel yaptı ve sanki uzaktaki 
 makinedeymişsiniz gibi çözdü IP adresinizi. <code>tsocks</code> ile işlem yapmak için 
 Terminal’de:</p>
-<pre class="highlight shell"><code>tsocks KOMUT  
-sudo tsocks KOMUT
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>tsocks KOMUT  
+<span class="nb">sudo </span>tsocks KOMUT
+</code></pre></div>
 <p>şekillerinde kullanabilirsiniz. Eğer tüneli Terminal uygulamaları üzerinden 
 değilde, desktop uygulamaları için kullanmak isterseniz (<em>Safari, FireFox 
 vs&hellip;</em>) yine aynı şekilde önce ssh’i çalıştırın:</p>
-<pre class="highlight shell"><code>ssh -N UZAKLARDA -D 1234
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>ssh <span class="nt">-N</span> UZAKLARDA <span class="nt">-D</span> 1234
+</code></pre></div>
 <p>sonra <a href="http://www.mozilla.org/tr/firefox" title="Firefox Web Browser">FireFox</a>’u açın ve aşağıdaki gibi yapın ayarlarınızı:</p>
 
 <div class="card card-custom"><img src="http://2.bp.blogspot.com/_9jz1qeFrzkQ/S3uzebiXjAI/AAAAAAAADLI/Jqk6Xzp4p6Y/s600/Screen+shot+2010-02-17+at+11.13.49.png" alt="Ekran görüntüsü, Firefox’un ayarlar ekranı, Manual Proxy Configuration bölümü"><div class="card-block"><p class="card-text">SOCKS Host: <strong>localhost</strong>, Port: <strong>1234</strong></p></div></div>
@@ -209,8 +200,8 @@ edebilirsiniz&hellip; </p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “2” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2009/07/26/bash-completion-olayi/">Bash Completion olayı!</a></h3>

@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:54+03:00" />
+        <meta name="date" content="2022-08-02T17:17:43+03:00" />
         <meta name="description" content="How I start sitesinde görüp, kesinlikle Türkçe’si
 de olmalı dediğim, sıfırdan Ruby GEM’i hazırlamayı anlatan blog
 postuma hoşgeldiniz!" />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2014/09/23/rubygem-hazirliyoruz/" />
         <meta property="og:title" content="Rubygem Hazırlıyoruz" />
         <meta property="og:site_name" content="vigo" />
@@ -115,9 +115,8 @@ bir hesap olması! Eğer yoksa hızlıca bu sitede bir hesap oluşturmanız gere
 
 <p>Hangi <code>ruby</code> versiyonunu kullanıyorsanız kullanın, mutlaka <code>bundler</code> gem’i de
 kurulu olmalı. Eğer kurulu değilse;</p>
-<pre class="highlight shell"><code>gem install bundler
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>gem <span class="nb">install </span>bundler
+</code></pre></div>
 <p>şeklinde kurabilirsiniz. Ya <a href="http://rvm.io">RVM</a> ya da <a href="https://github.com/sstephenson/rbenv">RBENV</a> 
 kullandığınızı varsayıyorum. Keza aynı şekilde sisteminizde <a href="http://git-scm.com/">GIT</a> revizyon
 kontrol sisteminin de kurulu olduğunu varsayıyorum. </p>
@@ -126,19 +125,17 @@ kontrol sisteminin de kurulu olduğunu varsayıyorum. </p>
 oluştururken belirlediğiniz <strong>KULLANICI_ADI</strong>’nı aşağıdaki yere girerek
 gerekli kimlik bilgilerini çekiyoruz. Bu sayede, en son safhada yapacağımız
 <code>gem push</code> etme işlemini yapabilme yetkisini ayarlıyoruz.</p>
-<pre class="highlight shell"><code>curl -u KULLANICI_ADI https://rubygems.org/api/v1/api_key.yaml &gt; ~/.gem/credentials; chmod 0600 ~/.gem/credentials
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-u</span> KULLANICI_ADI https://rubygems.org/api/v1/api_key.yaml <span class="o">&gt;</span> ~/.gem/credentials<span class="p">;</span> <span class="nb">chmod </span>0600 ~/.gem/credentials
+</code></pre></div>
 <p>Örnek olması adına, çok basit bir iş yapan uygulama hazırlayacağız. Basit
 bir hesap makinesi. 2 sayı ve yapacağı işlemi vereceğiz bize sonucunu geri
 dönecek. Uygulamanın adı <strong>simple_calcu</strong> olsun.</p>
 
 <p>Şimdi, ilgili <code>gem</code> iskeletini oluşturalım:</p>
-<pre class="highlight shell"><code>bundle gem simple_calcu
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>bundle gem simple_calcu
+</code></pre></div>
 <p>işlem sonunda;</p>
-<pre class="highlight plaintext"><code>      create  simple_calcu/Gemfile
+<div class="highlight"><pre class="highlight plaintext"><code>      create  simple_calcu/Gemfile
       create  simple_calcu/Rakefile
       create  simple_calcu/LICENSE.txt
       create  simple_calcu/README.md
@@ -147,17 +144,15 @@ dönecek. Uygulamanın adı <strong>simple_calcu</strong> olsun.</p>
       create  simple_calcu/lib/simple_calcu.rb
       create  simple_calcu/lib/simple_calcu/version.rb
 Initializing git repo in /private/tmp/simple_calcu
-</code></pre>
-
+</code></pre></div>
 <p>gerekli dosyalar oluşturuldu. <strong>Bundler</strong> bizim için pek çok şeyi
 otomatik olarak üretti. Şimdi <code>cd simple_calcu/</code> diyip projenin içine
 girelim ve <code>bundle exec rake -T</code> diyerek bize sunulan <strong>default</strong>
 task’lere bakalım:</p>
-<pre class="highlight plaintext"><code>rake build    # Build simple_calcu-0.0.1.gem into the pkg directory
+<div class="highlight"><pre class="highlight plaintext"><code>rake build    # Build simple_calcu-0.0.1.gem into the pkg directory
 rake install  # Build and install simple_calcu-0.0.1.gem into system gems
 rake release  # Create tag v0.0.1 and build and push simple_calcu-0.0.1.gem to Rubygems
-</code></pre>
-
+</code></pre></div>
 <p><code>rake build</code> ile hazırlayacağımız <code>gem</code>’i paketleyeceğiz. <code>rake install</code> ile
 yaptığımız <code>gem</code> kurup test edeceğiz. En son olarak <code>rake release</code> ile
 Rubygems’e push edeceğiz.</p>
@@ -165,7 +160,7 @@ Rubygems’e push edeceğiz.</p>
 <h3>.gemspec</h3>
 
 <p>Otomatik olarak oluşan dosya aşağıdaki gibi:</p>
-<pre class="highlight ruby"><code><span class="c1"># coding: utf-8</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># coding: utf-8</span>
 <span class="n">lib</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s1">'../lib'</span><span class="p">,</span> <span class="kp">__FILE__</span><span class="p">)</span>
 <span class="vg">$LOAD_PATH</span><span class="p">.</span><span class="nf">unshift</span><span class="p">(</span><span class="n">lib</span><span class="p">)</span> <span class="k">unless</span> <span class="vg">$LOAD_PATH</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="n">lib</span><span class="p">)</span>
 <span class="nb">require</span> <span class="s1">'simple_calcu/version'</span>
@@ -188,37 +183,32 @@ Rubygems’e push edeceğiz.</p>
   <span class="n">spec</span><span class="p">.</span><span class="nf">add_development_dependency</span> <span class="s2">"bundler"</span><span class="p">,</span> <span class="s2">"~&gt; 1.6"</span>
   <span class="n">spec</span><span class="p">.</span><span class="nf">add_development_dependency</span> <span class="s2">"rake"</span><span class="p">,</span> <span class="s2">"~&gt; 10.0"</span>
 <span class="k">end</span>
-</code></pre>
-
+</code></pre></div>
 <p><code>spec.authors</code> ve <code>spec.email</code> bilgileri <code>.gitconfig</code>’den otomatik olarak
 geldi. Hemen bu uygulama ile ilgili bir kısa bir de uzun açıklama yazalım
 <code>spec.summary</code> ve <code>spec.description</code> alanına;</p>
-<pre class="highlight ruby"><code><span class="n">spec</span><span class="p">.</span><span class="nf">summary</span>       <span class="o">=</span> <span class="sx">%q{Simple Calculator.}</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">spec</span><span class="p">.</span><span class="nf">summary</span>       <span class="o">=</span> <span class="sx">%q{Simple Calculator.}</span>
 <span class="n">spec</span><span class="p">.</span><span class="nf">description</span>   <span class="o">=</span> <span class="sx">%q{Make 4 basic calculations like addition/subtraction/multiplication and division via 2 numbers.}</span>
-</code></pre>
-
+</code></pre></div>
 <p>şimdi bir <code>commit</code> yapalım:</p>
-<pre class="highlight shell"><code>git add .
-git commit -m <span class="s2">"init"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"init"</span>
+</code></pre></div>
 <p>Test için gereken bağlımlılığı (<em>dependency</em>) ekleyelim <code>.gemspec</code> dosyasına;</p>
-<pre class="highlight ruby"><code><span class="n">spec</span><span class="p">.</span><span class="nf">add_development_dependency</span> <span class="s2">"rake"</span><span class="p">,</span> <span class="s2">"~&gt; 10.0"</span> <span class="c1"># bu satırın altına</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">spec</span><span class="p">.</span><span class="nf">add_development_dependency</span> <span class="s2">"rake"</span><span class="p">,</span> <span class="s2">"~&gt; 10.0"</span> <span class="c1"># bu satırın altına</span>
 <span class="n">spec</span><span class="p">.</span><span class="nf">add_development_dependency</span> <span class="s2">"minitest"</span>
-</code></pre>
-
+</code></pre></div>
 <p>Tekrar <code>commit</code> yapalım;</p>
-<pre class="highlight shell"><code>git add .
-git commit -m <span class="s2">"Minitest dependency added"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Minitest dependency added"</span>
+</code></pre></div>
 <p>Otomatik olarak üretilmiş olan <code>README.md</code> dosyasına da baktığınızda, içini
 doldurabileceğimiz, düzenleme yapabileceğimiz türden hazır bir açıklama
 dosyası görürüz. Bu dosyayı en sonda düzenleyeceğiz.</p>
 
 <p>Testlerimizi çalıştırabilmek için <code>Rakefile</code>’a eklemeler yapıyoruz ve
 aşağıdaki hale getiriyoruz:</p>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s2">"bundler/gem_tasks"</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s2">"bundler/gem_tasks"</span>
 <span class="nb">require</span> <span class="s2">"rake/testtask"</span>
 
 <span class="no">Rake</span><span class="o">::</span><span class="no">TestTask</span><span class="p">.</span><span class="nf">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
@@ -226,28 +216,24 @@ aşağıdaki hale getiriyoruz:</p>
 <span class="k">end</span>
 
 <span class="n">task</span> <span class="ss">default: :test</span>
-</code></pre>
-
+</code></pre></div>
 <p>Yaptığımız işlemi kontrol etmek için;</p>
-<pre class="highlight shell"><code>bundle <span class="nb">exec </span>rake
+<div class="highlight"><pre class="highlight shell"><code>bundle <span class="nb">exec </span>rake
 <span class="nb">echo</span> <span class="nv">$?</span>
 <span class="c"># 0 görürsek herşey yolunda!</span>
-</code></pre>
-
+</code></pre></div>
 <p>Tekrar <code>commit</code> yapalım:</p>
-<pre class="highlight shell"><code>git add .
-git commit -m <span class="s2">"Rakefile modified for test tasks"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Rakefile modified for test tasks"</span>
+</code></pre></div>
 <p>Şimdi, unit-test’lerimizi yazmak için test dizini oluşturup ilgili test
 dosyalarını ekleyeceğiz:</p>
-<pre class="highlight shell"><code>mkdir <span class="nb">test
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">mkdir test
 cd test</span>/
-touch calculator_test.rb
-</code></pre>
-
+<span class="nb">touch </span>calculator_test.rb
+</code></pre></div>
 <p><code>calculator_test.rb</code> dosyasını açıp;</p>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
 <span class="nb">require</span> <span class="s1">'simple_calcu'</span>
 
 <span class="k">class</span> <span class="nc">CalculatorTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
@@ -255,14 +241,12 @@ touch calculator_test.rb
     <span class="n">assert_equal</span> <span class="mi">5</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-
+</code></pre></div>
 <p>ekleyelim ve test’i çalıştıralım:</p>
-<pre class="highlight shell"><code>bundle <span class="nb">exec </span>rake
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>bundle <span class="nb">exec </span>rake
+</code></pre></div>
 <p>ve Güüüüüüüüm! Test patladı:</p>
-<pre class="highlight plaintext"><code>Run options: --seed 7929
+<div class="highlight"><pre class="highlight plaintext"><code>Run options: --seed 7929
 
 # Running:
 
@@ -281,22 +265,20 @@ Command failed with status (1): [ruby -I"lib" -I"/Users/vigo/.rbenv/versions/2.1
 
 Tasks: TOP =&gt; default =&gt; test
 (See full trace by running task with --trace)
-</code></pre>
-
+</code></pre></div>
 <p>Dediği şu: <code>SimpleCalcu:Module</code> de <code>add</code> diye bir method yok! Hemen bu method’u
 implemente edeceğiz, <code>lib/simple_calcu.rb</code> dosyasını açıyoruz:</p>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s2">"simple_calcu/version"</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s2">"simple_calcu/version"</span>
 
 <span class="k">module</span> <span class="nn">SimpleCalcu</span>
   <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">add</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
     <span class="n">number1</span> <span class="o">+</span> <span class="n">number2</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-
+</code></pre></div>
 <p>Test’i tekrar çalıtırıyoruz <code>bundle exec rake</code> ile&hellip; ve test başarıyla
 tamamlandı!</p>
-<pre class="highlight plaintext"><code>Run options: --seed 34247
+<div class="highlight"><pre class="highlight plaintext"><code>Run options: --seed 34247
 
 # Running:
 
@@ -305,18 +287,16 @@ tamamlandı!</p>
 Finished in 0.001307s, 765.1109 runs/s, 765.1109 assertions/s.
 
 1 runs, 1 assertions, 0 failures, 0 errors, 0 skips
-</code></pre>
-
+</code></pre></div>
 <p><strong>1</strong> işlem çalıştı, <strong>1</strong> assertion çalıştı ve fail eden <strong>0</strong>, hata <strong>0</strong> ve pas geçilen
 (<em>test edilmeden</em>) <strong>0</strong> olarak raporlandı!</p>
 
 <p>Hemen <code>commit</code> yapalım:</p>
-<pre class="highlight shell"><code>git add .
-git commit -m <span class="s2">"first test unit passed the test : addition"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"first test unit passed the test : addition"</span>
+</code></pre></div>
 <p>Şimdi diğer işlemleri yapalım <code>calculator_test.rb</code>:</p>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'minitest/autorun'</span>
 <span class="nb">require</span> <span class="s1">'simple_calcu'</span>
 
 <span class="k">class</span> <span class="nc">CalculatorTest</span> <span class="o">&lt;</span> <span class="no">Minitest</span><span class="o">::</span><span class="no">Test</span>
@@ -331,14 +311,13 @@ git commit -m <span class="s2">"first test unit passed the test : addition"</spa
   <span class="k">end</span>
   <span class="k">def</span> <span class="nf">test_division</span>
     <span class="n">assert_equal</span> <span class="mi">5</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">div</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">assert_equal</span> <span class="mi">3</span><span class="o">.</span><span class="mi">3333333333333335</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">div</span><span class="p">(</span><span class="mi">10</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">assert_equal</span> <span class="mf">3.3333333333333335</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">div</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="n">assert_raises</span><span class="p">(</span><span class="no">ZeroDivisionError</span><span class="p">)</span> <span class="p">{</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">div</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="p">}</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-
+</code></pre></div>
 <p>ve <code>bundle exec rake</code> ile testleri çalıştıralım:</p>
-<pre class="highlight plaintext"><code>Run options: --seed 45605
+<div class="highlight"><pre class="highlight plaintext"><code>Run options: --seed 45605
 
 # Running:
 
@@ -347,15 +326,13 @@ git commit -m <span class="s2">"first test unit passed the test : addition"</spa
 Finished in 0.001264s, 3164.5570 runs/s, 3164.5570 assertions/s.
 
 4 runs, 4 assertions, 0 failures, 0 errors, 0 skips
-</code></pre>
-
+</code></pre></div>
 <p>Hemen <code>commit</code> yapalım ve yolumuza devam edelim:</p>
-<pre class="highlight shell"><code>git add .
-git commit -m <span class="s2">"4 basic math operation tests are passed"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"4 basic math operation tests are passed"</span>
+</code></pre></div>
 <p>Şimdi asıl işi yapacak fonksiyonumuz için test’i geliştirelim:</p>
-<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">test_calculator</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">test_calculator</span>
   <span class="n">assert_equal</span> <span class="mi">5</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"+"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
   <span class="n">assert_equal</span> <span class="mi">8</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"+"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
   <span class="n">assert_equal</span> <span class="mi">2</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"-"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -363,13 +340,12 @@ git commit -m <span class="s2">"4 basic math operation tests are passed"</span>
   <span class="n">assert_equal</span> <span class="mi">25</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">"*"</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
   <span class="n">assert_equal</span> <span class="mi">44</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"*"</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
   <span class="n">assert_equal</span> <span class="mi">2</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">"/"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-  <span class="n">assert_equal</span> <span class="mi">2</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mi">5</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"/"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="n">assert_equal</span> <span class="mf">2.5</span><span class="p">,</span> <span class="no">SimpleCalcu</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="s2">"/"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="k">end</span>
-</code></pre>
-
+</code></pre></div>
 <p>Hemen <code>calculate</code> method’u olmadığı için test fail edecek. Bu bakımdan
 hemen ilgili method’u oluşturalım <code>simple_calcu.rb</code>:</p>
-<pre class="highlight ruby"><code><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">calculate</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">calculate</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">operator</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
   <span class="k">case</span> <span class="n">operator</span>
   <span class="k">when</span> <span class="s2">"+"</span>
     <span class="n">add</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
@@ -381,10 +357,9 @@ hemen ilgili method’u oluşturalım <code>simple_calcu.rb</code>:</p>
     <span class="n">div</span><span class="p">(</span><span class="n">number1</span><span class="p">,</span> <span class="n">number2</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-
+</code></pre></div>
 <p>Tekrar testleri çalıştıralım. <code>bundle exec rake</code>. Tüm testlerimiz sorunsuz çalıştı!</p>
-<pre class="highlight plaintext"><code>Run options: --seed 15050
+<div class="highlight"><pre class="highlight plaintext"><code>Run options: --seed 15050
 
 # Running:
 
@@ -393,22 +368,19 @@ hemen ilgili method’u oluşturalım <code>simple_calcu.rb</code>:</p>
 Finished in 0.001841s, 2715.9153 runs/s, 7604.5627 assertions/s.
 
 5 runs, 14 assertions, 0 failures, 0 errors, 0 skips
-</code></pre>
-
+</code></pre></div>
 <p>Şimdi <code>commit</code> zamanı!</p>
-<pre class="highlight shell"><code>git add .
-git commit -m <span class="s2">"All tests pass like a charm!"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"All tests pass like a charm!"</span>
+</code></pre></div>
 <p>Şimdi yazdığımız uygulamayı dökümante edelim, <code>version.rb</code> dosyasına;</p>
-<pre class="highlight ruby"><code><span class="k">module</span> <span class="nn">SimpleCalcu</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="k">module</span> <span class="nn">SimpleCalcu</span>
   <span class="c1"># The current version of SimpleCalcu</span>
   <span class="no">VERSION</span> <span class="o">=</span> <span class="s2">"0.0.1"</span>
 <span class="k">end</span>
-</code></pre>
-
+</code></pre></div>
 <p>yorumu ekledikten sonra, <code>simple_calcu.rb</code> dosyasını da;</p>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s2">"simple_calcu/version"</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s2">"simple_calcu/version"</span>
 
 <span class="c1"># All code in the gem is namespaced under this module.</span>
 <span class="k">module</span> <span class="nn">SimpleCalcu</span>
@@ -449,73 +421,63 @@ git commit -m <span class="s2">"All tests pass like a charm!"</span>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-
+</code></pre></div>
 <p>haline getirip ilgili yorumları ekleylim ve <code>rdoc</code> ile döküman oluşturalım:</p>
-<pre class="highlight shell"><code>rdoc lib
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>rdoc lib
+</code></pre></div>
 <p><code>doc/</code> dizini altına <code>html</code> olarak dökümantasyon oluştu. <code>index.html</code> dosyasını
 tarayıcıda açarak oluşan dökümantasyona bakabilirsiniz.</p>
 
 <p>Şimdi son durumu da <code>commit</code> edelim:</p>
-<pre class="highlight shell"><code>git add .
-git commit -m <span class="s2">"Document comments for rdoc"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Document comments for rdoc"</span>
+</code></pre></div>
 <p>Artık <code>gem</code> hazır hale geldi. Bu noktada artık GitHub’a push edebiliriz.
 GitHub’da <code>simple_calcu</code> adında bir repo açıyorum ve sonra buraya push
 ediyorum, tabii siz kendi repo adresinizi yazın!:</p>
-<pre class="highlight shell"><code>git remote add origin git@github.com:vigo/simple_calcu.git
-git push -u origin master
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>git remote add origin git@github.com:vigo/simple_calcu.git
+git push <span class="nt">-u</span> origin master
+</code></pre></div>
 <p>Bu işlemden sonra, kendi tarafımızda <code>gem</code>imizi test etmemiz lazım. Bunun
 için <code>bundle exec rake install</code> ile sanki uzaktan kuruyor gibi kurulum
 yapmamız gerekiyor.</p>
-<pre class="highlight shell"><code>bundle <span class="nb">exec </span>rake install
-simple_calcu 0.0.1 built to pkg/simple_calcu-0.0.1.gem.
+<div class="highlight"><pre class="highlight shell"><code>bundle <span class="nb">exec </span>rake <span class="nb">install
+</span>simple_calcu 0.0.1 built to pkg/simple_calcu-0.0.1.gem.
 simple_calcu <span class="o">(</span>0.0.1<span class="o">)</span> installed.
-</code></pre>
-
+</code></pre></div>
 <p>Şeklinde görümemiz gerekiyor. Hemen <code>gem list</code> diyerek sağlamasını yapalım:</p>
-<pre class="highlight shell"><code>gem list
+<div class="highlight"><pre class="highlight shell"><code>gem list
 
 :
 :
 simple_calcu <span class="o">(</span>0.0.1<span class="o">)</span>
 :
 :
-</code></pre>
-
+</code></pre></div>
 <p>gibi listede görmeliyiz. Hemen <code>irb</code> açarak kontrol edelim:</p>
-<pre class="highlight shell"><code>irb
-<span class="gp">irb(main):001:0&gt; </span>require <span class="s1">'simple_calcu'</span>
-<span class="gp">=&gt; </span><span class="nb">true
-</span><span class="gp">irb(main):002:0&gt; </span>SimpleCalcu::calculate<span class="o">(</span>2, <span class="s2">"+"</span>, 3<span class="o">)</span>
-<span class="gp">=&gt; </span>5
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>irb
+irb<span class="o">(</span>main<span class="o">)</span>:001:0&gt; require <span class="s1">'simple_calcu'</span>
+<span class="o">=&gt;</span> <span class="nb">true
+</span>irb<span class="o">(</span>main<span class="o">)</span>:002:0&gt; SimpleCalcu::calculate<span class="o">(</span>2, <span class="s2">"+"</span>, 3<span class="o">)</span>
+<span class="o">=&gt;</span> 5
+</code></pre></div>
 <p>Herşey yolunda gibi! Yapmamız gereken, tekrar <code>gemspec</code> dosyasını açıp;
 <code>spec.homepage</code> yerine uygulamanın homepage adresini yazmak:</p>
-<pre class="highlight ruby"><code><span class="n">spec</span><span class="p">.</span><span class="nf">homepage</span>      <span class="o">=</span> <span class="s2">"https://github.com/vigo/simple_calcu"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">spec</span><span class="p">.</span><span class="nf">homepage</span>      <span class="o">=</span> <span class="s2">"https://github.com/vigo/simple_calcu"</span>
+</code></pre></div>
 <p>haydi son kez <code>commit</code> edip <code>push</code> edelim:</p>
-<pre class="highlight shell"><code>git add .
-git commit -m <span class="s2">"gemspec, homepage added"</span>
+<div class="highlight"><pre class="highlight shell"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"gemspec, homepage added"</span>
 git push
-</code></pre>
-
+</code></pre></div>
 <p>Artık <code>gem</code> paketlenip <a href="https://rubygems.org">Rubygems</a>’e gitmeye hazır!</p>
-<pre class="highlight shell"><code>bundle <span class="nb">exec </span>rake release
+<div class="highlight"><pre class="highlight shell"><code>bundle <span class="nb">exec </span>rake release
 
 simple_calcu 0.0.1 built to pkg/simple_calcu-0.0.1.gem.
 Tagged v0.0.1.
 Pushed git commits and tags.
 Pushed simple_calcu 0.0.1 to rubygems.org.
-</code></pre>
-
+</code></pre></div>
 <p>Artık sizin de kendinize ait bir <code>gem</code>iniz oldu. Şimdi isterseniz <code>README.md</code>
 dosyasını düzenleyip, <code>VERSION = &quot;0.0.2&quot;</code> yapıp tekrar <code>bundle exec rake release</code>
 yapabilirsiniz.</p>

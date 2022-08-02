@@ -12,13 +12,13 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:56+03:00" />
+        <meta name="date" content="2022-08-02T17:17:46+03:00" />
         <meta name="description" content="TextMate’in sevdiğim özelliklerinden biri in-line olarak programlama
 yapabilmek. Örneğin html ile uğraşıyorsunuz, hemen bir div ve o div’in
 içinde 15 tane p ve p’lerin içinde de span’e ihtiyacınız var (iyi uydurdum dimi?)
 basit bir hareketle bunu programatik olarak yapabilirsiniz." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2011/03/30/textmate-ve-path-sorunsali/" />
         <meta property="og:title" content="TextMate ve Path sorunsalı" />
         <meta property="og:site_name" content="vigo" />
@@ -118,29 +118,25 @@ menüye baktım elimde neler var diye</p>
 
 <p><code>Kntrl + Shift + E</code> ile <q>**Execute Line/Selection as Python**</q> komutunu gördüm.
 Hemen denedim, Hata mesajı verdi. Denediğim şey:</p>
-<pre class="highlight python"><code><span class="k">print</span> <span class="s">"vigo"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight python"><code><span class="k">print</span> <span class="s">"vigo"</span>
+</code></pre></div>
 <p>yazmaktı. <strong>Invalid syntax</strong> filan. Hemen Bundle Editor’ü açıp baktım ne
 yazılmış diye. Bir baktım <strong>eval()</strong> kullanılmış. Pek çok dilde benzer komut
 vardır. <strong>Evaluate</strong>’in kısaltmasıdır ve <code>string</code> olarak verilen şeyi execute etmeye
 çalışır. Fakat Python’da mevzu bu şekilde değil. Eval, sadece ifadeleri
 evaluate ediyor. Yani</p>
-<pre class="highlight python"><code><span class="k">print</span> <span class="nb">eval</span><span class="p">(</span><span class="s">"5+5"</span><span class="p">)</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight python"><code><span class="k">print</span> <span class="nb">eval</span><span class="p">(</span><span class="s">"5+5"</span><span class="p">)</span>
+</code></pre></div>
 <p>yazdığınızda size 10 yazıyor. Yani <code>string</code> olarak verilen ifadeyi
 değerlendiriyor sadece. Şimdi bu işlerle uğraşırken birden farkettimki
 [TextMate][textmate], benim Python’umu değilde sistemdeki default’u kullanıyor. Nasıl
 yani?</p>
-<pre class="highlight shell"><code><span class="c">#!/usr/bin/env python</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="c">#!/usr/bin/env python</span>
+</code></pre></div>
 <p>ile başlayan Python scriptini çalıştırırken gidip <code>/usr/bin</code> deki python’u
 kullanıyor. Halbuki benim environment’ımda python’un path’i</p>
-<pre class="highlight shell"><code>/Users/vigo/.local/Python/Library/Frameworks/Python.framework/Versions/Current/bin/python
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>/Users/vigo/.local/Python/Library/Frameworks/Python.framework/Versions/Current/bin/python
+</code></pre></div>
 <p>Hemen TextMate’in Shell Environment ayarlarındaki <code>PATH</code>’e ekledim kendi path
 bilgilerimi. Gidip sona ekledim. Yani orada yazanların sonuna&hellip; (8 Meğerse sona
 değil başa eklemek gerekiyormuş!</p>
@@ -148,9 +144,8 @@ değil başa eklemek gerekiyormuş!</p>
 <div class="card card-custom"><img src="http://media.tumblr.com/tumblr_livbzuvu0L1qafg0z.png" alt="TextMate ekran görüntüsü"><div class="card-block"><p class="card-text">PATH ayarlamak</p></div></div>
 
 <p>aynen şu aşağıdaki gibi yaptım</p>
-<pre class="highlight shell"><code>/Users/vigo/.local/Python/Library/Frameworks/Python.framework/Versions/Current/bin:/Users/vigo/.local/Python/bin:/Users/vigo/.local/Python/Packages/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>/Users/vigo/.local/Python/Library/Frameworks/Python.framework/Versions/Current/bin:/Users/vigo/.local/Python/bin:/Users/vigo/.local/Python/Packages/bin:/opt/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+</code></pre></div>
 <p>Kullanıcı profilimdeki path bilgisini ve macports’dan kurduğum
 executable’ların için gereken <code>/opt/local/bin</code>’i de ekledim.</p>
 
@@ -160,34 +155,33 @@ yöntemi kullandım. <code>eval()</code> yerine <code>exec()</code> kullandım.<
 
 <p>Zaten basit işlerde kullanacağım için çok da sorun değil. Belki sizin de
 işinize yarar:</p>
-<pre class="highlight python"><code><span class="c">#!/usr/bin/env python</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight"><pre class="highlight python"><code><span class="c1">#!/usr/bin/env python
+</span><span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">stdout</span><span class="p">,</span> <span class="n">stdin</span><span class="p">,</span> <span class="nb">exit</span><span class="p">,</span> <span class="n">version</span>
 <span class="kn">from</span> <span class="nn">traceback</span> <span class="kn">import</span> <span class="n">format_stack</span>
 
-<span class="n">py</span> <span class="o">=</span> <span class="n">stdin</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">py</span> <span class="o">=</span> <span class="n">stdin</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="s">'TM_SELECTED_SCOPE'</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
-    <span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">" "</span><span class="p">)</span>
+<span class="k">if</span> <span class="s">'TM_SELECTED_SCOPE'</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">:</span>
+    <span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">" "</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+    <span class="n">stdout</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
 
-<span class="c"># original</span>
-<span class="c"># try:</span>
-<span class="c">#     scope = {}</span>
-<span class="c">#     result = eval(py, globals(), scope)</span>
-<span class="c"># except:</span>
-<span class="c">#     exc = format_stack()</span>
-<span class="c">#     stdout.write(exc)</span>
-<span class="c">#     exit(206) # exiting with this code show’s output in a tooltip </span>
-<span class="c"># else:</span>
-<span class="c">#     stdout.write(repr(result))</span>
-
-<span class="c"># mine</span>
-<span class="k">exec</span><span class="p">(</span><span class="n">py</span><span class="p">)</span>
-</code></pre>
-
+<span class="c1"># original
+# try:
+#     scope = {}
+#     result = eval(py, globals(), scope)
+# except:
+#     exc = format_stack()
+#     stdout.write(exc)
+#     exit(206) # exiting with this code show’s output in a tooltip 
+# else:
+#     stdout.write(repr(result))
+</span>
+<span class="c1"># mine
+</span><span class="k">exec</span><span class="p">(</span><span class="n">py</span><span class="p">)</span>
+</code></pre></div>
 <p><code>Kntrl + Shift + E</code> ile artık python script’lerimi basitçe execute edebilirim.</p>
 
                     </div>
@@ -196,8 +190,8 @@ işinize yarar:</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “14” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2015/04/13/textmate-ve-interaktif-giris/">TextMate ve İnteraktif Giriş</a></h3>

@@ -12,11 +12,11 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:54+03:00" />
+        <meta name="date" content="2022-08-02T17:17:43+03:00" />
         <meta name="description" content="Düzeltme: 23 Mart 2011, 15:33 
 Lütfen önce bu yazıyı okuyun!" />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2011/02/10/kendi-pythonunu-djangonu-paketlerini-kendin-kur/" />
         <meta property="og:title" content="Kendi Python’unu Django’nu paketlerini kendin kur" />
         <meta property="og:site_name" content="vigo" />
@@ -141,7 +141,7 @@ baktık.</p>
 
 <p><strong>depends_lib</strong> kısmında, python’u derlemek için gerekecek diğer kütüphaneler
 listesini gördük. Bunlar:</p>
-<pre class="highlight plaintext"><code>gettext
+<div class="highlight"><pre class="highlight plaintext"><code>gettext
 zlib
 openssl
 sqlite3
@@ -150,58 +150,50 @@ ncurses
 gdbm
 bzip2
 readline
-</code></pre>
-
+</code></pre></div>
 <p>şeklindeydi. <code>configure.args</code>’a baktığımda; <code>--enable-framework</code> ve
 <code>--enable-unicode</code> dikkatimi çekti. İşin esas can alıcı kısmı ise <strong>unicode</strong>
 ile ilgili olan parametresiydi. Hemen <code>$HOME</code> folder’ıma gidip işe koyuldum. Eğer
 <code>depends_lib</code>’deki paketler sizde yoksa önce bu paketleri kurun:</p>
-<pre class="highlight shell"><code>sudo port selfupdate <span class="c"># önce paket listesini güncelle</span>
-port installed | grep PAKET_ADI <span class="c"># paket zaten kurulumu?</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo </span>port selfupdate <span class="c"># önce paket listesini güncelle</span>
+port installed | <span class="nb">grep </span>PAKET_ADI <span class="c"># paket zaten kurulumu?</span>
 port installed PAKET_ADI <span class="c"># 29 Ocak 2012, Pazar, 20:23 itibariyle paket kontrolü</span>
 port search PAKED_ADI <span class="c"># ilgili paketi ara</span>
-sudo port install PAKET_ADI <span class="c"># geren paketi kur</span>
-</code></pre>
-
+<span class="nb">sudo </span>port <span class="nb">install </span>PAKET_ADI <span class="c"># geren paketi kur</span>
+</code></pre></div>
 <p>Eğer tüm paketler hazırsa python’u derlemeye başlayalım. Hemen
 <a href="http://python.org/download/">http://python.org/download/</a> adresinden source’u
 çekelim. Ben bu post’u yazarken kullandığım source <a href="http://python.org/ftp/python/2.7.1/Python-2.7.1.tgz">buydu</a></p>
-<pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
-mkdir .local
-mkdir .local/Packages
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
+<span class="nb">mkdir</span> .local
+<span class="nb">mkdir</span> .local/Packages
 <span class="nb">cd</span> ~/Downloads <span class="c"># Python-2.7.1.tgz buradaysa</span>
-tar xvzf http://python.org/ftp/python/2.7.1/Python-2.7.1.tgz
-</code></pre>
-
+<span class="nb">tar </span>xvzf http://python.org/ftp/python/2.7.1/Python-2.7.1.tgz
+</code></pre></div>
 <p><code>setup.py</code> dosyasında minik bir ayar yapacağız. Dosyayı, kullandığınız text
 editörü ile açıp aşağıdaki satırları bulun.</p>
-<pre class="highlight python"><code><span class="n">add_dir_to_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">library_dirs</span><span class="p">,</span> <span class="s">'/usr/local/lib'</span><span class="p">)</span>
-<span class="n">add_dir_to_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">include_dirs</span><span class="p">,</span> <span class="s">'/usr/local/include'</span><span class="p">)</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight python"><code><span class="n">add_dir_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">compiler</span><span class="p">.</span><span class="n">library_dirs</span><span class="p">,</span> <span class="s">'/usr/local/lib'</span><span class="p">)</span>
+<span class="n">add_dir_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">compiler</span><span class="p">.</span><span class="n">include_dirs</span><span class="p">,</span> <span class="s">'/usr/local/include'</span><span class="p">)</span>
+</code></pre></div>
 <p>Hemen altına aşağıdaki satırları ilave edin:</p>
-<pre class="highlight python"><code><span class="n">add_dir_to_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">library_dirs</span><span class="p">,</span> <span class="s">'/opt/local/lib'</span><span class="p">)</span>
-<span class="n">add_dir_to_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compiler</span><span class="o">.</span><span class="n">include_dirs</span><span class="p">,</span> <span class="s">'/opt/local/include'</span><span class="p">)</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight python"><code><span class="n">add_dir_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">compiler</span><span class="p">.</span><span class="n">library_dirs</span><span class="p">,</span> <span class="s">'/opt/local/lib'</span><span class="p">)</span>
+<span class="n">add_dir_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">compiler</span><span class="p">.</span><span class="n">include_dirs</span><span class="p">,</span> <span class="s">'/opt/local/include'</span><span class="p">)</span>
+</code></pre></div>
 <p>Bu sayede, macports’la kurduğunuz kütüphanelerin de kullanılmasını sağlıyoruz.
 Şimdi derleme işine geçebiliriz.</p>
-<pre class="highlight shell"><code>./configure --enable-unicode<span class="o">=</span>ucs4 --prefix<span class="o">=</span><span class="nv">$HOME</span>/.local --enable-framework<span class="o">=</span><span class="nv">$HOME</span>/.local/Library/Frameworks
+<div class="highlight"><pre class="highlight shell"><code>./configure <span class="nt">--enable-unicode</span><span class="o">=</span>ucs4 <span class="nt">--prefix</span><span class="o">=</span><span class="nv">$HOME</span>/.local <span class="nt">--enable-framework</span><span class="o">=</span><span class="nv">$HOME</span>/.local/Library/Frameworks
 make
-make install
-</code></pre>
-
+make <span class="nb">install</span>
+</code></pre></div>
 <p>Derleme işlermleri başarıyla biterse (<em>ki bitmeli</em>) hemen kurulum yaptığınız
 yere gidip bakın:</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> ~/.local/
-ls -al
-</code></pre>
-<pre class="highlight plaintext"><code>Applications
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> ~/.local/
+<span class="nb">ls</span> <span class="nt">-al</span>
+</code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>Applications
 Library
 Packages
 bin
-</code></pre>
-
+</code></pre></div>
 <p>gibi folder’lar görmeniz gerekiyor. Aslında yazıyı yazarken <q>**keşke
 .local/python diye bir folder açıp, herşeyi o şekilde kursaydım**</q> diye de
 aklımdan geçirdim. İleride belki <strong>Ruby</strong>’i ya da başka bir şeyi de kendim kurmam
@@ -210,44 +202,37 @@ gerekirse karışıklık olmadan yapabilirdim diye düşündüm&hellip;</p>
 <p>Herşey tamamsa, hemen <code>ENVIRONMENT</code> değişkenlerine ayar yapalım: Bunun için
 <code>.bashrc</code> ya da <code>.profile</code> ya da ne kullanıyorsanız o dosyayı açıp aşağıdakileri
 ekleyin:</p>
-<pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/Packages/bin:<span class="nv">$PATH</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/Packages/bin:<span class="nv">$PATH</span>
 <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/bin:<span class="nv">$PATH</span>
 <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/Library/Frameworks/Python.framework/Versions/Current/bin:<span class="nv">$PATH</span>
 <span class="nb">export </span><span class="nv">PYTHONIOENCODING</span><span class="o">=</span>utf-8
-</code></pre>
-
+</code></pre></div>
 <p>Şimdi sırada <strong>easy_install</strong> var. Bunun için <a href="http://pypi.python.org/pypi/setuptools">Setuptools</a>’u
 kurmamız lazım. Source’u indirdikten ve extract ettikten sonra, klasik
 python modülü kurma işlemi yapıyoruz:</p>
-<pre class="highlight shell"><code>python setup.py install
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>python setup.py <span class="nb">install</span>
+</code></pre></div>
 <p>İşem bitince hemen kontrol ediyoruz, easy_install’un yeri neresi?</p>
-<pre class="highlight shell"><code>which easy_install
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>which easy_install
+</code></pre></div>
 <p>Görmek istediğimiz path, kullanıcı folder’ınızın altında (<code>$HOME</code>)</p>
-<pre class="highlight plaintext"><code>/.local/Library/Frameworks/Python.framework/Versions/Current/bin/easy_install
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>/.local/Library/Frameworks/Python.framework/Versions/Current/bin/easy_install
+</code></pre></div>
 <p>gibi olmalıdır.</p>
 
 <p>Eğer herşey yolundaysa hemen pip’i kuralım:</p>
-<pre class="highlight shell"><code>easy_install pip
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>easy_install pip
+</code></pre></div>
 <p>Kurulum bitince tekrar <code>ENVIRONMENT</code>’a ayar yapmamız gerekiyor:</p>
-<pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PIP_INSTALL_OPTION</span><span class="o">=</span><span class="s2">"--prefix=</span><span class="nv">$HOME</span><span class="s2">/.local/Packages/"</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PIP_INSTALL_OPTION</span><span class="o">=</span><span class="s2">"--prefix=</span><span class="nv">$HOME</span><span class="s2">/.local/Packages/"</span>
 <span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$HOME</span>/.local/Packages/lib/python2.7/site-packages
-</code></pre>
-
+</code></pre></div>
 <p>Bu sayede, ilgili python paketlerimizi de <code>.local</code> içine alıyoruz. Böylece,
 ileriede bir gün makineyi yeniden kurduğunuzda ya da başka bir durumda,
 kasmadan tüm paketlerinizi vs kolayca taşıyabileceksiniz. Şimdi <code>pip</code> ile
 gereken paketleri kurabiliriz. Benim en çok kullandıklarım:</p>
-<pre class="highlight plaintext"><code>pip install django ipython south simplejson PIL
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>pip install django ipython south simplejson PIL
+</code></pre></div>
 <p><strong>pip</strong> direk <a href="http://pypi.python.org/pypi" title="Python Package Index">pypi</a>’dan indirdiği için hem paketleri güncellemeniz hem de 
 yönetmeniz çok kolay oluyor. Macports’la ya da <a href="http://ubuntu.com/" title="Ubuntu">Ubuntu</a>’daki <strong>aptitude</strong>’la 
 bazen sıkıntılar çıkabiliyor. Python paketleri için en rahat çözüm <code>pip</code> oluyor.</p>
@@ -263,8 +248,8 @@ bazen sıkıntılar çıkabiliyor. Python paketleri için en rahat çözüm <cod
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “13” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/">Derlenmiş Python Dosyaları Bazen Sizi Yanıltabilir</a></h3>

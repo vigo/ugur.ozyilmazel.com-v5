@@ -12,11 +12,11 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:56+03:00" />
+        <meta name="date" content="2022-08-02T17:17:46+03:00" />
         <meta name="description" content="Terminal’le, Bash’le ilk tanıştığım andan itibaren tab-completion olayının
 hastası olmuş, hemen:" />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2013/02/20/bash-completion-anotomisi/" />
         <meta property="og:title" content="Bash Completion Anotomisi" />
         <meta property="og:site_name" content="vigo" />
@@ -118,54 +118,48 @@ durmalıydı. <code>tab</code> bu kelimeler içinde <code>cycle</code> yapmayı 
 
 <p>Denemek için ilk yaptığım tamamlama <code>dscacheutil</code> içindi. DNS işleriyle ilgili
 bu tool’u dns-cache’i silmek için kullanıyordum. Komutu:</p>
-<pre class="highlight plaintext"><code>dscacheutil -flushcache
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>dscacheutil -flushcache
+</code></pre></div>
 <p>şeklinde kullanıyordum. Yapmak istediğim şey <code>dscacheutil</code> yazdıktan sonra <code>-</code>
 yazıp <code>tab</code> tuşuna basmak ve ilgili opsiyonları otomatik olarak yazdırmaktı.</p>
-<pre class="highlight plaintext"><code>dscacheutil -h
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>dscacheutil -h
+</code></pre></div>
 <p>ile baktım başka ne gibi opsiyonlar var. Pekde anlamadım diğer özellikleri.
 İçlerin kafama yatanları seçtim:</p>
-<pre class="highlight plaintext"><code>-flushcache -statistics -configuration -cachedump -h -q
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>-flushcache -statistics -configuration -cachedump -h -q
+</code></pre></div>
 <p>Bash’in <code>complete</code> adında minik bir komutu var. Mantık olarak, şu komut
 yazılıp <code>tab</code> tuşuna basılınca bu fonksiyon çalışsın.</p>
 
 <p>Gördüğüm örneklerde tamamlama işini yapacak fonksiyon adı, ilgili komut adına
 <code>_</code> eklenerek oluyor. Yani <code>dscacheutil</code> için yazacağınız fonksiyonun adı
 <code>_dscacheutil</code> olmalı. Bu sadece bir notasyon yani zorunlu bir durum değil.</p>
-<pre class="highlight shell"><code><span class="nb">complete</span> -F FONKSİYON KOMUT
-<span class="nb">complete</span> -F _dscacheutil dscacheutil
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">complete</span> <span class="nt">-F</span> FONKSİYON KOMUT
+<span class="nb">complete</span> <span class="nt">-F</span> _dscacheutil dscacheutil
+</code></pre></div>
 <p>Düşe kalka bir şekilde ilk completion’ımı yazmayı başarmıştım:</p>
-<pre class="highlight shell"><code>_dscacheutil<span class="o">()</span> 
+<div class="highlight"><pre class="highlight shell"><code>_dscacheutil<span class="o">()</span> 
 <span class="o">{</span>
     <span class="nb">local </span>cur prev opts
     <span class="nv">COMPREPLY</span><span class="o">=()</span>
     <span class="nv">cur</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">COMP_WORDS</span><span class="p">[COMP_CWORD]</span><span class="k">}</span><span class="s2">"</span>
     <span class="nv">prev</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">COMP_WORDS</span><span class="p">[COMP_CWORD-1]</span><span class="k">}</span><span class="s2">"</span>
     <span class="nv">opts</span><span class="o">=</span><span class="s2">"-flushcache -statistics -configuration -cachedump -h -q"</span>
-    <span class="k">if</span> <span class="o">[[</span> <span class="k">${</span><span class="nv">cur</span><span class="k">}</span> <span class="o">==</span> -<span class="k">*</span> <span class="o">]]</span> ; <span class="k">then
-        </span><span class="nv">COMPREPLY</span><span class="o">=(</span> <span class="k">$(</span><span class="nb">compgen</span> -W <span class="s2">"</span><span class="k">${</span><span class="nv">opts</span><span class="k">}</span><span class="s2">"</span> -- <span class="k">${</span><span class="nv">cur</span><span class="k">})</span> <span class="o">)</span>
+    <span class="k">if</span> <span class="o">[[</span> <span class="k">${</span><span class="nv">cur</span><span class="k">}</span> <span class="o">==</span> -<span class="k">*</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then
+        </span><span class="nv">COMPREPLY</span><span class="o">=(</span> <span class="si">$(</span><span class="nb">compgen</span> <span class="nt">-W</span> <span class="s2">"</span><span class="k">${</span><span class="nv">opts</span><span class="k">}</span><span class="s2">"</span> <span class="nt">--</span> <span class="k">${</span><span class="nv">cur</span><span class="k">}</span><span class="si">)</span> <span class="o">)</span>
         <span class="k">return </span>0
     <span class="k">fi</span>
 <span class="o">}</span>
-<span class="nb">complete</span> -F _dscacheutil dscacheutil
-</code></pre>
-
+<span class="nb">complete</span> <span class="nt">-F</span> _dscacheutil dscacheutil
+</code></pre></div>
 <h3>Satır Satır <code>_dscacheutil</code></h3>
 
 <p>Şimdi, <strong>4.</strong>satırda <code>COMPREPLY</code> adında boş bir <code>array</code> var. <code>cur</code> Current / Cursor
 yani <code>tab</code> basıldığında aktif olarak yakalanan / gelen. <code>prev</code> de Previous yani
 tamamlanacak olan kelimelerde, <strong>aktif</strong> olandan bir önceki. Yani tamamlamak
 istediğimiz kelimeler <strong>7.</strong>satırdaki <code>opts</code> değişkeninde sırasıyla;</p>
-<pre class="highlight plaintext"><code>-flushcache -statistics -configuration -cachedump -h -q
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>-flushcache -statistics -configuration -cachedump -h -q
+</code></pre></div>
 <p>şeklinde duruyor. <code>dscacheutil</code> yazıp bir boşluk verip <code>tab</code>e ilk bastığınızda
 <strong>index</strong> 0 ve ilk kelime: <strong>-flushcache</strong> yani <code>cur</code> daki değer olur.</p>
 
@@ -178,29 +172,25 @@ gibi; İlk <code>tab</code>e basışta <code>cur</code>: <strong>-statistics</st
 
 <p>Bu fonksiyonun asıl gizli silahı <code>compgen</code>. <code>-W</code> parametresi <strong>WORD LIST</strong> yani
 kelime listesi anlamında. Hemen daha iyi anlamak için:</p>
-<pre class="highlight plaintext"><code>compgen -W "ali veli selami"
+<div class="highlight"><pre class="highlight plaintext"><code>compgen -W "ali veli selami"
 # ali
 # veli
 # selami
 
 compgen -W "ali veli selami" -- veli
 # veli
-</code></pre>
-
+</code></pre></div>
 <p>şeklinde çıktı verir. Yani yukarıdaki örnekte <code>opts</code>: <strong>ali veli selami</strong>,
 <code>cur</code>: <strong>veli</strong> olmuş ve işlem bize sonuç olarak <code>veli</code> dönmüştür. Yani
 <strong>9.</strong>satırı düşünürsek:</p>
-<pre class="highlight plaintext"><code>COMPREPLY=( $(compgen -W "ali veli selami" -- veli) )
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>COMPREPLY=( $(compgen -W "ali veli selami" -- veli) )
+</code></pre></div>
 <p>gibi. <strong>8.</strong>satıra bakarsak;</p>
-<pre class="highlight plaintext"><code>if [[ ${cur} == -* ]] ; then
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>if [[ ${cur} == -* ]] ; then
+</code></pre></div>
 <p>yani; <code>-</code> ile başlayanları yakala. <code>opts</code> içinde geçen ve <code>-</code> ile başlayan.</p>
-<pre class="highlight plaintext"><code>complete -F _dscacheutil dscacheutil
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>complete -F _dscacheutil dscacheutil
+</code></pre></div>
 <p><code>-F function</code> yani, <code>dscacheutil</code> komutu için <code>_dscacheutil</code> fonksiyonunu
 kullanarak tamamlama yap.</p>
 
@@ -213,9 +203,8 @@ dönüp duracağız.</p>
 <p>İlk denemem üzerinden epeyce bir zaman geçmişti. Keza geçen süre içinde
 bash bilgim de arttı. Hep gördüğüm, merak ettiğim bir konu da zincirleme
 tamamlama. Yani;</p>
-<pre class="highlight plaintext"><code>KOMUT ALT-KOMUT ALT-KOMUT / OPSIYON
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>KOMUT ALT-KOMUT ALT-KOMUT / OPSIYON
+</code></pre></div>
 <p>gibi tamamlamalar. Buna en güzel örnek <a href="https://github.com/nvie/gitflow" title="Gitflow">Gitflow</a>. <code>git</code> <code>flow</code>
 <code>feature</code> <code>start</code> şeklinde arka arkaya 3-4 komutu tamamlamak mümkün. Bu
 durumdan yola çıkarak <code>bundle</code> komutu için benzer bir yardımcı yazmaya
@@ -238,9 +227,8 @@ tamamlama özelliği eğer <code>bundle</code> komutu varsa çalışmalıydı. B
 genelde tüm sisteme kurmak yerine proje bazlı kullanmak daha temizdir.</p>
 
 <p><code>gem</code>leri kurarken;</p>
-<pre class="highlight plaintext"><code>bundle install --path vendor/bundle
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>bundle install --path vendor/bundle
+</code></pre></div>
 <p>şeklinde kullanıyorum. Bulunduğum proje altında <code>vendor/bundle</code> dizinine
 kurduruyorum. Bu bakımdan tüm sistem yerine proje bazlı kurulum var. Yani
 ilgili proje / ruby versiyonu aktif olduğu zaman, eğer varsa Bundler aktif
@@ -253,15 +241,14 @@ olabilir. Keza, <code>rake</code> veya <code>exec</code> arkasında da ilgili ta
 
 <p><code>rake</code> komutu da başlı başına kendine has opsiyonlara sahip. <code>rake -T</code>
 özelliği ile ilgili <strong>RAKE TASK</strong>’leri listeleyebiliyorsunuz. Örnek;</p>
-<pre class="highlight shell"><code>rake -T
+<div class="highlight"><pre class="highlight shell"><code>rake <span class="nt">-T</span>
 
 rake clean                      <span class="c"># Clean out caches: .pygments-cache, .gist-cache, .sass-cache</span>
 rake copydot[source,dest]       <span class="c"># copy dot files for deployment</span>
 rake deploy                     <span class="c"># Default deploy task</span>
 rake gen_deploy                 <span class="c"># Generate website and deploy</span>
 rake generate                   <span class="c"># Generate jekyll site</span>
-</code></pre>
-
+</code></pre></div>
 <p>gibi&hellip; Tabi <code>rake</code> komutu da aynı <code>bundle</code> komutu gibi başka bir dosyanın
 varlığına bağlı. <code>Rakefile</code> tüm task’lerin ve diğer ayarların bulunduğu
 dosya. Eğer <code>Rakefile</code> olmazsa <code>rake</code> komutu da çalışmaz.</p>
@@ -272,17 +259,16 @@ dosyaları da çağırabiliyoruz. </p>
 
 <p><code>bundle exec</code> ile, <code>vendor/bundle</code> altına kurulan <code>gem</code>lerin <code>executable</code>larını da
 çağırabiliyorsunuz. Örneğin, Octopress için kurulan <code>gem</code>lerin içinde;</p>
-<pre class="highlight plaintext"><code>compass    jekyll    posix-spawn-benchmark  redcloth     tilt
+<div class="highlight"><pre class="highlight plaintext"><code>compass    jekyll    posix-spawn-benchmark  redcloth     tilt
 dw         kramdown  rackup                 sass        
 haml       maruku    rake                   sass-convert
 html2haml  marutex   rdiscount              scss        
-</code></pre>
-
+</code></pre></div>
 <p><code>binary</code> dosyalar var.. Çalıştırmak için: <code>bundle exec html2haml</code> gibi
 kullanabilirsiniz. Bu bakımdan <code>bund</code> <code>exec</code> dedikten sonra komutu da 
 tamamlamamız / bulmamız gerekiyor. Bunun için <strong>28</strong> ve <strong>29.</strong>satırlara
 bakalım. Önce, <code>vendor/bundle</code> altındaki <code>bin</code> dizinlerini bulmamız gerekiyor.</p>
-<pre class="highlight plaintext"><code>find . -name 'bin' # içinde bin kelimesi geçen file/folder’ları bul
+<div class="highlight"><pre class="highlight plaintext"><code>find . -name 'bin' # içinde bin kelimesi geçen file/folder’ları bul
 
 ./vendor/bundle/ruby/1.9.1/bin
 ./vendor/bundle/ruby/1.9.1/gems/classifier-1.3.3/bin
@@ -305,33 +291,28 @@ bakalım. Önce, <code>vendor/bundle</code> altındaki <code>bin</code> dizinler
 # xargs ile bu sonuçları tek satır yapıyoruz
 
 find . -name 'bin' | xargs
-</code></pre>
-
+</code></pre></div>
 <p>Elimizde, <code>space</code> karakteri ile ayrılmış upuzun bir <strong>string</strong> var artık.
 Yani aynı ilk <code>_dscacheutil</code> örneğindeki <code>$opts</code> gibi oldu. Yapmanız gereken
 elimizdeki liste içinden ilk elemanı almak. Bunun için küçük bir nurmara
 yapıyoruz.</p>
-<pre class="highlight plaintext"><code> bin_folder=( $(find . -name 'bin' | xargs) # ./vendor/bundle/ruby/1.9.1/bin
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code> bin_folder=( $(find . -name 'bin' | xargs) # ./vendor/bundle/ruby/1.9.1/bin
+</code></pre></div>
 <p>Artık içine bakmamız gereken dizini biliyoruz. Şimdi yapmamız gereken aynı
 şekilde liste alıp <code>space</code> ile ayrılmış <strong>string</strong> oluşturmak.</p>
-<pre class="highlight plaintext"><code> executables=`command ls ${bin_folder} | xargs`
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code> executables=`command ls ${bin_folder} | xargs`
+</code></pre></div>
 <p><code>command ls</code> aslında bildiğiniz <code>ls</code> komutunu çağırıyor ama eğer <code>alias</code> ya da
 başka bir <code>override</code> durumu varsa; Yani siz belkide:</p>
-<pre class="highlight plaintext"><code>alias ls="ls -al --color"
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>alias ls="ls -al --color"
+</code></pre></div>
 <p>yaptınız ve her <code>ls</code> komutu çalıştığında aslında <code>ls -al --color</code> çalıştırıyor
 olabilirsiniz. Bunu engellemek için bash’in içindeki <strong>default</strong> komutu çağırmak
 gerekiyor. <code>command</code> bu işe yarıyor.</p>
 
 <p>Son olarak <strong>34.</strong> satırda;</p>
-<pre class="highlight plaintext"><code>COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+</code></pre></div>
 <p><code>word list</code> olarak <code>compgen</code> komutuna <code>$commands</code> değişkenini geçiyoruz. Yani
 tüm yaptığımız, en son satırda kullanacağımız <code>COMPREPLY</code> için gerekli
 <strong>string</strong>’i oluşturmak.</p>
@@ -340,9 +321,8 @@ tüm yaptığımız, en son satırda kullanacağımız <code>COMPREPLY</code> i�
 her ne kullanıyorsanız, o dosyaya eklemek. Örneğin bu <code>_bundler_complete</code>
 fonksiyonunu <code>$HOME/bundler_complete.sh</code> şeklinde kaydettiyseniz; kullandığınız
 <code>.bashrc</code> içinde</p>
-<pre class="highlight plaintext"><code>source $HOME/bundler_complete.sh
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>source $HOME/bundler_complete.sh
+</code></pre></div>
 <p>yapmanız gerekiyor. <a href="http://www.gnu.org/software/bash/manual/html_node/Programmable-Completion.html#Programmable-Completion" title="Bash Completion">Bash Completion</a> konusuyla ilgili daha fazla
 ve detaylı bilgi için <a href="http://www.gnu.org/software/bash/manual/html_node/Programmable-Completion.html#Programmable-Completion" title="Bash Completion">link</a>’e tıklayabilirsiniz.</p>
 
@@ -352,8 +332,8 @@ ve detaylı bilgi için <a href="http://www.gnu.org/software/bash/manual/html_no
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “9” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2021/08/28/json-isleme-araci-jq/">JSON İşleme Aracı: jq</a></h3>

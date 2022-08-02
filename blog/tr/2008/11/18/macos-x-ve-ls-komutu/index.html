@@ -12,11 +12,11 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:45+03:00" />
         <meta name="description" content="Finder pek çok açıdan faydalı ve iş gören bir uygulama/özelliktir.
 Pek çok dosya, sistem icabı hidden yani gizli/görünmez durumdadır." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2008/11/18/macos-x-ve-ls-komutu/" />
         <meta property="og:title" content="Mac OS X ve ls komutu" />
         <meta property="og:site_name" content="vigo" />
@@ -125,32 +125,27 @@ haberimiz olmaz!</p>
 fazla hükmetme şansına sahip oluruz!</p>
 
 <p><q>Directory Almak</q> nedir? Eğer benim gibi <a href="http://en.wikipedia.org/wiki/Commodore_64">Commodore 64</a>’le başladıysanız:</p>
-<pre class="highlight plaintext"><code>LOAD "$",8
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>LOAD "$",8
+</code></pre></div>
 <p>komutunu biliyorsunuzdur! Bu komut disketin içindeki listeyi bize gösteren
 komuttur. Yani <q>Directory</q>yi&hellip; Windows kullanıcıları genelde <q>My Computer</q>’a
 tıklar ve folder’ları (<em>dizin’leri</em>) listeler. Pek çok kişinin kullanmadığı 
 <strong>Command Prompt</strong> (<em>Start &gt; Run &gt; cmd.exe</em>) a çıkarak da aynen directory’i
 listeleyebilirsiniz:</p>
-<pre class="highlight plaintext"><code>C:\dir
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>C:\dir
+</code></pre></div>
 <p>Linux/Unix işletim sistemlerinde aynı işi yapan <code>ls</code> komutulu bulunmaktadır.
 Kullanımı:</p>
-<pre class="highlight shell"><code>ls
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ls</span>
+</code></pre></div>
 <p>şeklindedir. Genelde her komuta karşılık gelen bir yardım / açıklama sayfası
 bulunur. Buna <strong>MAN PAGES</strong> yani kullanım kılavuzu <code>manual</code> sayfası denir.
 Eğer komutun ne işe yaradığını bilmiyorsanız bunu anlamak için:</p>
-<pre class="highlight shell"><code>man KOMUT
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>man KOMUT
+</code></pre></div>
 <p>yaparsınız. yani <code>ls</code> komutunun olaylarını anlamak için:</p>
-<pre class="highlight shell"><code>man ls
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>man <span class="nb">ls</span>
+</code></pre></div>
 <p>yaparsınız. Karşınıza devasa bir açıklama sayfası çıkar. Genelde ben çoğu
 şeyin nasıl yapıldığını ve kullanıldığını tam anlayamam. Sanırım daha üstün
 anlama kabiliyeti olan insanlar için tasarlanmış bu yardım sayfaları.</p>
@@ -168,11 +163,10 @@ yapmak için <kbd>/</kbd></p>
 </blockquote>
 
 <p>derseniz:</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> ~/Desktop
-man ls | col -b &gt; ls_help.txt
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> ~/Desktop
+man <span class="nb">ls</span> | col <span class="nt">-b</span> <span class="o">&gt;</span> ls_help.txt
 open ls_help.txt
-</code></pre>
-
+</code></pre></div>
 <p>Böylece <strong>pipe</strong> yardımıyla, <code>man ls</code> den dönenleri <code>col</code> komutuna geçtik.
 Bu iki işlemden dönen sonucu da <code>ls_help.txt</code> dosyasına dönüştürdük. Neyse,
 <code>ls</code> komutuna geri dönüyorum.</p>
@@ -186,15 +180,14 @@ ile gerçekleşirken Mac OS’da durum farklı. (<em>Bilemiyorum belki darwin-ke
 için farklı bir BSD olayı olabilir</em>)</p>
 
 <p>Bulunduğunuz dizin (<em>folder/directory</em>) de ne var ne yok görmek için:</p>
-<pre class="highlight shell"><code>ls -al
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ls</span> <span class="nt">-al</span>
+</code></pre></div>
 <p>yazmamız gerekiyor. Bu, adı nokta ile başlayan dosya/dizinleri de gösteren
 <code>a</code> ve gösterme şekli olarak da en detaylı <code>l</code> yani <strong>long format</strong> denilen 
 şekilde bilgiyi ekrana yollar.</p>
 
 <p>Bu şekilde listeleme yapınca karşımıza şu tarz bir görüntü çıkar:</p>
-<pre class="highlight plaintext"><code>rwxrwxrwx@  1  vigo  staff      13780  1 Kas 15:30 TexmateFirefoxSplit.app
+<div class="highlight"><pre class="highlight plaintext"><code>rwxrwxrwx@  1  vigo  staff      13780  1 Kas 15:30 TexmateFirefoxSplit.app
 drwxr-xr-x  31 vigo  staff       1054 16 Kas 23:13 Trash 
 drwxr-xr-x  17 vigo  staff        578 28 Eki 09:33 Vice2.0.6
 drwxr-xr-x@  7 vigo  staff        238 23 Eyl 06:02 Warblade Full
@@ -202,21 +195,19 @@ drwxr-xr-x@  7 vigo  staff        238 23 Eyl 06:02 Warblade Full
 -rwxr-xr-x@  1 vigo  staff        886  9 Kas 22:22 deneme.sh
 -rw-r--r--@  1 vigo  staff      61087 16 Kas 23:07 fisherking.jpg
 -rw-r--r--@  1 vigo  staff         99 25 Eki 20:26 index.php
-</code></pre>
-
+</code></pre></div>
 <p>İlk blok, yani <code>rwxrwx</code> şeklinde görünen alan <strong>file attributes/permissions</strong>
 şeklinde ifade edilir. Yani bir dosya mı? directory (<em>dizin</em>) mi? sahibinin 
 hakları, grubun hakları, diğerlerinin hakları şeklinde bir anlam ifade eder.
 <code>deneme.sh</code> dosyasının bulunduğu satıra bakılırsa:</p>
-<pre class="highlight plaintext"><code>-rwxr-xr-x@  1 vigo  staff        886  9 Kas 22:22 deneme.sh
+<div class="highlight"><pre class="highlight plaintext"><code>-rwxr-xr-x@  1 vigo  staff        886  9 Kas 22:22 deneme.sh
 
 -   : bunun bir standart file (dosya) olduğunu, (ilk karakter)
 rwx : bu dosyanın sahibinin (yani owner) read, write ve execute
       (okuma, yazma ve çalıştırma) haklarına sahip olduğunu,
 r-x : bağlı bulunduğu grubun read ve execute hakkı olduğunu,
 r-x : yine diğer (others) lerinin de read ve execute hakkı olduğunu
-</code></pre>
-
+</code></pre></div>
 <p>gösterir. (<code>-rwxr-xr-x@</code>)</p>
 
 <p>Eğer ilk karakter <code>d</code> ise bu directory (<em>folder yani dizin</em>) olduğu
@@ -226,13 +217,12 @@ anlamındadır. Başka harfler de görmek mümkün (<em>b, c, l, s, p gibi</em>)
 anlamındadır. Yani eğer bu bir folder olsaydı (<em>d</em>) ve sayı olarak da <strong>3</strong>
 yazsaydı, buradan şunu anlardık: <strong>bu folder altında 3 tane dosya var</strong>
 Keza;</p>
-<pre class="highlight plaintext"><code>drwxr-xr-x@  7 vigo  staff        238 23 Eyl 06:02 Warblade Full
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>drwxr-xr-x@  7 vigo  staff        238 23 Eyl 06:02 Warblade Full
+</code></pre></div>
 <p>Baktığımızda, <strong>Warblade Full</strong>ün bir directory/folder (<em>dizin</em>) olduğunu ve
 altında <strong>7</strong> adet link (<em>bu dosyada olabilir, folder da</em>) olduğunu görürüz.
 İçine girince;</p>
-<pre class="highlight plaintext"><code>vigbookpro:Desktop vigo$ ls -al Warblade\ Full/
+<div class="highlight"><pre class="highlight plaintext"><code>vigbookpro:Desktop vigo$ ls -al Warblade\ Full/
 total 184 
 drwxr-xr-x@  7 vigo  staff    238 23 Eyl 06:02 .
 drwx------+ 28 vigo  staff    952 17 Kas 20:02 ..
@@ -241,8 +231,7 @@ drwx------+ 28 vigo  staff    952 17 Kas 20:02 ..
 drwxr-xr-x@  4 vigo  staff    136 29 Eki 18:45 Warblade.app
 -rwxrwxrwx@  1 vigo  staff  75562 23 Eyl 01:01 Warblade_Manual_V1.33_Eng.txt
 -rwx------@  1 vigo  staff   1671 22 Mar  2008 license.txt
-</code></pre>
-
+</code></pre></div>
 <p>Dikkat ederseniz <strong>total 184</strong> diye bir şey görürsünüz. Keza, ilk iki satırı
 <code>.</code> ve <code>..</code> şeklinde görürsünüz. Tek nokta kendisini (<em>Current Path</em>),
 çift nokta da (<code>..</code>) bir üst path’i yani Parent Path’i ifade eden linklerdir.
@@ -259,9 +248,8 @@ Bunlar da hesaba girince ilgili dizinimizde toplam 184 adet link bulunmuş
 oluyor&hellip;</p>
 
 <p>Komut satırından bakınca;</p>
-<pre class="highlight shell"><code>ls -al Warblade<span class="se">\ </span>Full/Warblade.app/Contents/Resources/data/music/
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ls</span> <span class="nt">-al</span> Warblade<span class="se">\ </span>Full/Warblade.app/Contents/Resources/data/music/
+</code></pre></div>
 <p>gibi giden bir şey görüyorum. Umarım otomatik tamamlama işlemleri için <kbd>TAB</kbd>
 tuşuna basmayı biliyorsunuzdur. Yani yukarıdaki uzun path’i ben elle yazmadım.
 <code>ls -al</code> yazdıktan sonra <strong>W</strong> yazdom ve sonra <kbd>TAB</kbd>’e bastım, ilgili
@@ -289,17 +277,15 @@ sonucu da bir daha 1024’e bölünce kaç MB olduğunu buluruz.</p>
 
 <p>Ya bunu anlamak için mühendis mi olmak lazım? İşte bu noktada <code>ls</code>’in <code>-h</code>
 opsiyonu imdada yetişir. Yani;</p>
-<pre class="highlight shell"><code>ls -alh
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ls</span> <span class="nt">-alh</span>
+</code></pre></div>
 <p>Deyince;</p>
-<pre class="highlight plaintext"><code> rwxr-xr-x  17 vigo  staff   578B 28 Eki 09:33 Vice2.0.6
+<div class="highlight"><pre class="highlight plaintext"><code> rwxr-xr-x  17 vigo  staff   578B 28 Eki 09:33 Vice2.0.6
 drwxr-xr-x@  7 vigo  staff   238B 23 Eyl 06:02 Warblade Full
 -rw-r--r--   1 vigo  staff   158M 17 Kas 19:34 cf208.mp4
 -rwxr-xr-x@  1 vigo  staff   886B  9 Kas 22:22 deneme.sh
 -rw-r--r--@  1 vigo  staff    60K 16 Kas 23:07 fisherking.jpg
-</code></pre>
-
+</code></pre></div>
 <p>Şeklinde bir görüntü gelir. Gördüğünüz gibi <strong>158M</strong> olarak dosya boyu yazar.
 Kiminin yanında B (<em>Bytes</em>) kiminin yanında K (<em>Kilobytes</em>) gibi, en makül ve
 anlaşılır olanı neyse o yazar.</p>
@@ -308,9 +294,8 @@ anlaşılır olanı neyse o yazar.</p>
 farklı renk, <strong>Write Protection</strong> (<em>Silinemez/Yazılamaz</em>) olanlar farklı renk,
 script olan (<em>Executable</em>) text olan farklı renk şeklinde görünür.
 Bu çok rahat anlaşılan bir durumdur. Bunu sağlamak için de;</p>
-<pre class="highlight shell"><code>ls -alhG
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ls</span> <span class="nt">-alhG</span>
+</code></pre></div>
 <p>Şeklinde kullanırız. Bunun sonucunda da aşağıdaki gibi rengarek bir görüntü
 elde ederiz!</p>
 
@@ -321,9 +306,8 @@ elde ederiz!</p>
 ayarlayabileceğinizi görebilirsiniz. Eğer bu hoşunuza gittiyse ve her
 Terminal’i açtığınızda <code>ls</code> yapınca yukarıdaki gibi görünmesini istiyorsanız
 <code>alias</code> kullanımı yapabilirsiniz. Terminalde;</p>
-<pre class="highlight shell"><code><span class="nb">alias </span><span class="nv">ls</span><span class="o">=</span><span class="s2">"ls -alhG"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">alias ls</span><span class="o">=</span><span class="s2">"ls -alhG"</span>
+</code></pre></div>
 <p>Yaparsanız artık sizin <code>ls</code> diye çağırdığınız şey otomatikman <code>ls -alhG</code>
 olarak yorumlanacaktır. Tabi bilgisayarınızı her açtığınızda bunun otomatikman
 oluşmasını isterseniz iki şekilde yapabilirsiniz;</p>
@@ -343,29 +327,25 @@ gelen her kullanıcı bu dosyada bir değişiklik yapma hakkına sahip değildir
 
 <p>Bu bakımdan, <strong>sudo</strong> gücünü kullanmanız gerekir. Tek becerebildiğim shell
 editörü olan <code>nano</code> ile <code>/etc/profile</code> dosyasını açmak için;</p>
-<pre class="highlight shell"><code>sudo nano -w /etc/profile
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo </span>nano <span class="nt">-w</span> /etc/profile
+</code></pre></div>
 <p>diyin, karşınıza aşağıdaki gibi bir dosya çıkar;</p>
-<pre class="highlight shell"><code><span class="c"># System-wide .profile for sh(1)</span>
-<span class="k">if</span> <span class="o">[</span> -x /usr/libexec/path_helper <span class="o">]</span>; <span class="k">then
-    </span><span class="nb">eval</span> <span class="sb">`</span>/usr/libexec/path_helper -s<span class="sb">`</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="c"># System-wide .profile for sh(1)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-x</span> /usr/libexec/path_helper <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">eval</span> <span class="sb">`</span>/usr/libexec/path_helper <span class="nt">-s</span><span class="sb">`</span>
 <span class="k">fi
-if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BASH</span><span class="p">-no</span><span class="k">}</span><span class="s2">"</span> !<span class="o">=</span> <span class="s2">"no"</span> <span class="o">]</span>; <span class="k">then</span>
-    <span class="o">[</span> -r /etc/bashrc <span class="o">]</span> <span class="o">&amp;&amp;</span> . /etc/bashrc
+if</span> <span class="o">[</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BASH</span><span class="p">-no</span><span class="k">}</span><span class="s2">"</span> <span class="o">!=</span> <span class="s2">"no"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="o">[</span> <span class="nt">-r</span> /etc/bashrc <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">.</span> /etc/bashrc
 <span class="k">fi</span>
-</code></pre>
-
+</code></pre></div>
 <p>Bu dosyaya aşağıdaki satırı ekleyip kaydedin ve çıkın: <kbd>⌃</kbd> + <kbd>O</kbd> ve
 <kbd>⌃</kbd> + <kbd>X</kbd></p>
-<pre class="highlight shell"><code><span class="nb">alias </span><span class="nv">ls</span><span class="o">=</span><span class="s2">"ls -alhG"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">alias ls</span><span class="o">=</span><span class="s2">"ls -alhG"</span>
+</code></pre></div>
 <p>Terminal’den de çıkın komple kapatın. Şimdi yeniden Terminali açın ve deneyin!
 Keza belki Windows’dan hatırlarsınız,</p>
-<pre class="highlight plaintext"><code>dir *.jpg
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>dir *.jpg
+</code></pre></div>
 <p>yapınca bize sonu <code>.jpg</code> olan dosyalar görüntülenir. Aslında burada
 çaktırmadan <strong>Regular Expression</strong> olayı kullanılır. Yani bu başı ne olursa
 olsun, sonu <code>.jpg</code> ile bitsin anlamındadır. Tabi bu tarz Regex
@@ -373,14 +353,12 @@ olsun, sonu <code>.jpg</code> ile bitsin anlamındadır. Tabi bu tarz Regex
 kullanımların kralı, esası, aslı Linux / Unix sistemlerdir.</p>
 
 <p>Tabiki <code>ls</code>de de babalar gibi her tür Regex numaraları yapabilirsiniz;</p>
-<pre class="highlight shell"><code>ls <span class="k">*</span>.mp[34]
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ls</span> <span class="k">*</span>.mp[34]
+</code></pre></div>
 <p>yaptığınızda, extension’ı <code>mp3</code> ya da <code>mp4</code> olan dosyalar listelenir.
 Aynen Windows’da olduğu gibi sadece jpg’leri listelemek için;</p>
-<pre class="highlight shell"><code>ls <span class="k">*</span>.jpg
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ls</span> <span class="k">*</span>.jpg
+</code></pre></div>
 <p>yapabilirsiniz. Aslında <code>grep</code> kullanarak daha çılgın sorgulamalar da yapmak 
 mümkün. Bu konulara daha sonra girmeyi düşünüyorum.</p>
 
@@ -395,8 +373,8 @@ kadar anlaşılır ki!</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “4” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2009/07/26/bash-completion-olayi/">Bash Completion olayı!</a></h3>

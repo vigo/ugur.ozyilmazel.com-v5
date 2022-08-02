@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:45+03:00" />
         <meta name="description" content="Dün Mac OS X update’i ile gelen, tahminimce hayatımıza renk ve heyecan katacak
 olan App Store uygulamasını Full Screen yapmayı sağlayan minik bir
 applescript." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2011/01/07/tam-ekran-app-store-full-screen/" />
         <meta property="og:title" content="Tam ekran App Store (Full Screen)" />
         <meta property="og:site_name" content="vigo" />
@@ -98,7 +98,7 @@ applescript." />
 olan App Store uygulamasını <strong>Full Screen</strong> yapmayı sağlayan minik bir
 applescript.
 </p>
-<pre class="highlight applescript"><code><span class="k">on</span> <span class="nb">run</span><span class="w">
+<div class="highlight"><pre class="highlight applescript"><code><span class="k">on</span> <span class="nb">run</span><span class="w">
     </span><span class="k">tell</span><span class="w"> </span><span class="nb">application</span><span class="w"> </span><span class="s2">"Finder"</span><span class="w">
         </span><span class="k">get</span><span class="w"> </span><span class="na">bounds</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="na">window</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nv">desktop</span><span class="w">
         </span><span class="k">set</span><span class="w"> </span><span class="nv">DesktopSize</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="na">bounds</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="na">window</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nv">desktop</span><span class="w">
@@ -110,17 +110,15 @@ applescript.
         </span><span class="k">set</span><span class="w"> </span><span class="nb">the</span><span class="w"> </span><span class="na">bounds</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">the</span><span class="w"> </span><span class="nb">first</span><span class="w"> </span><span class="na">window</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nv">DesktopWidth</span><span class="p">,</span><span class="w"> </span><span class="nv">DesktopHeight</span><span class="p">}</span><span class="w">
     </span><span class="k">end</span><span class="w"> </span><span class="k">tell</span><span class="w">
 </span><span class="k">end</span><span class="w"> </span><span class="nb">run</span><span class="w">
-</span></code></pre>
-
+</span></code></pre></div>
 <p><code>/Applications/Utilities/</code> ’den <strong>AppleScript Editor</strong> ’ü açın, 
 yukarıdaki script’i <code>copy/paste</code> yapın. Sonra run edin. İsterseniz bunu save edip 
 sık sık kullanabilirsiniz.</p>
 
 <p>Minik bir not, bu olayı neredeyse tüm app’ler için uygulayabilirsiniz. Çalışan
 uygulamanın adını görmek için, Terminal’de:</p>
-<pre class="highlight plaintext"><code>ps -xc
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>ps -xc
+</code></pre></div>
 <p>yapın. Gelen listede çalışan uygulamaların adını görebilirsiniz&hellip;</p>
 
                     </div>
@@ -129,8 +127,8 @@ uygulamanın adını görmek için, Terminal’de:</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “2” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2011/03/30/pythonpathe-ilave/">PYTHONPATH’e ilave</a></h3>

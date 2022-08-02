@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:54+03:00" />
+        <meta name="date" content="2022-08-02T17:17:43+03:00" />
         <meta name="description" content="Az önce başardığım, aslında çok bilindiğini düşündüğüm fakat etrafımdaki
 Django’cu kardeşimlerimden duymadığım bir özellikten bahsetmek
 istiyorum!" />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2009/07/29/django-icin-bash-completion/" />
         <meta property="og:title" content="Django için bash completion" />
         <meta property="og:site_name" content="vigo" />
@@ -117,16 +117,14 @@ lazım! dedim. Sonra bi baktım zaten django için çoktan yapılmışı varmı�
 
 <p><a href="https://www.djangoproject.com/" title="Django Project">Django</a> paketini indirince, <code>extras/</code> folder’ı içinde gereken
 file var! Hatta;</p>
-<pre class="highlight shell"><code><span class="nb">complete</span> -p
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">complete</span> <span class="nt">-p</span>
+</code></pre></div>
 <p>yaparsanız <strong>completion</strong> işleminin nasıl çalıştığını da anlarsınız. Sizin
 için hazır gelen komutların listesini de;</p>
-<pre class="highlight shell"><code>ls /opt/local/etc/bash_completion.d/
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ls</span> /opt/local/etc/bash_completion.d/
+</code></pre></div>
 <p>şeklinde görebilirsiniz. Bende;</p>
-<pre class="highlight plaintext"><code>_subversion
+<div class="highlight"><pre class="highlight plaintext"><code>_subversion
 apache2ctl
 bitkeeper
 bittorrent
@@ -171,29 +169,25 @@ svk
 unace
 unrar
 vncviewer
-</code></pre>
-
+</code></pre></div>
 <p>şeklinde. Keza bu dosyaları açıp bakarsanız olayın ne kadar da kolay olduğunu
 görürsünüz.</p>
 
 <p>Şimdi <a href="https://www.djangoproject.com/" title="Django Project">Django</a> sitesine gidip, son versiyon <code>.tar.gz</code> dosyayı çekin
 (<em>hatta belki de çoktan çektiniz ve install bile ettiniz!</em>) Eğer hazırda
 yoksa;</p>
-<pre class="highlight shell"><code>tar xzvf Django-1.1.tar.gz
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">tar </span>xzvf Django-1.1.tar.gz
+</code></pre></div>
 <p>ile paketi açın ve <code>extras/</code> dizinin içinde bulunan <code>django_bash_completion</code>
 dosyasını <strong>sudo</strong> ile <code>/opt/local/etc/</code> altına kopyalayın ve sonra tek yapmanız
 gereken, <code>~/.profile</code> dosyasına şunu ekleyin;</p>
-<pre class="highlight shell"><code><span class="k">if</span> <span class="o">[</span> -f /opt/local/etc/django_bash_completion <span class="o">]</span>; <span class="k">then</span>
-    . /opt/local/etc/django_bash_completion
+<div class="highlight"><pre class="highlight shell"><code><span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> /opt/local/etc/django_bash_completion <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">.</span> /opt/local/etc/django_bash_completion
 <span class="k">fi</span>
-</code></pre>
-
+</code></pre></div>
 <p>Terminali açıp kapayın ya da;</p>
-<pre class="highlight shell"><code><span class="nb">source</span> ~/.profile
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">source</span> ~/.profile
+</code></pre></div>
 <p>yaparak restart edin shell’i&hellip; Afiyet olsun!</p>
 
 <h3>Faydalı Linkler</h3>
@@ -209,8 +203,8 @@ gereken, <code>~/.profile</code> dosyasına şunu ekleyin;</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “9” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2011/03/22/kendi-pythonunu-kendin-kur-yazimda-eksik-yerler-buldum/">Kendi Python’unu kendin kur yazımda eksik yerler buldum</a></h3>

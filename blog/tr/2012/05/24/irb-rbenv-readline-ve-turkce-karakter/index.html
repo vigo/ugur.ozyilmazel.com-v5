@@ -12,13 +12,13 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:54+03:00" />
+        <meta name="date" content="2022-08-02T17:17:43+03:00" />
         <meta name="description" content="RVM’mi? Rbenv’mi? Her ikiside Ruby için versiyon
 yönetim sistemi. Yani birden farklı değişik veriyon Ruby kullanmak için
 kullanılan yardımcı araçlar. İlk önce rvm’le başladım fakat daha sonra
 garip durumlar olduğunu gördüm ve rbenv’e geçtim." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2012/05/24/irb-rbenv-readline-ve-turkce-karakter/" />
         <meta property="og:title" content="IRB rbenv readline ve Türkçe karakter sorunu / çözümü" />
         <meta property="og:site_name" content="vigo" />
@@ -117,14 +117,12 @@ etmekti bir çırpıda. Tabi <code>ğ</code> tuşuna bastığım an karşımda b
 değerini görmem sinir sistemimi bozdu!</p>
 
 <p>Hemen;</p>
-<pre class="highlight shell"><code>rbenv shell system
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>rbenv shell system
+</code></pre></div>
 <p>yaparak OSX&rsquo;le gelen Ruby&rsquo;ye geçtim ve <code>ğ</code> tuşuna orada bastım.
 Tabiiki sorunsuz çalıştı. Geri dönmek için;</p>
-<pre class="highlight shell"><code>rbenv shell --unset
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>rbenv shell <span class="nt">--unset</span>
+</code></pre></div>
 <p>yaptım.</p>
 
 <p>Daha önceleri Python ve Ruby&rsquo;yi kendim derlemiştim ve konunun bir 
@@ -135,20 +133,17 @@ Tabiiki sorunsuz çalıştı. Geri dönmek için;</p>
 
 <p>Ufak bir <strong>googlelama</strong> yaparak hemen sorunuma çare buldum. Önce <code>brew ls</code> ile
 kontrol yapın, readline kurulu mu? diye. Eğer değilse;</p>
-<pre class="highlight plaintext"><code>brew install readline
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>brew install readline
+</code></pre></div>
 <p>Daha sonra;</p>
-<pre class="highlight shell"><code><span class="nb">export </span><span class="nv">CPPFLAGS</span><span class="o">=</span>-I/usr/local/Cellar/readline/6.2.2/include
-<span class="nb">export </span><span class="nv">LDFLAGS</span><span class="o">=</span>-L/usr/local/Cellar/readline/6.2.2/lib/
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">export </span><span class="nv">CPPFLAGS</span><span class="o">=</span><span class="nt">-I</span>/usr/local/Cellar/readline/6.2.2/include
+<span class="nb">export </span><span class="nv">LDFLAGS</span><span class="o">=</span><span class="nt">-L</span>/usr/local/Cellar/readline/6.2.2/lib/
+</code></pre></div>
 <p>ile <code>readline</code>&rsquo;nın yerini bildiriyoruz derleyici flaglerine. Bu
 işlemden sonra kuruluma geçebiliriz.</p>
-<pre class="highlight shell"><code>rbenv install 1.9.3-p194
+<div class="highlight"><pre class="highlight shell"><code>rbenv <span class="nb">install </span>1.9.3-p194
 rbenv global 1.9.3-p194
-</code></pre>
-
+</code></pre></div>
 <p>Şimdi <code>irb</code> yazıp konsol&rsquo;a geçin ve <code>ğ</code> tuşuna basın.</p>
 
                     </div>
@@ -157,8 +152,8 @@ rbenv global 1.9.3-p194
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “3” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2012/05/25/irb-konfigurasyonu-ve-ufak-tefek-ayarlar/">IRB konfigürasyonu ve ufak tefek ayarlar</a></h3>

@@ -12,11 +12,11 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:54+03:00" />
+        <meta name="date" content="2022-08-02T17:17:43+03:00" />
         <meta name="description" content="Uzunca bir zamandır yazmak istediğim fakat&nbsp;fırsat bulamadığım bir konu:
 Python’la yazılmış CommandLine Tool’u yani Terminal’den çalışan bir script." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2011/11/26/webkit2png-ile-ekran-goruntusu-almak/" />
         <meta property="og:title" content="webkit2png ile ekran görüntüsü almak" />
         <meta property="og:site_name" content="vigo" />
@@ -125,54 +125,47 @@ yazan arkadaşı delirtmiş olacak ki artık destek vermiyor.</p>
 versiyonu kullanabilirsiniz.</p>
 
 <p>MacPorts ve Homebrew paketi olarak mevcut.</p>
-<pre class="highlight shell"><code>sudo port install webkit2png <span class="c"># macports’dan kurulum</span>
-brew install webkit2png <span class="c"># homebrew’dan kurulum</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo </span>port <span class="nb">install </span>webkit2png <span class="c"># macports’dan kurulum</span>
+brew <span class="nb">install </span>webkit2png <span class="c"># homebrew’dan kurulum</span>
 
 <span class="c"># benim ~/bin folder’ım local executable’lar için eğer sizde böyle yapmak isterseniz  </span>
 <span class="c"># mkdir ~/bin yapıp $PATH’e bu folder’ı eklemeniz gerekir.</span>
 
 git clone httxs://github.com/vigo/webkit2png <span class="c"># kendi kurulumunuz</span>
-</code></pre>
-
+</code></pre></div>
 <p>Kullanımı çok basit;</p>
-<pre class="highlight plaintext"><code>webkit2png -h
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>webkit2png -h
+</code></pre></div>
 <p>Hemen açıklaması geliyor. Default olarak 3 versiyon oluşturuyor. Fullsize,
 Thumbnail ve Clipped. Default ekran genişliği <strong>800x600</strong> pixel geliyor, aynı
 şekilde default clip <strong>200x150</strong> pixel. Ekran görüntüsünü kaydetmek istediğiniz
 folder’a gidin:</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> ~/Desktop
-webkit2png -o test1 http://ugur.ozyilmazel.com <span class="c"># tüm siteyi alır 3 dosya üretir...</span>
-webkit2png -o test2 -C --clipwidth<span class="o">=</span>800 --clipheight<span class="o">=</span>600 http://ugur.ozyilmazel.com 
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> ~/Desktop
+webkit2png <span class="nt">-o</span> test1 http://ugur.ozyilmazel.com <span class="c"># tüm siteyi alır 3 dosya üretir...</span>
+webkit2png -o test2 -C <span class="nt">--clipwidth</span><span class="o">=</span>800 <span class="nt">--clipheight</span><span class="o">=</span>600 http://ugur.ozyilmazel.com 
+</code></pre></div>
 <p><code>test1</code> dev gibi ekran görüntüsü aldı. Toplam <strong>3 dosya</strong> üretti:</p>
-<pre class="highlight plaintext"><code>test1-clipped.png # 200x150
+<div class="highlight"><pre class="highlight plaintext"><code>test1-clipped.png # 200x150
 test1-full.png # ben yaptığımda 960x31024 verdi
 test1-thumb.png # test1-full’ün thumbnail’i 240x7756
-</code></pre>
-
+</code></pre></div>
 <p><code>test2</code> ise sadece <strong>800x600</strong>’lük alanı verdi. Son dönemde, web siteleri hep
 <strong>JavaScript</strong> kullandığı için, sitenin tam olarak yüklenmesi bazen saniye bazında
 da olsa zaman alıyor. Bunun için webkit2png’nin <strong>delay</strong> özelliğini
 kullanacağız&hellip;</p>
-<pre class="highlight plaintext"><code>webkit2png --delay=5 httx://google.com
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>webkit2png --delay=5 httx://google.com
+</code></pre></div>
 <p>Bu sayede google.com adresi request edildikten sonra 5 saniye bekleyecek ve 5
 saniye sonunda ekran görüntüsü alınacak. Başka bir örnek;</p>
-<pre class="highlight shell"><code>webkit2png -o bilgi -F -W 1024 httx://bilgi.edu.tr
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>webkit2png <span class="nt">-o</span> bilgi <span class="nt">-F</span> <span class="nt">-W</span> 1024 httx://bilgi.edu.tr
+</code></pre></div>
 <div class="card card-custom" title="Bilgi Üniversitesi’nin websitesinden ekran görüntüsü"><img src="http://media.tumblr.com/tumblr_lvafid6TsA1qafg0z.png" alt="this is an image | bu bir resim"><div class="card-block"><p class="card-text">Sayfa tam olarak yüklenemedi&hellip;</p></div></div>
 
 <p>Şimdi <code>--delay</code> ile tekrar deneyelim&hellip;</p>
 
 <div class="card card-custom" title="Bilgi Üniversitesi’nin websitesinden ekran görüntüsü"><img src="http://media.tumblr.com/tumblr_lvafk24ggN1qafg0z.png" alt="this is an image | bu bir resim"><div class="card-block"><p class="card-text">Sayfa tam olarak yüklendi</p></div></div>
-<pre class="highlight shell"><code>webkit2png -o bilgi-delay --delay<span class="o">=</span>5 -F -W 1024 httx://bilgi.edu.tr
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>webkit2png <span class="nt">-o</span> bilgi-delay <span class="nt">--delay</span><span class="o">=</span>5 <span class="nt">-F</span> <span class="nt">-W</span> 1024 httx://bilgi.edu.tr
+</code></pre></div>
 <p>Çok işe yarayan bir tool. Umarım sizin de işinize yarar&hellip;</p>
 
                     </div>
@@ -181,8 +174,8 @@ saniye sonunda ekran görüntüsü alınacak. Başka bir örnek;</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “8” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/">Derlenmiş Python Dosyaları Bazen Sizi Yanıltabilir</a></h3>

@@ -12,11 +12,11 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:56+03:00" />
+        <meta name="date" content="2022-08-02T17:17:45+03:00" />
         <meta name="description" content="Daha önceki yazılarımda da bahsetmiştim, MacPorts diye harika bir
 şey var! Linux (debian, ubuntu vs…) daki paket yönetiminin OS X’cesi." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2009/08/27/macports-ssh-otomatik-tamamlama-ve-genel-bilgiler/" />
         <meta property="og:title" content="Macports, ssh otomatik tamamlama ve genel bilgiler" />
         <meta property="og:site_name" content="vigo" />
@@ -126,9 +126,8 @@ kullanmaya başladım.</p>
 
 <p>Hatta işin komik tarafı, daha önce <strong>600dpi</strong> tarama yapmayı başaramamıştım!
 Scanner’ı bağlayıp, Terminal’i açıp:</p>
-<pre class="highlight shell"><code>scanimage -v -p --format tiff --mode color --resolution 300 &gt; test300.tiff
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>scanimage <span class="nt">-v</span> <span class="nt">-p</span> <span class="nt">--format</span> tiff <span class="nt">--mode</span> color <span class="nt">--resolution</span> 300 <span class="o">&gt;</span> test300.tiff
+</code></pre></div>
 <p>yazınca, <strong>300dpi</strong> - <code>tiff</code> şeklinde scan edilmiş resim. Derseniz ki:</p>
 
 <blockquote>
@@ -167,82 +166,72 @@ bu tarz konfigürasyon olayları hep birbirine benziyor mantık olarak;</p>
 </ul>
 
 <p>Kullanıcı bazlı şeyler genelde <code>$HOME</code> dizini altında oluyor:</p>
-<pre class="highlight shell"><code><span class="nb">echo</span> <span class="nv">$HOME</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">echo</span> <span class="nv">$HOME</span>
+</code></pre></div>
 <p><code>$HOME</code> sizin kullanıcınızın <q>home</q> folder’ıdır. Yani sizinle ilgili pek çok
 şey (<em>Desktop, Müzikler, Videolar vs&hellip;</em>) buradadır. Keza ssh ile ilgili
 şeyler de (<em>eğer kullanıcı bazlı düşünüyorsak</em>) burada olmalıdır.
 Terminale girip:</p>
-<pre class="highlight shell"><code>ls
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ls</span>
+</code></pre></div>
 <p>dediğimiz zaman gördüğüm ekran;</p>
 
 <div class="card card-custom"><img src="http://2.bp.blogspot.com/_9jz1qeFrzkQ/SpZi8QxYhHI/AAAAAAAACtM/6_bC_vc16tQ/s600/Picture+1.png" alt="Ekran görüntüsü: Terminal’de ls çıktısı"></div>
 
 <p>gibiyse sorun yok, eğer değilse:</p>
-<pre class="highlight shell"><code>ls -alhG <span class="c"># bsd tabanlı (mac, bsd vs...)</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ls</span> <span class="nt">-alhG</span> <span class="c"># bsd tabanlı (mac, bsd vs...)</span>
+</code></pre></div>
 <p>Şeklinde deneyin. Bu, ne var ne yok listelemenize, hatta renkli ve hatta
 boyutları da anlaşılır bir şekilde listelemenize yardımcı olacak. Eğer <code>ls</code> 
 komutunuzun hep böyle kalmasını isterseniz, <code>~/.profile</code>’a bir <code>alias</code> eklemeniz
 lazım.</p>
 
 <p>Eğer <code>$HOME</code>da <code>.profile</code> yok ise önce oluşturun:</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> ~
-touch .profile
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> ~
+<span class="nb">touch</span> .profile
+</code></pre></div>
 <p>Eğer <code>~</code> işaretini yapmakta sorun varsa, <strong>Turkish QWERTY PC</strong> modunda,
 <kbd>⌃</kbd> (alt) + <kbd>Ü</kbd> yapın. Sonra, sevdiğiniz bir text editörde bu dosyayı açın:</p>
-<pre class="highlight shell"><code>open -a /Applications/TextEdit.app .profile
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>open <span class="nt">-a</span> /Applications/TextEdit.app .profile
+</code></pre></div>
 <p>Dosyayı açtıktan sonra aşağıdaki bilgiyi ekleyin, kaydedip çıkın programdan.
 Küçük bir not: Ben text editör olarak [TextMate][textmate] kullanıyorum, belki
 yazıyı okuyanlarda da yoktur diye standart / default uygulamalardan örnek
 veriyorum!</p>
-<pre class="highlight shell"><code><span class="nb">alias </span><span class="nv">ls</span><span class="o">=</span><span class="s2">"ls -alhG"</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">alias ls</span><span class="o">=</span><span class="s2">"ls -alhG"</span>
+</code></pre></div>
 <p>Şimdi ya terminali komple kapatıp açacaksınız, ya da:</p>
-<pre class="highlight shell"><code><span class="nb">source</span> <span class="nv">$HOME</span>/.profile
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">source</span> <span class="nv">$HOME</span>/.profile
+</code></pre></div>
 <p>yazın enter’a basacaksınız. Şimdi <code>ls</code> yaptığınızda tüm detaylarıyla <code>$HOME</code>
 folder’ını görebilirsiniz. Eğer <code>.ssh</code> diye bir folder yoksa hemen bunu
 oluşturun ve gereken dosyaları ekleyin:</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
-mkdir .ssh/
-touch config
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
+<span class="nb">mkdir</span> .ssh/
+<span class="nb">touch </span>config
+</code></pre></div>
 <p>Şimdi bu <code>config</code> dosyasına, <code>ssh</code> yapmak istediğimiz sunucuya ait bilgileri
 ekleyeceğiz. Tabii bunun için yine bir text editör ile dosyayı açalım.
 Açtıktan sonra:</p>
-<pre class="highlight plaintext"><code>Host SUNUCU_ADI  
+<div class="highlight"><pre class="highlight plaintext"><code>Host SUNUCU_ADI  
 User KULLANICI_ADI  
 Port SSH_PORTU  
 HostName SUNUCU_IP  
-</code></pre>
-
+</code></pre></div>
 <p>şeklinde uygun bilgileri doldurun. Unutmayın! Bu dosyanın mantığı
 <strong>Key</strong> <strong>Value</strong> şeklinde. Key’den sonra ya bir <code>TAB</code> ya da <code>SPACE</code> koymanız
 lazım. Ben <code>TAB</code> kullanıyorum.</p>
 
 <p>Örneğin; ip’si <strong>1.2.3.4</strong> olan bir sunucuya, 22. port’dan ssh yapacaksak ve
 bu sunucuya <q>Sunucum</q> diye bir isim takarsak;</p>
-<pre class="highlight plaintext"><code>Host Sunucum  
+<div class="highlight"><pre class="highlight plaintext"><code>Host Sunucum  
 User vigo  
 Port 22  
 HostName 1.2.3.4  
-</code></pre>
-
+</code></pre></div>
 <p>Eğer <strong>Port</strong> belirtmezseniz sistem bunu otomatik olarak <strong>22</strong> varsayacaktır.
 Bu dosyada <strong>N</strong> tane sunucu tanımlaması yapılabilir. Yani:</p>
-<pre class="highlight plaintext"><code>Host Sunucum1  
+<div class="highlight"><pre class="highlight plaintext"><code>Host Sunucum1  
 User vigo  
 Port 22  
 HostName 1.2.3.4  
@@ -251,29 +240,25 @@ Host Sunucum2
 User vigo  
 Port 22  
 HostName 10.20.30.40  
-</code></pre>
-
+</code></pre></div>
 <p>gibi, istediğiniz kadar sunucu ekleyebilirsiniz. Keza, konfigürasyon bilgisi
 olarak da, Host, User, Port vs&hellip; dışında pek çok direktif de ekleyebilirsiniz.
 Bu bilgiler nerede? Tabii ki <strong>man page</strong>de!</p>
-<pre class="highlight shell"><code>man ssh_config
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>man ssh_config
+</code></pre></div>
 <p>demeniz yeterli&hellip;</p>
 
 <p>Eğer bunların hiç biri olmasaydı nasıl bağlantı yapacaktık?</p>
-<pre class="highlight shell"><code>ssh vigo@1.2.3.4
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>ssh vigo@1.2.3.4
+</code></pre></div>
 <p>şeklinde. Hemen yeri gelmişken şunu da anlatalım. Uzaktaki makineye
 bağlanırken sürekli <strong>şifre</strong> girme derdinden kurtulmak için kendinize bir
 <strong>ssh-key</strong> üretebilirsiniz.</p>
 
 <p>Bu ürettiğiniz key’i de uzaktaki makineye eklediğiniz zaman, ssh bağlantısı
 için birdaha size şifre sorulmaz. Nasıl mı? Terminal’de devam ediyoruz:</p>
-<pre class="highlight shell"><code>ssh-keygen -t dsa
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>ssh-keygen <span class="nt">-t</span> dsa
+</code></pre></div>
 <p>Enter’a basar basmaz <strong>Generating public/private dsa key pair.</strong> şeklinde bir
 mesaj göreceksiniz. Komut size iki anahtar üretiyor, biri <strong>public</strong> diğeri
 de <strong>private</strong>.</p>
@@ -287,7 +272,7 @@ nereye kayıt edileceği soruluyor. Gördüğünüz gibi bu lokasyon, default ol
 <p>Daha sonra <strong>passphrase</strong> sorulur. Bu bir tür şifredir ve güvenlik için
 önemlidir. Bu bakımdan bu alanı boş bırakmadan, hatırlayabileceğiniz bir
 şifre seçin. Herşey yolunda gittiyse size:</p>
-<pre class="highlight plaintext"><code>The key fingerprint is:  
+<div class="highlight"><pre class="highlight plaintext"><code>The key fingerprint is:  
 fe:82:ea:3d:c4:..:..:.. user@hostname (uzun olduğu için hepsini yazmadım!)  
 The keys randomart image is:  
 +--[ DSA 1024]----+  
@@ -301,30 +286,26 @@ The keys randomart image is:
 |ooo...o ..       |  
 |=..+o... ..      |  
 +-----------------+
-</code></pre>
-
+</code></pre></div>
 <p>şeklinde bir görüntü çıkar ve <code>.ssh/</code> altına baktığınızda iki dosya ile
 karşılaşırsınız:</p>
-<pre class="highlight shell"><code>ls ~/.ssh/
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ls</span> ~/.ssh/
 
 id_dsa
 id_dsa.pub
-</code></pre>
-
+</code></pre></div>
 <p>işte bu sonu <code>.pub</code> ile biten dosya sizin <strong>PUBLIC</strong> key’inizdir. Eğer bu
 dosyayı text editör’le açarsanız karşınıza;</p>
-<pre class="highlight plaintext"><code>ssh-dss AAAAB3NzaC1kc3MA...... user@hostname
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>ssh-dss AAAAB3NzaC1kc3MA...... user@hostname
+</code></pre></div>
 <p>şeklinde devasa bişi çıkar. (<em>Ben uzun olduğu için sadece minik bir kısmını
 yazdım.</em>) Şimdi yapmanız gereken, uzaktaki makineye bağlanıp, oradaki
 <code>$HOME</code>’unuza gidip, <code>.ssh/</code> in altında bulunan <code>authorized_keys</code> dosyasına
 bu <code>id_dsa.pub</code> dosyasının içinde yazan anahtarı ekleyin. Eğer <code>authorized_keys</code>
 dosyasını göremezseniz:</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
-touch authorized_keys
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
+<span class="nb">touch </span>authorized_keys
+</code></pre></div>
 <p>şeklinde oluşturun. Karşı makinede, en basit text editörü <code>nano</code> yardımıyla 
 bunu yapabilirsiniz. Dikkat edilmesi gereken şey, bu up-uzun tek bir satır 
 şeklinde olmalı! (<em>word-wrape dikkat edin!</em>)</p>
@@ -332,15 +313,13 @@ bunu yapabilirsiniz. Dikkat edilmesi gereken şey, bu up-uzun tek bir satır
 <p>Kendi tarafınızda elma (<em>cmd + c</em>) kopyalayıp, uzaktaki makinede de elma 
 (<em>cmd + v</em>) ile yapıştırabilirsiniz. Eğer <code>nano</code> kullanmayı bilmeyenler varsa,
 uzaktaki makineye bağlanınca:</p>
-<pre class="highlight shell"><code>nano -w <span class="nv">$HOME</span>/.ssh/authorized_keys
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>nano <span class="nt">-w</span> <span class="nv">$HOME</span>/.ssh/authorized_keys
+</code></pre></div>
 <p>ile nano’yu açın. elma (<em>cmd + v</em>) ile keyinizi yapıştırın, satır sonunda
 <code>enter</code> yapın. <strong>Save</strong> edip çıkmak için <code>kntrl + x</code>, sorulan soruya <code>y</code> 
 cevabı ve enter. Hemen test edelim bakalım olmuşmu?</p>
-<pre class="highlight shell"><code>ssh Sunucum1
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>ssh Sunucum1
+</code></pre></div>
 <p>Enter! evet şifre sormadan bağlandınız! <kbd>⌃</kbd> (kntrl) + <kbd>D</kbd> ile 
 bağlantıyı kesebilirsiniz.</p>
 
@@ -359,9 +338,8 @@ default bulunan <strong>cp</strong> (<em>copy</em>) komutunun secure olanı! Ger
 <p>Normalde <strong>bash-completion</strong> kurulunca zaten pek çok sorun halloluyor. Fakat, 
 sistemin içindeki <code>awk</code> ve <code>sed</code>, bir sebebten dolayı, ssh’i tamamlayamıyor. 
 Bu bakımdan ports’dan <strong>gawk</strong> ve <strong>gsed</strong> paketlerini de kurmamız gerekiyor.</p>
-<pre class="highlight shell"><code>sudo port install bash-completion gawk gsed
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo </span>port <span class="nb">install </span>bash-completion gawk gsed
+</code></pre></div>
 <p>Eğer <code>bash-completion</code> önceden kuruluysa sadece <code>gawk</code> ve <code>gsed</code>i kurun&hellip; Şimdi 
 yapmanız gereken tek şey: <strong>ssh [TAB’e basın]</strong> config’den ya da <code>/etc/hosts</code>dan 
 otomatik tamamlama başladı bile&hellip; </p>
@@ -374,8 +352,8 @@ otomatik tamamlama başladı bile&hellip; </p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “7” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2011/03/22/kendi-pythonunu-kendin-kur-yazimda-eksik-yerler-buldum/">Kendi Python’unu kendin kur yazımda eksik yerler buldum</a></h3>

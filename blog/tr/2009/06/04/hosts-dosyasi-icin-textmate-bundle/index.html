@@ -12,11 +12,11 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:45+03:00" />
         <meta name="description" content="Basit bir şekilde, hosts dosyasını daha anlaşılır görebilirsiniz. Tek yapmanız
 gereken, aynı php-ini için yaptığımız gibi bir dil oluşturmak…" />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2009/06/04/hosts-dosyasi-icin-textmate-bundle/" />
         <meta property="og:title" content="/etc/hosts dosyası için TextMate Bundle" />
         <meta property="og:site_name" content="vigo" />
@@ -99,40 +99,36 @@ gereken, aynı <a href="/blog/tr/2008/11/21/textmate-ve-php-ini/">php-ini</a> i�
 </p>
 
 <div class="card card-custom"><img src="http://2.bp.blogspot.com/_9jz1qeFrzkQ/SieK5BpMmcI/AAAAAAAAB6k/T8F6E53nfBs/s400/Picture+1.png" alt="TextMate ekran görüntüsü, Bundle editör"></div>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">scopeName</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">'etc-hosts';</span><span class="w">
-    </span><span class="err">patterns</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">(</span><span class="w">
-        </span><span class="err">{</span><span class="w">
-            </span><span class="err">name</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">'comment.line.number-sign.etc-hosts';</span><span class="w">
-            </span><span class="err">match</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">'(#).*$\n?';</span><span class="w">
-            </span><span class="err">captures</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">{</span><span class="w">
-                </span><span class="err">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="err">name</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">'punctuation.definition.comment.etc-hosts';</span><span class="w"> </span><span class="p">}</span><span class="err">;</span><span class="w">
-            </span><span class="err">};</span><span class="w">
-        </span><span class="err">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="err">name</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">'constant.etc-hosts';</span><span class="w">
-            </span><span class="err">match</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">'^[\d|\.]+';</span><span class="w">
-        </span><span class="p">}</span><span class="err">,</span><span class="w">
-    </span><span class="err">);</span><span class="w">
-</span><span class="err">}</span><span class="w">
-</span></code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>{
+    scopeName = 'etc-hosts';
+    patterns = (
+        {
+            name = 'comment.line.number-sign.etc-hosts';
+            match = '(#).*$\n?';
+            captures = {
+                1 = { name = 'punctuation.definition.comment.etc-hosts'; };
+            };
+        },
+        {
+            name = 'constant.etc-hosts';
+            match = '^[\d|\.]+';
+        },
+    );
+}
+</code></pre></div>
 <p><code>/etc/hosts</code> dosyası, sistemin bir parçası olduğu için, <strong>sudo</strong> ile açmanız
 gerekir.</p>
-<pre class="highlight shell"><code>sudo mate /etc/hosts
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo </span>mate /etc/hosts
+</code></pre></div>
 <p>Yukarıdaki <strong>mate</strong> komutunu kullanabilmeniz için; ya ilk kurulum esnasında
 bunu belirlemiş olmanız ya da;</p>
-<pre class="highlight shell"><code>ln -s /Applications/TextMate.app/Contents/Resources/mate ~/bin/mate
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ln</span> <span class="nt">-s</span> /Applications/TextMate.app/Contents/Resources/mate ~/bin/mate
+</code></pre></div>
 <p>yapmış olmanız gerekir. Keza bu <strong>mate</strong> olayı süper işe yarar. Terminal’de,
 bir folder içindesiniz ve O folder’ın altındaki tüm dosyaları açıp
 düzenlemeniz lazım:</p>
-<pre class="highlight shell"><code>mate .
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>mate <span class="nb">.</span>
+</code></pre></div>
 <p>Şifrenizi girip dosyayı açabilirsiniz. Ufak bir hatırlatma, dosyanın bir
 extension’ı olmadığı için, açtıktan sonra elle dosya tipini seçin:</p>
 
@@ -144,8 +140,8 @@ extension’ı olmadığı için, açtıktan sonra elle dosya tipini seçin:</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “10” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2015/04/13/textmate-ve-interaktif-giris/">TextMate ve İnteraktif Giriş</a></h3>

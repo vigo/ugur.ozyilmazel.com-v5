@@ -12,13 +12,13 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:44+03:00" />
         <meta name="description" content="Bir önceki yazımda unutmuşum, yeni farkettim. pip’i
 terminalde kullanırken bash-completion özelliğinden de faydalanabiliriz. Bunun
 için, pip’le gelen bash-completion’ı sisteme eklemek gerekiyor. Tabi, sizde
 zaten bash-completion kurulu diye var sayıyorum." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2011/02/22/pip-icin-bash-completion/" />
         <meta property="og:title" content="Pip için bash completion" />
         <meta property="og:site_name" content="vigo" />
@@ -102,30 +102,26 @@ terminalde kullanırken <code>bash-completion</code> özelliğinden de faydalana
 için, pip’le gelen bash-completion’ı sisteme eklemek gerekiyor. Tabi, sizde
 zaten <code>bash-completion</code> kurulu diye var sayıyorum.
 </p>
-<pre class="highlight shell"><code>sudo port install bash-completion
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo </span>port <span class="nb">install </span>bash-completion
+</code></pre></div>
 <p><code>pip</code>’i kurduktan sonra terminalde şunu yazın;</p>
-<pre class="highlight shell"><code>pip completion --bash
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>pip completion <span class="nt">--bash</span>
+</code></pre></div>
 <p>Bu işlem aşağıdaki <strong>bash kodunu</strong> oluşutuyor:</p>
-<pre class="highlight shell"><code><span class="c"># pip bash completion start</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="c"># pip bash completion start</span>
 _pip_completion<span class="o">()</span>
 <span class="o">{</span>
-    <span class="nv">COMPREPLY</span><span class="o">=(</span> <span class="k">$(</span> <span class="nv">COMP_WORDS</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">COMP_WORDS</span><span class="p">[*]</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>
+    <span class="nv">COMPREPLY</span><span class="o">=(</span> <span class="si">$(</span> <span class="nv">COMP_WORDS</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">COMP_WORDS</span><span class="p">[*]</span><span class="k">}</span><span class="s2">"</span> <span class="se">\</span>
                    <span class="nv">COMP_CWORD</span><span class="o">=</span><span class="nv">$COMP_CWORD</span> <span class="se">\</span>
-                   <span class="nv">PIP_AUTO_COMPLETE</span><span class="o">=</span>1 <span class="nv">$1</span> <span class="k">)</span> <span class="o">)</span>
+                   <span class="nv">PIP_AUTO_COMPLETE</span><span class="o">=</span>1 <span class="nv">$1</span> <span class="si">)</span> <span class="o">)</span>
 <span class="o">}</span>
-<span class="nb">complete</span> -o default -F _pip_completion pip
+<span class="nb">complete</span> <span class="nt">-o</span> default <span class="nt">-F</span> _pip_completion pip
 <span class="c"># pip bash completion end</span>
-</code></pre>
-
+</code></pre></div>
 <p>Bu kodu, <code>/opt/local/etc/bash_completion.d/</code> altına <code>pip_completion</code> ismiyle
 kaydetmeniz lazım. Kolay yolu şu:</p>
-<pre class="highlight shell"><code>pip completion --bash &gt; pip_completion | sudo mv pip_completion /opt/local/etc/bash_completion.d/
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>pip completion <span class="nt">--bash</span> <span class="o">&gt;</span> pip_completion | <span class="nb">sudo mv </span>pip_completion /opt/local/etc/bash_completion.d/
+</code></pre></div>
 <p>Terminal’i kapatıp açın veya durumunuza göre;</p>
 
 <ul>
@@ -139,8 +135,8 @@ kaydetmeniz lazım. Kolay yolu şu:</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “6” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2011/03/23/bu-defa-son/">Bu defa son</a></h3>

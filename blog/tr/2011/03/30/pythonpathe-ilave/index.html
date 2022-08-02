@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:45+03:00" />
         <meta name="description" content="AppleScript ile pek çok uygulama (tabi desteği varsa) kontrol edilebiliyor.
 Yine daldan dala atlarken python için yazılmış appscript
 diye bir modül gördüm. Hemen pip’den kurayım dedim." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2011/03/30/pythonpathe-ilave/" />
         <meta property="og:title" content="PYTHONPATH’e ilave" />
         <meta property="og:site_name" content="vigo" />
@@ -105,26 +105,22 @@ diye bir modül gördüm. Hemen <code>pip</code>’den kurayım dedim.
 Bazen <code>pip</code>’de bile bu tarz sıkıntılar oluyor. Biraz baktım etrafa çözüm aradım.</p>
 
 <p>En azından source’u indirim kendim kurayım dedim.</p>
-<pre class="highlight shell"><code>python setup.py install
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>python setup.py <span class="nb">install</span>
+</code></pre></div>
 <p>Kurulum oldu&hellip; aa, bir de baktım ki, klasik <code>site-packages</code>’ın altına değilde,
 şuraya kurmuş:</p>
-<pre class="highlight plaintext"><code>~/.local/Python/Library/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>~/.local/Python/Library/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages
+</code></pre></div>
 <p>Tabi bu alan benim <code>path</code>’de olmadığı için bir türlü import edemiyordum. Yine
 yeni bir şey öğrendim. Hemen <code>PYTHONPATH</code>’e ekleme yaptım:</p>
-<pre class="highlight plaintext"><code>export PYTHONPATH=~/.local/Python/Library/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages:$PYTHONPATH
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>export PYTHONPATH=~/.local/Python/Library/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages:$PYTHONPATH
+</code></pre></div>
 <p>Bu appscript kısaca şu işe yarıyor; iTunes’u açıp bir parça çalmaya başlayın.
 Bu sırada da ipython’u açıp aşağıdakileri yazın:</p>
-<pre class="highlight python"><code><span class="kn">from</span> <span class="nn">appscript</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">iTunes</span> <span class="o">=</span> <span class="n">app</span><span class="p">(</span><span class="s">u'/Applications/iTunes.app'</span><span class="p">)</span>
-<span class="n">iTunes</span><span class="o">.</span><span class="n">current_track</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight python"><code><span class="kn">from</span> <span class="nn">appscript</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">iTunes</span> <span class="o">=</span> <span class="n">app</span><span class="p">(</span><span class="sa">u</span><span class="s">'/Applications/iTunes.app'</span><span class="p">)</span>
+<span class="n">iTunes</span><span class="p">.</span><span class="n">current_track</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
+</code></pre></div>
 <p>Yukarıdaki script <a href="http://www.libertypages.com/clarktech/?p=77">http://www.libertypages.com/clarktech/?p=77</a> sitesinden alınmıştır.</p>
 
 <p>Mutlu programlamalar!</p>
@@ -135,8 +131,8 @@ Bu sırada da ipython’u açıp aşağıdakileri yazın:</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “10” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/">Derlenmiş Python Dosyaları Bazen Sizi Yanıltabilir</a></h3>

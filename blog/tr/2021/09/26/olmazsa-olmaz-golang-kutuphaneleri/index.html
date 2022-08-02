@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:54+03:00" />
+        <meta name="date" content="2022-08-02T17:17:43+03:00" />
         <meta name="description" content="İster komut satırı aracı, ister kütüphane ya da servis geliştirirken bazı 3.parti
 kütüphaneler / yardımcılar, hayatımızı kolaylaştırır. Bu yazımda sizlere sık
 kullandığım paketlerden bahsedeceğim." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2021/09/26/olmazsa-olmaz-golang-kutuphaneleri/" />
         <meta property="og:title" content="Olmazsa Olmaz Golang Kütüphaneleri" />
         <meta property="og:site_name" content="vigo" />
@@ -106,9 +106,8 @@ kullandığım paketlerden bahsedeceğim.</p>
 daha sonra da pek çok kişi tarafından katkı sağlanan <code>color</code> paketi. Kullanımı
 çok kolay. Komut satırı uygulamalarınızı renklendirmek istiyorsanız bu paketi
 mutlaka kullanmalısınız.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>go get github.com/fatih/color
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>go get github.com/fatih/color
+</code></pre></div>
 <h3>github.com/pkg/errors</h3>
 
 <p><a href="https://github.com/pkg/errors">https://github.com/pkg/errors</a></p>
@@ -116,9 +115,8 @@ mutlaka kullanmalısınız.</p>
 <p>Error’leri yönetmek, error’lere ilave mesaj eklemek, bir error’ü wrap/unwrap
 etmek gibi pek çok işi bizim adımıza yapan olmazsa olmaz kütüphanelerden biri de
 <code>errors</code> paketi.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>go get github.com/pkg/errors
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>go get github.com/pkg/errors
+</code></pre></div>
 <h3>github.com/alexeyco/simpletable</h3>
 
 <p><a href="https://github.com/alexeyco/simpletable">https://github.com/alexeyco/simpletable</a></p>
@@ -126,9 +124,8 @@ etmek gibi pek çok işi bizim adımıza yapan olmazsa olmaz kütüphanelerden b
 <p>Ruby’de çok sevdiğim <a href="https://github.com/tj/terminal-table">terminal-table</a>’ın
 golang versiyonu. Terminal’de aynı html table’ları gibi tabular gösterim
 yapmanızı sağlıyor.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>go get -u github.com/alexeyco/simpletable
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>go get <span class="nt">-u</span> github.com/alexeyco/simpletable
+</code></pre></div>
 <h3>github.com/urfave/cli</h3>
 
 <p><a href="https://github.com/urfave/cli">https://github.com/urfave/cli</a></p>
@@ -138,18 +135,16 @@ harika bir <code>cli</code> geliştirme aracı. Pek çok işi o kadar kolay hale
 kolaylaştırıyor ki&hellip; Daha önce başka araçları deneyip hatta hiç araç
 kullanmadan uğraşıp yaptığım şeyleri inanılmaz derecede kolay ve hızlı bir
 şekilde yapmamı sağlıyor <code>urfave/cli</code>.</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>go get github.com/urfave/cli/v2
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>go get github.com/urfave/cli/v2
+</code></pre></div>
 <h3>github.com/codingconcepts/env</h3>
 
 <p><a href="https://github.com/codingconcepts/env">https://github.com/codingconcepts/env</a></p>
 
 <p>Uygulamanız içinde environment variable’ları yönetmenizi sağlayan güzel bir
 kütüphane <code>env</code>.</p>
-<pre class="highlight go"><code><span class="err">$</span><span class="x"> </span><span class="k">go</span><span class="x"> </span><span class="n">get</span><span class="x"> </span><span class="o">-</span><span class="n">u</span><span class="x"> </span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">codingconcepts</span><span class="o">/</span><span class="n">env</span><span class="x">
-</span></code></pre>
-
+<div class="highlight"><pre class="highlight go"><code><span class="err">$</span> <span class="k">go</span> <span class="n">get</span> <span class="o">-</span><span class="n">u</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">codingconcepts</span><span class="o">/</span><span class="n">env</span>
+</code></pre></div>
 <h3>air</h3>
 
 <p><a href="https://github.com/cosmtrek/air">https://github.com/cosmtrek/air</a></p>
@@ -177,9 +172,8 @@ assertion işlerini basitçe halledebilsem</q> demiştim ve bir google aramasın
 sonra <code>testify</code> ile tanışıp bir daha da bırakamadım.</p>
 
 <p>Sadece assertion değil mocking ve benzeri diğer yardımcılarla beraber geliyor!</p>
-<pre class="highlight go"><code><span class="err">$</span><span class="x"> </span><span class="k">go</span><span class="x"> </span><span class="n">get</span><span class="x"> </span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">stretchr</span><span class="o">/</span><span class="n">testify</span><span class="x">
-</span></code></pre>
-
+<div class="highlight"><pre class="highlight go"><code><span class="err">$</span> <span class="k">go</span> <span class="n">get</span> <span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">stretchr</span><span class="o">/</span><span class="n">testify</span>
+</code></pre></div>
 <hr>
 
 <p>Günlük işlerde sıklıkla kullandığım kütüphanelerin bazılarını tanıtmaya
@@ -195,8 +189,8 @@ framework’leri gibi daha geniş yardımcılar da bulunmakta.</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makale</h1>
-        <p>Konu ile ilgili toplam “1” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2021/05/27/istediginiz-yerden-go-kodunu-calistirabilirsiniz/">İstediğiniz Yerden Go Kodunu Çalıştırabilirsiniz</a></h3>

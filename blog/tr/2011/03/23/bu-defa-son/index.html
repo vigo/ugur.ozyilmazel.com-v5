@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:54+03:00" />
+        <meta name="date" content="2022-08-02T17:17:43+03:00" />
         <meta name="description" content="Biliyorum daha dün (ya da önceki gün) bu konu ile ilgili bir güncelleme
 yapmıştım fakat asıl yapmam gerekeni daha yeni hatırladım. Hatta kendi
 tarafımda pek çok şeyi de düzeltmek zorunda kaldım." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2011/03/23/bu-defa-son/" />
         <meta property="og:title" content="Bu defa son" />
         <meta property="og:site_name" content="vigo" />
@@ -113,24 +113,22 @@ yandı. Aslında bu lamba çok daha önce yanmıştı ama ben unutmuşum.</p>
 <p>yazılarına son bir ek geliyor!</p>
 
 <p>Tüm ayarlamalarımızı <code>~/.local</code> üzerine kurmuştuk ya, işe başlamadan önce;</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
-mkdir .local
-mkdir .local/Python
-mkdir .local/Python/Packages
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
+<span class="nb">mkdir</span> .local
+<span class="nb">mkdir</span> .local/Python
+<span class="nb">mkdir</span> .local/Python/Packages
 
 <span class="c"># ya da</span>
-mkdir -p ~/.local/Python/Packages
-</code></pre>
-
+<span class="nb">mkdir</span> <span class="nt">-p</span> ~/.local/Python/Packages
+</code></pre></div>
 <p>Şeklinde ilerleyeceğiz. Bu sayede, ileride Ruby kurmaya karar verirsek,
 <code>.local/Ruby</code> altına derleyeceğiz Ruby’i&hellip;</p>
 
 <p>Hemen configure satırını da düzeltelim:</p>
-<pre class="highlight shell"><code>./configure --enable-unicode<span class="o">=</span>ucs4 --prefix<span class="o">=</span><span class="nv">$HOME</span>/.local/Python --enable-framework<span class="o">=</span><span class="nv">$HOME</span>/.local/Python/Library/Frameworks
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>./configure <span class="nt">--enable-unicode</span><span class="o">=</span>ucs4 <span class="nt">--prefix</span><span class="o">=</span><span class="nv">$HOME</span>/.local/Python <span class="nt">--enable-framework</span><span class="o">=</span><span class="nv">$HOME</span>/.local/Python/Library/Frameworks
+</code></pre></div>
 <p><code>.bashrc</code> için gereken düzeltmeler:</p>
-<pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>~/.local/Python/Packages/bin:<span class="nv">$PATH</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>~/.local/Python/Packages/bin:<span class="nv">$PATH</span>
 <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>~/.local/Python/bin:<span class="nv">$PATH</span>
 <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>~/.local/Python/Library/Frameworks/Python.framework/Versions/Current/bin:<span class="nv">$PATH</span>
 
@@ -138,8 +136,7 @@ mkdir -p ~/.local/Python/Packages
 
 <span class="nb">export </span><span class="nv">PIP_INSTALL_OPTION</span><span class="o">=</span><span class="s2">"--prefix=/Users/KULLANICI_ADI/.local/Python/Packages/"</span>
 <span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span>~/.local/Python/Packages/lib/python2.7/site-packages
-</code></pre>
-
+</code></pre></div>
 <p>Aslında önceki yazılara göre tek fark, <code>.local</code> folder’ının altına <strong>Python</strong>
 diye bir folder açtık ve tüm derleme ve kurulum işleri için o yeri gösterdik.</p>
 
@@ -149,8 +146,8 @@ diye bir folder açtık ve tüm derleme ve kurulum işleri için o yeri gösterd
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “9” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/">Derlenmiş Python Dosyaları Bazen Sizi Yanıltabilir</a></h3>

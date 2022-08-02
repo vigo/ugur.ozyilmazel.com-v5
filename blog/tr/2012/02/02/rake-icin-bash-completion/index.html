@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:44+03:00" />
         <meta name="description" content="Terminal’de çalışırken hep işimi hızlı ve en kolay şekilde yapabilmenin yollarını ararım.
 Bu sayede pek çok yeni şey de öğrendim. Octopress sağolsun ciddi ciddi Ruby
 öğrenmeme büyük katkıda bulundu…" />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2012/02/02/rake-icin-bash-completion/" />
         <meta property="og:title" content="Rake için bash-completion" />
         <meta property="og:site_name" content="vigo" />
@@ -102,18 +102,16 @@ Bu sayede pek çok yeni şey de öğrendim. Octopress sağolsun ciddi ciddi <a h
 </p>
 
 <p><code>Rakefile</code> sayesinde pek çok şeyi otomatize ediyoruz. Eğer;</p>
-<pre class="highlight plaintext"><code>rake -T
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>rake -T
+</code></pre></div>
 <p>bize yapabileceğimiz işlerin listesini veriyor. Örneğin Octopress sitenizde
 bunu denerseniz:</p>
-<pre class="highlight shell"><code>rake clean                      <span class="c"># Clean out caches: .pygments-cache, .gist-cache, .sass-cache</span>
+<div class="highlight"><pre class="highlight shell"><code>rake clean                      <span class="c"># Clean out caches: .pygments-cache, .gist-cache, .sass-cache</span>
 rake copydot[source,dest]       <span class="c"># copy dot files for deployment</span>
 rake deploy                     <span class="c"># Default deploy task</span>
 rake gen_deploy                 <span class="c"># Generate website and deploy</span>
 rake generate                   <span class="c"># Generate jekyll site</span>
-</code></pre>
-
+</code></pre></div>
 <p>gibi pek çok <strong>rake task</strong>’i görebilirsiniz. Aklıma ilk şu geldi:</p>
 
 <blockquote>
@@ -123,41 +121,37 @@ rake generate                   <span class="c"># Generate jekyll site</span>
 <p>Bunun mutlaka <code>bash-completion</code>’ı vardır dedim ve buldum. Mac OS X kullanıyorum
 ve paket yöneticisi olarak <a href="http://mxcl.github.com/homebrew/" title="The missing package manager for OS X">Homebrew</a> kullanıyorum. Eğer yoksa ilk
 olarak ilgili paketi kurmanız gerekiyor :</p>
-<pre class="highlight shell"><code><span class="c"># önce kontrol edin</span>
-brew ls bash-completion <span class="c"># eğer yoksa hata verir...</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="c"># önce kontrol edin</span>
+brew <span class="nb">ls </span>bash-completion <span class="c"># eğer yoksa hata verir...</span>
 
 <span class="c"># yoksa</span>
 brew update
-brew install bash-completion
-</code></pre>
-
+brew <span class="nb">install </span>bash-completion
+</code></pre></div>
 <p>Kurumdan sonra; <code>/usr/local/etc/bash_completion.d</code> altına <code>completion_rake</code>
 adında bir dosya oluşturup içine aşağıdaki fonksiyonu yazın:</p>
-<pre class="highlight shell"><code>
-touch /usr/local/etc/bash_completion.d/completion_rake <span class="c"># dosyayı oluşturduk</span>
+<div class="highlight"><pre class="highlight shell"><code>
+<span class="nb">touch</span> /usr/local/etc/bash_completion.d/completion_rake <span class="c"># dosyayı oluşturduk</span>
 nano /usr/local/etc/bash_completion.d/completion_rake <span class="c"># açtık</span>
 
 <span class="c"># eğer TextMate’iniz ayarlıysa</span>
 mate /usr/local/etc/bash_completion.d/completion_rake
-</code></pre>
-<pre class="highlight shell"><code>_rake<span class="o">()</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell"><code>_rake<span class="o">()</span>
 <span class="o">{</span>
-    <span class="k">if</span> <span class="o">[[</span> ! -e Rakefile <span class="o">]]</span>; <span class="k">then
+    <span class="k">if</span> <span class="o">[[</span> <span class="o">!</span> <span class="nt">-e</span> Rakefile <span class="o">]]</span><span class="p">;</span> <span class="k">then
         return
     fi
-    </span><span class="nv">opts</span><span class="o">=</span><span class="k">$(</span>rake -T | awk <span class="s1">'NR != 1 {print $2}'</span><span class="k">)</span>
+    </span><span class="nv">opts</span><span class="o">=</span><span class="si">$(</span>rake <span class="nt">-T</span> | <span class="nb">awk</span> <span class="s1">'NR != 1 {print $2}'</span><span class="si">)</span>
     <span class="nv">cur</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">COMP_WORDS</span><span class="p">[COMP_CWORD]</span><span class="k">}</span><span class="s2">"</span>
-    <span class="nv">COMPREPLY</span><span class="o">=(</span> <span class="k">$(</span><span class="nb">compgen</span> -W <span class="s2">"</span><span class="k">${</span><span class="nv">opts</span><span class="k">}</span><span class="s2">"</span> -- <span class="k">${</span><span class="nv">cur</span><span class="k">})</span> <span class="o">)</span>
+    <span class="nv">COMPREPLY</span><span class="o">=(</span> <span class="si">$(</span><span class="nb">compgen</span> <span class="nt">-W</span> <span class="s2">"</span><span class="k">${</span><span class="nv">opts</span><span class="k">}</span><span class="s2">"</span> <span class="nt">--</span> <span class="k">${</span><span class="nv">cur</span><span class="k">}</span><span class="si">)</span> <span class="o">)</span>
 <span class="o">}</span>
-<span class="nb">complete</span> -F _rake rake
-</code></pre>
-
+<span class="nb">complete</span> <span class="nt">-F</span> _rake rake
+</code></pre></div>
 <p>Benim <code>.dotfiles</code> şeklinde kendi ayarlarım var bu bakımdan tüm bash-completion
 dosyalarım <code>~/Dotfiles/completions/</code> altında bulunuyor bu bakımdan ben
 <code>/usr/local/etc/bash_completion.d</code> altına linkliyorum dosyayı.</p>
-<pre class="highlight plaintext"><code>ln -s ~/Dotfiles/completions/completion_rake /usr/local/etc/bash_completion.d/completion_rake
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>ln -s ~/Dotfiles/completions/completion_rake /usr/local/etc/bash_completion.d/completion_rake
+</code></pre></div>
 <p>şeklinde yapıyorum.</p>
 
                     </div>
@@ -166,8 +160,8 @@ dosyalarım <code>~/Dotfiles/completions/</code> altında bulunuyor bu bakımdan
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “8” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2016/07/30/solid-prensibi/">SOLID Prensibi</a></h3>

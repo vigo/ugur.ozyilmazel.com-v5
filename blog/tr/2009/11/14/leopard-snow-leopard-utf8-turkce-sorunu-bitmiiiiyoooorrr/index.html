@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:44+03:00" />
         <meta name="description" content="Çok basit iki Unix komutundan bahsetmek istiyorum, cat ve sort. Unix’in en 
 büyük olayı, pipe’larla yani | işaretiyle, yapılan işlemin sonucunu, bir 
 sonraki komuta geçirebilme özelliğidir." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2009/11/14/leopard-snow-leopard-utf8-turkce-sorunu-bitmiiiiyoooorrr/" />
         <meta property="og:title" content="Leopard / Snow Leopard UTF8 - Türkçe sorunu bitmiiiiyoooorrr!!!" />
         <meta property="og:site_name" content="vigo" />
@@ -107,7 +107,7 @@ sonraki komuta geçirebilme özelliğidir.
 <p>Hemen bir Terminal açın ve <code>sorter.txt</code> adında bir boş dosya oluşturun, oluşan 
 dosyayı <code>nano</code>’da açıp (<em>ya da TextMate / TextEdit vs&hellip;</em>) aşağıdaki metni 
 yapıştırın:</p>
-<pre class="highlight plaintext"><code>ümit
+<div class="highlight"><pre class="highlight plaintext"><code>ümit
 cemal
 uğur
 ali
@@ -117,31 +117,27 @@ vigo
 bronx
 ömer
 şekip
-</code></pre>
-
+</code></pre></div>
 <p>şimdi yukarıdaki işlemleri yapalım;</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
-touch sorter.txt
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
+<span class="nb">touch </span>sorter.txt
 nano sorter.txt
-</code></pre>
-
+</code></pre></div>
 <div class="card card-custom" title="Title"><img src="http://2.bp.blogspot.com/_9jz1qeFrzkQ/Sv8DiaFjDlI/AAAAAAAAC6c/omN9gerQYbw/s600/sorter-01.png" alt="TextMate ekran görüntüsü, sorter.txt dosyası"></div>
 
 <p>Daha sonra yukarıdaki metni copy-paste (<em>kopyala / yapıştır</em>) ile <code>nano</code>’ya 
 yerleştirin ve kaydedip çıkın (<kbd>⌃</kbd> (kntrl) + <kbd>O</kbd> ve 
 <kbd>⌃</kbd> (kntrl) + <kbd>X</kbd>). Şimdi <code>cat</code> komutu ile 
 dosyanın içeriğini ekrana basın.</p>
-<pre class="highlight shell"><code>cat sorter.txt
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cat </span>sorter.txt
+</code></pre></div>
 <div class="card card-custom" title="Title"><img src="http://3.bp.blogspot.com/_9jz1qeFrzkQ/Sv8Divf3m6I/AAAAAAAAC6k/FLN1jGChyvM/s600/sorter-02.png" alt="Ekran görüntüsü: Terminal’de sorter.txt çıktısı"></div>
 
 <p>Gördüğün gibi <code>cat</code> ile dosyanın içeriği ekrana basıldı. Şimdi <strong>pipe</strong> 
 mantıkını kullanarak, satır satır ekrana yazdırdığımız bu metni, a’dan z’ye 
 <strong>alfabetik</strong> olarak sıralayalım yani <strong>sort</strong> edelim!</p>
-<pre class="highlight shell"><code>cat sorter.txt | sort
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cat </span>sorter.txt | <span class="nb">sort</span>
+</code></pre></div>
 <div class="card card-custom" title="Title"><img src="http://1.bp.blogspot.com/_9jz1qeFrzkQ/Sv8Dim3hM7I/AAAAAAAAC6s/iN5huyxP4os/s600/sorter-03.png" alt="Ekran görüntüsü: cat sorter.txt | sort çıktısı"></div>
 
 <p>Gördüğünüz gibi garip bir şekilde sıralandı:</p>
@@ -163,9 +159,8 @@ mantıkını kullanarak, satır satır ekrana yazdırdığımız bu metni, a’d
 sonra yapılmış, yani İNGİLİZCE’ye göre <strong>a-b-c-d-e-f-g-h-i</strong>&hellip; şeklinde 
 <strong>ali-bronx-cemal-uğur-vigo</strong> doğru sırada, fakat <strong>bronx</strong>’dan sonra gelmesi 
 gereken <strong>çek</strong> sonda&hellip; Neden acaba? hemen <code>locale</code>’imize bakalım:</p>
-<pre class="highlight shell"><code>locale
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>locale
+</code></pre></div>
 <div class="card card-custom"><img src="http://3.bp.blogspot.com/_9jz1qeFrzkQ/Sv8Fi8YawNI/AAAAAAAAC60/Jo8ffaO0OfE/s600/sorter-04.png" alt="Ekran görüntüsü: Terminal’de locale komutu çıktısı"></div>
 
 <p>BOOOOM! Benim <strong>locale</strong>’im komple <strong>TÜRKÇE</strong>’ye ayarlı. <code>sort</code> komutun 

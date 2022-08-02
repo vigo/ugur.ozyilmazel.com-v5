@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:44+03:00" />
         <meta name="description" content="Bilgisayar kullanmaya Commodore 64’le başlayan, ilk ciddi anlamda parayı Amiga 
 ile kazanan ben, kaderin cilvesi olarak, uzun yıllar Windows kullanmak zorunda 
 kalmıştım." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2009/07/26/bash-completion-olayi/" />
         <meta property="og:title" content="Bash Completion olayı!" />
         <meta property="og:site_name" content="vigo" />
@@ -117,9 +117,8 @@ için dikkat etmiyoruz&hellip; Süper bi şekilde path’i tamamlama olayı&hell
 dikkatimi çeken şeyin ilave tamamlama özelliği olmasıydı. Debian / Ubuntu 
 kullananlar bilir, <strong>aptitude</strong> komutu ile paket yönetimi&hellip; Eğer bir paket
 arıyorsanız;</p>
-<pre class="highlight shell"><code>aptitude search PAKET_ADI
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code>aptitude search PAKET_ADI
+</code></pre></div>
 <p>şeklinde kullanırsınız. <strong>aptitude</strong> yazıp boşluk bırakıp <kbd>TAB</kbd>’e 
 basınca ilgili komutların çıkması süper hoşuma gitmişti ve;</p>
 
@@ -138,17 +137,15 @@ Hani <a href="http://ubuntu.com/" title="Ubuntu">Ubuntu</a>’da bu özellik var
 
 <p>Meğer bu işin sırrı <strong>bash-completion</strong> adlı paketteymiş. bash-completion
 kurduğunuz zaman yapmanız gereken tek şey ilgili <code>~/.profile</code> şunu eklemek;</p>
-<pre class="highlight shell"><code><span class="k">if</span> <span class="o">[</span> -f /opt/local/etc/bash_completion <span class="o">]</span>; <span class="k">then</span>
-    . /opt/local/etc/bash_completion
+<div class="highlight"><pre class="highlight shell"><code><span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> /opt/local/etc/bash_completion <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">.</span> /opt/local/etc/bash_completion
 <span class="k">fi</span>
-</code></pre>
-
+</code></pre></div>
 <p>Ben <code>~/.profile</code> kullandığım için oraya ekledim. Şimdi bu kadar şeyi neden
 anlattım? Aynı işi <a href="http://www.apple.com/macosx/" title="Mac OS X">Mac OS</a>’da da yaptım o bakımdan;
 <a href="http://macports.org" title="Macports">MacPorts</a> kullananlar için;</p>
-<pre class="highlight shell"><code>sudo port install bash-completion
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo </span>port <span class="nb">install </span>bash-completion
+</code></pre></div>
 <p>Sonra iş bitince size <code>.bash_profile</code> dosyasına ekleyin diyor ama eğer
 <code>.profile</code> kullanıyorsanız (<em>ki kolayı bu</em>) <code>.profile</code>’a ekleyin!</p>
 
@@ -158,8 +155,8 @@ anlattım? Aynı işi <a href="http://www.apple.com/macosx/" title="Mac OS X">Ma
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “11” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2011/03/22/kendi-pythonunu-kendin-kur-yazimda-eksik-yerler-buldum/">Kendi Python’unu kendin kur yazımda eksik yerler buldum</a></h3>

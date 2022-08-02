@@ -12,11 +12,11 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:56+03:00" />
+        <meta name="date" content="2022-08-02T17:17:46+03:00" />
         <meta name="description" content="Mac OS’un en rahat kullanılan, multi-platform yazılım geliştirme aracı
 TextMate ile ilgili güzel bir özellikten bahsetmek istiyorum." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2009/01/12/textmate-ve-bundle-repositoryleri/" />
         <meta property="og:title" content="TextMate ve Bundle Repository’leri" />
         <meta property="og:site_name" content="vigo" />
@@ -142,14 +142,12 @@ kimse birbirini bozamıyor.</p>
 eklediğiniz / düzenlediğiniz ayrı yerde (<em>kullanıcı yani user dizininde&hellip;</em>)</p>
 
 <p>Yeni bundle’lar eklemek için önce Terminal’i açıyoruz ve;</p>
-<pre class="highlight shell"><code>ls ~/Library/Application<span class="se">\ </span>Support/
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">ls</span> ~/Library/Application<span class="se">\ </span>Support/
+</code></pre></div>
 <p>diyerek acaba TextMate’e ait folder var mı? bakıyoruz. Eğer yoksa;</p>
-<pre class="highlight shell"><code>mkdir -p ~/Library/Application<span class="se">\ </span>Support/TextMate/Bundles
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">mkdir</span> <span class="nt">-p</span> ~/Library/Application<span class="se">\ </span>Support/TextMate/Bundles
 <span class="nb">cd</span> ~/Library/Application<span class="se">\ </span>Support/TextMate/Bundles
-</code></pre>
-
+</code></pre></div>
 <p>diyoruz ve hemen hangi ekleri (<em>ya da bundle’ları</em>) kurmak istiyorsak
 Macromates’in SVN repository’sine gidiyoruz. Web browser açıp
 (<em>Safari / Firefox vs</em>) hemen <a href="http://macromates.com/svn/Bundles/trunk/Bundles/">http://macromates.com/svn/Bundles/trunk/Bundles/</a>
@@ -158,10 +156,9 @@ adresine gidiyoruz.</p>
 <p>Karşımıza büyük bir liste çıkıyor. Buradan istediğimiz Bundle’ı seçiyoruz. 
 Mesela <strong>PHP</strong> ile ilgili Bundle’ı kuralım, hem de PHP fonksiyonları için 
 <strong>auto-complete</strong> de yapıyor bu bundle. Terminal’den devam ediyoruz;</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> ~/Library/Application<span class="se">\ </span>Support/TextMate/Bundles
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> ~/Library/Application<span class="se">\ </span>Support/TextMate/Bundles
 svn co http://macromates.com/svn/Bundles/trunk/Bundles/PHP.tmbundle
-</code></pre>
-
+</code></pre></div>
 <p>Gördüğünüz gibi gidip PHP ile ilgili bundle’ı repodan indirdik. Şimdi ya
 TextMate kapatıp açıcaz ya da <strong>Bundle Editor</strong> menüsünden <strong>Reload Bundles</strong>
 yapıcaz. (<em>Bundles &gt; Bundle Editor &gt; Reload Bundles</em>) Şimdi bir Php dosyası
@@ -183,10 +180,9 @@ ikililerinden oluşan direktifler. Yani <strong>Dictionary Object</strong> dedi�
 
 <p>Belirli aralıklarla (<em>ayda bir kez mesela</em>) <code>svn up</code> yaparak reponuzu güncel
 tutabilirsiniz. Bunun için <code>check-out</code> (co) ettiğiniz yere gidin;</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> ~/Library/Application<span class="se">\ </span>Support/Textmate/Bundles/PHP.tmbundle
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> ~/Library/Application<span class="se">\ </span>Support/Textmate/Bundles/PHP.tmbundle
 svn up
-</code></pre>
-
+</code></pre></div>
 <p>yapmanız yeterli olacaktır.</p>
 
 <h3>Güncelleme (8 Ağustos 2009)</h3>
@@ -204,8 +200,8 @@ svn up
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “10” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2015/04/13/textmate-ve-interaktif-giris/">TextMate ve İnteraktif Giriş</a></h3>

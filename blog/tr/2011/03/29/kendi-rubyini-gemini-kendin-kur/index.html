@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:56+03:00" />
+        <meta name="date" content="2022-08-02T17:17:46+03:00" />
         <meta name="description" content="Sıcağı sıcağına hemen yazmak istiyorum. Kendin kur kampanyamızın devamı yeni
 bir maceraya daha hoş geldiniz. Amacımız Mac OS X’e Ruby kurmak. Öncelikle
 macports’un kurulu olması gerekiyor!" />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2011/03/29/kendi-rubyini-gemini-kendin-kur/" />
         <meta property="og:title" content="Kendi Ruby’ini Gem’ini kendin kur" />
         <meta property="og:site_name" content="vigo" />
@@ -109,90 +109,78 @@ için <strong>MacOS SDK</strong> kurulu olması gerekiyor.</p>
 indirebilirsiniz.</p>
 
 <p>Önce gereken port’ları kuralım; (<a href="https://trac.macports.org/browser/trunk/dports/lang/ruby19/Portfile" title="Ruby port dosyası">macports</a>’dan)</p>
-<pre class="highlight plaintext"><code>libiconv
+<div class="highlight"><pre class="highlight plaintext"><code>libiconv
 readline
 openssl
 zlib
 ncurses
 libyaml
 libffi
-</code></pre>
-
+</code></pre></div>
 <p>Eğer <strong>libyaml</strong> ve <strong>libffi</strong> dışındaki tüm portlar çok sık kullanılanlardan
 olduğu için muhtemelen kurulu olabilir. Port’un kurulu olup olmadığını anlamak
 için:</p>
-<pre class="highlight plaintext"><code>port installed PORT_ADI
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>port installed PORT_ADI
+</code></pre></div>
 <p>yapapabilirsiniz. Gerekli port’ları kurduktan sonra, hemen Ruby’nin source’unu
 indirelim. Ben bu yazıyı yazdığım sırada versiyon <strong>1.9.2-p180</strong> vardı. Hemen;</p>
 
 <p><a href="http://www.ruby-lang.org/en/downloads/" title="Ruby’i indir">http://www.ruby-lang.org/en/downloads/</a></p>
 
 <p>adresinden indirebilirsiniz. Hemen gerekli folder’ları açalım:</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
-mkdir -p .local/Ruby
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> .local/Ruby
+</code></pre></div>
 <p>ve configure satırı:</p>
-<pre class="highlight shell"><code><span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">"-L/opt/local/lib"</span> <span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">"-I/opt/local/include"</span> ./configure --prefix<span class="o">=</span><span class="nv">$HOME</span>/.local/Ruby --with-rubylibprefix<span class="o">=</span><span class="nv">$HOME</span>/.local/Ruby/lib/ruby1.9 --enable-shared --enable-pthread --program-suffix<span class="o">=</span>1.9 <span class="nv">CFLAGS</span><span class="o">=</span>-D_XOPEN_SOURCE<span class="o">=</span>1
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">"-L/opt/local/lib"</span> <span class="nv">CPPFLAGS</span><span class="o">=</span><span class="s2">"-I/opt/local/include"</span> ./configure <span class="nt">--prefix</span><span class="o">=</span><span class="nv">$HOME</span>/.local/Ruby <span class="nt">--with-rubylibprefix</span><span class="o">=</span><span class="nv">$HOME</span>/.local/Ruby/lib/ruby1.9 <span class="nt">--enable-shared</span> <span class="nt">--enable-pthread</span> <span class="nt">--program-suffix</span><span class="o">=</span>1.9 <span class="nv">CFLAGS</span><span class="o">=</span><span class="nt">-D_XOPEN_SOURCE</span><span class="o">=</span>1
+</code></pre></div>
 <p>Dikkat ettiyseninz <strong>program-suffix</strong>’e <strong>1.9</strong> yazdık. Bu şu anlama geliyor,
 sistemdeki Ruby’e dokunmadan, <a href="http://www.ruby-lang.org/" title="Ruby">ruby</a> ile alakalı tüm dosyaların sonuna <strong>1.9</strong> eki
 gelecek. Yani sistemde hem <strong>ruby</strong> hem de <strong>ruby1.9</strong> diye iki farklı şey
 olacak. Keza bu irb, gem vs herşey için geçerli.</p>
 
 <p>configure başarılı olduysa şimdi;</p>
-<pre class="highlight plaintext"><code>make
+<div class="highlight"><pre class="highlight plaintext"><code>make
 make install
-</code></pre>
-
+</code></pre></div>
 <p>yapalım. Bu işlem bittiğinde (<em>eğer error ile karşılaşmadıysanız</em>) <code>~/.local</code>
 folderınızda;</p>
-<pre class="highlight plaintext"><code>Ruby/
+<div class="highlight"><pre class="highlight plaintext"><code>Ruby/
     bin/
     include/
     lib/
     share/
-</code></pre>
-
+</code></pre></div>
 <p>folder’ları oluşmuş olacak. Hemen <code>~/.profile</code> ya da <code>~/.bashrc</code> (<em>her ne
 kullanıyorsanız</em>) dosyasını açıp <code>PATH</code>’e ek yapmak lazım:</p>
-<pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>~/.local/Ruby/bin:<span class="nv">$PATH</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span>~/.local/Ruby/bin:<span class="nv">$PATH</span>
+</code></pre></div>
 <p>ya Terminal’i açıp kapatın ya da;</p>
-<pre class="highlight shell"><code><span class="nb">source</span> ~/.profile <span class="c"># eğer .profile kullanıyorsanız</span>
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">source</span> ~/.profile <span class="c"># eğer .profile kullanıyorsanız</span>
 <span class="nb">source</span> ~/.bashrc <span class="c"># eğer .bashrc kullanıyorsanız</span>
-</code></pre>
-
+</code></pre></div>
 <p>Şimdi <code>ruby</code> yazıp TAB’e basın ve <strong>ruby1.9</strong>’u görün! hemen <code>IRB</code> (<em>Ruby interactive
 shell</em>) için fix yapalım. Renkli görüntü için;</p>
-<pre class="highlight plaintext"><code>gem1.9 install wirble
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>gem1.9 install wirble
+</code></pre></div>
 <p>diyin&hellip; sonra <code>~/.irbrc</code> dosyası oluşturalım;</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
-touch .irbrc
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
+<span class="nb">touch</span> .irbrc
 nano .irbrc
-</code></pre>
-
+</code></pre></div>
 <p>aşağıdakileri paste edelim:</p>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rubygems'</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rubygems'</span>
 <span class="nb">require</span> <span class="s1">'wirble'</span>
 <span class="no">Wirble</span><span class="p">.</span><span class="nf">init</span><span class="p">({</span>
   <span class="ss">:skip_prompt</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
 <span class="p">})</span>
 <span class="no">Wirble</span><span class="p">.</span><span class="nf">colorize</span>
-</code></pre>
-
+</code></pre></div>
 <p>Detaylı bilgi için <a href="http://pablotron.org/software/wirble/README">Wirble</a>’in sitesine bakabilirsiniz.</p>
 
 <p>Denemek için <code>irb</code>’yi çalıştırın ve;</p>
-<pre class="highlight ruby"><code><span class="p">[</span><span class="s2">"test"</span><span class="p">,</span> <span class="p">{</span><span class="ss">:hash_key</span> <span class="o">=&gt;</span> <span class="nb">proc</span> <span class="p">{</span> <span class="kp">nil</span> <span class="p">}},</span> <span class="no">Class</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight ruby"><code><span class="p">[</span><span class="s2">"test"</span><span class="p">,</span> <span class="p">{</span><span class="ss">:hash_key</span> <span class="o">=&gt;</span> <span class="nb">proc</span> <span class="p">{</span> <span class="kp">nil</span> <span class="p">}},</span> <span class="no">Class</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</code></pre></div>
 <p>Keza, <code>RUBY</code> yazıp TAB’e basın ve otomatik tamamlama olayını görün!</p>
 
 <div class="card card-custom"><img src="http://media.tumblr.com/tumblr_lisetjtOZs1qafg0z.png" alt="Terminal ekran görüntüsü"><div class="card-block"><p class="card-text">Ruby 1.9 ve IRB 1.9</p></div></div>
@@ -203,8 +191,8 @@ nano .irbrc
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “7” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2016/07/30/solid-prensibi/">SOLID Prensibi</a></h3>

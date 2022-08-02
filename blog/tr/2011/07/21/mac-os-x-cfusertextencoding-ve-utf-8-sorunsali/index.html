@@ -12,13 +12,13 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:45+03:00" />
         <meta name="description" content="Mac OS X’le tanıştığım günden beri sinir olduğum ve kimsenin çözümünü
 bilemediği bir sorunum var. Aslında bu sorun, Amerikalı olmayan herkesin
 sorunu. Bu sorun yüzünden ne Python’la ne de Ruby’le bile 
 işlem yapmakta sıkıntı oluyor." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2011/07/21/mac-os-x-cfusertextencoding-ve-utf-8-sorunsali/" />
         <meta property="og:title" content="Mac OS X: CFUserTextEncoding ve UTF-8 sorunsalı" />
         <meta property="og:site_name" content="vigo" />
@@ -124,13 +124,12 @@ ilgili bir FriendFeed yorumunda:</p>
 
 <p>demişti. <code>$HOME</code> folder’ınızda bulunan <code>.CFUserTextEncoding</code>dosyasını 
 Terminal’den görebilirsiniz:</p>
-<pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
-ls -al
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">cd</span> <span class="nv">$HOME</span>
+<span class="nb">ls</span> <span class="nt">-al</span>
 
 <span class="c"># ya da</span>
-ls -al .CFUserTextEncoding
-</code></pre>
-
+<span class="nb">ls</span> <span class="nt">-al</span> .CFUserTextEncoding
+</code></pre></div>
 <p>Evet, söylediği de doğruydu. Denedim, çalışmıştı. Fakat daha sonra garip
 problemler çıkmaya başladı sistemde. DVD-ROM çalışmamaya başladı, Safari ara
 ara sapıtmaya başladı vs&hellip; Geriye dönüp düşündüğümde; en son yaptığım şey

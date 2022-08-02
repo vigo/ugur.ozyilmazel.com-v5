@@ -12,13 +12,13 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:45+03:00" />
         <meta name="description" content="Geçtiğimiz günlerde yazdığım yazımda çok önemli bir eksiklik
 yaptığımı bugün farkettim. Neden bugün? Bugün yeni makine kuruyordum ve sıra
 Python’u kurmaya gelmişti. Hemen blog’umu açıp kendi yazdığım yazımı 
 okumaya başladım." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2011/03/22/kendi-pythonunu-kendin-kur-yazimda-eksik-yerler-buldum/" />
         <meta property="og:title" content="Kendi Python’unu kendin kur yazımda eksik yerler buldum" />
         <meta property="og:site_name" content="vigo" />
@@ -107,14 +107,12 @@ okumaya başladım.
 <p>Herşey güzel güzel ilerledi. Sıra python’un PIL paketini kurmaya gelmişti ki
 jeton düştü! <strong>P</strong>ython <strong>I</strong>mage <strong>L</strong>ibrary’nin ihtiyacı olan 2 kütüphane eksikti&hellip;
 bunlar:</p>
-<pre class="highlight plaintext"><code>jpeg
+<div class="highlight"><pre class="highlight plaintext"><code>jpeg
 freetype
-</code></pre>
-
+</code></pre></div>
 <p>Bu kütüphaneleri ports’dan kurmak gerekiyor öncesinden:</p>
-<pre class="highlight shell"><code>sudo port install jpeg freetype
-</code></pre>
-
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo </span>port <span class="nb">install </span>jpeg freetype
+</code></pre></div>
 <p>şeklinde kurmak gerekiyor JPG ve Font desteği için&hellip;</p>
 
                     </div>
@@ -123,8 +121,8 @@ freetype
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “12” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/">Derlenmiş Python Dosyaları Bazen Sizi Yanıltabilir</a></h3>

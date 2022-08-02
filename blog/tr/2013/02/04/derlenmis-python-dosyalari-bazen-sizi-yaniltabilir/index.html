@@ -12,12 +12,12 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:45+03:00" />
         <meta name="description" content="Suç kesinlikle Python’da değil! Yanlış anlaşılma olmasın! Geçtiğimiz günlerde 
 yaşadığım iki dikkatsizliğin bana ciddi vakit kaybettirmesi bu blog postunu 
 yazmama sebeb oldu." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/" />
         <meta property="og:title" content="Derlenmiş Python Dosyaları Bazen Sizi Yanıltabilir" />
         <meta property="og:site_name" content="vigo" />
@@ -124,9 +124,8 @@ ile silmiş ve bu silme işinden sonra yazmışım tüm kodu gibi&hellip;</p>
 
 <p>Hemen google’ladım, <code>.pyc</code> dosyasından nasıl <code>.py</code> üretebilirim diye. Hemen
 <a href="https://github.com/gstarnberger/uncompyle">uncompyle</a>’ı buldum. Kullanımı çok kolay</p>
-<pre class="highlight plaintext"><code>uncompyler.py DOSYA.pyc &gt; DOSYA_KURTAR.py
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>uncompyler.py DOSYA.pyc &gt; DOSYA_KURTAR.py
+</code></pre></div>
 <p>şeklinde dosyayı kurtardım.</p>
 
 <p>Bu da yetmedi, evde çalışmak için projeyi clone’ladım. Gereken kurulumları
@@ -144,9 +143,8 @@ Python’da <code>__init__.py</code> çok önemlidir. Herhangi bir dizin içinde
 varsa; o dizinin paket/modül gibi kullanılabileceğini anlatır.</p>
 
 <p>Yani;</p>
-<pre class="highlight python"><code><span class="kn">from</span> <span class="nn">my_project.libs.functions</span> <span class="kn">import</span> <span class="n">test_function</span>
-</code></pre>
-
+<div class="highlight"><pre class="highlight python"><code><span class="kn">from</span> <span class="nn">my_project.libs.functions</span> <span class="kn">import</span> <span class="n">test_function</span>
+</code></pre></div>
 <p>dersem; bu <code>my_project/libs/functions.py</code> dosyasından <code>test_function</code> adlı
 fonksiyonu import et anlamına gelir. (<em>Kabaca verdim bu örneği</em>) Bu örneğin
 sağlıklı çalışması için <code>my_project</code> dizini altında <code>__init__.py</code> olması
@@ -162,9 +160,8 @@ olsam bunlar başıma gelmeyecekti. Şunu gördüm ki, ben bile, bile derken en 
 işini kapattım. Proje bazlı. <a href="http://http//www.virtualenv.org/">virtualenv</a> ve <a href="http://www.doughellmann.com/projects/virtualenvwrapper/">virtualenvwrapper</a>
 kullanıyorum. Çalıştığım projeye geçerken ufak bir hook ile şu değişkeni
 set ediyorum:</p>
-<pre class="highlight plaintext"><code>export PYTHONDONTWRITEBYTECODE="1"
-</code></pre>
-
+<div class="highlight"><pre class="highlight plaintext"><code>export PYTHONDONTWRITEBYTECODE="1"
+</code></pre></div>
 <p>Böylece <code>pyc</code> dosyaları otomatik olarak oluşmayacak. Ben de yanlışlıkla
 birşeyleri sildiğim zaman <strong>anında</strong> farkedeceğim.</p>
 
@@ -174,8 +171,8 @@ birşeyleri sildiğim zaman <strong>anında</strong> farkedeceğim.</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “10” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2012/10/26/python-fonksiyonu-nasil-yazilmali/">Python fonksiyonu nasıl yazılmalı?</a></h3>

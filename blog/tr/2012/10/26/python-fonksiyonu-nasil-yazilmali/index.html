@@ -12,11 +12,11 @@
         
         <link href="/public/css/application.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed-tr.xml" />
-        <meta name="date" content="2021-09-26T13:52:55+03:00" />
+        <meta name="date" content="2022-08-02T17:17:45+03:00" />
         <meta name="description" content="Coursera’dan aldığım Learn to Program: The Fundamentals dersinde
 bugüne kadar görmediğim bir şeyi sizlerle paylaşmak istiyorum." />
         <meta name="author" content="Uğur “vigo” Özyılmazel"/>
-        <meta name="copyright" content="(c) 2006 / 2021 - Uğur “vigo” Özyılmazel" />
+        <meta name="copyright" content="(c) 2006 / 2022 - Uğur “vigo” Özyılmazel" />
         <meta property="og:url" content="http://ugur.ozyilmazel.com/blog/tr/2012/10/26/python-fonksiyonu-nasil-yazilmali/" />
         <meta property="og:title" content="Python fonksiyonu nasıl yazılmalı?" />
         <meta property="og:site_name" content="vigo" />
@@ -102,8 +102,8 @@ bugüne kadar görmediğim bir şeyi sizlerle paylaşmak istiyorum.
 <p><a href="http://www.utoronto.ca" title="University of Toronto">Toronto Üniversitesi</a> tarafından hazırlanan ders, Python 101 yani
 Python&rsquo;a giriş ve temel öğeleri kapsıyor. Geçenlerde Python fonksiyonun
 anatomisi vardı derste.</p>
-<pre class="highlight python"><code><span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>                                        <span class="c"># Header</span>
-    <span class="s">''' (number, number) -&gt; number                             # Type Contract
+<div class="highlight"><pre class="highlight python"><code><span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>                                        <span class="c1"># Header
+</span>    <span class="s">''' (number, number) -&gt; number                             # Type Contract
 
     Return the area of a triange with dimensions base          # Description
     and height.
@@ -114,9 +114,8 @@ anatomisi vardı derste.</p>
     3.75
     '''</span>
 
-    <span class="k">return</span> <span class="n">base</span> <span class="o">*</span> <span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>                                   <span class="c"># Body</span>
-</code></pre>
-
+    <span class="k">return</span> <span class="n">base</span> <span class="o">*</span> <span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>                                   <span class="c1"># Body
+</span></code></pre></div>
 <p>Şimdi teker teker bakalım.</p>
 
 <h3>def area(base, height):</h3>
@@ -167,8 +166,8 @@ sizlerin de işine yarar faydalı olur&hellip;</p>
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1>İlişkili Makaleler</h1>
-        <p>Konu ile ilgili toplam “8” adet bağlantılı makale bulunuyor.</p>
+        <h1>{:one=>"İlişkili Makale", :other=>"İlişkili Makaleler"}</h1>
+        <p>Konu ile ilgili toplam “%{count}” adet bağlantılı makale bulunuyor.</p>
     </li>
         <li>
             <h3><a href="/blog/tr/2013/02/04/derlenmis-python-dosyalari-bazen-sizi-yaniltabilir/">Derlenmiş Python Dosyaları Bazen Sizi Yanıltabilir</a></h3>
