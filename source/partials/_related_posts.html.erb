@@ -13,8 +13,8 @@ end
 <div id="related-articles">
     <ul class="list-unstyled">
     <li>
-        <h1><%= t('related_articles', count: related_articles.count) %></h1>
-        <p><%= t('we_have_related_articles', count: related_articles.count) %></p>
+        <h1><%= I18n.t('related_articles', count: related_articles.count) %></h1>
+        <p><%= I18n.t('we_have_related_articles', count: related_articles.count) %></p>
     </li>
     <% related_articles.each_with_index do |article, index| %>
         <li>
